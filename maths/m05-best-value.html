@@ -459,19 +459,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">5.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">5.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">5.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-second-derivative-test" id="toc-the-second-derivative-test" class="nav-link" data-scroll-target="#the-second-derivative-test">The second-derivative test</a></li>
   <li><a href="#local-is-not-global" id="toc-local-is-not-global" class="nav-link" data-scroll-target="#local-is-not-global">Local is not global</a></li>
   <li><a href="#the-full-procedure" id="toc-the-full-procedure" class="nav-link" data-scroll-target="#the-full-procedure">The full procedure</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">5.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">5.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">5.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">5.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">5.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -507,7 +507,7 @@ window.Quarto = {
 <p>The central fact is small and easy to misuse: at a peak or a trough of a smooth curve, the derivative is zero. What takes care is everything around it — because a zero derivative is a <em>candidate</em>, not an answer, and the best value is sometimes nowhere near one.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">5.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>differentiate using the rules, and factorise the result — <a href="../maths/m04-differentiation-toolkit.html">M4</a>;</li>
@@ -533,7 +533,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">5.2 The idea</h2>
 <p>At the top of a hill the ground is momentarily level. At the bottom of a valley it is level too. So if a smooth curve has a highest or lowest point somewhere in the middle of its range, the tangent there is horizontal — the derivative is zero.</p>
 <p>A point where <span class="math inline">\(f'(x) = 0\)</span> is called a <strong>stationary point</strong>. Finding them is easy. Deciding what they are is the work:</p>
 <div id="cell-fig-stationary" class="cell" data-execution_count="1">
@@ -553,7 +553,7 @@ Figure&nbsp;20.1: Three stationary points, all with <span class="math inline">\(
 <p>The middle one is the warning. Its tangent is horizontal, so <span class="math inline">\(f'(x) = 0\)</span>, and yet it is neither a peak nor a trough — the curve flattens and carries on in the same direction.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">5.3 The mechanics</h2>
 <section id="the-second-derivative-test" class="level3">
 <h3 class="anchored" data-anchor-id="the-second-derivative-test">The second-derivative test</h3>
 <p><span class="math inline">\(f''\)</span> measures how the slope is changing, which is exactly what distinguishes a peak from a trough. If <span class="math inline">\(f'(c) = 0\)</span> and <span class="math inline">\(f''\)</span> is continuous near <span class="math inline">\(c\)</span>:</p>
@@ -661,7 +661,7 @@ lowest on [-1, 3]: x=1.0, g=-2.00</code></pre>
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">5.4 Worked example</h2>
 <p><strong>Fitting a one-parameter model by calculus.</strong></p>
 <p>Suppose you must summarise a set of scores with a single number <span class="math inline">\(a\)</span>, and you choose <span class="math inline">\(a\)</span> to make the total squared error as small as possible:</p>
 <p><span class="math display">\[
@@ -720,7 +720,7 @@ Figure&nbsp;20.3: The squared-error loss as the summary value varies. One trough
 <p>Change the loss and you change the answer. Minimising the sum of <em>absolute</em> errors gives the <strong>median</strong> instead — a different summary, from a different choice about what “wrong” means. The mean is not neutral; it is the answer to one specific question.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">5.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Find and classify the stationary points of <span class="math inline">\(f(x) = x^3 - 3x^2 + 4\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -795,7 +795,7 @@ Figure&nbsp;20.3: The squared-error loss as the summary value varies. One trough
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">5.6 Check it in Python</h2>
 <p><strong>Check a stationary point numerically</strong> before trusting your algebra:</p>
 <div id="check-stationary" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):  <span class="cf">return</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span></span>
@@ -848,7 +848,7 @@ highest 18.000 at x=3.000</code></pre>
 <p>A grid search is not a substitute for the calculus — it cannot prove anything and it misses features between grid points. But it is an excellent way to find out that your algebra disagrees with the function.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">5.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -880,7 +880,7 @@ Minimising squared error gives the mean; minimising absolute error gives the med
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">5.8 Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">

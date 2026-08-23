@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">4.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">4.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">4.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-rules-all-of-them" id="toc-the-rules-all-of-them" class="nav-link" data-scroll-target="#the-rules-all-of-them">The rules, all of them</a></li>
   <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional probability</a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#splitting-a-probability-up" id="toc-splitting-a-probability-up" class="nav-link" data-scroll-target="#splitting-a-probability-up">Splitting a probability up</a></li>
   <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes’ theorem</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">4.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">4.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">4.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">4.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">4.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p>There is one error in particular that this unit exists to prevent. It is swapping a conditional probability for its reverse: reading <em>the chance of a positive test given the disease</em> as <em>the chance of the disease given a positive test</em>, or <em>the chance of this data if the hypothesis were false</em> as <em>the chance the hypothesis is false</em>. It has sent people to prison. It is the same mistake every time, and once you can see it you cannot unsee it.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">4.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>turn a count into a proportion and back — <a href="../stats/s01-the-question.html">S1</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">4.2 The idea</h2>
 <p>A <strong>probability</strong> is a number between 0 and 1 attached to an event, measuring how often it happens. Take it, for now, as a long-run frequency: if you could repeat the situation many times, the probability is the fraction of times you would see the event. That is the reading frequentist statistics is built on, and it is why <a href="../stats/s08-intervals.html">S8</a> can say things about <em>procedures</em> but not about individual results.</p>
 <p>The whole subject then rests on one move: <strong>conditioning</strong>. Conditioning means restricting attention to a subset of the possibilities and asking the question again inside it. It changes the denominator, and changing the denominator changes the answer — often dramatically, and in a way people consistently fail to expect.</p>
 <p>Here it is on the cohort. Take two facts about a student: they came from a Mathematics or Physics background, and they scored 70 or more. Twenty-four students have both.</p>
@@ -564,7 +564,7 @@ P(\text{Maths/Physics} \mid \text{scored } 70{+}) = \frac{24}{69} = 0.35 .
 <p>The vertical bar is read “given”. <strong>The thing after the bar is the denominator.</strong> Swap the two sides and you have changed the question, not merely the phrasing.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">4.3 The mechanics</h2>
 <section id="the-rules-all-of-them" class="level3">
 <h3 class="anchored" data-anchor-id="the-rules-all-of-them">The rules, all of them</h3>
 <p>An <strong>event</strong> is a set of outcomes; <span class="math inline">\(P(A)\)</span> is its probability. Everything follows from three facts: <span class="math inline">\(0 \le P(A) \le 1\)</span>, the probability of “something happens” is 1, and the probabilities of outcomes that cannot both occur add up.</p>
@@ -649,7 +649,7 @@ Figure&nbsp;31.3: Ten thousand people, then only the 585 who test positive. The 
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">4.4 Worked example</h2>
 <p><strong>The cohort’s own screening test.</strong></p>
 <p>Every student sat a diagnostic on arrival. Treat “scored 70 or more on the diagnostic” as a test for “scored 70 or more at the end”, and ask how good a test it is.</p>
 <div id="table" class="cell" data-execution_count="4">
@@ -723,7 +723,7 @@ ratio 1.72 — a strong start makes a strong finish 1.72 times likelier than cha
 <p>Not independent, and nobody expected them to be. What the numbers add is a size: students who start strong finish strong 1.7 times as often as independence would predict, and still only half the time.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">4.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> <span class="math inline">\(P(A) = 0.5\)</span>, <span class="math inline">\(P(B) = 0.4\)</span>, and <span class="math inline">\(P(A \cap B) = 0.2\)</span>.</p>
 <ol type="a">
@@ -803,7 +803,7 @@ ratio 1.72 — a strong start makes a strong finish 1.72 times likelier than cha
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">4.6 Check it in Python</h2>
 <p>Every probability in this unit is a ratio of counts, so all of it is checkable directly. First, that conditioning really is division by the new denominator:</p>
 <div id="check-conditionals" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flagged <span class="op">=</span> usable[usable[<span class="st">"strong_start"</span>]]</span>
@@ -866,7 +866,7 @@ P(start AND finish)                 0.1983</code></pre>
 <p>The amount by which the naive sum overshoots is exactly the overlap, which is what the <span class="math inline">\(-P(A \cap B)\)</span> in the addition rule is there to remove.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">4.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -898,7 +898,7 @@ Adding two probabilities counts the overlap twice. Subtract it once. If the even
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">4.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

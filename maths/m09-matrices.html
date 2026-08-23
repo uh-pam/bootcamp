@@ -459,20 +459,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">9.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">9.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">9.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#shape-and-the-one-rule" id="toc-shape-and-the-one-rule" class="nav-link" data-scroll-target="#shape-and-the-one-rule">Shape, and the one rule</a></li>
   <li><a href="#the-product" id="toc-the-product" class="nav-link" data-scroll-target="#the-product">The product</a></li>
   <li><a href="#the-identity" id="toc-the-identity" class="nav-link" data-scroll-target="#the-identity">The identity</a></li>
   <li><a href="#the-transpose" id="toc-the-transpose" class="nav-link" data-scroll-target="#the-transpose">The transpose</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">9.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">9.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">9.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">9.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">9.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -508,7 +508,7 @@ window.Quarto = {
 <p>The useful idea is the second one. A matrix is also an <strong>operation</strong> — feed it a vector and it hands back another vector — and almost everything done to data in practice is one of those operations written down. Making a <em>linear</em> prediction for every row at once, rotating a cloud of points, re-weighting a set of columns: each of those is a single multiplication. Once you can read <span class="math inline">\(A\mathbf{x}\)</span> two ways, the whole of the rest of this track opens up, because <a href="../maths/m10-linear-systems.html">M10</a>, <a href="../maths/m11-least-squares.html">M11</a> and <a href="../maths/m12-directions.html">M12</a> are all questions about what a particular matrix does.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">9.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>take a dot product, and say what it means — <a href="../maths/m08-vectors.html">M8</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">9.2 The idea</h2>
 <p>Write the cohort’s practice hours and a column of ones side by side:</p>
 <p><span class="math display">\[
 X = \begin{pmatrix} 1 &amp; h_1 \\ 1 &amp; h_2 \\ \vdots &amp; \vdots \\ 1 &amp; h_{238} \end{pmatrix}
@@ -590,7 +590,7 @@ Figure&nbsp;24.2: The column reading in the plane. Whatever the two weights are,
 </div>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">9.3 The mechanics</h2>
 <section id="shape-and-the-one-rule" class="level3">
 <h3 class="anchored" data-anchor-id="shape-and-the-one-rule">Shape, and the one rule</h3>
 <p>A matrix with <span class="math inline">\(m\)</span> rows and <span class="math inline">\(n\)</span> columns has shape <span class="math inline">\(m \times n\)</span>; the entry in row <span class="math inline">\(i\)</span>, column <span class="math inline">\(j\)</span> is <span class="math inline">\(a_{ij}\)</span>, row index first. A vector of <span class="math inline">\(n\)</span> numbers behaves like an <span class="math inline">\(n \times 1\)</span> matrix.</p>
@@ -634,7 +634,7 @@ Figure&nbsp;24.2: The column reading in the plane. Whatever the two weights are,
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">9.4 Worked example</h2>
 <p><strong>One multiplication predicts the whole cohort.</strong></p>
 <p>Build the <span class="math inline">\(238 \times 2\)</span> design matrix — a column of ones for the intercept and the practice hours — and take the fit from <a href="../maths/m06-gradients.html">M6</a> at full precision.</p>
 <div id="design" class="cell" data-execution_count="3">
@@ -712,7 +712,7 @@ Figure&nbsp;24.3: The fitted line, with each student’s residual drawn as the v
 </div>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">9.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Let <span class="math inline">\(A = \begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 3 \\ 4 &amp; 1\end{pmatrix}\)</span> and <span class="math inline">\(\mathbf{x} = (2, -1)\)</span>. Compute <span class="math inline">\(A\mathbf{x}\)</span> two ways — by rows and by columns — and confirm they agree.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -828,7 +828,7 @@ BA = \begin{pmatrix} 1 &amp; 2 \\ 5 + 3 &amp; 10 + 4 \end{pmatrix}
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">9.6 Check it in Python</h2>
 <p>The unit’s central claim is that a matrix product is a grid of dot products. Test it by building one from nothing but the dot product of <a href="../maths/m08-vectors.html">M8</a> and comparing against <code>@</code>:</p>
 <div id="check-product" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
@@ -883,7 +883,7 @@ same? False</code></pre>
 <p><code>*</code> squares each entry where it stands. <code>@</code> takes the four dot products. Both return a <span class="math inline">\(2 \times 2\)</span> array, both run without complaint, and only one of them is matrix multiplication — the point <a href="../python/p07-numpy-computing.html">P7</a> made before you had the definition to attach it to.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">9.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -915,7 +915,7 @@ The table view says what is stored. The operation view says what it does, and th
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">9.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

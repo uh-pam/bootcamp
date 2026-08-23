@@ -459,23 +459,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">5.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">5.2 The idea</a>
   <ul class="collapse">
   <li><a href="#what-is-visible-where" id="toc-what-is-visible-where" class="nav-link" data-scroll-target="#what-is-visible-where">What is visible where</a></li>
   </ul></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">5.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#defaults-and-keyword-arguments" id="toc-defaults-and-keyword-arguments" class="nav-link" data-scroll-target="#defaults-and-keyword-arguments">Defaults and keyword arguments</a></li>
   <li><a href="#doing-one-thing" id="toc-doing-one-thing" class="nav-link" data-scroll-target="#doing-one-thing">Doing one thing</a></li>
   <li><a href="#assert-a-check-you-leave-in-the-code" id="toc-assert-a-check-you-leave-in-the-code" class="nav-link" data-scroll-target="#assert-a-check-you-leave-in-the-code"><code>assert</code> — a check you leave in the code</a></li>
   <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">5.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">5.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">5.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">5.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">5.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -511,7 +511,7 @@ window.Quarto = {
 <p>That is the obvious benefit. The one that matters more for data science is that a named piece of work can be <strong>checked</strong>. A calculation buried in the middle of a script can only be verified by reading it; the same calculation in a function can be handed known inputs and asked whether it returns the right answer. Every unit after this one leans on that.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">5.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>write a loop and a conditional, and indent them correctly — <a href="../python/p04-decisions-loops.html">P4</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">5.2 The idea</h2>
 <div id="first-function" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standardise(value, mean, sd):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return how many standard deviations `value` sits above the mean."""</span></span>
@@ -601,7 +601,7 @@ Figure&nbsp;9.1: A function can see the names around it, but names it creates ar
 </section>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">5.3 The mechanics</h2>
 <section id="defaults-and-keyword-arguments" class="level3">
 <h3 class="anchored" data-anchor-id="defaults-and-keyword-arguments">Defaults and keyword arguments</h3>
 <div id="defaults" class="cell" data-execution_count="4">
@@ -743,7 +743,7 @@ Life sciences: n=4, mean=64.20</code></pre>
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">5.4 Worked example</h2>
 <p><strong>A checked function, used on the cohort.</strong></p>
 <div id="worked-def" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summarise_group(scores, low<span class="op">=</span><span class="dv">0</span>, high<span class="op">=</span><span class="dv">100</span>):</span>
@@ -806,7 +806,7 @@ all checks passed</code></pre>
 <p>The one excluded value is the impossible score of 187 planted in the file. The function found it, reported it, and did not average it in — because the exclusion rule lives in one place and is tested.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">5.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Write <code>larger(a, b)</code> returning the larger of two numbers, then write three assertions that would catch a wrong implementation — including the equal case.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -902,7 +902,7 @@ all checks passed</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">5.6 Check it in Python</h2>
 <p>Write the checks <strong>before</strong> the function is used in anger, on inputs whose answer you already know.</p>
 <div id="check-known" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_sd(values):</span>
@@ -938,7 +938,7 @@ all checks passed</code></pre>
 <p>A function that fails loudly on bad input is more useful than one that returns a number you cannot trust.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">5.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -970,7 +970,7 @@ Names created inside are local. A function communicates back through its return 
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">5.8 Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">

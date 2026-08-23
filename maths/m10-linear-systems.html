@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">10.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">10.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">10.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#elimination" id="toc-elimination" class="nav-link" data-scroll-target="#elimination">Elimination</a></li>
   <li><a href="#singular-matrices" id="toc-singular-matrices" class="nav-link" data-scroll-target="#singular-matrices">Singular matrices</a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#when-solvable-is-too-crude-a-question" id="toc-when-solvable-is-too-crude-a-question" class="nav-link" data-scroll-target="#when-solvable-is-too-crude-a-question">When “solvable” is too crude a question</a></li>
   <li><a href="#more-equations-than-unknowns" id="toc-more-equations-than-unknowns" class="nav-link" data-scroll-target="#more-equations-than-unknowns">More equations than unknowns</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">10.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">10.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">10.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">10.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">10.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p>The part that matters most is not the arithmetic — a library does that in one call. It is knowing which of three situations you are in: exactly one solution, none at all, or infinitely many. With real data the honest answer is usually <strong>none</strong>, and recognising that rather than fighting it is precisely what <a href="../maths/m11-least-squares.html">M11</a> is for.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">10.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>multiply a matrix by a vector, by rows and by columns — <a href="../maths/m09-matrices.html">M9</a>;</li>
@@ -537,7 +537,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">10.2 The idea</h2>
 <p>A system of linear equations is a matrix equation. These two,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -587,7 +587,7 @@ Figure&nbsp;25.2: The same three cases seen from the columns. Left: two columns 
 </div>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">10.3 The mechanics</h2>
 <section id="elimination" class="level3">
 <h3 class="anchored" data-anchor-id="elimination">Elimination</h3>
 <p>The method is the one from the quick check, written down carefully: add multiples of one equation to another until the system is triangular, then substitute back. On</p>
@@ -643,7 +643,7 @@ Figure&nbsp;25.3: Two nearly parallel lines. Moving the second line’s right-ha
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">10.4 Worked example</h2>
 <p><strong>The cohort system has no solution — and the one you can solve instead.</strong></p>
 <p>Take the design matrix of <a href="../maths/m09-matrices.html">M9</a> and ask for an <em>exact</em> fit: values of <span class="math inline">\(\boldsymbol{\theta}\)</span> with <span class="math inline">\(X\boldsymbol{\theta} = \mathbf{y}\)</span>, every prediction landing on every student’s actual score.</p>
 <div id="unsolvable" class="cell" data-execution_count="4">
@@ -700,7 +700,7 @@ but of the original system     125.4985</code></pre>
 <p>The answer itself is the one you have seen twice already: intercept <span class="math inline">\(69.226117\)</span>, slope <span class="math inline">\(-0.240793\)</span>, the same numbers gradient descent walked to in <a href="../maths/m06-gradients.html">M6</a> and <code>np.polyfit</code> returned in <a href="../maths/m09-matrices.html">M9</a>. Three routes — an iterative walk, a library call and a <span class="math inline">\(2 \times 2\)</span> system solved by elimination — and one answer, which is the reassurance that all three are computing the same thing.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">10.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Solve <span class="math inline">\(\begin{aligned} x + 2y &amp;= 5 \\ 3x - y &amp;= 1\end{aligned}\)</span> by elimination, and check your answer by substitution.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -771,7 +771,7 @@ but of the original system     125.4985</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">10.6 Check it in Python</h2>
 <p><strong>Solve, and then check the solution</strong> rather than trusting it:</p>
 <div id="check-solve" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> A_small, b_small <span class="kw">in</span> [(np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]]), np.array([<span class="fl">7.0</span>, <span class="fl">2.0</span>])),</span>
@@ -826,7 +826,7 @@ b=[3.0, 7.0]  -&gt; LinAlgError: Singular matrix</code></pre>
 <p>Two lessons in one table. <code>inv</code> is consistently the worse of the two — by a factor of four at <span class="math inline">\(n = 6\)</span>, thirty at <span class="math inline">\(n = 10\)</span> and sixty at <span class="math inline">\(n = 14\)</span> — so prefer <code>solve</code> as a matter of habit. And by <span class="math inline">\(n = 14\)</span> <em>both</em> are useless: the condition number has passed <span class="math inline">\(10^{16}\)</span> and the answer carries no correct digits at all. That last part is a statement about <em>double precision</em>, which carries about 16 digits — the condition number says how many of them you lose, so a problem this bad exhausts the supply. Eighty-digit arithmetic would solve the same system perfectly well. What you cannot do is rescue it with a cleverer algorithm at the same precision: the fix is more digits, or a better-posed question.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">10.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -858,7 +858,7 @@ More rows means more equations against the same unknowns, which makes an exact s
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">10.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

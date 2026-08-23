@@ -459,20 +459,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">5.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">5.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">5.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-cumulative-distribution-function" id="toc-the-cumulative-distribution-function" class="nav-link" data-scroll-target="#the-cumulative-distribution-function">The cumulative distribution function</a></li>
   <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value">Expected value</a></li>
   <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a></li>
   <li><a href="#the-consequence-everything-else-is-built-on" id="toc-the-consequence-everything-else-is-built-on" class="nav-link" data-scroll-target="#the-consequence-everything-else-is-built-on">The consequence everything else is built on</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">5.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">5.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">5.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">5.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">5.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -508,7 +508,7 @@ window.Quarto = {
 <p>A <strong>random variable</strong> attaches probabilities to <em>numbers</em>, and numbers can be added, averaged and rescaled. Doing so gives you two quantities — the expected value and the variance — that turn out to obey simple rules, and those rules are what make the rest of statistics possible. Every standard error you will ever compute is one line of algebra away from the variance rules in this unit.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">5.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>compute and interpret a conditional probability — <a href="../stats/s04-probability.html">S4</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">5.2 The idea</h2>
 <p>A <strong>random variable</strong> is a rule that assigns a number to each outcome of a random process. Roll a die, record the face: that is a random variable. Pick a student from the cohort at random, record their final score: so is that.</p>
 <p>The convention is a capital letter for the variable and a lower-case letter for a value it might take, so <span class="math inline">\(P(X = x)\)</span> reads “the probability that the random variable <span class="math inline">\(X\)</span> turns out to equal the particular number <span class="math inline">\(x\)</span>”. The distinction is worth respecting: <span class="math inline">\(X\)</span> is the <em>procedure</em>, <span class="math inline">\(x\)</span> is <em>one result</em>.</p>
 <p>Random variables come in two kinds, and the difference is not a technicality. (Strictly there is a third possibility — a variable can be part lump, part smooth, like a rainfall total that is exactly zero on dry days and continuous otherwise. Such mixtures are real and are handled by combining the two cases; nothing else in these notes needs them.)</p>
@@ -564,7 +564,7 @@ P(a \le X \le b) = \int_a^b f(x)\,dx ,
 <p>Two consequences follow immediately. The total area under a density is 1. And <span class="math inline">\(f(x)\)</span> itself is <em>not</em> a probability — it can exceed 1 quite legitimately, as long as the width it applies over is small enough that the area does not.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">5.3 The mechanics</h2>
 <section id="the-cumulative-distribution-function" class="level3">
 <h3 class="anchored" data-anchor-id="the-cumulative-distribution-function">The cumulative distribution function</h3>
 <p>One function works for both kinds:</p>
@@ -633,7 +633,7 @@ E[aX + b] = a\,E[X] + b, \qquad E[X + Y] = E[X] + E[Y] .
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">5.4 Worked example</h2>
 <p><strong>A student drawn at random.</strong></p>
 <p>Define <span class="math inline">\(X\)</span> to be the final score of one student chosen uniformly at random from the cohort’s 238 usable records. That is a genuine random variable, and because we can see the whole population it is one whose <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> we can compute exactly rather than estimate.</p>
 <div id="population" class="cell" data-execution_count="3">
@@ -695,7 +695,7 @@ Figure&nbsp;32.3: Two students’ marks added together, against one student’s 
 <p>The intuition behind the algebra: two independent students can be unlucky in opposite directions and partly cancel. One student, counted twice, cannot cancel with anything — whatever they did, it happens twice over.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">5.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> A random variable <span class="math inline">\(X\)</span> takes the value 0 with probability 0.7 and 1 with probability 0.3.</p>
 <ol type="a">
@@ -789,7 +789,7 @@ Figure&nbsp;32.3: Two students’ marks added together, against one student’s 
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">5.6 Check it in Python</h2>
 <p>The expected value is a long-run average, and that is a claim you can watch come true. Draw students one at a time and keep a running mean.</p>
 <div id="lln" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
@@ -859,7 +859,7 @@ Var(X) + Var(X) + 2Cov(X, X)       279.3607</code></pre>
 <p>The general formula, with the covariance term restored, gets it right. The independence version is a special case in which that term happens to be zero.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">5.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -891,7 +891,7 @@ The correction exists because <span class="math inline">\(\bar{x}\)</span> was e
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">5.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

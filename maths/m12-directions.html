@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">12.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">12.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">12.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#eigenvectors" id="toc-eigenvectors" class="nav-link" data-scroll-target="#eigenvectors">Eigenvectors</a></li>
   <li><a href="#symmetric-matrices-which-are-the-ones-you-get" id="toc-symmetric-matrices-which-are-the-ones-you-get" class="nav-link" data-scroll-target="#symmetric-matrices-which-are-the-ones-you-get">Symmetric matrices, which are the ones you get</a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#the-condition-number-at-last" id="toc-the-condition-number-at-last" class="nav-link" data-scroll-target="#the-condition-number-at-last">The condition number, at last</a></li>
   <li><a href="#principal-components" id="toc-principal-components" class="nav-link" data-scroll-target="#principal-components">Principal components</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">12.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">12.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">12.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">12.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">12.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p>Why <span class="math inline">\(\operatorname{cond}(X^{\mathsf{T}}X)\)</span> is <span class="math inline">\(\operatorname{cond}(X)^2\)</span> (<a href="../maths/m11-least-squares.html">M11</a>). Why a nearly collinear design leaves a long flat valley in the loss instead of a bowl (<a href="../maths/m11-least-squares.html">M11</a>). What <code>np.linalg.lstsq</code> is actually doing (<a href="../maths/m10-linear-systems.html">M10</a>). And what a <em>principal component</em> is, which is where a dataset with forty columns gets turned into a picture you can look at. It is also the last unit of the Mathematics track.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">12.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>read <span class="math inline">\(A\mathbf{x}\)</span> as an operation on a vector — <a href="../maths/m09-matrices.html">M9</a>;</li>
@@ -537,7 +537,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">12.2 The idea</h2>
 <p>Take every unit vector — a whole circle of directions — and apply a matrix to all of them. What comes back is an <strong>ellipse</strong>. Not sometimes: always, for any <span class="math inline">\(2 \times 2\)</span> matrix, and the higher-dimensional version is an ellipsoid.</p>
 <p>That is a strong statement and it is the whole geometry of the subject. It says a matrix does exactly three things: it picks out a set of perpendicular input directions, stretches each by its own factor, and lays the results down along a (possibly different) set of perpendicular output directions.</p>
 <div id="cell-fig-stretch" class="cell" data-execution_count="1">
@@ -557,7 +557,7 @@ Figure&nbsp;27.1: Left: every unit vector, with two particular ones picked out. 
 <p>Once you see that ellipse, several loose ends from earlier units tie themselves off. Its longest and shortest half-widths are the biggest and smallest stretch the matrix can apply; their ratio is the condition number. A nearly singular matrix is one whose ellipse is nearly flat.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">12.3 The mechanics</h2>
 <section id="eigenvectors" class="level3">
 <h3 class="anchored" data-anchor-id="eigenvectors">Eigenvectors</h3>
 <p>For a <strong>square</strong> matrix <span class="math inline">\(A\)</span>, a nonzero <span class="math inline">\(\mathbf{v}\)</span> with</p>
@@ -617,7 +617,7 @@ Figure&nbsp;27.2: The unit circle under two matrices, drawn to the same scale. L
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">12.4 Worked example</h2>
 <p><strong>The cohort has two stories in it, and PCA finds both.</strong></p>
 <p>Take the three numeric columns, standardise them so no column dominates through its units alone, and eigen-decompose the correlation matrix.</p>
 <div id="pca" class="cell" data-execution_count="3">
@@ -693,7 +693,7 @@ Figure&nbsp;27.3: The cohort in two of its standardised columns, with the princi
 <p>The third design’s smallest singular value is <span class="math inline">\(1.67\)</span> against a largest of <span class="math inline">\(1024\)</span>, and that near-zero direction is the collinearity of <a href="../maths/m11-least-squares.html">M11</a> measured rather than described: the columns very nearly satisfy a linear relation, so there is a direction in parameter space that the design barely responds to. It is the long flat valley, given a number.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">12.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Find the eigenvalues and eigenvectors of <span class="math inline">\(A = \begin{pmatrix} 3 &amp; 1 \\ 1 &amp; 3\end{pmatrix}\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -762,7 +762,7 @@ Figure&nbsp;27.3: The cohort in two of its standardised columns, with the princi
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">12.6 Check it in Python</h2>
 <p><strong>First, the definition:</strong></p>
 <div id="check-eigen" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A2 <span class="op">=</span> np.array([[<span class="fl">3.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="fl">3.0</span>]])</span>
@@ -818,7 +818,7 @@ same direction (|dot| == 1):     True</code></pre>
 <p>The first test says the two disagree and the second says they do not. The second is the one to trust: compare eigenvectors by the absolute value of their dot product <em>after</em> scaling both to unit length — which is what <code>eigh</code> returns, so the check above is safe as written — or by fixing a sign convention yourself, as the worked example did.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">12.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -850,7 +850,7 @@ It usually means your columns overlap. The remedy is in the data — drop a colu
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">12.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

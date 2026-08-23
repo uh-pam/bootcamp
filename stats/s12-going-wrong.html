@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">12.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">12.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">12.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding">Confounding</a></li>
   <li><a href="#selection-and-the-sample-you-did-not-see" id="toc-selection-and-the-sample-you-did-not-see" class="nav-link" data-scroll-target="#selection-and-the-sample-you-did-not-see">Selection, and the sample you did not see</a></li>
@@ -470,11 +470,11 @@ window.Quarto = {
   <li><a href="#regression-to-the-mean" id="toc-regression-to-the-mean" class="nav-link" data-scroll-target="#regression-to-the-mean">Regression to the mean</a></li>
   <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting">Overfitting</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">12.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">12.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">12.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">12.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">12.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -510,7 +510,7 @@ window.Quarto = {
 <p>The failures in this unit are not exotic. They are the ordinary ones, they account for most of the retracted findings you will read about during your degree, and every one of them is visible in advance if you know the shape to look for. This is the unit that makes the previous eleven usable.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">12.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>fit and interpret a straight line with an interval on its slope — <a href="../stats/s11-regression.html">S11</a>;</li>
@@ -537,7 +537,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">12.2 The idea</h2>
 <p>The cohort used throughout these notes contains a planted trap, and by now you have walked into it four times.</p>
 <div id="reversal" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys<span class="op">;</span> sys.path.insert(<span class="dv">0</span>, <span class="st">"../theme"</span>)</span>
@@ -584,7 +584,7 @@ Figure&nbsp;39.1: The mechanism, drawn cleanly. Two groups, each with a rising r
 <p>Nothing in the pooled analysis is wrong. The slope is correctly computed, its interval is honest, its <span class="math inline">\(p\)</span>-value is small. It answers a question — <em>among these 238 students, how does score vary with practice hours?</em> — and that question is almost never the one anybody wanted answered.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">12.3 The mechanics</h2>
 <section id="confounding" class="level3">
 <h3 class="anchored" data-anchor-id="confounding">Confounding</h3>
 <p>Simpson’s paradox is the dramatic case of a general problem. A <strong>confounder</strong> is a common cause: something that influences both the thing you varied and the thing you measured. Its influence is credited to whatever you happened to put in your model.</p>
@@ -663,7 +663,7 @@ Figure&nbsp;39.3: The chance that a significant finding is true, against the fra
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">12.4 Worked example</h2>
 <p><strong>Three failures, on the cohort.</strong></p>
 <p><strong>One: the reversal, quantified.</strong> Fit the practice slope with and without the information about where each student started.</p>
 <div id="adjusted" class="cell" data-execution_count="5">
@@ -723,7 +723,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 <p>Now imagine the department had run a support programme for the weakest tenth. Their improvement — most of the way back to average — would have looked like a triumph, and essentially all of it would have happened anyway.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">12.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> A hospital reports that its overall surgical survival rate is lower than a neighbouring hospital’s, but that its survival rate is higher for every individual severity category.</p>
 <ol type="a">
@@ -813,7 +813,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">12.6 Check it in Python</h2>
 <p>The multiple-comparisons arithmetic is worth watching rather than believing. Here nothing is going on anywhere — two groups drawn from the same population — and we count how often at least one test in a batch comes out significant.</p>
 <div id="multiplicity" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
@@ -885,7 +885,7 @@ apparent 'improvement': +0.815 sd, from an intervention that did not exist</code
 <p>Nothing was done to anyone. The improvement is entirely the noise that put them at the bottom in the first place, failing to repeat itself.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">12.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -921,7 +921,7 @@ How likely it is to be true depends on three numbers — the fraction of hypothe
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">12.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

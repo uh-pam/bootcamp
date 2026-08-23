@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">3.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">3.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">3.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#covariance-and-why-you-cannot-read-it" id="toc-covariance-and-why-you-cannot-read-it" class="nav-link" data-scroll-target="#covariance-and-why-you-cannot-read-it">Covariance, and why you cannot read it</a></li>
   <li><a href="#correlation-is-covariance-made-unitless" id="toc-correlation-is-covariance-made-unitless" class="nav-link" data-scroll-target="#correlation-is-covariance-made-unitless">Correlation is covariance made unitless</a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#when-the-relationship-is-monotone-but-not-straight" id="toc-when-the-relationship-is-monotone-but-not-straight" class="nav-link" data-scroll-target="#when-the-relationship-is-monotone-but-not-straight">When the relationship is monotone but not straight</a></li>
   <li><a href="#the-other-two-combinations" id="toc-the-other-two-combinations" class="nav-link" data-scroll-target="#the-other-two-combinations">The other two combinations</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">3.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">3.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">3.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">3.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">3.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p>This unit gives you the standard summary of that — the correlation coefficient — and then spends most of its length on what the number cannot see. A correlation is one number standing in for a whole cloud of points, and the ways it misleads are specific, common, and easy to spot once you know to look.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">3.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>compute a mean and a standard deviation, and say what each is for — <a href="../stats/s02-one-variable.html">S2</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">3.2 The idea</h2>
 <p>Put the two variables on a scatterplot, then draw a vertical line at the mean of one and a horizontal line at the mean of the other. That divides the cloud into four quadrants, and the quadrants are the whole idea.</p>
 <div id="cell-fig-quadrants" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
@@ -556,7 +556,7 @@ Figure&nbsp;30.1: The 237 students, split at the mean hours of practice (16.4) a
 <p>Add up all 237 products. If the cloud leans upwards the positives dominate and the total is positive; if it leans downwards the total is negative; if there is no lean the products cancel. That total, divided by <span class="math inline">\(n - 1\)</span>, is the <strong>covariance</strong>, and everything else in this unit is a repair to it.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">3.3 The mechanics</h2>
 <section id="covariance-and-why-you-cannot-read-it" class="level3">
 <h3 class="anchored" data-anchor-id="covariance-and-why-you-cannot-read-it">Covariance, and why you cannot read it</h3>
 <p><span class="math display">\[
@@ -622,7 +622,7 @@ Figure&nbsp;30.2: Four datasets. Three have correlations near <span class="math 
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">3.4 Worked example</h2>
 <p><strong>Practice against score, one number at a time.</strong></p>
 <div id="correlate" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
@@ -686,7 +686,7 @@ Figure&nbsp;30.3: All 237 students in the first panel, then the same students sp
 <p>That is the fourth panel of the four-dataset figure, in real data: a correlation computed across clusters is largely a statement about where the clusters sit. <a href="../stats/s12-going-wrong.html">S12</a> gives the pattern its name and its general treatment.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">3.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Two variables have <span class="math inline">\(\operatorname{cov}(x, y) = 24\)</span>, <span class="math inline">\(s_x = 4\)</span> and <span class="math inline">\(s_y = 15\)</span>.</p>
 <ol type="a">
@@ -761,7 +761,7 @@ Figure&nbsp;30.3: All 237 students in the first panel, then the same students sp
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">3.6 Check it in Python</h2>
 <p>First, the claim that correlation is the average product of z-scores. Standardise both columns by hand and compare.</p>
 <div id="z-scores" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z_hours <span class="op">=</span> (hours <span class="op">-</span> hours.mean()) <span class="op">/</span> hours.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
@@ -822,7 +822,7 @@ x from  0 to 4:  r = +0.9673</code></pre>
 <p>Same relationship, three different correlations, one of them zero. What <span class="math inline">\(r\)</span> reports depends on the range you happened to observe, which is a good thing to know before quoting one.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">3.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -858,7 +858,7 @@ A correlation from 8 observations and one from 8,000 are not the same kind of ev
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">3.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

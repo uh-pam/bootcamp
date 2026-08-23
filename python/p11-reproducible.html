@@ -433,9 +433,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">11.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">11.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">11.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#paths-that-work-on-someone-elses-machine" id="toc-paths-that-work-on-someone-elses-machine" class="nav-link" data-scroll-target="#paths-that-work-on-someone-elses-machine">Paths that work on someone else’s machine</a></li>
   <li><a href="#pin-the-environment" id="toc-pin-the-environment" class="nav-link" data-scroll-target="#pin-the-environment">Pin the environment</a></li>
@@ -444,15 +444,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#test-the-functions-not-the-script" id="toc-test-the-functions-not-the-script" class="nav-link" data-scroll-target="#test-the-functions-not-the-script">Test the functions, not the script</a></li>
   <li><a href="#notebooks-restart-and-run-all" id="toc-notebooks-restart-and-run-all" class="nav-link" data-scroll-target="#notebooks-restart-and-run-all">Notebooks: restart and run all</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">11.4 Worked example</a>
   <ul class="collapse">
   <li><a href="#the-readme-that-goes-with-it" id="toc-the-readme-that-goes-with-it" class="nav-link" data-scroll-target="#the-readme-that-goes-with-it">The README that goes with it</a></li>
   </ul></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#getting-help-and-using-an-assistant" id="toc-getting-help-and-using-an-assistant" class="nav-link" data-scroll-target="#getting-help-and-using-an-assistant">Getting help, and using an assistant</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">11.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">11.6 Check it in Python</a></li>
+  <li><a href="#getting-help-and-using-an-assistant" id="toc-getting-help-and-using-an-assistant" class="nav-link" data-scroll-target="#getting-help-and-using-an-assistant">11.7 Getting help, and using an assistant</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">11.8 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">11.9 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -489,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It is also the unit where the habits of the whole Python track stop being separate tricks and become one way of working.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">11.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>load, clean, group and join a table — <a href="../python/p09-pandas-cleaning.html">P9</a>;</li>
@@ -515,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">11.2 The idea</h2>
 <p>Reproducible does not mean elaborate. It means someone else can get your numbers without asking you anything. That reduces to five questions, and if a folder answers all five it is reproducible enough:</p>
 <div id="cell-fig-layout" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
@@ -534,7 +534,7 @@ Figure&nbsp;15.1: A layout that answers the five questions. Source data is never
 <p>The five questions: <strong>what was the question</strong>, <strong>what data</strong>, <strong>what code</strong>, <strong>what environment</strong>, and <strong>how do I run it</strong>.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">11.3 The mechanics</h2>
 <section id="paths-that-work-on-someone-elses-machine" class="level3">
 <h3 class="anchored" data-anchor-id="paths-that-work-on-someone-elses-machine">Paths that work on someone else’s machine</h3>
 <div id="paths" class="cell" data-execution_count="2">
@@ -651,7 +651,7 @@ scipy==1.17.0</code></pre>
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">11.4 Worked example</h2>
 <p><strong>The pipeline as a script someone else can run.</strong></p>
 <div id="cell-worked" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -786,7 +786,7 @@ wrote 2 files to _outputs/</code></pre>
 </section>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">11.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> A notebook produces a figure you cannot reproduce after restarting it. Name two likely causes.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -855,7 +855,7 @@ wrote 2 files to _outputs/</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">11.6 Check it in Python</h2>
 <p><strong>Record the environment inside the output</strong>, so a result carries its own provenance:</p>
 <div id="check-provenance" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, json, numpy, pandas</span>
@@ -910,7 +910,7 @@ source data untouched: ['background_meta.csv', 'cohort.csv']</code></pre>
 </div>
 </section>
 <section id="getting-help-and-using-an-assistant" class="level2">
-<h2 class="anchored" data-anchor-id="getting-help-and-using-an-assistant">Getting help, and using an assistant</h2>
+<h2 class="anchored" data-anchor-id="getting-help-and-using-an-assistant">11.7 Getting help, and using an assistant</h2>
 <p>You are working alone, so how you ask for help matters.</p>
 <p>A good request contains four things: <strong>a minimal example</strong> that reproduces the problem, <strong>what you expected</strong>, <strong>what happened</strong> including the full final line of the traceback, and <strong>your versions</strong> from the check above. Assembling that often solves the problem before you send it — which is itself a reason to do it.</p>
 <p>On AI assistants, plainly. They are useful and you will use them. Two things worth deciding now, while nothing is at stake.</p>
@@ -919,7 +919,7 @@ source data untouched: ['background_meta.csv', 'cohort.csv']</code></pre>
 <p>And when you do keep generated code: read every line, and be able to say what it does. Code you cannot explain is code you cannot debug, defend, or fix at eleven at night before a deadline. The academic-integrity line at your university will be written down somewhere; find it and read it before you need it, not after.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">11.8 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -955,7 +955,7 @@ It works until it does not, and then you cannot fix it. Read every line you keep
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">11.9 Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">

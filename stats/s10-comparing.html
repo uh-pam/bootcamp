@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">10.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">10.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">10.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#two-means-unpaired" id="toc-two-means-unpaired" class="nav-link" data-scroll-target="#two-means-unpaired">Two means, unpaired</a></li>
   <li><a href="#two-means-paired" id="toc-two-means-paired" class="nav-link" data-scroll-target="#two-means-paired">Two means, paired</a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#a-table-of-counts-the-chi-square-test" id="toc-a-table-of-counts-the-chi-square-test" class="nav-link" data-scroll-target="#a-table-of-counts-the-chi-square-test">A table of counts: the chi-square test</a></li>
   <li><a href="#when-the-assumptions-are-uncomfortable" id="toc-when-the-assumptions-are-uncomfortable" class="nav-link" data-scroll-target="#when-the-assumptions-are-uncomfortable">When the assumptions are uncomfortable</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">10.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">10.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">10.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">10.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">10.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p>The quantity you care about is the <strong>difference</strong>, and the thing to report is that difference with an interval around it. This unit shows how to get one for two means and for two proportions, how to handle a table of counts, and — most importantly — why looking at two separate intervals and checking whether they overlap is not a substitute for computing the interval for the difference.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">10.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>read a <span class="math inline">\(p\)</span>-value correctly and state the duality with a confidence interval — <a href="../stats/s09-tests.html">S9</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">10.2 The idea</h2>
 <p>Take the two most different backgrounds in the cohort.</p>
 <div id="setup" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys<span class="op">;</span> sys.path.insert(<span class="dv">0</span>, <span class="st">"../theme"</span>)</span>
@@ -581,7 +581,7 @@ Figure&nbsp;37.1: A constructed example, because the cohort’s own groups are t
 <p>The error runs one way, and it is worth knowing which. Non-overlapping intervals do imply a significant difference, so the eyeball test never invents a difference — it misses real ones. In the example above it only declares a difference when <span class="math inline">\(|t| &gt; 2.89\)</span>, which is a test at about the 0.5% level dressed up as one at 5%. Being conservative sounds safe until you remember that missing real differences is exactly what an underpowered analysis does.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">10.3 The mechanics</h2>
 <section id="two-means-unpaired" class="level3">
 <h3 class="anchored" data-anchor-id="two-means-unpaired">Two means, unpaired</h3>
 <p>The estimate is <span class="math inline">\(\bar{x}_A - \bar{x}_B\)</span>. Its standard error is</p>
@@ -629,7 +629,7 @@ E_{ij} = \frac{(\text{row total}_i)(\text{column total}_j)}{n} ,
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">10.4 Worked example</h2>
 <p><strong>How far ahead do the Maths and Physics students finish?</strong></p>
 <div id="difference" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>difference <span class="op">=</span> maths.mean() <span class="op">-</span> life.mean()</span>
@@ -717,7 +717,7 @@ Figure&nbsp;37.3: Observed counts minus the counts independence predicts, for th
 <p>The statistic is 40.8 on 4 degrees of freedom, <span class="math inline">\(p \approx 3 \times 10^{-8}\)</span>: the table is a long way from independence. But the statistic alone would not have told you <em>how</em>. The departures do: Mathematics or Physics contributes 13.5 more high scorers than independence predicts, and life sciences 9.6 fewer.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">10.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Group A: <span class="math inline">\(n = 50\)</span>, mean 12.0, sd 4.0. Group B: <span class="math inline">\(n = 50\)</span>, mean 14.0, sd 5.0.</p>
 <ol type="a">
@@ -808,7 +808,7 @@ Figure&nbsp;37.3: Observed counts minus the counts independence predicts, for th
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">10.6 Check it in Python</h2>
 <p>First, that the standard error of a difference really does combine through squares. Simulate two independent groups and compare.</p>
 <div id="se-of-difference" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
@@ -887,7 +887,7 @@ df = (rows - 1)(cols - 1) = 4   scipy says 4</code></pre>
 </div>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">10.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -923,7 +923,7 @@ Five groups make ten pairwise comparisons, and with ten tests at 5% a “signifi
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">10.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

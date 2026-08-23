@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">6.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">6.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">6.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#bernoulli-and-binomial" id="toc-bernoulli-and-binomial" class="nav-link" data-scroll-target="#bernoulli-and-binomial">Bernoulli and Binomial</a></li>
   <li><a href="#poisson" id="toc-poisson" class="nav-link" data-scroll-target="#poisson">Poisson</a></li>
@@ -470,11 +470,11 @@ window.Quarto = {
   <li><a href="#normal" id="toc-normal" class="nav-link" data-scroll-target="#normal">Normal</a></li>
   <li><a href="#choosing-then-checking" id="toc-choosing-then-checking" class="nav-link" data-scroll-target="#choosing-then-checking">Choosing, then checking</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">6.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">6.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">6.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">6.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">6.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -510,7 +510,7 @@ window.Quarto = {
 <p>The trap is choosing the distribution by looking at the histogram. Almost every family in this unit is the consequence of a <strong>mechanism</strong> — a story about how the numbers were generated — and the shape is what falls out of the story. Pick by the story and you can defend the choice and test it. Pick by the shape and you have drawn a curve that fits the data you happen to have.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">6.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>distinguish a probability mass function from a density — <a href="../stats/s05-random-variables.html">S5</a>;</li>
@@ -537,7 +537,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">6.2 The idea</h2>
 <p>Six families cover most of what you will meet, and each of them answers a specific question about a specific kind of process.</p>
 <div id="cell-fig-gallery" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
@@ -556,7 +556,7 @@ Figure&nbsp;33.1: Six standard distributions, each with the mechanism that produ
 <p>Read the captions rather than the shapes. “Count of successes in <span class="math inline">\(n\)</span> fixed trials” is a claim about your data-collection process that you can check. “Looks a bit like the second one” is not.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">6.3 The mechanics</h2>
 <section id="bernoulli-and-binomial" class="level3">
 <h3 class="anchored" data-anchor-id="bernoulli-and-binomial">Bernoulli and Binomial</h3>
 <p>A <strong>Bernoulli</strong> variable is one trial with two outcomes: <span class="math inline">\(P(X=1) = p\)</span>, <span class="math inline">\(P(X=0) = 1-p\)</span>, mean <span class="math inline">\(p\)</span>, variance <span class="math inline">\(p(1-p)\)</span>.</p>
@@ -655,7 +655,7 @@ Figure&nbsp;33.2: The 68–95–99.7 rule. Each band is an area under the densit
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">6.4 Worked example</h2>
 <p><strong>Two questions about the cohort, two different families.</strong></p>
 <div id="setup" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
@@ -721,7 +721,7 @@ Figure&nbsp;33.3: Quantile-quantile plots against a normal model. Each point put
 <p>The honest conclusion is the one to practise writing: <em>a normal model is adequate for the final score for the purposes of the intervals in <a href="../stats/s08-intervals.html">S8</a>, and not adequate for the diagnostic score, which is a mixture and should be handled by group.</em> Neither variable “is normal” — that is not a property data has. A model is adequate or not, for a stated purpose.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">6.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> For each of these, name the distribution you would try first and say what mechanism justifies it.</p>
 <ol type="a">
@@ -811,7 +811,7 @@ Figure&nbsp;33.3: Quantile-quantile plots against a normal model. Each point put
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">6.6 Check it in Python</h2>
 <p>The distributions in this unit make predictions, and every prediction here is one simulation away from being checked.</p>
 <div id="binomial-check" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
@@ -878,7 +878,7 @@ drifting rate:  mean 4.005   variance 7.007   ratio 1.750</code></pre>
 <p>Note the tolerance had to be loosened to 5 percentage points for even the good case to pass. This is a coarse check, not a test, and <a href="../stats/s09-tests.html">S9</a> gives you the machinery to say how coarse.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">6.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -914,7 +914,7 @@ It does no such thing. It says something about the distribution of the <em>sampl
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">6.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

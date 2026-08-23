@@ -462,12 +462,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">3.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">3.2 The idea</a>
   <ul class="collapse">
   <li><a href="#shrinking-the-interval" id="toc-shrinking-the-interval" class="nav-link" data-scroll-target="#shrinking-the-interval">Shrinking the interval</a></li>
   </ul></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">3.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-difference-quotient" id="toc-the-difference-quotient" class="nav-link" data-scroll-target="#the-difference-quotient">The difference quotient</a></li>
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
@@ -475,11 +475,11 @@ window.Quarto = {
   <li><a href="#when-there-is-no-derivative" id="toc-when-there-is-no-derivative" class="nav-link" data-scroll-target="#when-there-is-no-derivative">When there is no derivative</a></li>
   <li><a href="#the-tangent-line" id="toc-the-tangent-line" class="nav-link" data-scroll-target="#the-tangent-line">The tangent line</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">3.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">3.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">3.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">3.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">3.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -515,7 +515,7 @@ window.Quarto = {
 <p>That question is a derivative. It is the same question whether you are tuning a single parameter by hand or letting a neural network tune ten million of them, and it is the idea that the next four units are built on. Before any of that, though, a derivative is something much more ordinary: a way of saying how quickly one quantity responds to a change in another.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">3.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>read a graph and find the gradient of a straight line — <a href="../maths/m01-reading-mathematics.html">M1</a> ;</li>
@@ -542,7 +542,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">3.2 The idea</h2>
 <p>Throughout these notes we use one dataset: a synthetic record of a previous cohort who worked through this material. Here are three of its columns.</p>
 <div id="cell-load" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -664,7 +664,7 @@ Figure&nbsp;18.1: Each faint line joins <span class="math inline">\(h=4\)</span>
 </section>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">3.3 The mechanics</h2>
 <section id="the-difference-quotient" class="level3">
 <h3 class="anchored" data-anchor-id="the-difference-quotient">The difference quotient</h3>
 <p>For a function <span class="math inline">\(f\)</span> and a point <span class="math inline">\(a\)</span>, the average rate of change over an interval of width <span class="math inline">\(h\)</span> is</p>
@@ -753,7 +753,7 @@ f(x) \;\approx\; f(a) + f'(a)\,(x - a).
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">3.4 Worked example</h2>
 <p><strong>The model above has a best value, and the derivative finds it.</strong></p>
 <p>Our model was <span class="math inline">\(s(h) = 45 + 6h - 0.25h^{2}\)</span>. Differentiate from first principles.</p>
 <p><span class="math display">\[
@@ -826,7 +826,7 @@ Figure&nbsp;18.3: The same curve with its tangent drawn at three places. The gra
 <p>Second, the model predicts that practising for 20 hours is worse than practising for 12. Nothing in the data forces that; it is an artefact of having chosen a downward parabola, which must eventually come down. A derivative tells you what your <em>model</em> does. Whether the model deserves to be believed out there is a separate question, and one that <a href="../stats/s11-regression.html">S11</a> takes seriously.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">3.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> From first principles, differentiate <span class="math inline">\(f(x) = 5x - 2\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -901,7 +901,7 @@ Figure&nbsp;18.3: The same curve with its tangent drawn at three places. The gra
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">3.6 Check it in Python</h2>
 <p>You will rarely differentiate by hand in practice, but you should always be able to check that you did it right. The tool is a <strong>centred difference</strong>: evaluate a small step either side and take the gradient between them.</p>
 <div id="fd-check" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -945,7 +945,7 @@ step 1e-14    estimate 4.2632564146   error 2.633e-01</code></pre>
 <p>On a curve that bends more sharply the cancellation is only partial, and a large step then measures the wrong thing because the curve changes direction across the interval. In general both ends are bad and the usable range sits in the middle — around <span class="math inline">\(10^{-6}\)</span> when <span class="math inline">\(x\)</span> is of a size near 1. For much larger or smaller values, scale the step to <span class="math inline">\(x\)</span> rather than using a fixed number, and check that the answer is stable across a few step sizes before trusting it.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">3.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -973,7 +973,7 @@ A curve can be very high and perfectly flat — high <span class="math inline">\
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">3.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Try to give a reason as well as an answer — if you cannot say <em>why</em>, treat it as wrong.</p>
 <div class="quiz">
 <div class="q">

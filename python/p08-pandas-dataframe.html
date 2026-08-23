@@ -433,9 +433,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">8.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">8.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">8.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-four-things-you-always-do-after-loading" id="toc-the-four-things-you-always-do-after-loading" class="nav-link" data-scroll-target="#the-four-things-you-always-do-after-loading">The four things you always do after loading</a></li>
   <li><a href="#never-trust-the-inferred-type" id="toc-never-trust-the-inferred-type" class="nav-link" data-scroll-target="#never-trust-the-inferred-type">Never trust the inferred type</a></li>
@@ -444,11 +444,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adding-a-column" id="toc-adding-a-column" class="nav-link" data-scroll-target="#adding-a-column">Adding a column</a></li>
   <li><a href="#the-trap-that-catches-everyone" id="toc-the-trap-that-catches-everyone" class="nav-link" data-scroll-target="#the-trap-that-catches-everyone">The trap that catches everyone</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">8.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">8.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">8.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">8.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">8.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -484,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>pandas keeps NumPy underneath and adds the two things a table needs: <strong>names</strong> and <strong>mixed types</strong>. It is the tool you will touch every single day, which is why it gets two units.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">8.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>work with arrays, shapes and boolean masks — <a href="../python/p06-numpy-arrays.html">P6</a>, <a href="../python/p07-numpy-computing.html">P7</a>;</li>
@@ -510,7 +510,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">8.2 The idea</h2>
 <div id="cell-load" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -611,7 +611,7 @@ Figure&nbsp;12.1: The three parts of a DataFrame: an index naming the rows, colu
 </div>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">8.3 The mechanics</h2>
 <section id="the-four-things-you-always-do-after-loading" class="level3">
 <h3 class="anchored" data-anchor-id="the-four-things-you-always-do-after-loading">The four things you always do after loading</h3>
 <div id="inspect" class="cell" data-execution_count="3">
@@ -784,7 +784,7 @@ S0001</code></pre>
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">8.4 Worked example</h2>
 <p><strong>Loading the cohort into a validated analysis table.</strong></p>
 <div id="worked" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -889,7 +889,7 @@ excluded: 3 rows</code></pre>
 </div>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">8.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> What is the difference between <code>cohort["final_score"]</code> and <code>cohort[["final_score"]]</code>?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -962,7 +962,7 @@ excluded: 3 rows</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">8.6 Check it in Python</h2>
 <p><strong>Check the schema, not just the shape.</strong> A file with the right number of columns in the wrong order will load without complaint:</p>
 <div id="check-schema" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>expected <span class="op">=</span> [<span class="st">"student_id"</span>, <span class="st">"background"</span>, <span class="st">"diagnostic_score"</span>,</span>
@@ -1003,7 +1003,7 @@ all ranges plausible</code></pre>
 <p>If <code>hours_practice</code> ever came back negative, that assertion would fire before the number reached a plot or a model.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">8.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -1035,7 +1035,7 @@ An excluded row is a decision that should be inspectable. Keep the excluded tabl
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">8.8 Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">

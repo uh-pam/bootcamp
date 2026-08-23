@@ -459,20 +459,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">11.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">11.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">11.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#route-one-geometry" id="toc-route-one-geometry" class="nav-link" data-scroll-target="#route-one-geometry">Route one: geometry</a></li>
   <li><a href="#route-two-calculus" id="toc-route-two-calculus" class="nav-link" data-scroll-target="#route-two-calculus">Route two: calculus</a></li>
   <li><a href="#when-the-answer-is-unique" id="toc-when-the-answer-is-unique" class="nav-link" data-scroll-target="#when-the-answer-is-unique">When the answer is unique</a></li>
   <li><a href="#why-libraries-do-not-form-xmathsftx" id="toc-why-libraries-do-not-form-xmathsftx" class="nav-link" data-scroll-target="#why-libraries-do-not-form-xmathsftx">Why libraries do not form <span class="math inline">\(X^{\mathsf{T}}X\)</span></a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">11.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">11.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">11.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">11.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">11.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -508,7 +508,7 @@ window.Quarto = {
 <p>If you cannot hit <span class="math inline">\(\mathbf{y}\)</span>, get as close to it as you can. That single sentence, made precise, produces the most-used calculation in applied statistics — every fitted line, every regression coefficient, every “controlling for” in a results table. It arrives here twice over: once from the calculus of <a href="../maths/m05-best-value.html">M5</a> and once from the geometry of <a href="../maths/m08-vectors.html">M8</a>, and the two derivations meet at the same small system of equations. Meeting it from both sides is what makes the formula memorable instead of arbitrary.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">11.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>say when <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> has a solution, in terms of the span — <a href="../maths/m10-linear-systems.html">M10</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">11.2 The idea</h2>
 <p>We want <span class="math inline">\(X\boldsymbol{\theta} = \mathbf{y}\)</span> and cannot have it: by the column reading of <a href="../maths/m09-matrices.html">M9</a>, <span class="math inline">\(X\boldsymbol{\theta}\)</span> can only ever land inside the span of <span class="math inline">\(X\)</span>’s columns, and <a href="../maths/m10-linear-systems.html">M10</a> showed that the cohort’s <span class="math inline">\(\mathbf{y}\)</span> is outside it.</p>
 <p>So change the question. Among all the points the span <em>can</em> reach, which is nearest to <span class="math inline">\(\mathbf{y}\)</span>? “Nearest” means smallest distance, and distance is the length of <a href="../maths/m08-vectors.html">M8</a>, so we are choosing <span class="math inline">\(\boldsymbol{\theta}\)</span> to minimise</p>
 <p><span class="math display">\[
@@ -562,7 +562,7 @@ Figure&nbsp;26.1: Least squares in one picture — a perspective drawing, in whi
 <p>That right angle is the whole of least squares. Turning it into equations takes three lines, and the next section does it twice.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">11.3 The mechanics</h2>
 <section id="route-one-geometry" class="level3">
 <h3 class="anchored" data-anchor-id="route-one-geometry">Route one: geometry</h3>
 <p>The residual <span class="math inline">\(\mathbf{r} = \mathbf{y} - X\hat{\boldsymbol{\theta}}\)</span> must be perpendicular to the span, and the span is built from the columns of <span class="math inline">\(X\)</span>, so it is enough for <span class="math inline">\(\mathbf{r}\)</span> to be orthogonal to every column. By <a href="../maths/m08-vectors.html">M8</a>, orthogonal means dot product zero; by <a href="../maths/m09-matrices.html">M9</a>, all those dot products at once are <span class="math inline">\(X^{\mathsf{T}}\mathbf{r}\)</span>. So</p>
@@ -618,7 +618,7 @@ Figure&nbsp;26.2: The loss surface for two independent predictors (left) and two
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">11.4 Worked example</h2>
 <p><strong>Adding one column reverses the answer.</strong></p>
 <p>Fit the cohort two ways: score on practice hours alone, then score on practice hours <em>and</em> the diagnostic score taken on arrival.</p>
 <div id="two-fits" class="cell" data-execution_count="3">
@@ -675,7 +675,7 @@ Figure&nbsp;26.3: Practice against final score, with the cohort split by diagnos
 <p>What this example does show is that a regression coefficient has no meaning on its own. “The effect of practice is <span class="math inline">\(-0.24\)</span>” and “the effect of practice is <span class="math inline">\(+0.92\)</span>” are both true statements about the same 238 students, and the thing that distinguishes them is what else was in the matrix. <a href="../stats/s12-going-wrong.html">S12</a> returns to this with the background groups, where it has a name.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">11.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Take <span class="math inline">\(X\)</span> to be a single column of ones, so the model is “predict the same value for everybody”. Write down <span class="math inline">\(X^{\mathsf{T}}X\)</span> and <span class="math inline">\(X^{\mathsf{T}}\mathbf{y}\)</span>, and solve the normal equations.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -743,7 +743,7 @@ Figure&nbsp;26.3: Practice against final score, with the cohort split by diagnos
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">11.6 Check it in Python</h2>
 <p><strong>First, that the two derivations and the library agree:</strong></p>
 <div id="check-agree" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack([ones, h])</span>
@@ -835,7 +835,7 @@ and the residual is orthogonal to X: True</code></pre>
 <p>Two things to read off. <code>cond(X.T X)</code> really is <code>cond(X)</code> squared, in every row. And by degree 11 the normal equations return an answer wrong in the <em>first</em> decimal place while <code>lstsq</code>, working on the same data, is still correct to nine. The mathematics is identical; only the route differs.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">11.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -867,7 +867,7 @@ Least squares finds the closest point in the span of the columns you supplied. I
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">11.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

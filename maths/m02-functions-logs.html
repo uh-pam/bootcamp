@@ -459,20 +459,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">2.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">2.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">2.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-five-shapes" id="toc-the-five-shapes" class="nav-link" data-scroll-target="#the-five-shapes">The five shapes</a></li>
   <li><a href="#exponentials-and-logs-are-inverses" id="toc-exponentials-and-logs-are-inverses" class="nav-link" data-scroll-target="#exponentials-and-logs-are-inverses">Exponentials and logs are inverses</a></li>
   <li><a href="#the-three-log-rules" id="toc-the-three-log-rules" class="nav-link" data-scroll-target="#the-three-log-rules">The three log rules</a></li>
   <li><a href="#why-data-gets-logged" id="toc-why-data-gets-logged" class="nav-link" data-scroll-target="#why-data-gets-logged">Why data gets logged</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">2.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">2.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">2.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">2.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">2.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -508,7 +508,7 @@ window.Quarto = {
 <p>And a small number of shapes recur endlessly. Recognise those five curves and you can read most of what follows — including why nearly every quantity in data science gets logged at some point.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">2.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>read <span class="math inline">\(f(x)\)</span>, subscripts and <span class="math inline">\(\sum\)</span> — <a href="../maths/m01-reading-mathematics.html">M1</a>;</li>
@@ -534,7 +534,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">2.2 The idea</h2>
 <p>A function is a rule with a <strong>domain</strong>: what you are allowed to put in.</p>
 <p><span class="math display">\[
 f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = x^2
@@ -556,7 +556,7 @@ f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = x^2
 </ul>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">2.3 The mechanics</h2>
 <section id="the-five-shapes" class="level3">
 <h3 class="anchored" data-anchor-id="the-five-shapes">The five shapes</h3>
 <div id="cell-fig-shapes" class="cell" data-execution_count="2">
@@ -671,7 +671,7 @@ logged:  median      10.04   mean      10.02</code></pre>
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">2.4 Worked example</h2>
 <p><strong>Reading the cohort’s diagnostic scores, and whether logging helps.</strong></p>
 <div id="worked-load" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -712,7 +712,7 @@ simulated income   mean/median  1.67   log-scale ratio  1.00</code></pre>
 <p>The lesson is the check, not the transformation: <strong>compare mean to median before deciding</strong>. A log is a tool for a specific shape, not a routine step.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">2.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> State the domain of each.</p>
 <ol type="a">
@@ -788,7 +788,7 @@ simulated income   mean/median  1.67   log-scale ratio  1.00</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">2.6 Check it in Python</h2>
 <p><strong>Check an inverse actually inverts</strong>, over a range rather than at one point:</p>
 <div id="check-inverse" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="fl">0.1</span>, <span class="fl">1.0</span>, <span class="fl">3.7</span>, <span class="fl">250.0</span>])</span>
@@ -832,7 +832,7 @@ logged: [2.485 1.705]</code></pre>
 <p>Filtering first is better than logging and then hunting for the <code>-inf</code> and <code>nan</code> that appear.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">2.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -864,7 +864,7 @@ A difference of 0.7 in logs is a factor of two, not “0.7 more”. State the sc
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">2.8 Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">

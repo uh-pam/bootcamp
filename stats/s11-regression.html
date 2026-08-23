@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">11.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">11.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">11.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-estimates" id="toc-the-estimates" class="nav-link" data-scroll-target="#the-estimates">The estimates</a></li>
   <li><a href="#the-uncertainty" id="toc-the-uncertainty" class="nav-link" data-scroll-target="#the-uncertainty">The uncertainty</a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#two-kinds-of-interval" id="toc-two-kinds-of-interval" class="nav-link" data-scroll-target="#two-kinds-of-interval">Two kinds of interval</a></li>
   <li><a href="#the-assumptions-and-how-to-check-them" id="toc-the-assumptions-and-how-to-check-them" class="nav-link" data-scroll-target="#the-assumptions-and-how-to-check-them">The assumptions, and how to check them</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">11.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">11.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">11.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">11.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">11.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p><a href="../maths/m11-least-squares.html">M11</a> already showed how the line is computed. This unit supplies the part that makes it a statistical statement rather than an arithmetic one: the slope is an estimate, it has a standard error, and there is a specific list of assumptions under which that standard error means what it says. It also supplies the two numbers people most often misuse — <span class="math inline">\(R^2\)</span> and the prediction interval.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">11.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>fit a straight line by least squares and say what it minimises — <a href="../maths/m11-least-squares.html">M11</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">11.2 The idea</h2>
 <p>The model behind a fitted line is</p>
 <p><span class="math display">\[
 y_i = \beta_0 + \beta_1 x_i + \varepsilon_i ,
@@ -560,7 +560,7 @@ Figure&nbsp;38.1: Two hundred lines, each fitted to a resample of the 238 studen
 <p>Every one of those faint lines is a slope somebody could have reported, from data generated the same way. Some are noticeably steeper than the fit and some are noticeably flatter. Quantifying that fan is what the rest of the unit does.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">11.3 The mechanics</h2>
 <section id="the-estimates" class="level3">
 <h3 class="anchored" data-anchor-id="the-estimates">The estimates</h3>
 <p>From <a href="../maths/m11-least-squares.html">M11</a>, least squares gives</p>
@@ -656,7 +656,7 @@ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">11.4 Worked example</h2>
 <p><strong>How much is an hour of practice worth?</strong></p>
 <div id="fit" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -749,7 +749,7 @@ Figure&nbsp;38.3: Diagnostics. Left: residuals against fitted values, which shou
 <p>Neither plot can check the other two things that matter. <strong>Independence</strong> is a property of the design, not of the residuals: you establish it by knowing how the data were collected. And no residual plot at all can tell you that a variable is <strong>missing</strong> from the model — the fit can look immaculate and still be measuring something other than what you meant. That is precisely this dataset’s situation, and the next section shows what it costs.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">11.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> A regression of weekly sales (in £000) on advertising spend (in £000) gives <span class="math inline">\(\hat{\beta}_1 = 3.2\)</span> with a standard error of 1.5, from <span class="math inline">\(n = 40\)</span> shops.</p>
 <ol type="a">
@@ -841,7 +841,7 @@ Figure&nbsp;38.3: Diagnostics. Left: residuals against fitted values, which shou
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">11.6 Check it in Python</h2>
 <p>First, that the slope really is the correlation rescaled, and that the “by hand” standard error matches the library:</p>
 <div id="identities" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.corrcoef(hours, score)[<span class="dv">0</span>, <span class="dv">1</span>]</span>
@@ -926,7 +926,7 @@ score ~ 1 + hours + diagnostic    slope +0.9156</code></pre>
 <p>Same data, same method, opposite sign. Which coefficient answers your question depends entirely on what you were asking, and nothing in the output tells you which one you wanted.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">11.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -962,7 +962,7 @@ A regression coefficient describes an association in the data you fitted, given 
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">11.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

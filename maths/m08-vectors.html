@@ -459,20 +459,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">8.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">8.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">8.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#adding-and-scaling" id="toc-adding-and-scaling" class="nav-link" data-scroll-target="#adding-and-scaling">Adding and scaling</a></li>
   <li><a href="#length-and-distance" id="toc-length-and-distance" class="nav-link" data-scroll-target="#length-and-distance">Length and distance</a></li>
   <li><a href="#the-dot-product" id="toc-the-dot-product" class="nav-link" data-scroll-target="#the-dot-product">The dot product</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">8.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">8.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">8.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">8.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">8.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -508,7 +508,7 @@ window.Quarto = {
 <p>That change of view pays for itself immediately. The distance between two students becomes the length of a vector. The correlation between two variables turns out to be the cosine of the angle between two vectors, which is why it can never leave the range <span class="math inline">\(-1\)</span> to <span class="math inline">\(1\)</span>. The gradient of <a href="../maths/m06-gradients.html">M6</a> was a vector all along. And every unit from here to the end of the Mathematics track — matrices, solving <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, least squares, the SVD — is built on the two operations defined below.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">8.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>read subscript and <span class="math inline">\(\sum\)</span> notation — <a href="../maths/m01-reading-mathematics.html">M1</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">8.2 The idea</h2>
 <p>Take two students from the cohort and record two numbers for each — hours of practice and final score:</p>
 <table class="caption-top table">
 <colgroup>
@@ -582,7 +582,7 @@ Figure&nbsp;23.1: Two students as vectors, and the step from one to the other. T
 <p>Now the move that matters. A student’s row is a vector; so is a <em>column</em>. The 238 usable final scores in the cohort form one vector with 238 components, and the 238 practice hours form another. You cannot draw those, and you do not need to: the arithmetic below is written with <span class="math inline">\(\sum\)</span> and works for any number of components at all. The picture is a two-dimensional aid to intuition. The formulas are the thing.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">8.3 The mechanics</h2>
 <section id="notation" class="level3">
 <h3 class="anchored" data-anchor-id="notation">Notation</h3>
 <p>A vector is an ordered list of <span class="math inline">\(n\)</span> real numbers, written in bold: <span class="math inline">\(\mathbf{v} = (v_1, v_2, \ldots, v_n)\)</span>. The set of all of them is written <span class="math inline">\(\mathbb{R}^n\)</span>, and <span class="math inline">\(n\)</span> is the <strong>dimension</strong>. A student’s three measurements live in <span class="math inline">\(\mathbb{R}^3\)</span>; a column of 238 scores lives in <span class="math inline">\(\mathbb{R}^{238}\)</span>.</p>
@@ -641,7 +641,7 @@ Figure&nbsp;23.2: Left: the dot product as reach. Drop <span class="math inline"
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">8.4 Worked example</h2>
 <p><strong>Correlation is the cosine of an angle.</strong></p>
 <p>Take the two cohort columns as vectors in <span class="math inline">\(\mathbb{R}^{238}\)</span> and <strong>centre</strong> them: subtract each one’s mean, so that each has mean zero. Write <span class="math inline">\(\tilde{h}\)</span> and <span class="math inline">\(\tilde{s}\)</span> for the centred hours and centred scores.</p>
 <div id="vectors" class="cell" data-execution_count="3">
@@ -695,7 +695,7 @@ Figure&nbsp;23.3: The 238 students, each plotted at its centred hours and centre
 <p>That picture is worth holding on to, because it is what a correlation coefficient is doing under the arithmetic: counting students for and against, weighted by how far from average they are. It also shows how little separates the two groups here — 160 against 78 is not a landslide, and <span class="math inline">\(-0.234\)</span> is not a strong number. <a href="../stats/s12-going-wrong.html">S12</a> shows that even this weak negative reverses inside every background group.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">8.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> For <span class="math inline">\(\mathbf{a} = (3, -1, 2)\)</span> and <span class="math inline">\(\mathbf{b} = (1, 4, 0)\)</span>, find <span class="math inline">\(\mathbf{a} + \mathbf{b}\)</span>, <span class="math inline">\(2\mathbf{a}\)</span>, <span class="math inline">\(\mathbf{a} \cdot \mathbf{b}\)</span> and <span class="math inline">\(\lVert \mathbf{a} \rVert\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -765,7 +765,7 @@ Figure&nbsp;23.3: The 238 students, each plotted at its centred hours and centre
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">8.6 Check it in Python</h2>
 <p>The claim to test is the identity <span class="math inline">\(\mathbf{a} \cdot \mathbf{b} =
 \lVert\mathbf{a}\rVert \lVert\mathbf{b}\rVert \cos\theta\)</span>, which the unit asserted without proof. Nothing in the definition of the dot product mentions an angle, so this needs checking rather than believing.</p>
 <p>In two dimensions the angle can be measured independently, straight off the axes, with <code>arctan2</code>:</p>
@@ -823,7 +823,7 @@ x @ y  = -1.0  -&gt; a number, the dot product
 <p><code>*</code> and <code>@</code> both run without error and return different kinds of thing. Nothing will tell you which one you meant.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">8.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -855,7 +855,7 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">8.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

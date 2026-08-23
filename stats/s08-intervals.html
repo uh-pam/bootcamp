@@ -459,18 +459,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">8.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">8.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">8.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#what-the-interval-does-not-cover" id="toc-what-the-interval-does-not-cover" class="nav-link" data-scroll-target="#what-the-interval-does-not-cover">What the interval does not cover</a></li>
   <li><a href="#when-there-is-no-formula-the-bootstrap" id="toc-when-there-is-no-formula-the-bootstrap" class="nav-link" data-scroll-target="#when-there-is-no-formula-the-bootstrap">When there is no formula: the bootstrap</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">8.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">8.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">8.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">8.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">8.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -506,7 +506,7 @@ window.Quarto = {
 <p>The difference between reporting <em>“the mean score was 60.5”</em> and <em>“the mean score was 60.5, and given how few people we measured, anything from about 58.6 to 62.5 would be consistent with what we observed”</em> is the difference between a number and a finding. Almost every result you will produce or read for the rest of your degree comes with an interval attached, and knowing what that interval does and does not claim is most of the skill.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">8.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>explain what a sampling distribution is, and why the standard error is not the standard deviation — <a href="../stats/s07-sampling.html">S7</a>;</li>
@@ -533,7 +533,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">8.2 The idea</h2>
 <p>Take the cohort, and look only at the students who came from a life-sciences background.</p>
 <div id="load" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys<span class="op">;</span> sys.path.insert(<span class="dv">0</span>, <span class="st">"../theme"</span>)</span>
@@ -556,7 +556,7 @@ window.Quarto = {
 <p>That distinction sounds like pedantry and is not. It is the single most common misreading in applied statistics, and <a href="../stats/s09-tests.html">S9</a> depends on you having it straight.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">8.3 The mechanics</h2>
 <p>For a mean, when the population standard deviation is unknown — which is essentially always — the interval is</p>
 <p><span class="math display">\[
 \bar{x} \;\pm\; t_{1-\alpha/2,\,n-1} \times \frac{s}{\sqrt{n}}
@@ -595,7 +595,7 @@ window.Quarto = {
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">8.4 Worked example</h2>
 <p><strong>An interval for the life-sciences mean, two ways.</strong></p>
 <p>By hand first. We have <span class="math inline">\(n = 57\)</span>, <span class="math inline">\(\bar{x} = 60.51\)</span> and <span class="math inline">\(s = 7.29\)</span>, so the standard error is <span class="math inline">\(7.29/\sqrt{57} = 0.97\)</span>. For 95% confidence with <span class="math inline">\(56\)</span> degrees of freedom the multiplier is <span class="math inline">\(2.003\)</span>, giving a half-width of <span class="math inline">\(2.003 \times 0.97 = 1.93\)</span> and an interval of <span class="math inline">\(60.51 \pm 1.93\)</span>.</p>
 <div id="t-interval" class="cell" data-execution_count="2">
@@ -688,7 +688,7 @@ Mathematics or Physics   n= 36  mean=75.28  ±2.58</code></pre>
 </figure>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-width-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="439" height="206">
+<div id="fig-width-2" class="quarto-float quarto-figure quarto-figure-center anchored" height="206" width="439">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-width-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="s08-intervals_files/figure-html/fig-width-output-2.png" id="fig-width-2" data-ref-parent="fig-width" width="439" height="206" class="figure-img">
@@ -709,7 +709,7 @@ Figure&nbsp;35.2
 <p>The second group has a <em>wider</em> The second group has a <em>wider</em> interval despite being a perfectly good sample. It has fewer students in it, and the width is driven by <span class="math inline">\(n\)</span> at least as much as by the spread of the data.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">8.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> A sample of 36 measurements has mean <span class="math inline">\(50\)</span> and standard deviation <span class="math inline">\(12\)</span>. The multiplier <span class="math inline">\(t_{0.975,\,35}\)</span> is <span class="math inline">\(2.030\)</span>. Compute the 95% interval, then say what would happen to its width if the sample were four times as large.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -781,7 +781,7 @@ Figure&nbsp;35.2
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">8.6 Check it in Python</h2>
 <p>The claim that 95% of intervals contain the truth is checkable, and checking it is the fastest way to make the definition stop feeling like a word game.</p>
 <p>We treat the whole usable cohort as a population whose mean we happen to know. Then we take a great many small samples, build an interval from each, and count.</p>
 <div id="coverage" class="cell" data-execution_count="8">
@@ -828,7 +828,7 @@ Figure&nbsp;35.3: The first hundred of those intervals. Each bar is one study; t
 <p>Two variations worth running yourself. Change <code>0.975</code> to <code>0.995</code> and watch coverage rise towards 99% as the intervals widen. Change <code>sample_size</code> to 10 and watch the intervals get much wider while the coverage stays near 95% — the method keeps its promise, it just has less to work with.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">8.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -860,7 +860,7 @@ An interval without its centre is hard to read, and a centre without its interva
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">8.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

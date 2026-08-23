@@ -430,12 +430,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">4.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">4.2 The idea</a>
   <ul class="collapse">
   <li><a href="#comparison-and-logic" id="toc-comparison-and-logic" class="nav-link" data-scroll-target="#comparison-and-logic">Comparison and logic</a></li>
   </ul></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">4.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#for-repeat-once-per-item" id="toc-for-repeat-once-per-item" class="nav-link" data-scroll-target="#for-repeat-once-per-item"><code>for</code> — repeat once per item</a></li>
   <li><a href="#while-repeat-until-a-condition-changes" id="toc-while-repeat-until-a-condition-changes" class="nav-link" data-scroll-target="#while-repeat-until-a-condition-changes"><code>while</code> — repeat until a condition changes</a></li>
@@ -443,11 +443,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#comprehensions" id="toc-comprehensions" class="nav-link" data-scroll-target="#comprehensions">Comprehensions</a></li>
   <li><a href="#break-and-continue" id="toc-break-and-continue" class="nav-link" data-scroll-target="#break-and-continue"><code>break</code> and <code>continue</code></a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">4.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">4.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">4.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">4.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">4.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -483,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Everything from cleaning a column to fitting a model is built from these. The skill worth acquiring here is not the syntax, which is small, but the habit of tracing what a loop does <em>before</em> you run it.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">4.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>index and slice a list, and iterate the idea of “many values” — <a href="../python/p03-collections.html">P3</a>;</li>
@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">4.2 The idea</h2>
 <p>A <strong>condition</strong> is an expression that evaluates to <code>True</code> or <code>False</code>, and it decides which block of code runs:</p>
 <div id="if-basic" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="fl">68.4</span></span>
@@ -546,7 +546,7 @@ False</code></pre>
 </section>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">4.3 The mechanics</h2>
 <section id="for-repeat-once-per-item" class="level3">
 <h3 class="anchored" data-anchor-id="for-repeat-once-per-item"><code>for</code> — repeat once per item</h3>
 <div id="for-basic" class="cell" data-execution_count="3">
@@ -676,7 +676,7 @@ Figure&nbsp;8.1: Tracing <code>for value in [3, 1, 4]</code> accumulating a runn
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">4.4 Worked example</h2>
 <p><strong>Classifying the cohort, and counting what you could not classify.</strong></p>
 <div id="worked" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
@@ -729,7 +729,7 @@ Figure&nbsp;8.1: Tracing <code>for value in [3, 1, 4]</code> accumulating a runn
 <p>And the bands are checked from <strong>highest to lowest</strong>, because <code>elif</code> stops at the first match. Written the other way round, every score above 50 would land in <code>pass</code> and the top two bands would always be zero.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">4.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Trace this on paper before running it. What does it print?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span>
@@ -811,7 +811,7 @@ Figure&nbsp;8.1: Tracing <code>for value in [3, 1, 4]</code> accumulating a runn
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">4.6 Check it in Python</h2>
 <p>Two checks that catch the two commonest loop bugs.</p>
 <p><strong>Did every item get accounted for?</strong> A loop that filters should conserve the total:</p>
 <div id="check-conserve" class="cell" data-execution_count="12">
@@ -843,7 +843,7 @@ Figure&nbsp;8.1: Tracing <code>for value in [3, 1, 4]</code> accumulating a runn
 <p>The assertion costs nothing and turns an infinite loop into an immediate, readable failure. Remove it once the logic is settled, or leave it in — a bound you can justify is documentation.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">4.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -875,7 +875,7 @@ A comprehension you have to decode is worse than the loop it replaced. Use one w
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">4.8 Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">

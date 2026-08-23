@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">2.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">2.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">2.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#where-is-it" id="toc-where-is-it" class="nav-link" data-scroll-target="#where-is-it">Where is it?</a></li>
   <li><a href="#quantiles" id="toc-quantiles" class="nav-link" data-scroll-target="#quantiles">Quantiles</a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#what-shape-is-it" id="toc-what-shape-is-it" class="nav-link" data-scroll-target="#what-shape-is-it">What shape is it?</a></li>
   <li><a href="#seeing-it" id="toc-seeing-it" class="nav-link" data-scroll-target="#seeing-it">Seeing it</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">2.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">2.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">2.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">2.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">2.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p>This is also the foundation floor. The confidence intervals, tests and regression models you will meet first are all built out of a mean and a standard deviation, so the places where those two numbers mislead are the places where everything built on top of them misleads too. Knowing what a summary hides is the difference between using these tools and being used by them.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">2.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>say what a variable is and what one row of a table represents — <a href="../stats/s01-the-question.html">S1</a>;</li>
@@ -536,7 +536,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">2.2 The idea</h2>
 <p>Describing one variable comes down to three questions, in this order:</p>
 <ol type="1">
 <li><strong>Where is it?</strong> A typical value.</li>
@@ -561,7 +561,7 @@ Figure&nbsp;29.1: Three sets of 238 numbers with the same mean (65.3, dashed) an
 <p>Every summary is a compression, and compression throws things away. The skill is knowing what each one throws away, so that you can choose a summary that keeps the part that matters and can say what you have lost.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">2.3 The mechanics</h2>
 <section id="where-is-it" class="level3">
 <h3 class="anchored" data-anchor-id="where-is-it">Where is it?</h3>
 <p>Three answers, and they answer slightly different questions.</p>
@@ -619,7 +619,7 @@ Figure&nbsp;29.2: The same 238 scores at three bin widths. Too few bins and the 
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">2.4 Worked example</h2>
 <p><strong>Describe the cohort’s final scores, properly.</strong></p>
 <div id="describe" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n        </span><span class="sc">{</span>scores<span class="sc">.</span>size<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -683,7 +683,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 <p>The standard deviation of those 237 students is 8.40, and no single group’s is above 7.63. The extra spread is not variability <em>within</em> any group — it is the distance between the group means, from 60.2 to 75.3, showing up as spread once they are poured into one column. Describing the mixture as though it were one population is correct arithmetic and a poor description, and <a href="../stats/s10-comparing.html">S10</a> is where that gets taken seriously.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">2.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> For the sample <span class="math inline">\(\{2, 3, 4, 5, 6, 6, 7\}\)</span>, compute by hand: the mean, the median, the mode, the sample variance and the sample standard deviation.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -771,7 +771,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">2.6 Check it in Python</h2>
 <p>Three claims from the mechanics, checked.</p>
 <p>First, that the deviations from the mean really do cancel — this is what makes <span class="math inline">\(\bar{x}\)</span> the balance point, and why the variance has to square them.</p>
 <div id="balance" class="cell" data-execution_count="7">
@@ -838,7 +838,7 @@ damaged   mean   69.09   median 64.80</code></pre>
 <p>One value changed; the mean moves by nearly four marks and the median does not move at all.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">2.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -874,7 +874,7 @@ A histogram with two peaks is usually two groups. Splitting them and describing 
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">2.8 Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">

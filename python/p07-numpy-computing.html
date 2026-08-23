@@ -459,9 +459,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">7.1 Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">7.2 The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">7.3 The mechanics</a>
   <ul class="collapse">
   <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting">Broadcasting</a></li>
   <li><a href="#reductions-and-axis" id="toc-reductions-and-axis" class="nav-link" data-scroll-target="#reductions-and-axis">Reductions and <code>axis</code></a></li>
@@ -469,11 +469,11 @@ window.Quarto = {
   <li><a href="#random-numbers" id="toc-random-numbers" class="nav-link" data-scroll-target="#random-numbers">Random numbers</a></li>
   <li><a href="#is-not" id="toc-is-not" class="nav-link" data-scroll-target="#is-not"><code>*</code> is not <code>@</code></a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">7.4 Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">7.5 Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">7.6 Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">7.7 Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">7.8 Check yourself</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p>They are also the three places where beginners most often get a wrong answer rather than an error message. NumPy will happily subtract the wrong thing from the wrong thing and hand you a perfectly shaped result. This unit is as much about noticing that as about the syntax.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">7.1 Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>create an array and inspect its <code>shape</code>, <code>ndim</code> and <code>dtype</code> — <a href="../python/p06-numpy-arrays.html">P6</a>;</li>
@@ -535,7 +535,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">7.2 The idea</h2>
 <p>In plain Python, doing something to every number means writing a loop:</p>
 <div id="loop" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="fl">58.0</span>, <span class="fl">71.5</span>, <span class="fl">64.0</span>, <span class="fl">80.5</span>]</span>
@@ -570,7 +570,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">7.3 The mechanics</h2>
 <section id="broadcasting" class="level3">
 <h3 class="anchored" data-anchor-id="broadcasting">Broadcasting</h3>
 <p>Two arrays of the same shape combine element by element. Arrays of <em>different</em> shapes may still combine, if their shapes are compatible. NumPy compares them <strong>from the right</strong>, and two dimensions are compatible when they are equal or one of them is 1.</p>
@@ -722,7 +722,7 @@ A @ A =
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">7.4 Worked example</h2>
 <p><strong>Standardise every numeric column of the cohort table.</strong></p>
 <p>Standardising means subtracting each column’s mean and dividing by its standard deviation, so that every column ends up centred at 0 with a spread of 1. It uses reductions and broadcasting together, and it is the single most common preprocessing step in data science.</p>
 <div id="standardise" class="cell" data-execution_count="14">
@@ -773,7 +773,7 @@ standard deviations   : [1. 1. 1.]</code></pre>
 <p>Two mistakes were available here, and only one of them would have announced itself. Using <code>axis=1</code> would have computed one mean per <em>student</em>, shape <code>(238,)</code>, and subtracting that from a <code>(238, 3)</code> array raises a <code>ValueError</code> — 238 against 3 cannot broadcast. That one fails loudly, which is the good case. Forgetting <code>ddof=1</code> is the quiet one. It divides by a slightly <em>smaller</em> number, so the standardised columns come out with standard deviations of 1.002 rather than 1 — the factor is <span class="math inline">\(\sqrt{n/(n-1)}\)</span>. Nothing raises, the shapes are all correct, and the result looks entirely reasonable. Two lines of checking catch it.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">7.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> <code>a</code> has shape <code>(4, 3)</code> and <code>b</code> has shape <code>(3,)</code>. What is the shape of <code>a * b</code>? What about <code>a * b[:, None]</code> — and why?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -845,7 +845,7 @@ standard deviations   : [1. 1. 1.]</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">7.6 Check it in Python</h2>
 <p>Two habits are worth building deliberately. The first is asserting the shape you expect, so a broadcast that goes wrong stops the program instead of quietly continuing:</p>
 <div id="assert-shape" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">20.0</span>, <span class="fl">30.0</span>])</span>
@@ -877,7 +877,7 @@ column means after 'right': [0. 0. 0. 0.]</code></pre>
 <p>If you take one thing from this unit, make it that. <strong>Predict the shape, then verify the property.</strong> It costs one line and it catches the entire class of error that NumPy will not catch for you.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">7.7 Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -913,7 +913,7 @@ A single missing value propagates through every sum, mean and product it reaches
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">7.8 Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">
