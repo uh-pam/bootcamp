@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>39&nbsp; How analyses go wrong – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../reference/formula-card.html" rel="next">
+<link href="../stats/s11-regression.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s12-going-wrong.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">39.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">39.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">39.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding"><span class="header-section-number">39.3.1</span> Confounding</a></li>
+  <li><a href="#selection-and-the-sample-you-did-not-see" id="toc-selection-and-the-sample-you-did-not-see" class="nav-link" data-scroll-target="#selection-and-the-sample-you-did-not-see"><span class="header-section-number">39.3.2</span> Selection, and the sample you did not see</a></li>
+  <li><a href="#multiple-comparisons" id="toc-multiple-comparisons" class="nav-link" data-scroll-target="#multiple-comparisons"><span class="header-section-number">39.3.3</span> Multiple comparisons</a></li>
+  <li><a href="#base-rates-again" id="toc-base-rates-again" class="nav-link" data-scroll-target="#base-rates-again"><span class="header-section-number">39.3.4</span> Base rates, again</a></li>
+  <li><a href="#regression-to-the-mean" id="toc-regression-to-the-mean" class="nav-link" data-scroll-target="#regression-to-the-mean"><span class="header-section-number">39.3.5</span> Regression to the mean</a></li>
+  <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting"><span class="header-section-number">39.3.6</span> Overfitting</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">39.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">39.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">39.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">39.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">39.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s12-going-wrong.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></h1>
+<p class="subtitle lead">Statistics · Unit 12</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>S12</strong> · Statistics</span> <span>Reading: <strong>7 pages</strong></span> <span>With practice: <strong>≈ 1.5 hours</strong></span> <span>Assumes: <strong>S11</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p>Every technique in this track can be executed perfectly and still produce a confident, reproducible, wrong answer. That is not a flaw in the techniques; it is what happens when a correct calculation is pointed at the wrong question, or run on a sample selected in a way nobody wrote down, or repeated until something interesting appears.</p>
+<p>The failures in this unit are not exotic. They are the ordinary ones, they account for most of the retracted findings you will read about during your degree, and every one of them is visible in advance if you know the shape to look for. This is the unit that makes the previous eleven usable.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="39.1">
+<h2 data-number="39.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">39.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>fit and interpret a straight line with an interval on its slope — <a href="../stats/s11-regression.html">S11</a>;</li>
+<li>read a <span class="math inline">\(p\)</span>-value and state what it is conditional on — <a href="../stats/s09-tests.html">S9</a>;</li>
+<li>name the unit, population, estimand and design of a question — <a href="../stats/s01-the-question.html">S1</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> A test is significant at <span class="math inline">\(p &lt; 0.05\)</span>. Twenty independent tests are run on data where nothing is going on. How many significant results would you expect, and what is the chance of at least one?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You expect <span class="math inline">\(20 \times 0.05 = 1\)</span>. The chance of at least one is <span class="math inline">\(1 - 0.95^{20} = 0.64\)</span>.</p>
+<p>So in a study with twenty comparisons and no real effects anywhere, the odds are roughly two to one that you will find something to write up. That single calculation is the engine behind a large fraction of this unit.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="39.2">
+<h2 data-number="39.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">39.2</span> The idea</h2>
+<p>The cohort used throughout these notes contains a planted trap, and by now you have walked into it four times.</p>
+<div id="reversal" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys<span class="op">;</span> sys.path.insert(<span class="dv">0</span>, <span class="st">"../theme"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> figures <span class="im">import</span> figure, note, no_axes, use_style, ACCENT, WARM, COOL, INK, FAINT</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>scored <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> scored.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pooled <span class="op">=</span> stats.linregress(scored[<span class="st">"hours_practice"</span>], scored[<span class="st">"final_score"</span>])</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"pooled slope, all </span><span class="sc">{</span><span class="bu">len</span>(scored)<span class="sc">}</span><span class="ss"> students: </span><span class="sc">{</span>pooled<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss"> marks per hour"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, part <span class="kw">in</span> grouped.groupby(<span class="st">"background"</span>):</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    within <span class="op">=</span> stats.linregress(part[<span class="st">"hours_practice"</span>], part[<span class="st">"final_score"</span>])</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>name<span class="sc">:&lt;24}</span><span class="ss"> n = </span><span class="sc">{</span><span class="bu">len</span>(part)<span class="sc">:&gt;3}</span><span class="ss">   </span><span class="sc">{</span>within<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>pooled slope, all 238 students: -0.2408 marks per hour
+   Computing                n =  69   +0.6624
+   Engineering              n =  36   +0.8454
+   Life sciences            n =  57   +1.1526
+   Mathematics or Physics   n =  36   +1.0112
+   Social sciences          n =  39   +1.3445</code></pre>
+</div>
+</div>
+<p>Pooled, practice looks harmful. Within every background group, it looks helpful, by between roughly three and five times as much as the pooled slope says it hurts. This is <strong>Simpson’s paradox</strong>: an association that reverses when a third variable is taken into account.</p>
+<div id="cell-fig-simpson" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-simpson" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simpson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s12-going-wrong_files/figure-html/fig-simpson-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;39.1: The mechanism, drawn cleanly. Two groups, each with a rising relationship inside it. The right-hand group starts higher on the vertical axis and lower on the horizontal one, so the two clouds are offset along a downward diagonal — and a line fitted to everything follows the offset between the groups rather than the trend inside them.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The mechanism is not mysterious. Students from quantitative backgrounds start further ahead and practise less; students from other backgrounds start further behind and practise more. Pooling the two puts a strong negative <em>between-group</em> pattern on top of a positive <em>within-group</em> one, and the between-group pattern wins.</p>
+<p>Nothing in the pooled analysis is wrong. The slope is correctly computed, its interval is honest, its <span class="math inline">\(p\)</span>-value is small. It answers a question — <em>among these 238 students, how does score vary with practice hours?</em> — and that question is almost never the one anybody wanted answered.</p>
+</section>
+<section id="the-mechanics" class="level2" data-number="39.3">
+<h2 data-number="39.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">39.3</span> The mechanics</h2>
+<section id="confounding" class="level3" data-number="39.3.1">
+<h3 data-number="39.3.1" class="anchored" data-anchor-id="confounding"><span class="header-section-number">39.3.1</span> Confounding</h3>
+<p>Simpson’s paradox is the dramatic case of a general problem. A <strong>confounder</strong> is a common cause: something that influences both the thing you varied and the thing you measured. Its influence is credited to whatever you happened to put in your model.</p>
+<p>“Related to both” is not enough to make a variable a confounder, and the difference decides what to do about it. A variable on the causal path <em>from</em> your predictor <em>to</em> your outcome is a mediator, and adjusting for it changes which question you are answering rather than removing a bias. A variable that is a <em>consequence</em> of both is a collider, and adjusting for it manufactures a bias that was not there. Which kind you are looking at is a claim about how the world works, and no amount of data settles it.</p>
+<p>There are three responses, in decreasing order of strength.</p>
+<ol type="1">
+<li><strong>Randomise.</strong> If treatment is assigned by a coin, no variable — measured or not — can be systematically related to it. This is why experiments are worth their cost.</li>
+<li><strong>Adjust.</strong> Include the confounder in the model, or compare within its levels, as the group-by-group fits above do. This works only for confounders you thought of and measured.</li>
+<li><strong>Say so.</strong> If neither is available, state which confounders you could not rule out and in which direction each would bias the answer.</li>
+</ol>
+<p>The third is not a failure. It is what an honest observational analysis looks like, and it is far more useful than an unqualified claim.</p>
+</section>
+<section id="selection-and-the-sample-you-did-not-see" class="level3" data-number="39.3.2">
+<h3 data-number="39.3.2" class="anchored" data-anchor-id="selection-and-the-sample-you-did-not-see"><span class="header-section-number">39.3.2</span> Selection, and the sample you did not see</h3>
+<p><a href="../stats/s01-the-question.html">S1</a> warned that a design decides which population an answer is about. The failures come in a family:</p>
+<ul>
+<li><strong>Self-selection</strong> — people who respond differ from those who do not.</li>
+<li><strong>Survivorship</strong> — you only see the units that made it: the funds still trading, the customers who did not leave, the aircraft that came back.</li>
+<li><strong>Collider bias</strong> — conditioning on a <em>consequence</em> of two variables creates an association between them that does not exist in the population. Restrict attention to students who were admitted, and admission criteria will manufacture a negative relationship between the things that earn admission.</li>
+</ul>
+<p>Sample size does not help with any of them; it makes the wrong answer more precise.</p>
+</section>
+<section id="multiple-comparisons" class="level3" data-number="39.3.3">
+<h3 data-number="39.3.3" class="anchored" data-anchor-id="multiple-comparisons"><span class="header-section-number">39.3.3</span> Multiple comparisons</h3>
+<p>Each test at <span class="math inline">\(\alpha = 0.05\)</span> has a one-in-twenty false-positive rate. Run many and false positives become the expected outcome rather than the exception.</p>
+<div id="cell-fig-multiplicity" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-multiplicity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-multiplicity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s12-going-wrong_files/figure-html/fig-multiplicity-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multiplicity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;39.2: The probability of at least one significant result when nothing at all is going on, against the number of independent tests run. At five tests it is already better than one in five; by twenty it is nearly two in three. Nothing about any individual test has changed.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The count that matters is <strong>every comparison you could have made</strong>, not the ones you wrote down. Trying three outcome measures, two subgroups and two ways of excluding outliers is twelve analyses even if you report one. This is the “garden of forking paths”, and it does its damage without anyone intending to cheat: each decision felt reasonable at the time, and each was made after seeing the data.</p>
+<p>Two repairs. <strong>Bonferroni</strong>: test at <span class="math inline">\(\alpha/k\)</span> for <span class="math inline">\(k\)</span> comparisons, which controls the chance of any false positive and costs power. <strong>False discovery rate</strong> (Benjamini–Hochberg): control the <em>expected</em> proportion of your discoveries that are false — an average across many studies, not a guarantee about yours — which is usually the more sensible target when screening many hypotheses. Both are far less important than the habit of saying how many comparisons were made.</p>
+</section>
+<section id="base-rates-again" class="level3" data-number="39.3.4">
+<h3 data-number="39.3.4" class="anchored" data-anchor-id="base-rates-again"><span class="header-section-number">39.3.4</span> Base rates, again</h3>
+<p><a href="../stats/s04-probability.html">S4</a> showed that a good test for a rare condition mostly produces false positives. Replace “condition” with “true hypothesis” and the same arithmetic applies to research.</p>
+<p>If a fraction <span class="math inline">\(\pi\)</span> of the hypotheses in a field are true, a test with power <span class="math inline">\(1 - \beta\)</span> and level <span class="math inline">\(\alpha\)</span> produces true positives at rate <span class="math inline">\((1-\beta)\pi\)</span> and false ones at rate <span class="math inline">\(\alpha(1 - \pi)\)</span>, so</p>
+<p><span class="math display">\[
+P(\text{true} \mid \text{significant}) =
+\frac{(1-\beta)\,\pi}{(1-\beta)\,\pi + \alpha\,(1-\pi)} .
+\]</span></p>
+<div id="cell-fig-base-rate" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-base-rate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-base-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s12-going-wrong_files/figure-html/fig-base-rate-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-base-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;39.3: The chance that a significant finding is true, against the fraction of hypotheses in the field that are true, at the conventional 5% level. Even with 80% power, a field in which one hypothesis in ten holds up produces significant findings that are right only about two thirds of the time — and at 50% power, barely half.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Two things follow. <strong>The <span class="math inline">\(p\)</span>-value alone cannot tell you how likely a finding is to be true</strong>, because two of the three numbers in that formula are properties of the field rather than of your study. Read them off the figure: with 80% power and one hypothesis in ten holding up, 64% of significant findings are real; drop the prior to one in twenty and it is 46%; drop the power to 50% as well and it is 35%. And <strong>power is not just about your own study</strong>: low power raises the share of published findings that are false, because it shrinks the numerator while leaving the false-positive rate alone.</p>
+</section>
+<section id="regression-to-the-mean" class="level3" data-number="39.3.5">
+<h3 data-number="39.3.5" class="anchored" data-anchor-id="regression-to-the-mean"><span class="header-section-number">39.3.5</span> Regression to the mean</h3>
+<p>If a measurement is part signal and part noise, the units that scored highest were partly lucky, and on a second measurement they will average closer to the middle. This happens with no cause at all, and it is routinely mistaken for one.</p>
+<p>It is why the “worst-performing hospitals” improve after an intervention, why the sequel to a breakout success disappoints, and why anyone who praises after a good outcome and criticises after a bad one will conclude that criticism works.</p>
+<p>The defence is a control group. Without one you cannot separate the effect of what you did from the movement that would have happened anyway.</p>
+</section>
+<section id="overfitting" class="level3" data-number="39.3.6">
+<h3 data-number="39.3.6" class="anchored" data-anchor-id="overfitting"><span class="header-section-number">39.3.6</span> Overfitting</h3>
+<p>A model with enough freedom can fit any dataset exactly, including its noise. It will then perform badly on data it has not seen. The symptom is a gap between performance on the data you fitted and on data you held back; the defence is to hold data back before you start, and never to touch it until the model is final.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="39.4">
+<h2 data-number="39.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">39.4</span> Worked example</h2>
+<p><strong>Three failures, on the cohort.</strong></p>
+<p><strong>One: the reversal, quantified.</strong> Fit the practice slope with and without the information about where each student started.</p>
+<div id="adjusted" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> scored[<span class="st">"hours_practice"</span>].to_numpy()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> scored[<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>diagnostic <span class="op">=</span> scored[<span class="st">"diagnostic_score"</span>].to_numpy()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ones <span class="op">=</span> np.ones(hours.size)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, design <span class="kw">in</span> [(<span class="st">"score ~ 1 + hours"</span>, np.column_stack([ones, hours])),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                     (<span class="st">"score ~ 1 + hours + diagnostic"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                      np.column_stack([ones, hours, diagnostic]))]:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    theta, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(design, score, rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:&lt;32}</span><span class="ss"> hours coefficient </span><span class="sc">{</span>theta[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>score ~ 1 + hours                hours coefficient -0.2408
+score ~ 1 + hours + diagnostic   hours coefficient +0.9156</code></pre>
+</div>
+</div>
+<p>Adding one column moves the coefficient on practice from <span class="math inline">\(-0.24\)</span> to <span class="math inline">\(+0.92\)</span> marks per hour. Neither fit is a mistake. The first answers “how does score vary with practice across the cohort?”, the second “how does score vary with practice among students who arrived equally prepared?” — and only the second is close to the question a student asking whether to practise actually has.</p>
+<p><strong>Two: torturing the data.</strong> Split the cohort at random — a variable that cannot possibly matter — and test whether the two halves differ. Do it twenty times.</p>
+<div id="forking" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p_values <span class="op">=</span> np.array([</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    stats.ttest_ind(score[flag], score[<span class="op">~</span>flag], equal_var<span class="op">=</span><span class="va">False</span>).pvalue</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> flag <span class="kw">in</span> (rng.integers(<span class="dv">0</span>, <span class="dv">2</span>, score.size).astype(<span class="bu">bool</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"20 random splits of the cohort"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  smallest p          </span><span class="sc">{</span>p_values<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  number below 0.05   </span><span class="sc">{</span>(p_values <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Bonferroni threshold for 20 tests: </span><span class="sc">{</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">20</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>20 random splits of the cohort
+  smallest p          0.0136
+  number below 0.05   1
+  Bonferroni threshold for 20 tests: 0.0025</code></pre>
+</div>
+</div>
+<p>One split in twenty comes out “significant” at <span class="math inline">\(p = 0.014\)</span>, and a report of that split alone — <em>“students in group X scored significantly higher”</em> — would be entirely true about the arithmetic and entirely false about the world. Against the Bonferroni threshold of 0.0025 it survives nothing.</p>
+<p><strong>Three: regression to the mean.</strong> Take the students who scored highest on the arrival diagnostic and follow them to the final. Both variables are standardised, so the comparison is like for like.</p>
+<div id="regression-to-mean" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z_diagnostic <span class="op">=</span> (diagnostic <span class="op">-</span> diagnostic.mean()) <span class="op">/</span> diagnostic.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>z_final <span class="op">=</span> (score <span class="op">-</span> score.mean()) <span class="op">/</span> score.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"correlation between the two: </span><span class="sc">{</span>np<span class="sc">.</span>corrcoef(z_diagnostic, z_final)[<span class="dv">0</span>, <span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, mask <span class="kw">in</span> [(<span class="st">"top 10</span><span class="sc">% o</span><span class="st">n arrival"</span>, z_diagnostic <span class="op">&gt;=</span> np.quantile(z_diagnostic, <span class="fl">0.9</span>)),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                    (<span class="st">"bottom 10</span><span class="sc">% o</span><span class="st">n arrival"</span>, z_diagnostic <span class="op">&lt;=</span> np.quantile(z_diagnostic, <span class="fl">0.1</span>))]:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">:&lt;24}</span><span class="ss"> n = </span><span class="sc">{</span>mask<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:&gt;3}</span><span class="ss">   "</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"diagnostic </span><span class="sc">{</span>z_diagnostic[mask]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd   "</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"final </span><span class="sc">{</span>z_final[mask]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>correlation between the two: 0.6579
+
+top 10% on arrival       n =  24   diagnostic +1.700 sd   final +1.428 sd
+bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code></pre>
+</div>
+</div>
+<p>The strongest starters were 1.70 standard deviations above average on arrival and 1.43 above it at the end. The weakest were 1.49 below on arrival and 0.71 below at the end. Both groups moved towards the middle, and nobody did anything to them.</p>
+<p>Now imagine the department had run a support programme for the weakest tenth. Their improvement — most of the way back to average — would have looked like a triumph, and essentially all of it would have happened anyway.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="39.5">
+<h2 data-number="39.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">39.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> A hospital reports that its overall surgical survival rate is lower than a neighbouring hospital’s, but that its survival rate is higher for every individual severity category.</p>
+<ol type="a">
+<li>Is one of the two figures wrong?</li>
+<li>What explains it?</li>
+<li>Which figure should a patient use?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>No.</strong> Both can be correct simultaneously; this is Simpson’s paradox with the roles of practice and background played by severity.</p></li>
+<li><p>The hospital with the lower overall rate almost certainly takes <strong>more severe cases</strong>. Severity drives both which hospital you go to and whether you survive, so pooling across severity credits the case mix to the hospital.</p></li>
+<li><p><strong>The category-specific figures</strong>, matched to their own severity — that is the comparison that holds the confounder fixed. The overall figure answers a question about the two hospitals’ <em>patients</em>, not about their surgeons.</p>
+<p>Worth adding: this is exactly why publishing unadjusted mortality league tables creates an incentive to refuse difficult cases, and why the adjusted figures are the ones that get published.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> A team tests 4 outcome measures in 3 subgroups and reports the one result with <span class="math inline">\(p = 0.03\)</span> as their finding.</p>
+<ol type="a">
+<li>How many comparisons were made?</li>
+<li>Roughly what is the chance of at least one <span class="math inline">\(p &lt; 0.05\)</span> if nothing is going on?</li>
+<li>What should they have written?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(4 \times 3 = 12\)</span> at minimum — and more if any decisions about exclusions or transformations were made after seeing the data.</p></li>
+<li><p><span class="math inline">\(1 - 0.95^{12} = 0.46\)</span>, <em>if the twelve tests are independent</em>. Close to a coin flip, from a study in which nothing whatever is going on.</p>
+<p>They will not be exactly independent — the same people appear in several comparisons, and the four outcomes are probably related — which pulls the number down. It does not pull it down to anything reassuring, and the honest version of the calculation is still “we made twelve comparisons”.</p></li>
+<li><p>Something like: <em>“We examined 4 outcomes in 3 subgroups. One comparison reached <span class="math inline">\(p = 0.03\)</span> (uncorrected); against a Bonferroni threshold of 0.0042 it is not significant, and we report it as a hypothesis for a future study rather than as a finding.”</em></p>
+<p>Note what is <strong>not</strong> required: they do not have to hide the result. They have to report the denominator. A result that arrives with its number of comparisons attached is useful; the same result without it is misleading.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> During the Second World War, returning aircraft were examined to see where they had been hit, so that armour could be added where the damage was densest.</p>
+<ol type="a">
+<li>What is wrong with the plan?</li>
+<li>Where should the armour go?</li>
+<li>Name a modern analysis with the same structure.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>Survivorship bias.</strong> The sample consists only of aircraft that came back. Hits are presumably scattered fairly evenly, so the places where returning aircraft show <em>few</em> holes are the places where a hit meant not returning.</p></li>
+<li><p><strong>Where the returning aircraft show no damage</strong> — the engines, in the original study. The observed pattern is a map of survivable hits.</p></li>
+<li><p>Many: studying only customers who did not churn, only funds that still exist, only patients who completed a course of treatment, only startups that are still trading. In every case the units that would have been most informative are the ones missing from the file, and no amount of data on the survivors recovers them.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="39.6">
+<h2 data-number="39.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">39.6</span> Check it in Python</h2>
+<p>The multiple-comparisons arithmetic is worth watching rather than believing. Here nothing is going on anywhere — two groups drawn from the same population — and we count how often at least one test in a batch comes out significant.</p>
+<div id="multiplicity" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tests <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">20</span>]:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4000</span>):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> [stats.ttest_ind(rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">30</span>), rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">30</span>)).pvalue</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(tests)]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        hits <span class="op">+=</span> <span class="bu">min</span>(batch) <span class="op">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>tests<span class="sc">:&gt;2}</span><span class="ss"> tests per study: at least one significant in "</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>hits<span class="op">/</span><span class="dv">4000</span><span class="sc">:5.1f}</span><span class="ss">% of studies   (formula </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.95</span><span class="op">**</span>tests)<span class="sc">:5.1f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1 tests per study: at least one significant in   5.5% of studies   (formula   5.0%)
+ 5 tests per study: at least one significant in  23.5% of studies   (formula  22.6%)
+20 tests per study: at least one significant in  63.7% of studies   (formula  64.2%)</code></pre>
+</div>
+</div>
+<p>And now the check that fails — the one this whole unit is about. It is tempting to believe that if an association is real and strong in the data, adjusting for another variable can only change it a little:</p>
+<div id="watch-it-fail" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>simple, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(np.column_stack([ones, hours]), score, rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>adjusted, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(np.column_stack([ones, hours, diagnostic]),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                               score, rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.sign(simple[<span class="dv">1</span>]) <span class="op">==</span> np.sign(adjusted[<span class="dv">1</span>]), (</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"the practice coefficient is </span><span class="sc">{</span>simple[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss"> on its own and "</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>adjusted[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss"> once the arrival diagnostic is included — "</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"opposite signs, same data"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> simple, *_ = np.linalg.lstsq(np.column_stack([ones, hours]), score, rcond=<span style="font-weight:bold;color:rgb(0,135,0)">None</span>)
+<span class="ansi-green-fg">      2</span> adjusted, *_ = np.linalg.lstsq(np.column_stack([ones, hours, diagnostic]),
+<span class="ansi-green-fg">      3</span>                                score, rcond=<span style="font-weight:bold;color:rgb(0,135,0)">None</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> np.sign(simple[<span class="ansi-green-fg">1</span>]) == np.sign(adjusted[<span class="ansi-green-fg">1</span>]), (
+<span class="ansi-green-fg">      5</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">the practice coefficient is </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>simple[<span class="ansi-green-fg">1</span>]<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">+.4f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> on its own and </span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      6</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>adjusted[<span class="ansi-green-fg">1</span>]<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">+.4f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> once the arrival diagnostic is included — </span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      7</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">opposite signs, same data</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      8</span> )
+
+<span class="ansi-red-fg">AssertionError</span>: the practice coefficient is -0.2408 on its own and +0.9156 once the arrival diagnostic is included — opposite signs, same data</pre>
+</div>
+</div>
+</div>
+<p>Not a little: the opposite direction. There is no rule that says adding a variable makes a small change, and the size of the change is exactly the size of the confounding.</p>
+<p>Finally, regression to the mean, on data with <strong>no relationship between the two occasions except noise around a shared underlying ability</strong>:</p>
+<div id="rtm" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ability <span class="op">=</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> ability <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)      <span class="co"># nothing happens between the two</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> ability <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardise both occasions, so the two are on a common scale.</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>z_first <span class="op">=</span> (first <span class="op">-</span> first.mean()) <span class="op">/</span> first.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>z_second <span class="op">=</span> (second <span class="op">-</span> second.mean()) <span class="op">/</span> second.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>worst <span class="op">=</span> z_first <span class="op">&lt;=</span> np.quantile(z_first, <span class="fl">0.1</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"bottom 10% at time 1:  </span><span class="sc">{</span>z_first[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd"</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"  -&gt;  time 2  </span><span class="sc">{</span>z_second[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"apparent 'improvement': "</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>z_second[worst]<span class="sc">.</span>mean() <span class="op">-</span> z_first[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd, "</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"from an intervention that did not exist"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>bottom 10% at time 1:  -1.747 sd  -&gt;  time 2  -0.932 sd
+apparent 'improvement': +0.815 sd, from an intervention that did not exist</code></pre>
+</div>
+</div>
+<p>Nothing was done to anyone. The improvement is entirely the noise that put them at the bottom in the first place, failing to repeat itself.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="39.7">
+<h2 data-number="39.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">39.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Reporting a pooled result when the groups disagree</dt>
+<dd>
+If the direction reverses inside subgroups, the pooled number is not a summary of anything anyone asked about. Report both, and say which question each answers.
+</dd>
+<dt>Adjusting for everything you have</dt>
+<dd>
+Adjustment is not automatically safer. Conditioning on a variable that is a <em>consequence</em> of both your predictor and your outcome creates bias rather than removing it. Which variables to adjust for is a question about how the world works, not about which columns are in the file.
+</dd>
+<dt>Counting only the tests you reported</dt>
+<dd>
+The relevant number is every comparison you could have made, including decisions about exclusions and transformations taken after seeing the data. Report the denominator.
+</dd>
+<dt>Explaining regression to the mean</dt>
+<dd>
+If you selected units for being extreme, expect them to move towards the middle next time. Attributing that movement to whatever you did in between requires a control group that was equally extreme and left alone.
+</dd>
+<dt>Treating a large sample as protection</dt>
+<dd>
+Size fixes sampling noise and nothing else. Confounding, selection and survivorship all survive intact into a dataset of any size, and become harder to argue with because the intervals are so tight.
+</dd>
+<dt>Evaluating a model on the data you fitted</dt>
+<dd>
+Any sufficiently flexible model fits its training data. Hold data back before you start, and do not look at it until the model is final — including not looking at it “just to check”.
+</dd>
+<dt>Believing that a significant result is probably true</dt>
+<dd>
+How likely it is to be true depends on three numbers — the fraction of hypotheses in the field that hold up, the power, and <span class="math inline">\(\alpha\)</span> — and the <span class="math inline">\(p\)</span>-value contains only the last. In an exploratory field with modest power the share of significant findings that are false can easily exceed half. That is base rates, and it is arithmetic rather than cynicism.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="39.8">
+<h2 data-number="39.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">39.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p>A study finds a positive association between coffee and heart disease. Which would most change your interpretation?</p>
+<ol type="a">
+<li>A larger sample</li>
+<li>A smaller <span class="math inline">\(p\)</span>-value</li>
+<li>Information about smoking</li>
+<li>A higher <span class="math inline">\(R^2\)</span></li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>Ten subgroups are tested and one gives <span class="math inline">\(p = 0.04\)</span>. How much evidence is that?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>A school selects its 20 weakest readers for a programme. After a term they have improved relative to the school average. Did the programme work?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Adding a variable to a regression changes a coefficient’s sign. Which fit is right?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>Why does low statistical power make the <em>published</em> literature less reliable, rather than just making individual studies less informative?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(c).</strong> Smoking is associated with both coffee drinking and heart disease, so it is a candidate confounder, and the association could be entirely its doing. (a), (b) and (d) all make the estimate more precise or the fit tighter without touching the reason it might be wrong — which is the standard shape of this unit’s lesson.</p></li>
+<li><p><strong>Very little on its own.</strong> With ten tests, the chance of at least one <span class="math inline">\(p &lt; 0.05\)</span> under no effect at all is <span class="math inline">\(1 - 0.95^{10} = 0.40\)</span>. Reported with its denominator, and treated as a hypothesis to test on new data, it is worth something. Reported alone as a finding, it is close to worthless.</p></li>
+<li><p><strong>You cannot tell.</strong> They were selected for being extreme, so regression to the mean predicts improvement with no programme at all. Without a comparison group of equally weak readers who did not take part, the programme’s effect and the statistical artefact are inseparable.</p></li>
+<li><p><strong>Both are correct fits, and they answer different questions.</strong> The unadjusted coefficient describes how the outcome varies with the predictor across the whole sample; the adjusted one describes how it varies among units alike on the added variable. Which one you want depends on what role the added variable plays: a <strong>common cause</strong> of predictor and outcome (adjust, to remove confounding); something <strong>on the path</strong> from predictor to outcome (adjusting is legitimate but answers a narrower question — the part of the effect that does not run through it); or a <strong>consequence of both</strong> (adjusting creates a bias that was not there). Nothing in the regression output distinguishes the three.</p></li>
+<li><p>Because power sits in the numerator of <span class="math inline">\(P(\text{true} \mid \text{significant})\)</span>. Halving power halves the rate of true positives while leaving the false-positive rate at <span class="math inline">\(\alpha\)</span>, so the proportion of significant findings that are false goes <em>up</em>. A literature built from underpowered studies contains a higher share of false claims than the same literature built from well-powered ones, even with everyone behaving honestly.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p>This is the last unit of the Statistics track, and the habits in it are the ones worth carrying into everything else you do.</p>
+<p>Write the question down before you touch the data — <a href="../stats/s01-the-question.html">S1</a>. Report an estimate with an interval, in the units of the thing measured — <a href="../stats/s08-intervals.html">S8</a>, <a href="../stats/s10-comparing.html">S10</a>. Say how many comparisons you made. Say which confounders you could not rule out. And when a result surprises you, look for the third variable before you look for a publisher.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../stats/s11-regression.html" class="pagination-link" aria-label="Simple linear regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../reference/formula-card.html" class="pagination-link" aria-label="Formula card">
+        <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

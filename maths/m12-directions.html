@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>27&nbsp; Directions in data: eigenvectors and the SVD – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../stats/s01-the-question.html" rel="next">
+<link href="../maths/m11-least-squares.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../maths/m01-reading-mathematics.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../maths/m12-directions.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">27.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">27.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">27.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#eigenvectors" id="toc-eigenvectors" class="nav-link" data-scroll-target="#eigenvectors"><span class="header-section-number">27.3.1</span> Eigenvectors</a></li>
+  <li><a href="#symmetric-matrices-which-are-the-ones-you-get" id="toc-symmetric-matrices-which-are-the-ones-you-get" class="nav-link" data-scroll-target="#symmetric-matrices-which-are-the-ones-you-get"><span class="header-section-number">27.3.2</span> Symmetric matrices, which are the ones you get</a></li>
+  <li><a href="#the-singular-value-decomposition" id="toc-the-singular-value-decomposition" class="nav-link" data-scroll-target="#the-singular-value-decomposition"><span class="header-section-number">27.3.3</span> The singular value decomposition</a></li>
+  <li><a href="#the-condition-number-at-last" id="toc-the-condition-number-at-last" class="nav-link" data-scroll-target="#the-condition-number-at-last"><span class="header-section-number">27.3.4</span> The condition number, at last</a></li>
+  <li><a href="#principal-components" id="toc-principal-components" class="nav-link" data-scroll-target="#principal-components"><span class="header-section-number">27.3.5</span> Principal components</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">27.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">27.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">27.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">27.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">27.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../maths/m01-reading-mathematics.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../maths/m12-directions.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></h1>
+<p class="subtitle lead">Mathematics · Unit 12</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>M12</strong> · Mathematics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2.5 hours</strong></span> <span>Assumes: <strong>M11</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p>A matrix does not treat all directions alike. It stretches some, shrinks others, and leaves a few pointing exactly where they started. This unit asks which directions those are and by how much — one question, which turns out to answer four you have already met.</p>
+<p>Why <span class="math inline">\(\operatorname{cond}(X^{\mathsf{T}}X)\)</span> is <span class="math inline">\(\operatorname{cond}(X)^2\)</span> (<a href="../maths/m11-least-squares.html">M11</a>). Why a nearly collinear design leaves a long flat valley in the loss instead of a bowl (<a href="../maths/m11-least-squares.html">M11</a>). What <code>np.linalg.lstsq</code> is actually doing (<a href="../maths/m10-linear-systems.html">M10</a>). And what a <em>principal component</em> is, which is where a dataset with forty columns gets turned into a picture you can look at. It is also the last unit of the Mathematics track.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">27.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>read <span class="math inline">\(A\mathbf{x}\)</span> as an operation on a vector — <a href="../maths/m09-matrices.html">M9</a>;</li>
+<li>form <span class="math inline">\(X^{\mathsf{T}}X\)</span> and say what shape it is — <a href="../maths/m09-matrices.html">M9</a>;</li>
+<li>say what the condition number of a matrix is <em>for</em> — <a href="../maths/m11-least-squares.html">M11</a>;</li>
+<li>take a length and recognise orthogonality — <a href="../maths/m08-vectors.html">M8</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> What does <span class="math inline">\(\begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 3\end{pmatrix}\)</span> do to the vectors <span class="math inline">\((1, 0)\)</span> and <span class="math inline">\((0, 1)\)</span>?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\((1,0) \mapsto (2, 0)\)</span> and <span class="math inline">\((0,1) \mapsto (0, 3)\)</span>: each is stretched, neither is turned.</p>
+<p>Those two directions are <strong>eigenvectors</strong> of that matrix, with stretch factors 2 and 3. This unit is about finding such directions when the matrix is not conveniently diagonal — and about what they tell you when the matrix is made out of data.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">27.2</span> The idea</h2>
+<p>Take every unit vector — a whole circle of directions — and apply a matrix to all of them. What comes back is an <strong>ellipse</strong>. Not sometimes: always, for any <span class="math inline">\(2 \times 2\)</span> matrix, and the higher-dimensional version is an ellipsoid.</p>
+<p>That is a strong statement and it is the whole geometry of the subject. It says a matrix does exactly three things: it picks out a set of perpendicular input directions, stretches each by its own factor, and lays the results down along a (possibly different) set of perpendicular output directions.</p>
+<div id="cell-fig-stretch" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-stretch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stretch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m12-directions_files/figure-html/fig-stretch-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stretch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;27.1: Left: every unit vector, with two particular ones picked out. Right: what the matrix <span class="math inline">\(A = \left(\begin{smallmatrix}2 &amp; 0.9\\ 0.4 &amp; 1.4\end{smallmatrix}\right)\)</span> does to all of them. The circle becomes an ellipse, and the two marked directions are the pair that is still perpendicular after the journey: they come out along the ellipse’s axes, stretched by <span class="math inline">\(2.43\)</span> and <span class="math inline">\(1.00\)</span>. No other perpendicular pair survives as one, and no direction is stretched by more than <span class="math inline">\(2.43\)</span> or less than <span class="math inline">\(1.00\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Once you see that ellipse, several loose ends from earlier units tie themselves off. Its longest and shortest half-widths are the biggest and smallest stretch the matrix can apply; their ratio is the condition number. A nearly singular matrix is one whose ellipse is nearly flat.</p>
+</section>
+<section id="the-mechanics" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">27.3</span> The mechanics</h2>
+<section id="eigenvectors" class="level3" data-number="27.3.1">
+<h3 data-number="27.3.1" class="anchored" data-anchor-id="eigenvectors"><span class="header-section-number">27.3.1</span> Eigenvectors</h3>
+<p>For a <strong>square</strong> matrix <span class="math inline">\(A\)</span>, a nonzero <span class="math inline">\(\mathbf{v}\)</span> with</p>
+<p><span class="math display">\[
+A\mathbf{v} = \lambda \mathbf{v}
+\]</span></p>
+<p>is an <strong>eigenvector</strong>, and the number <span class="math inline">\(\lambda\)</span> is its <strong>eigenvalue</strong>. In words: the matrix does not turn this direction at all, it only scales it. Note that <span class="math inline">\(\mathbf{v}\)</span> is a <em>direction</em> — any nonzero multiple of an eigenvector is one too, with the same eigenvalue, so libraries return a unit-length representative and the sign is arbitrary.</p>
+<p>Not every real matrix has real eigenvectors: a rotation by 90° turns every direction, so nothing survives unturned. But the matrices that arise from data are of a much better-behaved kind.</p>
+</section>
+<section id="symmetric-matrices-which-are-the-ones-you-get" class="level3" data-number="27.3.2">
+<h3 data-number="27.3.2" class="anchored" data-anchor-id="symmetric-matrices-which-are-the-ones-you-get"><span class="header-section-number">27.3.2</span> Symmetric matrices, which are the ones you get</h3>
+<p><span class="math inline">\(A\)</span> is <strong>symmetric</strong> if <span class="math inline">\(A^{\mathsf{T}} = A\)</span>. Both matrices this course cares about are: <span class="math inline">\(X^{\mathsf{T}}X\)</span> from <a href="../maths/m11-least-squares.html">M11</a>, and the covariance and correlation matrices of a dataset. For those, a theorem guarantees the good case:</p>
+<blockquote class="blockquote">
+<p>A real symmetric matrix has real eigenvalues, and its eigenvectors can be chosen to be mutually orthogonal.</p>
+</blockquote>
+<p>So a symmetric matrix has a full set of perpendicular directions it merely scales — its ellipse’s axes <em>are</em> its eigenvectors. This is why data analysis keeps producing orthogonal directions without anyone asking for them.</p>
+</section>
+<section id="the-singular-value-decomposition" class="level3" data-number="27.3.3">
+<h3 data-number="27.3.3" class="anchored" data-anchor-id="the-singular-value-decomposition"><span class="header-section-number">27.3.3</span> The singular value decomposition</h3>
+<p>Eigenvectors need a square matrix, and a data matrix is <span class="math inline">\(238 \times 3\)</span>. The <strong>SVD</strong> removes that restriction. Any matrix at all factorises as</p>
+<p><span class="math display">\[
+X = U\,\Sigma\,V^{\mathsf{T}},
+\]</span></p>
+<p>where <span class="math inline">\(\Sigma\)</span> is diagonal with non-negative entries <span class="math inline">\(\sigma_1 \geq \sigma_2
+\geq \cdots\)</span> — the <strong>singular values</strong> — and <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> have orthogonal unit columns. Read left to right it is exactly the ellipse: <span class="math inline">\(V^{\mathsf{T}}\)</span> names the input directions, <span class="math inline">\(\Sigma\)</span> stretches each by its own <span class="math inline">\(\sigma\)</span>, and <span class="math inline">\(U\)</span> says where the results point.</p>
+<p>The bridge to eigenvalues is the fact that pays the debts listed at the top:</p>
+<p><span class="math display">\[
+X^{\mathsf{T}}X = V\Sigma^{2}V^{\mathsf{T}},
+\]</span></p>
+<p>so <strong>the eigenvalues of <span class="math inline">\(X^{\mathsf{T}}X\)</span> are the squares of the singular values of <span class="math inline">\(X\)</span></strong>, with the same directions.</p>
+</section>
+<section id="the-condition-number-at-last" class="level3" data-number="27.3.4">
+<h3 data-number="27.3.4" class="anchored" data-anchor-id="the-condition-number-at-last"><span class="header-section-number">27.3.4</span> The condition number, at last</h3>
+<p><span class="math display">\[
+\operatorname{cond}(X) = \frac{\sigma_{\max}}{\sigma_{\min}}
+\]</span></p>
+<p>— the ratio between the ellipse’s longest and shortest half-widths, which is the most and the least a matrix stretches anything. (Not its <em>eccentricity</em>, which is a different number: <span class="math inline">\(\sqrt{1 - \sigma_2^2/\sigma_1^2}\)</span>.) And now the <a href="../maths/m11-least-squares.html">M11</a> claim is a one-liner: the singular values of <span class="math inline">\(X^{\mathsf{T}}X\)</span> are <span class="math inline">\(\sigma_i^2\)</span>, so their ratio is the square of the ratio, and <span class="math inline">\(\operatorname{cond}(X^{\mathsf{T}}X) = \operatorname{cond}(X)^2\)</span> — for a design matrix with independent columns, which is the case that matters here. (If the columns are dependent, <span class="math inline">\(X^{\mathsf{T}}X\)</span> has a zero eigenvalue and its condition number is infinite, which is the same warning said louder.) Forming <span class="math inline">\(X^{\mathsf{T}}X\)</span> squashes the ellipse, which is why <code>lstsq</code> — which runs on the SVD of <span class="math inline">\(X\)</span> itself — does not form it.</p>
+<div id="cell-fig-condition" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-condition" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-condition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m12-directions_files/figure-html/fig-condition-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;27.2: The unit circle under two matrices, drawn to the same scale. Left, <span class="math inline">\(\sigma_1/\sigma_2 = 2.4\)</span>: a mild ellipse, and a system you can solve happily. Right, <span class="math inline">\(\sigma_1/\sigma_2 = 39\)</span>: nearly flat, so directions that were far apart on the circle arrive almost on top of one another — which is what it means for information to be lost, and what a large condition number is measuring.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="principal-components" class="level3" data-number="27.3.5">
+<h3 data-number="27.3.5" class="anchored" data-anchor-id="principal-components"><span class="header-section-number">27.3.5</span> Principal components</h3>
+<p>Now point the same machinery at the data rather than at the design matrix. Centre every column, and take the covariance matrix (or, if the columns are on different scales, standardise first and take the correlation matrix). It is symmetric, so it has orthogonal eigenvectors. Those directions are the <strong>principal components</strong>, and each eigenvalue is the variance of the data along its direction.</p>
+<p>The first principal component is the single direction along which the cloud is most spread out. This is a change of <em>coordinates</em>, not a change of data: you are looking at the same cloud from a better angle.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">27.4</span> Worked example</h2>
+<p><strong>The cohort has two stories in it, and PCA finds both.</strong></p>
+<p>Take the three numeric columns, standardise them so no column dominates through its units alone, and eigen-decompose the correlation matrix.</p>
+<div id="pca" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> usable[names].to_numpy()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.corrcoef(Z.T)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>values, vectors <span class="op">=</span> np.linalg.eigh(C)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> np.argsort(values)[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>values, vectors <span class="op">=</span> values[order], vectors[:, order]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"variance along each principal direction:"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    axis <span class="op">=</span> vectors[:, k]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    axis <span class="op">=</span> axis <span class="op">*</span> np.sign(axis[np.argmax(<span class="bu">abs</span>(axis))])  <span class="co"># sign is arbitrary; fix it</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    loads <span class="op">=</span> <span class="st">"  "</span>.join(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">.</span>split(<span class="st">'_'</span>)[<span class="dv">0</span>]<span class="sc">:&gt;10}</span><span class="ss"> </span><span class="sc">{</span>c<span class="sc">:+.3f}</span><span class="ss">"</span> <span class="cf">for</span> n, c <span class="kw">in</span> <span class="bu">zip</span>(names, axis))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  PC</span><span class="sc">{</span>k<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">  eigenvalue </span><span class="sc">{</span>values[k]<span class="sc">:.4f}</span><span class="ss">  (</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>values[k]<span class="op">/</span><span class="dv">3</span><span class="sc">:4.1f}</span><span class="ss">%)   </span><span class="sc">{</span>loads<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">eigenvalues sum to </span><span class="sc">{</span>values<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.4f}</span><span class="ss">, one per standardised column"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>variance along each principal direction:
+  PC1  eigenvalue 2.1673  (72.2%)   diagnostic +0.667       hours -0.562       final +0.489
+  PC2  eigenvalue 0.7720  (25.7%)   diagnostic -0.051       hours +0.619       final +0.783
+  PC3  eigenvalue 0.0607  ( 2.0%)   diagnostic +0.743       hours +0.548       final -0.384
+
+eigenvalues sum to 3.0000, one per standardised column</code></pre>
+</div>
+</div>
+<p>Read the loadings as recipes. <strong>PC1</strong>, which carries 72% of the variation, is <em>arrived prepared, practised little, scored well</em> — the three columns moving together in the pattern that has haunted these notes since <a href="../maths/m06-gradients.html">M6</a>. It is a single axis along which the cohort mostly lies, and it is a confound rather than an effect.</p>
+<p><strong>PC2</strong>, with a further 26%, has almost no diagnostic score in it and loads practice and final score in the <em>same</em> direction: <em>practised a lot, scored well, regardless of how you arrived</em>. That is the real effect, the one <a href="../maths/m11-least-squares.html">M11</a> recovered as a coefficient of <span class="math inline">\(+0.92\)</span> once the diagnostic score was held fixed. Nobody told the decomposition to look for it.</p>
+<p><strong>PC3</strong> is worth 2% and is nearly nothing, which is itself informative: it says the three columns are close to satisfying one linear relation, so they carry about two dimensions of information rather than three.</p>
+<div id="cell-fig-pca" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-pca" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m12-directions_files/figure-html/fig-pca-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;27.3: The cohort in two of its standardised columns, with the principal axes of that two-column problem drawn to lengths proportional to <span class="math inline">\(\sqrt{\lambda}\)</span>. The cloud is an ellipse and the axes are its principal directions: <span class="math inline">\(90.7\%\)</span> of the variation lies along the long one, which runs down and to the right — students who arrived stronger practised less. The other <span class="math inline">\(9.3\%\)</span> is all that remains once you know where a student sits along it.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, the promised connection to conditioning. The singular values of the two design matrices from <a href="../maths/m11-least-squares.html">M11</a> give their condition numbers directly:</p>
+<div id="singular-values" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> usable[<span class="st">"diagnostic_score"</span>].to_numpy()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ones <span class="op">=</span> np.ones(<span class="bu">len</span>(h))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, X <span class="kw">in</span> [(<span class="st">"1 + hours"</span>, np.column_stack([ones, h])),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                (<span class="st">"1 + hours + diagnostic"</span>, np.column_stack([ones, h, g]))]:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> np.linalg.svd(X, compute_uv<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:&lt;24}</span><span class="ss"> sigma = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(sigma, <span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">''</span><span class="sc">:24}</span><span class="ss"> sigma_max/sigma_min = </span><span class="sc">{</span>sigma<span class="sc">.</span><span class="bu">max</span>()<span class="op">/</span>sigma<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:8.2f}</span><span class="ss">"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"   np.linalg.cond = </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>cond(X)<span class="sc">:8.2f}</span><span class="ss">"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">''</span><span class="sc">:24}</span><span class="ss"> cond(X'X) = </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>cond(X.T <span class="op">@</span> X)<span class="sc">:.1f}</span><span class="ss">"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"   and cond(X)^2 = </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>cond(X)<span class="op">**</span><span class="dv">2</span><span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 + hours                sigma = [282.956   6.829]
+                         sigma_max/sigma_min =    41.43   np.linalg.cond =    41.43
+                         cond(X'X) = 1716.7   and cond(X)^2 = 1716.7
+1 + hours + diagnostic   sigma = [1024.104  177.347    1.668]
+                         sigma_max/sigma_min =   614.14   np.linalg.cond =   614.14
+                         cond(X'X) = 377170.7   and cond(X)^2 = 377170.7</code></pre>
+</div>
+</div>
+<p>The third design’s smallest singular value is <span class="math inline">\(1.67\)</span> against a largest of <span class="math inline">\(1024\)</span>, and that near-zero direction is the collinearity of <a href="../maths/m11-least-squares.html">M11</a> measured rather than described: the columns very nearly satisfy a linear relation, so there is a direction in parameter space that the design barely responds to. It is the long flat valley, given a number.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="27.5">
+<h2 data-number="27.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">27.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> Find the eigenvalues and eigenvectors of <span class="math inline">\(A = \begin{pmatrix} 3 &amp; 1 \\ 1 &amp; 3\end{pmatrix}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Eigenvalues solve <span class="math inline">\(\det(A - \lambda I) = 0\)</span>:</p>
+<p><span class="math display">\[(3-\lambda)^2 - 1 = 0 \implies 3 - \lambda = \pm 1 \implies \lambda = 4 \text{ or } 2.\]</span></p>
+<p>For <span class="math inline">\(\lambda = 4\)</span>: <span class="math inline">\((A - 4I)\mathbf{v} = 0\)</span> gives <span class="math inline">\(-v_1 + v_2 = 0\)</span>, so <span class="math inline">\(\mathbf{v} \propto (1, 1)\)</span>. For <span class="math inline">\(\lambda = 2\)</span>: <span class="math inline">\(v_1 + v_2 = 0\)</span>, so <span class="math inline">\(\mathbf{v} \propto (1, -1)\)</span>.</p>
+<p>Two things to notice. The eigenvectors are <strong>orthogonal</strong> — <span class="math inline">\((1,1)\cdot(1,-1) =
+0\)</span> — as the theorem promises for a symmetric matrix. And they are directions: <span class="math inline">\((2,2)\)</span> and <span class="math inline">\((-1,-1)\)</span> are the same eigenvector as <span class="math inline">\((1,1)\)</span>, so a library returning <span class="math inline">\((-0.707, -0.707)\)</span> has not given you a different answer.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> A <span class="math inline">\(500 \times 8\)</span> design matrix has singular values <span class="math inline">\(\sigma = (40, 12, 9, 5, 3, 2, 1, 0.004)\)</span>. What is <span class="math inline">\(\operatorname{cond}(X)\)</span>, what is <span class="math inline">\(\operatorname{cond}(X^{\mathsf{T}}X)\)</span>, and what should you do?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\operatorname{cond}(X) = \frac{40}{0.004} = 10{,}000,
+\qquad \operatorname{cond}(X^{\mathsf{T}}X) = 10{,}000^2 = 10^{8}.\]</span></p>
+<p>Working through the normal equations would cost about eight of the sixteen digits double precision offers; working from the SVD of <span class="math inline">\(X\)</span>, about four. So first: use <code>lstsq</code> and not <span class="math inline">\((X^{\mathsf{T}}X)^{-1}\)</span>.</p>
+<p>But the deeper answer is that <span class="math inline">\(\sigma_8 = 0.004\)</span> against <span class="math inline">\(\sigma_1 = 40\)</span> is a message about the <em>data</em>, not the arithmetic. It says the eight columns very nearly satisfy a linear relation — that they carry about seven columns’ worth of information. The coefficient attached to that near-null direction is whatever noise happens to say. Look for the relation, and consider dropping a column or combining two.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> You run PCA on a dataset with heights in metres and incomes in pounds, without standardising. PC1 comes out as almost exactly the income axis. Is that a discovery?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>No.</strong> Incomes vary over tens of thousands and heights over fractions of a metre, so income’s variance dwarfs height’s by a factor of billions before anything interesting has been considered. PCA maximises variance, and variance has units.</p>
+<p>Re-express the incomes in thousands of pounds and heights in millimetres and PC1 will change, from data that is identical in every respect that matters. That is the test: a result that moves when you change a unit is a result about the units.</p>
+<p>Standardise each column first — subtract the mean and divide by the standard deviation — which is the same as working from the correlation matrix rather than the covariance matrix, and is what the worked example above does. The exception is when the columns are already in the same units and their relative sizes are genuinely meaningful, in which case leaving them alone is the informed choice.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="27.6">
+<h2 data-number="27.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">27.6</span> Check it in Python</h2>
+<p><strong>First, the definition:</strong></p>
+<div id="check-eigen" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A2 <span class="op">=</span> np.array([[<span class="fl">3.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="fl">3.0</span>]])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>values2, vectors2 <span class="op">=</span> np.linalg.eigh(A2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> vectors2[:, k]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"lambda = </span><span class="sc">{</span>values2[k]<span class="sc">:.4f}</span><span class="ss">   A @ v = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(A2 <span class="op">@</span> v, <span class="dv">4</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"   lambda * v = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(values2[k]<span class="op">*</span>v, <span class="dv">4</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"   equal: </span><span class="sc">{</span>np<span class="sc">.</span>allclose(A2 <span class="op">@</span> v, values2[k]<span class="op">*</span>v)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"eigenvectors orthogonal:"</span>, np.isclose(vectors2[:, <span class="dv">0</span>] <span class="op">@</span> vectors2[:, <span class="dv">1</span>], <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lambda = 2.0000   A @ v = [-1.4142  1.4142]   lambda * v = [-1.4142  1.4142]   equal: True
+lambda = 4.0000   A @ v = [2.8284 2.8284]   lambda * v = [2.8284 2.8284]   equal: True
+eigenvectors orthogonal: True</code></pre>
+</div>
+</div>
+<p><strong>Then the bridge between the SVD and the eigenvalues</strong>, which is the claim the condition-number result rests on:</p>
+<div id="check-svd" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack([ones, h, g])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>U, sigma, Vt <span class="op">=</span> np.linalg.svd(X, full_matrices<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>eig_of_XtX <span class="op">=</span> np.sort(np.linalg.eigvalsh(X.T <span class="op">@</span> X))[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"singular values of X      "</span>, np.<span class="bu">round</span>(sigma, <span class="dv">4</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"their squares             "</span>, np.<span class="bu">round</span>(sigma<span class="op">**</span><span class="dv">2</span>, <span class="dv">4</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"eigenvalues of X.T @ X    "</span>, np.<span class="bu">round</span>(eig_of_XtX, <span class="dv">4</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"match:"</span>, np.allclose(sigma<span class="op">**</span><span class="dv">2</span>, eig_of_XtX))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"U S V.T rebuilds X:"</span>, np.allclose(U <span class="op">@</span> np.diag(sigma) <span class="op">@</span> Vt, X))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>singular values of X       [1024.1041  177.3473    1.6675]
+their squares              [1.04878930e+06 3.14520663e+04 2.78070000e+00]
+eigenvalues of X.T @ X     [1.04878930e+06 3.14520663e+04 2.78070000e+00]
+match: True
+U S V.T rebuilds X: True</code></pre>
+</div>
+</div>
+<p><strong>And a check that fails, on purpose.</strong> It is tempting to compare eigenvectors entry by entry; the sign is arbitrary, so that comparison is unreliable even when nothing is wrong:</p>
+<div id="check-sign" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mine <span class="op">=</span> vectors2[:, <span class="dv">0</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>theirs <span class="op">=</span> <span class="op">-</span>vectors2[:, <span class="dv">0</span>]          <span class="co"># an equally valid answer to the same problem</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mine  "</span>, np.<span class="bu">round</span>(mine, <span class="dv">4</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"theirs"</span>, np.<span class="bu">round</span>(theirs, <span class="dv">4</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"allclose on the entries:        "</span>, np.allclose(mine, theirs))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same direction (|dot| == 1):    "</span>, np.isclose(<span class="bu">abs</span>(mine <span class="op">@</span> theirs), <span class="fl">1.0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mine   [-0.7071  0.7071]
+theirs [ 0.7071 -0.7071]
+allclose on the entries:         False
+same direction (|dot| == 1):     True</code></pre>
+</div>
+</div>
+<p>The first test says the two disagree and the second says they do not. The second is the one to trust: compare eigenvectors by the absolute value of their dot product <em>after</em> scaling both to unit length — which is what <code>eigh</code> returns, so the check above is safe as written — or by fixing a sign convention yourself, as the worked example did.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="27.7">
+<h2 data-number="27.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">27.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Treating an eigenvector’s sign or length as meaningful</dt>
+<dd>
+<span class="math inline">\(\mathbf{v}\)</span> and <span class="math inline">\(-2\mathbf{v}\)</span> are the same eigenvector. Two libraries, or the same library on two days, may hand you opposite signs, and neither is wrong. Never compare them with <code>==</code> or <code>allclose</code> on the raw entries.
+</dd>
+<dt>Running PCA on unstandardised columns</dt>
+<dd>
+Variance carries units, so the column with the largest <em>variance</em> wins — which is not the same as the column with the largest numbers, since PCA centres first. A column of values near a billion that barely moves contributes almost nothing. Unless every column is already in the same units for a good reason, standardise first — that is, decompose the correlation matrix rather than the covariance matrix.
+</dd>
+<dt>Calling PC1 “the most important variable”</dt>
+<dd>
+It is not a variable at all; it is a weighted combination of all of them. In the cohort, PC1 is <em>arrived prepared, practised little, scored well</em> — three columns at once, which is precisely why it was worth computing.
+</dd>
+<dt>Reading a small eigenvalue as a useless direction</dt>
+<dd>
+It says the data barely varies along there, which usually means the columns nearly satisfy a linear relation. That is a finding about your variables, and often the most actionable thing in the output.
+</dd>
+<dt>Expecting eigenvectors from a non-square matrix</dt>
+<dd>
+<span class="math inline">\(A\mathbf{v} = \lambda\mathbf{v}\)</span> needs input and output in the same space. A <span class="math inline">\(238 \times 3\)</span> matrix has no eigenvectors; it has singular values and vectors, which is what the SVD exists to provide.
+</dd>
+<dt>Assuming a large condition number means you made a mistake</dt>
+<dd>
+It usually means your columns overlap. The remedy is in the data — drop a column, combine two, collect a design that separates them — not in the solver.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="27.8">
+<h2 data-number="27.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">27.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p><span class="math inline">\(X\)</span> is a design matrix with two independent columns and singular values <span class="math inline">\(10\)</span> and <span class="math inline">\(2\)</span>. What is <span class="math inline">\(\operatorname{cond}(X^{\mathsf{T}}X)\)</span>?</p>
+<ol type="a">
+<li><span class="math inline">\(5\)</span> b. <span class="math inline">\(25\)</span> c.&nbsp;<span class="math inline">\(10\)</span> d.&nbsp;<span class="math inline">\(100\)</span></li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>Why does a correlation matrix always have orthogonal eigenvectors, while a general square matrix need not?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>The eigenvalues of a <span class="math inline">\(4 \times 4\)</span> correlation matrix are <span class="math inline">\(2.9, 0.9, 0.2, 0.0\)</span>. What does the last one tell you, and what do the four sum to?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Your PCA gives PC1 loadings <span class="math inline">\((0.71, -0.71)\)</span>; a colleague’s gives <span class="math inline">\((-0.71, 0.71)\)</span> on the same data. Who is wrong?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>In one sentence each: what do <span class="math inline">\(U\)</span>, <span class="math inline">\(\Sigma\)</span> and <span class="math inline">\(V\)</span> contribute in <span class="math inline">\(X = U\Sigma V^{\mathsf{T}}\)</span>?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(b) <span class="math inline">\(25\)</span>.</strong> <span class="math inline">\(\operatorname{cond}(X) = 10/2 = 5\)</span>, and the eigenvalues of <span class="math inline">\(X^{\mathsf{T}}X\)</span> are the squares of the singular values, so the ratio squares: <span class="math inline">\(25\)</span>. Option (a) is <span class="math inline">\(\operatorname{cond}(X)\)</span>, the most tempting wrong answer; (d) squares the wrong thing.</p></li>
+<li><p>Because a correlation matrix is <strong>symmetric</strong>, and the spectral theorem guarantees real eigenvalues and orthogonal eigenvectors for real symmetric matrices. A general square matrix has no such guarantee — a <span class="math inline">\(90°\)</span> rotation of the plane has no real eigenvectors at all, because it turns every direction. (Not every rotation does: a <span class="math inline">\(180°\)</span> rotation is <span class="math inline">\(-I\)</span> and leaves every direction unturned, and a rotation in three dimensions always fixes its axis.)</p></li>
+<li><p>A zero eigenvalue means there is a direction along which the data does not vary at all: the four columns satisfy an exact linear relation, so one is redundant and the correlation matrix is singular. The four sum to <strong>4</strong> — the eigenvalues of a correlation matrix sum to the number of columns, because each standardised column contributes variance 1.</p></li>
+<li><p><strong>Neither.</strong> The sign of an eigenvector is arbitrary, and <span class="math inline">\((0.71, -0.71)\)</span> and <span class="math inline">\((-0.71, 0.71)\)</span> are the same direction. If they disagreed by anything other than an overall sign there would be something to investigate.</p></li>
+<li><p><span class="math inline">\(V\)</span> names the perpendicular input directions; <span class="math inline">\(\Sigma\)</span> says how much each is stretched; <span class="math inline">\(U\)</span> names the perpendicular output directions those stretched pieces are laid along.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p>That completes the Mathematics track. What it was for becomes visible in Statistics.</p>
+<p><strong><a href="../stats/s03-two-variables.html">S3</a></strong> uses correlation as a summary of two columns; this unit showed what a whole matrix of them contains. <strong><a href="../stats/s11-regression.html">S11</a></strong> fits the design matrix of <a href="../maths/m11-least-squares.html">M11</a> and asks how uncertain its coefficients are — a question whose answer is governed by the singular values above. <strong><a href="../stats/s12-going-wrong.html">S12</a></strong> returns to PC1, the <em>arrived prepared, practised little, scored well</em> direction, and gives it its proper name.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../maths/m11-least-squares.html" class="pagination-link" aria-label="When there is no solution: least squares">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../stats/s01-the-question.html" class="pagination-link" aria-label="What is the question?">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

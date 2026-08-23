@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; NumPy: computing across arrays – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../python/p08-pandas-dataframe.html" rel="next">
+<link href="../python/p06-numpy-arrays.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../python/p01-getting-running.html">Python</a></li><li class="breadcrumb-item"><a href="../python/p07-numpy-computing.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">11.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">11.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">11.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="header-section-number">11.3.1</span> Broadcasting</a></li>
+  <li><a href="#reductions-and-axis" id="toc-reductions-and-axis" class="nav-link" data-scroll-target="#reductions-and-axis"><span class="header-section-number">11.3.2</span> Reductions and <code>axis</code></a></li>
+  <li><a href="#ddof-and-a-default-that-will-catch-you" id="toc-ddof-and-a-default-that-will-catch-you" class="nav-link" data-scroll-target="#ddof-and-a-default-that-will-catch-you"><span class="header-section-number">11.3.3</span> <code>ddof</code>, and a default that will catch you</a></li>
+  <li><a href="#random-numbers" id="toc-random-numbers" class="nav-link" data-scroll-target="#random-numbers"><span class="header-section-number">11.3.4</span> Random numbers</a></li>
+  <li><a href="#is-not" id="toc-is-not" class="nav-link" data-scroll-target="#is-not"><span class="header-section-number">11.3.5</span> <code>*</code> is not <code>@</code></a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">11.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">11.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">11.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">11.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">11.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../python/p01-getting-running.html">Python</a></li><li class="breadcrumb-item"><a href="../python/p07-numpy-computing.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></h1>
+<p class="subtitle lead">Python · Unit 7</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>P7</strong> · Python</span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>P6</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p>Data science is arithmetic done to whole tables at once. Three ideas make that possible: operations that apply to every element, <em>broadcasting</em> that lets differently-shaped arrays combine, and <em>reductions</em> that collapse an array along one direction.</p>
+<p>They are also the three places where beginners most often get a wrong answer rather than an error message. NumPy will happily subtract the wrong thing from the wrong thing and hand you a perfectly shaped result. This unit is as much about noticing that as about the syntax.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">11.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>create an array and inspect its <code>shape</code>, <code>ndim</code> and <code>dtype</code> — <a href="../python/p06-numpy-arrays.html">P6</a>;</li>
+<li>index and slice, and say whether you are holding a view or a copy — <a href="../python/p06-numpy-arrays.html">P6</a>;</li>
+<li>write a <code>for</code> loop over a list — <a href="../python/p04-decisions-loops.html">P4</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> What are the <code>shape</code> and <code>ndim</code> of <code>np.zeros((3, 4))</code>?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>shape</code> is <code>(3, 4)</code> and <code>ndim</code> is <code>2</code> — three rows, four columns, two dimensions. If that was not immediate, reread <a href="../python/p06-numpy-arrays.html">P6</a> first; every idea below is expressed in terms of shape.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">11.2</span> The idea</h2>
+<p>In plain Python, doing something to every number means writing a loop:</p>
+<div id="loop" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="fl">58.0</span>, <span class="fl">71.5</span>, <span class="fl">64.0</span>, <span class="fl">80.5</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>adjusted <span class="op">=</span> []</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> score <span class="kw">in</span> scores:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    adjusted.append(score <span class="op">*</span> <span class="fl">1.1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adjusted)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[63.800000000000004, 78.65, 70.4, 88.55000000000001]</code></pre>
+</div>
+</div>
+<p>In NumPy you write the operation once and it applies to everything:</p>
+<div id="elementwise" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.array([<span class="fl">58.0</span>, <span class="fl">71.5</span>, <span class="fl">64.0</span>, <span class="fl">80.5</span>])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores <span class="op">*</span> <span class="fl">1.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[63.8  78.65 70.4  88.55]</code></pre>
+</div>
+</div>
+<p>This is not just shorter. The loop still happens — it happens inside compiled code rather than in the Python interpreter, which for large arrays is dramatically faster. But speed is the lesser reason. The real gain is that <code>scores * 1.1</code> says <em>what</em> you want, while the loop says <em>how</em> to get it, and the first is much easier to read and much harder to get subtly wrong.</p>
+<p>The same applies to comparisons, which produce arrays of <code>True</code>/<code>False</code>:</p>
+<div id="comparison" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores <span class="op">&gt;</span> <span class="dv">65</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores[scores <span class="op">&gt;</span> <span class="dv">65</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[False  True False  True]
+[71.5 80.5]</code></pre>
+</div>
+</div>
+</section>
+<section id="the-mechanics" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">11.3</span> The mechanics</h2>
+<section id="broadcasting" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="broadcasting"><span class="header-section-number">11.3.1</span> Broadcasting</h3>
+<p>Two arrays of the same shape combine element by element. Arrays of <em>different</em> shapes may still combine, if their shapes are compatible. NumPy compares them <strong>from the right</strong>, and two dimensions are compatible when they are equal or one of them is 1.</p>
+<div id="broadcast" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> np.arange(<span class="dv">6</span>).reshape(<span class="dv">2</span>, <span class="dv">3</span>)      <span class="co"># shape (2, 3)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>offset <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>])         <span class="co"># shape (3,)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table <span class="op">+</span> offset)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0 1 2]
+ [3 4 5]]
+[[10 21 32]
+ [13 24 35]]</code></pre>
+</div>
+</div>
+<div id="cell-fig-broadcast" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-broadcast" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-broadcast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="p07-numpy-computing_files/figure-html/fig-broadcast-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-broadcast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: Broadcasting a <code>(3,)</code> array against a <code>(2, 3)</code> one. NumPy compares the shapes from the right: 3 matches 3, and the absent first dimension is stretched to 2. The hollow row is not stored — it is the same three numbers, reused.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>(3,)</code> array was stretched The <code>(3,)</code> array was stretched across both rows. Nothing was copied in memory — NumPy simply reuses the same values — but the <em>result</em> is as if it had been.</p>
+<p>This is concise and it is also where silent errors live. A one-dimensional array of length 3 has shape <code>(3,)</code>. The same numbers as a column have shape <code>(3, 1)</code>. They do not behave the same way:</p>
+<div id="broadcast-trap" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">20.0</span>, <span class="fl">30.0</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"v.shape           "</span>, v.shape)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"v[:, None].shape  "</span>, v[:, <span class="va">None</span>].shape)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(v - v).shape     "</span>, (v <span class="op">-</span> v).shape)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(v[:, None] - v).shape "</span>, (v[:, <span class="va">None</span>] <span class="op">-</span> v).shape, <span class="st">"  &lt;-- 3x3, not 3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>v.shape            (3,)
+v[:, None].shape   (3, 1)
+(v - v).shape      (3,)
+(v[:, None] - v).shape  (3, 3)   &lt;-- 3x3, not 3</code></pre>
+</div>
+</div>
+<div id="cell-fig-broadcast-trap" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-broadcast-trap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-broadcast-trap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="p07-numpy-computing_files/figure-html/fig-broadcast-trap-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-broadcast-trap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Why <code>(3,)</code> and <code>(3, 1)</code> are not interchangeable. Comparing from the right, a column of three against a row of three makes <em>both</em> dimensions stretch, and three numbers become nine. Nothing is raised.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The last line is the trap. The last line is the trap. You asked for differences between 3 numbers and got a <span class="math inline">\(3 \times 3\)</span> table of <em>all pairwise</em> differences, with no error raised. If a calculation downstream then averages it, you get a number — the wrong number. <strong>Print the shape whenever you are unsure.</strong></p>
+</section>
+<section id="reductions-and-axis" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="reductions-and-axis"><span class="header-section-number">11.3.2</span> Reductions and <code>axis</code></h3>
+<p>A reduction collapses an array. With no <code>axis</code> it collapses everything to a single value:</p>
+<div id="reduce-all" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> np.arange(<span class="dv">6</span>).reshape(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sum of everything:"</span>, table.<span class="bu">sum</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0 1 2]
+ [3 4 5]]
+sum of everything: 15</code></pre>
+</div>
+</div>
+<p>With an <code>axis</code> it collapses only that direction. This is the single most misremembered thing in NumPy, so it is worth stating carefully:</p>
+<blockquote class="blockquote">
+<p><code>axis=0</code> means <strong>collapse the row index</strong>. You end up with one result per column.</p>
+</blockquote>
+<div id="reduce-axis" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"table.sum(axis=0) -&gt;"</span>, table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>), <span class="st">" shape"</span>, table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>).shape)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"table.sum(axis=1) -&gt;"</span>, table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>), <span class="st">" shape"</span>, table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>).shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>table.sum(axis=0) -&gt; [3 5 7]  shape (3,)
+table.sum(axis=1) -&gt; [ 3 12]  shape (2,)</code></pre>
+</div>
+</div>
+<div id="cell-fig-axis" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div id="fig-axis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="p07-numpy-computing_files/figure-html/fig-axis-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: The axis you name is the one that disappears. Reducing over <code>axis=0</code> collapses the row index and leaves one number per column; over <code>axis=1</code> it collapses the column index and leaves one per row.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The reliable way to remember it The reliable way to remember it is by shape rather than by words. The table is <code>(2, 3)</code>. Reducing over <code>axis=0</code> removes the first dimension and leaves <code>(3,)</code>; reducing over <code>axis=1</code> removes the second and leaves <code>(2,)</code>. <em>The axis you name is the one that disappears.</em></p>
+</section>
+<section id="ddof-and-a-default-that-will-catch-you" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="ddof-and-a-default-that-will-catch-you"><span class="header-section-number">11.3.3</span> <code>ddof</code>, and a default that will catch you</h3>
+<p><code>np.std</code> and <code>np.var</code> divide by <span class="math inline">\(n\)</span> by default. The sample standard deviation that statistics uses divides by <span class="math inline">\(n - 1\)</span>, which you request with <code>ddof=1</code>:</p>
+<div id="ddof" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>, <span class="fl">9.0</span>])</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"population (ddof=0):"</span>, values.std())</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sample     (ddof=1):"</span>, values.std(ddof<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>population (ddof=0): 2.0
+sample     (ddof=1): 2.138089935299395</code></pre>
+</div>
+</div>
+<p>Neither is wrong; they answer different questions. But NumPy’s default is not the one statistics usually wants, and the gap is largest for exactly the small samples where it matters most. Decide deliberately and say which you used.</p>
+</section>
+<section id="random-numbers" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="random-numbers"><span class="header-section-number">11.3.4</span> Random numbers</h3>
+<p>Create one generator, near the top of the script, and draw from it repeatedly:</p>
+<div id="rng" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span><span class="dv">4</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.integers(low<span class="op">=</span><span class="dv">1</span>, high<span class="op">=</span><span class="dv">7</span>, size<span class="op">=</span><span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-0.79312248  0.24057128 -1.89632635  1.39577171]
+[4 3 5 5]</code></pre>
+</div>
+</div>
+<p>The seed makes the sequence repeatable, which is what lets these notes print the same numbers on your machine as on mine. Do <strong>not</strong> call <code>np.random.default_rng(2026)</code> again inside a loop: each call restarts the sequence from the same place, so every iteration draws the identical “random” value. (Calling <code>default_rng()</code> with no seed inside a loop does give different values each time — but then nothing is reproducible, which is its own problem.) Create one generator outside the loop and draw from it repeatedly.</p>
+</section>
+<section id="is-not" class="level3" data-number="11.3.5">
+<h3 data-number="11.3.5" class="anchored" data-anchor-id="is-not"><span class="header-section-number">11.3.5</span> <code>*</code> is not <code>@</code></h3>
+<p>For arrays, <code>*</code> multiplies element by element and <code>@</code> performs matrix multiplication. They are different questions with different answers:</p>
+<div id="star-vs-at" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">2.0</span>], [<span class="fl">3.0</span>, <span class="fl">4.0</span>]])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A * A =</span><span class="ch">\n</span><span class="st">"</span>, A <span class="op">*</span> A)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A @ A =</span><span class="ch">\n</span><span class="st">"</span>, A <span class="op">@</span> A)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A * A =
+ [[ 1.  4.]
+ [ 9. 16.]]
+A @ A =
+ [[ 7. 10.]
+ [15. 22.]]</code></pre>
+</div>
+</div>
+<p>If <a href="../maths/m09-matrices.html">M9</a> is still ahead of you, take this on trust for now: <code>*</code> is arithmetic on matching positions, <code>@</code> is the row-times-column operation from linear algebra.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">11.4</span> Worked example</h2>
+<p><strong>Standardise every numeric column of the cohort table.</strong></p>
+<p>Standardising means subtracting each column’s mean and dividing by its standard deviation, so that every column ends up centred at 0 with a spread of 1. It uses reductions and broadcasting together, and it is the single most common preprocessing step in data science.</p>
+<div id="standardise" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> cohort[columns].to_numpy()</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only rows that are complete and in range. The cohort file contains a</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># deliberate missing value and one impossible score; P9 deals with them</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># properly, but arithmetic on a NaN silently poisons everything it touches.</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>valid <span class="op">=</span> np.isfinite(raw).<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&amp;</span> (raw[:, <span class="dv">2</span>] <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">&amp;</span> (raw[:, <span class="dv">2</span>] <span class="op">&lt;=</span> <span class="dv">100</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> raw[valid]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"kept"</span>, valid.<span class="bu">sum</span>(), <span class="st">"of"</span>, <span class="bu">len</span>(raw), <span class="st">"rows;  shape"</span>, data.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>kept 238 of 240 rows;  shape (238, 3)</code></pre>
+</div>
+</div>
+<p>Now the two lines that matter:</p>
+<div id="standardise-2" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> data.mean(axis<span class="op">=</span><span class="dv">0</span>)            <span class="co"># one per column -&gt; shape (3,)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sds <span class="op">=</span> data.std(axis<span class="op">=</span><span class="dv">0</span>, ddof<span class="op">=</span><span class="dv">1</span>)       <span class="co"># one per column -&gt; shape (3,)</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>standardised <span class="op">=</span> (data <span class="op">-</span> means) <span class="op">/</span> sds</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column means:"</span>, np.<span class="bu">round</span>(means, <span class="dv">2</span>))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column sds  :"</span>, np.<span class="bu">round</span>(sds, <span class="dv">2</span>))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shapes:"</span>, data.shape, <span class="st">"-"</span>, means.shape, <span class="st">"-&gt;"</span>, standardised.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>column means: [62.43 16.42 65.27]
+column sds  : [17.49  8.14  8.38]
+shapes: (238, 3) - (3,) -&gt; (238, 3)</code></pre>
+</div>
+</div>
+<p>Read what happened. <code>data</code> is <code>(238, 3)</code> and <code>means</code> is <code>(3,)</code>. Comparing from the right, 3 matches 3, and the missing first dimension is stretched to 238. One mean was subtracted from each column, exactly as intended.</p>
+<p>Now check it, rather than assuming:</p>
+<div id="standardise-check" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"largest remaining mean:"</span>, np.<span class="bu">abs</span>(standardised.mean(axis<span class="op">=</span><span class="dv">0</span>)).<span class="bu">max</span>())</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"standard deviations   :"</span>, standardised.std(axis<span class="op">=</span><span class="dv">0</span>, ddof<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>largest remaining mean: 2.1593371348696847e-15
+standard deviations   : [1. 1. 1.]</code></pre>
+</div>
+</div>
+<p>The means are not exactly zero but around <span class="math inline">\(10^{-15}\)</span>, which is floating-point noise rather than a mistake — see <a href="../python/p02-values-names-types.html">P2</a>.</p>
+<p>Two mistakes were available here, and only one of them would have announced itself. Using <code>axis=1</code> would have computed one mean per <em>student</em>, shape <code>(238,)</code>, and subtracting that from a <code>(238, 3)</code> array raises a <code>ValueError</code> — 238 against 3 cannot broadcast. That one fails loudly, which is the good case. Forgetting <code>ddof=1</code> is the quiet one. It divides by a slightly <em>smaller</em> number, so the standardised columns come out with standard deviations of 1.002 rather than 1 — the factor is <span class="math inline">\(\sqrt{n/(n-1)}\)</span>. Nothing raises, the shapes are all correct, and the result looks entirely reasonable. Two lines of checking catch it.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">11.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> <code>a</code> has shape <code>(4, 3)</code> and <code>b</code> has shape <code>(3,)</code>. What is the shape of <code>a * b</code>? What about <code>a * b[:, None]</code> — and why?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>a * b</code> has shape <code>(4, 3)</code>. Comparing from the right: 3 against 3 matches, and <code>b</code>’s missing first dimension stretches to 4. Each row of <code>a</code> is multiplied by <code>b</code>.</p>
+<p><code>a * b[:, None]</code> <strong>raises an error</strong>. <code>b[:, None]</code> has shape <code>(3, 1)</code>. Comparing from the right: 1 against 3 is fine (the 1 stretches), but then 3 against 4 is not — neither is 1 and they are unequal.</p>
+<p>This one at least fails loudly. The dangerous version is when both dimensions happen to be compatible and you get a silently larger array.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> You have <code>marks</code> with shape <code>(30, 5)</code> — thirty students, five assignments. Write the expression for each student’s average, and the expression for each assignment’s average. State the shape of each result.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Per student, average across the five assignments — collapse the <em>column</em> index:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>marks.mean(axis<span class="op">=</span><span class="dv">1</span>)      <span class="co"># shape (30,)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Per assignment, average across the thirty students — collapse the <em>row</em> index:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>marks.mean(axis<span class="op">=</span><span class="dv">0</span>)      <span class="co"># shape (5,)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Check them by shape rather than by intuition. If you wanted one number per student you should get 30 of them, and only <code>axis=1</code> does that.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> This is meant to centre each column, but it does not. Find the bug without running it, then say what shape the result has.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape(<span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>centred <span class="op">=</span> data <span class="op">-</span> data.mean(axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>data.mean(axis=1)</code> collapses the column index, giving one mean per <strong>row</strong> — shape <code>(4,)</code>. To centre columns you need one mean per column, <code>axis=0</code>, shape <code>(3,)</code>.</p>
+<p>Here you are lucky: it raises. Comparing <code>(4, 3)</code> with <code>(4,)</code> from the right, 4 against 3 is neither equal nor 1, so NumPy refuses and you get a <code>ValueError</code>. There is no result shape.</p>
+<p>Now change the array to <code>np.arange(16).reshape(4, 4)</code> and the luck runs out. <code>(4, 4)</code> against <code>(4,)</code> broadcasts happily along the last axis, so the value at position <code>[i, j]</code> has the mean of <strong>row j</strong> subtracted from it — the row means get lined up against <em>columns</em>. That is not row-centring and it is not column-centring; it is nothing at all. You get a plausible <code>(4, 4)</code> array of meaningless numbers.</p>
+<p>The fix for centring columns is <code>data - data.mean(axis=0)</code>. If you genuinely wanted to centre rows, you need <code>data - data.mean(axis=1, keepdims=True)</code>, where <code>keepdims=True</code> gives shape <code>(4, 1)</code> so the means line up against rows.</p>
+<p>The lesson: square arrays hide axis errors, so be most careful exactly when the shape looks tidiest.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">11.6</span> Check it in Python</h2>
+<p>Two habits are worth building deliberately. The first is asserting the shape you expect, so a broadcast that goes wrong stops the program instead of quietly continuing:</p>
+<div id="assert-shape" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">20.0</span>, <span class="fl">30.0</span>])</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>differences <span class="op">=</span> values <span class="op">-</span> values.mean()</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> differences.shape <span class="op">==</span> values.shape, <span class="ss">f"expected </span><span class="sc">{</span>values<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">, got </span><span class="sc">{</span>differences<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape as expected:"</span>, differences.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>shape as expected: (3,)</code></pre>
+</div>
+</div>
+<p>The second is checking that a transformation did what you claimed. Here is the axis bug from Exercise 3, in the square case where it does not raise:</p>
+<div id="silent-axis-bug" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.arange(<span class="dv">16</span>, dtype<span class="op">=</span><span class="bu">float</span>).reshape(<span class="dv">4</span>, <span class="dv">4</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>wrong <span class="op">=</span> data <span class="op">-</span> data.mean(axis<span class="op">=</span><span class="dv">1</span>)      <span class="co"># one mean per row - wrong direction</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> data <span class="op">-</span> data.mean(axis<span class="op">=</span><span class="dv">0</span>)      <span class="co"># one mean per column - what we wanted</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"both shapes:"</span>, wrong.shape, right.shape)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column means after 'wrong':"</span>, np.<span class="bu">round</span>(wrong.mean(axis<span class="op">=</span><span class="dv">0</span>), <span class="dv">3</span>))</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column means after 'right':"</span>, np.<span class="bu">round</span>(right.mean(axis<span class="op">=</span><span class="dv">0</span>), <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>both shapes: (4, 4) (4, 4)
+column means after 'wrong': [ 4.5  1.5 -1.5 -4.5]
+column means after 'right': [0. 0. 0. 0.]</code></pre>
+</div>
+</div>
+<p>Both produced a <code>(4, 4)</code> array and neither complained. In <code>wrong</code>, the row means were broadcast against columns — the mean of row 1 subtracted from column 1, and so on — which is not a meaningful operation at all. Only the check distinguishes them: after centring columns correctly every column mean must be zero, and in the wrong version they plainly are not.</p>
+<p>If you take one thing from this unit, make it that. <strong>Predict the shape, then verify the property.</strong> It costs one line and it catches the entire class of error that NumPy will not catch for you.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">11.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Reading <code>axis=0</code> as “along the rows”</dt>
+<dd>
+The phrasing traps everyone. <code>axis=0</code> collapses the row index and gives one result per column. Think in shapes: the axis you name is the one that disappears.
+</dd>
+<dt>Confusing <code>(n,)</code> with <code>(n, 1)</code></dt>
+<dd>
+A flat array of length <span class="math inline">\(n\)</span> and a column of <span class="math inline">\(n\)</span> values behave completely differently under broadcasting. Combining the two shapes gives an <span class="math inline">\(n \times n\)</span> result, usually without an error.
+</dd>
+<dt>Trusting a result because it has a plausible shape</dt>
+<dd>
+NumPy checks that shapes are <em>compatible</em>, never that they are <em>meaningful</em>. A square array will absorb an axis mistake in total silence.
+</dd>
+<dt>Leaving <code>ddof</code> at its default</dt>
+<dd>
+<code>np.std</code> divides by <span class="math inline">\(n\)</span>. The sample standard deviation divides by <span class="math inline">\(n - 1\)</span>. Choose on purpose and record which you used.
+</dd>
+<dt>Reseeding inside a loop</dt>
+<dd>
+<code>np.random.default_rng(42)</code> created afresh on each iteration restarts the same sequence, so every “random” draw is identical. Create the generator once, outside the loop, and pass it in.
+</dd>
+<dt>Using <code>*</code> when you meant <code>@</code></dt>
+<dd>
+For arrays, <code>*</code> multiplies matching positions and <code>@</code> does matrix multiplication. Both may succeed on the same inputs and return different answers.
+</dd>
+<dt>Letting a NaN into the arithmetic</dt>
+<dd>
+A single missing value propagates through every sum, mean and product it reaches, turning the whole result into <code>nan</code>. Filter first, and be able to say how many rows you dropped and why.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">11.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p><code>x</code> has shape <code>(5, 8)</code>. What is the shape of <code>x.sum(axis=1)</code>?</p>
+<ol type="a">
+<li><code>(8,)</code> b. <code>(5,)</code> c.&nbsp;<code>(5, 1)</code> d.&nbsp;a single number</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><code>a</code> has shape <code>(3, 4)</code> and <code>b</code> has shape <code>(4,)</code>. Does <code>a + b</code> work? What about <code>a + b[:, None]</code>?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Why can an axis mistake on a square array be more dangerous than the same mistake on a rectangular one?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>A colleague reports a standard deviation of 8.37 where you calculated 8.38 from the same numbers. What is the most likely explanation?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>A loop draws one random number per iteration and every value comes out the same. What is the most likely cause?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(b) <code>(5,)</code>.</strong> <code>axis=1</code> removes the second dimension, leaving one result per row. Option (a) is what <code>axis=0</code> gives.</p></li>
+<li><p><code>a + b</code> works: comparing from the right, 4 matches 4, and the missing dimension stretches to 3. <code>a + b[:, None]</code> has shape <code>(4, 1)</code> against <code>(3, 4)</code>; from the right, 1 stretches to 4, but then 4 against 3 fails, so it raises a <code>ValueError</code>.</p></li>
+<li><p>Because the shapes stay compatible either way. On a <code>(4, 3)</code> array, using the wrong axis usually raises an error; on a <code>(4, 4)</code> array both directions broadcast happily and you get a correctly shaped, wrong answer with no warning.</p></li>
+<li><p>One of you used <code>ddof=1</code> and the other did not — 8.37 is the <span class="math inline">\(n\)</span> divisor and 8.38 the <span class="math inline">\(n-1\)</span> divisor. Neither is a mistake, but the two answer different questions and the report should say which.</p></li>
+<li><p>The generator is being created inside the loop <strong>with a fixed seed</strong>, so the sequence restarts from the same place on every iteration. Move <code>rng = np.random.default_rng(2026)</code> outside the loop. (An unseeded <code>default_rng()</code> inside the loop would not repeat — but it would also not be reproducible, so the fix is the same.)</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p><strong><a href="../python/p08-pandas-dataframe.html">P8</a></strong> moves to labelled tables, where columns have names and types instead of positions — but the arithmetic underneath is everything in this unit. <strong><a href="../python/p10-matplotlib.html">P10</a></strong> plots the arrays you build here. <strong><a href="../maths/m09-matrices.html">M9</a></strong> explains what <code>@</code> is actually computing, and why the shape rules are what they are.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../python/p06-numpy-arrays.html" class="pagination-link" aria-label="NumPy: arrays and indexing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../python/p08-pandas-dataframe.html" class="pagination-link" aria-label="pandas: the DataFrame">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

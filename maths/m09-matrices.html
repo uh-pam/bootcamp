@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>24&nbsp; Matrices as operations on data – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../maths/m10-linear-systems.html" rel="next">
+<link href="../maths/m08-vectors.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../maths/m01-reading-mathematics.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../maths/m09-matrices.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">24.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">24.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">24.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#shape-and-the-one-rule" id="toc-shape-and-the-one-rule" class="nav-link" data-scroll-target="#shape-and-the-one-rule"><span class="header-section-number">24.3.1</span> Shape, and the one rule</a></li>
+  <li><a href="#the-product" id="toc-the-product" class="nav-link" data-scroll-target="#the-product"><span class="header-section-number">24.3.2</span> The product</a></li>
+  <li><a href="#the-identity" id="toc-the-identity" class="nav-link" data-scroll-target="#the-identity"><span class="header-section-number">24.3.3</span> The identity</a></li>
+  <li><a href="#the-transpose" id="toc-the-transpose" class="nav-link" data-scroll-target="#the-transpose"><span class="header-section-number">24.3.4</span> The transpose</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">24.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">24.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">24.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">24.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">24.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../maths/m01-reading-mathematics.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../maths/m09-matrices.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></h1>
+<p class="subtitle lead">Mathematics · Unit 9</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>M9</strong> · Mathematics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M8</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p>Your dataset already is a matrix: one row per student, one column per variable — 240 by 7 as the cohort file sits on disk. So the first thing a matrix can be is a table, and you knew that.</p>
+<p>The useful idea is the second one. A matrix is also an <strong>operation</strong> — feed it a vector and it hands back another vector — and almost everything done to data in practice is one of those operations written down. Making a <em>linear</em> prediction for every row at once, rotating a cloud of points, re-weighting a set of columns: each of those is a single multiplication. Once you can read <span class="math inline">\(A\mathbf{x}\)</span> two ways, the whole of the rest of this track opens up, because <a href="../maths/m10-linear-systems.html">M10</a>, <a href="../maths/m11-least-squares.html">M11</a> and <a href="../maths/m12-directions.html">M12</a> are all questions about what a particular matrix does.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">24.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>take a dot product, and say what it means — <a href="../maths/m08-vectors.html">M8</a>;</li>
+<li>compute a vector’s length, and recognise orthogonality — <a href="../maths/m08-vectors.html">M8</a>;</li>
+<li>read subscript notation like <span class="math inline">\(a_{ij}\)</span> — <a href="../maths/m01-reading-mathematics.html">M1</a>;</li>
+<li>index a 2-D NumPy array and check its <code>.shape</code> — <a href="../python/p06-numpy-arrays.html">P6</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> What is <span class="math inline">\((2, 5) \cdot (3, -1)\)</span>?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[(2)(3) + (5)(-1) = 6 - 5 = 1.\]</span></p>
+<p>Every entry of every matrix product in this unit is one of these. If the dot product is not automatic yet, reread <a href="../maths/m08-vectors.html">M8</a> first — the rest of this unit is bookkeeping about <em>which</em> dot products to take.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">24.2</span> The idea</h2>
+<p>Write the cohort’s practice hours and a column of ones side by side:</p>
+<p><span class="math display">\[
+X = \begin{pmatrix} 1 &amp; h_1 \\ 1 &amp; h_2 \\ \vdots &amp; \vdots \\ 1 &amp; h_{238} \end{pmatrix}
+\]</span></p>
+<p>That is a <strong>matrix</strong>: a rectangular grid of numbers, here with 238 rows and 2 columns, which we call its <strong>shape</strong>, <span class="math inline">\(238 \times 2\)</span>. Rows first, always.</p>
+<p>Now take the fitted line from <a href="../maths/m06-gradients.html">M6</a>, whose two parameters were an intercept and a slope, and put them in a vector <span class="math inline">\(\boldsymbol{\theta} = (69.2261,\ -0.2408)\)</span>. The prediction for student <span class="math inline">\(i\)</span> is</p>
+<p><span class="math display">\[
+\hat{y}_i = 69.2261 \times 1 + (-0.2408) \times h_i ,
+\]</span></p>
+<p>which is exactly the dot product of row <span class="math inline">\(i\)</span> of <span class="math inline">\(X\)</span> with <span class="math inline">\(\boldsymbol{\theta}\)</span>. Do it for every row and you have all 238 predictions. <strong>That</strong> is what a matrix times a vector means:</p>
+<p><span class="math display">\[
+X\boldsymbol{\theta} = \begin{pmatrix} \text{row}_1 \cdot \boldsymbol{\theta} \\ \text{row}_2 \cdot \boldsymbol{\theta} \\ \vdots \\ \text{row}_{238} \cdot \boldsymbol{\theta}\end{pmatrix}
+\]</span></p>
+<div id="cell-fig-matvec" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-matvec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matvec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m09-matrices_files/figure-html/fig-matvec-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matvec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24.1: A matrix times a vector, with the shapes that make it legal. Each entry of the answer is one dot product: a whole row of the matrix against the whole input vector. The highlighted row gives the highlighted output entry, <span class="math inline">\(2\times5 + 1\times3 = 13\)</span>. The matrix has as many columns as the input has entries — that is the rule — and as many rows as the answer.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Two readings of <span class="math inline">\(A\mathbf{x}\)</span>, and you need both.</p>
+<p><strong>Rows.</strong> Each output entry is one dot product of a row with the input. This is the reading for “apply a rule to every observation” — one prediction per student.</p>
+<p><strong>Columns.</strong> Equivalently, <span class="math inline">\(A\mathbf{x}\)</span> is the columns of <span class="math inline">\(A\)</span> added together after being scaled by the entries of <span class="math inline">\(\mathbf{x}\)</span>:</p>
+<p><span class="math display">\[
+\begin{pmatrix} 4 &amp; 0 \\ 2 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}
+\begin{pmatrix} 5 \\ 3 \end{pmatrix}
+= 5\begin{pmatrix} 4 \\ 2 \\ 1 \end{pmatrix} + 3\begin{pmatrix} 0 \\ 1 \\ 3 \end{pmatrix}
+= \begin{pmatrix} 20 \\ 13 \\ 14 \end{pmatrix}
+\]</span></p>
+<p>Same answer, different story. The column reading says that whatever <span class="math inline">\(\mathbf{x}\)</span> you choose, <span class="math inline">\(A\mathbf{x}\)</span> can only ever be a combination of <span class="math inline">\(A\)</span>’s columns — it cannot escape them. That single observation is what <a href="../maths/m10-linear-systems.html">M10</a> and <a href="../maths/m11-least-squares.html">M11</a> are about, so it is worth a picture.</p>
+<div id="cell-fig-columns" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-columns" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m09-matrices_files/figure-html/fig-columns-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24.2: The column reading in the plane. Whatever the two weights are, <span class="math inline">\(A\mathbf{x}\)</span> is built by walking some multiple of the first column and then some multiple of the second. Here <span class="math inline">\(2\mathbf{c}_1 + 1.5\mathbf{c}_2\)</span> lands on <span class="math inline">\((7, 4.75)\)</span>. With two columns pointing in different directions every point in the plane is reachable; if they pointed the same way, only one line would be.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-mechanics" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">24.3</span> The mechanics</h2>
+<section id="shape-and-the-one-rule" class="level3" data-number="24.3.1">
+<h3 data-number="24.3.1" class="anchored" data-anchor-id="shape-and-the-one-rule"><span class="header-section-number">24.3.1</span> Shape, and the one rule</h3>
+<p>A matrix with <span class="math inline">\(m\)</span> rows and <span class="math inline">\(n\)</span> columns has shape <span class="math inline">\(m \times n\)</span>; the entry in row <span class="math inline">\(i\)</span>, column <span class="math inline">\(j\)</span> is <span class="math inline">\(a_{ij}\)</span>, row index first. A vector of <span class="math inline">\(n\)</span> numbers behaves like an <span class="math inline">\(n \times 1\)</span> matrix.</p>
+<p>For <span class="math inline">\(AB\)</span> to exist, <strong>the number of columns of <span class="math inline">\(A\)</span> must equal the number of rows of <span class="math inline">\(B\)</span></strong>. Then</p>
+<p><span class="math display">\[
+(m \times n)(n \times p) = (m \times p) :
+\]</span></p>
+<p>the inner dimensions must match and they disappear; the outer ones survive. Most of the errors you will make in this subject are this rule being broken, and the error message will say so in exactly these numbers.</p>
+</section>
+<section id="the-product" class="level3" data-number="24.3.2">
+<h3 data-number="24.3.2" class="anchored" data-anchor-id="the-product"><span class="header-section-number">24.3.2</span> The product</h3>
+<p>Entry <span class="math inline">\((i, j)\)</span> of <span class="math inline">\(AB\)</span> is the dot product of <strong>row <span class="math inline">\(i\)</span> of <span class="math inline">\(A\)</span></strong> with <strong>column <span class="math inline">\(j\)</span> of <span class="math inline">\(B\)</span></strong>:</p>
+<p><span class="math display">\[
+(AB)_{ij} = \sum_{k=1}^{n} a_{ik}\, b_{kj} .
+\]</span></p>
+<p>A matrix product is a grid of dot products, one per (row, column) pair, and that is the whole definition. Everything else is consequence.</p>
+<p>Order matters. <span class="math inline">\(AB\)</span> and <span class="math inline">\(BA\)</span> are usually different, and often only one of them even has legal shapes:</p>
+<p><span class="math display">\[
+\begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4\end{pmatrix}\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{pmatrix}
+= \begin{pmatrix} 2 &amp; 1 \\ 4 &amp; 3\end{pmatrix},
+\qquad
+\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{pmatrix}\begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4\end{pmatrix}
+= \begin{pmatrix} 3 &amp; 4 \\ 1 &amp; 2\end{pmatrix}
+\]</span></p>
+<p>The second matrix swaps columns when it multiplies from the right and swaps rows when it multiplies from the left. So “multiply by <span class="math inline">\(B\)</span>” is not one instruction — which side you multiply on is part of the instruction.</p>
+<p>Matrix multiplication <em>is</em> associative, <span class="math inline">\((AB)C = A(BC)\)</span>, which is what lets you combine a chain of operations into one matrix and apply it once.</p>
+</section>
+<section id="the-identity" class="level3" data-number="24.3.3">
+<h3 data-number="24.3.3" class="anchored" data-anchor-id="the-identity"><span class="header-section-number">24.3.3</span> The identity</h3>
+<p><span class="math inline">\(I\)</span> has ones down the diagonal and zeros elsewhere, and <span class="math inline">\(IA = AI = A\)</span>. It is the operation that does nothing, and it is the yardstick for <a href="../maths/m10-linear-systems.html">M10</a>’s question: given <span class="math inline">\(A\)</span>, is there a matrix that undoes it?</p>
+</section>
+<section id="the-transpose" class="level3" data-number="24.3.4">
+<h3 data-number="24.3.4" class="anchored" data-anchor-id="the-transpose"><span class="header-section-number">24.3.4</span> The transpose</h3>
+<p><span class="math inline">\(A^{\mathsf{T}}\)</span> is <span class="math inline">\(A\)</span> with rows and columns exchanged: <span class="math inline">\((A^{\mathsf{T}})_{ij}
+= a_{ji}\)</span>, so an <span class="math inline">\(m \times n\)</span> matrix becomes <span class="math inline">\(n \times m\)</span>. Two facts earn their keep:</p>
+<ul>
+<li><span class="math inline">\((AB)^{\mathsf{T}} = B^{\mathsf{T}}A^{\mathsf{T}}\)</span> — the order reverses.</li>
+<li>For a data matrix <span class="math inline">\(X\)</span>, the product <span class="math inline">\(X^{\mathsf{T}}X\)</span> is small, square, and full of the sums that summarise the columns. It is the object every least-squares calculation is built out of, and the worked example below takes it apart.</li>
+</ul>
+<p>The transpose is also how a dot product is written in matrix notation: <span class="math inline">\(\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^{\mathsf{T}}\mathbf{b}\)</span>, a <span class="math inline">\((1 \times n)(n \times 1) = (1 \times 1)\)</span> product — a single number, as <a href="../maths/m08-vectors.html">M8</a> said.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">24.4</span> Worked example</h2>
+<p><strong>One multiplication predicts the whole cohort.</strong></p>
+<p>Build the <span class="math inline">\(238 \times 2\)</span> design matrix — a column of ones for the intercept and the practice hours — and take the fit from <a href="../maths/m06-gradients.html">M6</a> at full precision.</p>
+<div id="design" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>h, y <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy(), usable[<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack([np.ones(<span class="bu">len</span>(h)), h])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(h, y, <span class="dv">1</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.array([intercept, slope])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> X <span class="op">@</span> theta</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"X </span><span class="sc">{</span>X<span class="sc">.</span>shape<span class="sc">}</span><span class="ss"> @ theta </span><span class="sc">{</span>theta<span class="sc">.</span>shape<span class="sc">}</span><span class="ss"> -&gt; predictions </span><span class="sc">{</span>predictions<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"theta = </span><span class="sc">{</span>theta<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"first three predictions </span><span class="sc">{</span>predictions[:<span class="dv">3</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"by hand, student 1:     </span><span class="sc">{</span>theta[<span class="dv">0</span>] <span class="op">*</span> <span class="dv">1</span> <span class="op">+</span> theta[<span class="dv">1</span>] <span class="op">*</span> h[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X (238, 2) @ theta (2,) -&gt; predictions (238,)
+theta = [69.22611682 -0.24079311]
+first three predictions [66.11988566 63.73603384 68.81676853]
+by hand, student 1:     66.1199</code></pre>
+</div>
+</div>
+<p>No loop over students appears anywhere. The shapes did the work: <span class="math inline">\((238, 2)\)</span> against <span class="math inline">\((2,)\)</span> can only combine one way, and it produces one number per row.</p>
+<p><strong>Now the small square matrix.</strong> <span class="math inline">\(X^{\mathsf{T}}X\)</span> has shape <span class="math inline">\((2, 238) \times (238, 2) = (2, 2)\)</span> — four numbers, whatever the number of students:</p>
+<div id="xtx" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X.T @ X =</span><span class="ch">\n</span><span class="st">"</span>, X.T <span class="op">@</span> X)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">X.T @ y ="</span>, X.T <span class="op">@</span> y)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">n = </span><span class="sc">{</span><span class="bu">len</span>(h)<span class="sc">}</span><span class="ss">,  sum h = </span><span class="sc">{</span>h<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.1f}</span><span class="ss">,  sum h^2 = </span><span class="sc">{</span>(h<span class="op">**</span><span class="dv">2</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"sum y = </span><span class="sc">{</span>y<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.1f}</span><span class="ss">,  sum h*y = </span><span class="sc">{</span>(h<span class="op">*</span>y)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X.T @ X =
+ [[  238.    3908.4 ]
+ [ 3908.4  79872.82]]
+
+X.T @ y = [ 15534.7  251330.53]
+
+n = 238,  sum h = 3908.4,  sum h^2 = 79872.82
+sum y = 15534.7,  sum h*y = 251330.53</code></pre>
+</div>
+</div>
+<p>Read the entries. <span class="math inline">\(X^{\mathsf{T}}X\)</span> is <span class="math inline">\(\begin{pmatrix} n &amp; \sum h \\ \sum h &amp; \sum h^2\end{pmatrix}\)</span> and <span class="math inline">\(X^{\mathsf{T}}\mathbf{y}\)</span> is <span class="math inline">\(\bigl(\sum y,\ \sum hy\bigr)\)</span>: the 476 numbers of the design matrix have been compressed into four, and the 238 outcomes into two. Those six numbers are all that a straight-line fit needs, which is why fitting one to a billion rows is not a billion times harder than fitting it to a thousand.</p>
+<p><strong>And the property that makes it the <em>best</em> line.</strong> Take the residuals <span class="math inline">\(\mathbf{r} = \mathbf{y} - X\boldsymbol{\theta}\)</span> and multiply by <span class="math inline">\(X^{\mathsf{T}}\)</span>:</p>
+<div id="residuals" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> y <span class="op">-</span> X <span class="op">@</span> theta</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X.T @ r        ="</span>, X.T <span class="op">@</span> r)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"sum of residuals          </span><span class="sc">{</span>r<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:+.3e}</span><span class="ss">"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"sum of residual x hours   </span><span class="sc">{</span>(r <span class="op">*</span> h)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:+.3e}</span><span class="ss">"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"orthogonal to both columns of X:"</span>, np.allclose(X.T <span class="op">@</span> r, <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X.T @ r        = [7.89412979e-12 1.21630706e-10]
+sum of residuals          +7.887e-12
+sum of residual x hours   +1.216e-10
+orthogonal to both columns of X: True</code></pre>
+</div>
+</div>
+<p>Both entries are zero to within floating-point noise — note that this needed <code>np.allclose</code> rather than <code>== 0</code>, for the reasons in <a href="../python/p02-values-names-types.html">P2</a>. Written out, <span class="math inline">\(X^{\mathsf{T}}\mathbf{r} = \mathbf{0}\)</span> says the residual vector is <strong>orthogonal to every column of <span class="math inline">\(X\)</span></strong>, in exactly the sense of <a href="../maths/m08-vectors.html">M8</a>: its dot product with the ones column is zero, and its dot product with the hours column is zero.</p>
+<p>That is not a coincidence of this dataset. It is the defining property of the least-squares fit, and <a href="../maths/m11-least-squares.html">M11</a> turns it round — imposes <span class="math inline">\(X^{\mathsf{T}}\mathbf{r} = \mathbf{0}\)</span> and solves for <span class="math inline">\(\boldsymbol{\theta}\)</span> — to get the answer without any descent at all.</p>
+<div id="cell-fig-residuals" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-residuals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m09-matrices_files/figure-html/fig-residuals-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24.3: The fitted line, with each student’s residual drawn as the vertical gap to it. Orange gaps are above the line, indigo below. <span class="math inline">\(X^{\mathsf{T}}\mathbf{r} = \mathbf{0}\)</span> is the statement that these gaps balance twice over: they sum to zero, and they still sum to zero after each is weighted by that student’s hours of practice.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">24.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> Let <span class="math inline">\(A = \begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 3 \\ 4 &amp; 1\end{pmatrix}\)</span> and <span class="math inline">\(\mathbf{x} = (2, -1)\)</span>. Compute <span class="math inline">\(A\mathbf{x}\)</span> two ways — by rows and by columns — and confirm they agree.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>By rows</strong>, each entry is a dot product:</p>
+<p><span class="math display">\[A\mathbf{x} = \begin{pmatrix} (1)(2) + (2)(-1) \\ (0)(2) + (3)(-1) \\ (4)(2) + (1)(-1)\end{pmatrix}
+= \begin{pmatrix} 0 \\ -3 \\ 7 \end{pmatrix}.\]</span></p>
+<p><strong>By columns</strong>, scale and add:</p>
+<p><span class="math display">\[2\begin{pmatrix} 1 \\ 0 \\ 4\end{pmatrix} - 1\begin{pmatrix} 2 \\ 3 \\ 1\end{pmatrix}
+= \begin{pmatrix} 2 \\ 0 \\ 8\end{pmatrix} - \begin{pmatrix} 2 \\ 3 \\ 1\end{pmatrix}
+= \begin{pmatrix} 0 \\ -3 \\ 7\end{pmatrix}.\]</span></p>
+<p>Shapes: <span class="math inline">\((3, 2)\)</span> times <span class="math inline">\((2,)\)</span> gives <span class="math inline">\((3,)\)</span>. The answer has one entry per <em>row</em> of <span class="math inline">\(A\)</span>, and <span class="math inline">\(\mathbf{x}\)</span> needs one entry per <em>column</em> — get those the wrong way round and NumPy raises the mismatch rather than guessing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> Let <span class="math inline">\(A = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4\end{pmatrix}\)</span> and <span class="math inline">\(B = \begin{pmatrix} 1 &amp; 0 \\ 5 &amp; 1\end{pmatrix}\)</span>. Compute <span class="math inline">\(AB\)</span> and <span class="math inline">\(BA\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[AB = \begin{pmatrix} 1 + 10 &amp; 0 + 2 \\ 3 + 20 &amp; 0 + 4 \end{pmatrix}
+     = \begin{pmatrix} 11 &amp; 2 \\ 23 &amp; 4\end{pmatrix},
+\qquad
+BA = \begin{pmatrix} 1 &amp; 2 \\ 5 + 3 &amp; 10 + 4 \end{pmatrix}
+   = \begin{pmatrix} 1 &amp; 2 \\ 8 &amp; 14\end{pmatrix}.\]</span></p>
+<p>Different — and not in some subtle way. Both products are legal here because both matrices are square and the same size; for non-square matrices one order is usually illegal outright, which at least tells you immediately.</p>
+<p>Worth checking a habit: for <span class="math inline">\(AB\)</span>, entry <span class="math inline">\((2,1)\)</span> used row 2 of <span class="math inline">\(A\)</span> and column 1 of <span class="math inline">\(B\)</span>, giving <span class="math inline">\((3)(1) + (4)(5) = 23\)</span>. If you found yourself using column 2 of <span class="math inline">\(A\)</span>, you have the convention backwards.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> <span class="math inline">\(X\)</span> is a data matrix with 500 rows and 4 columns, and <span class="math inline">\(\mathbf{y}\)</span> has 500 entries. Which of these are legal, and what shape does each result have?</p>
+<p><span class="math inline">\(X\mathbf{y}\)</span>, <span class="math inline">\(X^{\mathsf{T}}\mathbf{y}\)</span>, <span class="math inline">\(X^{\mathsf{T}}X\)</span>, <span class="math inline">\(XX^{\mathsf{T}}\)</span>, <span class="math inline">\(\mathbf{y}^{\mathsf{T}}X\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">expression</th>
+<th style="text-align: left;">shapes</th>
+<th style="text-align: left;">verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(X\mathbf{y}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((500,4)(500,)\)</span></td>
+<td style="text-align: left;"><strong>illegal</strong> — 4 columns against 500 entries</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(X^{\mathsf{T}}\mathbf{y}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((4,500)(500,)\)</span></td>
+<td style="text-align: left;">legal, gives <span class="math inline">\((4,)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(X^{\mathsf{T}}X\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((4,500)(500,4)\)</span></td>
+<td style="text-align: left;">legal, gives <span class="math inline">\((4, 4)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(XX^{\mathsf{T}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((500,4)(4,500)\)</span></td>
+<td style="text-align: left;">legal, gives <span class="math inline">\((500, 500)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathbf{y}^{\mathsf{T}}X\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((1,500)(500,4)\)</span></td>
+<td style="text-align: left;">legal on paper, gives <span class="math inline">\((1, 4)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>That last row carries a warning. On paper <span class="math inline">\(\mathbf{y}\)</span> is a <span class="math inline">\(500 \times 1\)</span> column and <span class="math inline">\(\mathbf{y}^{\mathsf{T}}\)</span> is a <span class="math inline">\(1 \times 500\)</span> row, so the product is <span class="math inline">\(1 \times 4\)</span>. NumPy makes no such distinction for a one-dimensional array: <code>y.T</code> is the same object as <code>y</code>, and <code>y.T @ X</code> comes back with shape <code>(4,)</code>. The mathematics and the library agree about the four numbers and disagree about how to wrap them — worth knowing before it surprises you.</p>
+<p>The pair worth staring at is the last two of the square ones. <span class="math inline">\(X^{\mathsf{T}}X\)</span> is <span class="math inline">\(4 \times 4\)</span> — sixteen numbers, one per pair of columns, and it is what least squares needs. <span class="math inline">\(XX^{\mathsf{T}}\)</span> is <span class="math inline">\(500 \times 500\)</span> — a quarter of a million numbers, one per pair of <em>students</em>. Both are legal, both are meaningful, and writing one when you meant the other is a mistake whose only symptom may be that your program has become extremely slow.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="24.6">
+<h2 data-number="24.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">24.6</span> Check it in Python</h2>
+<p>The unit’s central claim is that a matrix product is a grid of dot products. Test it by building one from nothing but the dot product of <a href="../maths/m08-vectors.html">M8</a> and comparing against <code>@</code>:</p>
+<div id="check-product" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> rng.normal(size<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> rng.normal(size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">5</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>by_hand <span class="op">=</span> np.zeros((A.shape[<span class="dv">0</span>], B.shape[<span class="dv">1</span>]))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(A.shape[<span class="dv">0</span>]):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(B.shape[<span class="dv">1</span>]):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        by_hand[i, j] <span class="op">=</span> A[i, :] <span class="op">@</span> B[:, j]      <span class="co"># row i of A against column j of B</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shapes:"</span>, A.shape, <span class="st">"@"</span>, B.shape, <span class="st">"-&gt;"</span>, (A <span class="op">@</span> B).shape)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"built from dot products matches @ :"</span>, np.allclose(by_hand, A <span class="op">@</span> B))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>shapes: (4, 3) @ (3, 5) -&gt; (4, 5)
+built from dot products matches @ : True</code></pre>
+</div>
+</div>
+<p>Then the claims about shape and order, including the ones that are supposed to fail:</p>
+<div id="check-shapes" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(AB)^T == B^T A^T :"</span>, np.allclose((A <span class="op">@</span> B).T, B.T <span class="op">@</span> A.T))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(AB)^T == A^T B^T :"</span>, np.allclose((A <span class="op">@</span> B).T, A.T <span class="op">@</span> B.T)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> A.T.shape[<span class="dv">1</span>] <span class="op">==</span> B.T.shape[<span class="dv">0</span>] <span class="cf">else</span> <span class="st">"not even a legal shape"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    B <span class="op">@</span> A</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> exc:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"B @ A raises:"</span>, exc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(AB)^T == B^T A^T : True
+(AB)^T == A^T B^T : not even a legal shape
+B @ A raises: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)-&gt;(n?,m?) (size 4 is different from 5)</code></pre>
+</div>
+</div>
+<p>The middle line is the one to look at: reversing the order in a transpose is not a stylistic choice you can get away with — here the shapes do not even permit it. And the error message from the last block names the two dimensions that disagree, which is almost always enough to find the mistake.</p>
+<p>One more, because it is the single most common bug in code that uses matrices:</p>
+<div id="check-star" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">2.0</span>], [<span class="fl">3.0</span>, <span class="fl">4.0</span>]])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"M * M =</span><span class="ch">\n</span><span class="st">"</span>, M <span class="op">*</span> M)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"M @ M =</span><span class="ch">\n</span><span class="st">"</span>, M <span class="op">@</span> M)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same?"</span>, np.array_equal(M <span class="op">*</span> M, M <span class="op">@</span> M))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>M * M =
+ [[ 1.  4.]
+ [ 9. 16.]]
+M @ M =
+ [[ 7. 10.]
+ [15. 22.]]
+same? False</code></pre>
+</div>
+</div>
+<p><code>*</code> squares each entry where it stands. <code>@</code> takes the four dot products. Both return a <span class="math inline">\(2 \times 2\)</span> array, both run without complaint, and only one of them is matrix multiplication — the point <a href="../python/p07-numpy-computing.html">P7</a> made before you had the definition to attach it to.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="24.7">
+<h2 data-number="24.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">24.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Using <code>*</code> when you mean <code>@</code></dt>
+<dd>
+On two square matrices of the same size, both are legal and both return the right shape. Nothing will fail. The answer is simply wrong, and it can travel a long way before anything notices.
+</dd>
+<dt>Assuming <span class="math inline">\(AB = BA\)</span></dt>
+<dd>
+They differ in general, and frequently only one is even legal. “Multiply by <span class="math inline">\(B\)</span>” is an incomplete instruction until you say which side.
+</dd>
+<dt>Getting rows and columns the wrong way round</dt>
+<dd>
+<span class="math inline">\(a_{ij}\)</span> is row <span class="math inline">\(i\)</span>, column <span class="math inline">\(j\)</span>; shape is (rows, columns); entry <span class="math inline">\((i,j)\)</span> of a product uses row <span class="math inline">\(i\)</span> of the <em>left</em> matrix and column <span class="math inline">\(j\)</span> of the <em>right</em> one. Every one of those is row-first. Mix the convention up — column <span class="math inline">\(i\)</span> of the left against row <span class="math inline">\(j\)</span> of the right — and you get <span class="math inline">\((BA)^{\mathsf{T}}\)</span>, which for square matrices has exactly the right shape and is neither <span class="math inline">\(AB\)</span> nor its transpose. The shape check will not save you.
+</dd>
+<dt>Distributing a transpose without reversing</dt>
+<dd>
+<span class="math inline">\((AB)^{\mathsf{T}} = B^{\mathsf{T}}A^{\mathsf{T}}\)</span>, not <span class="math inline">\(A^{\mathsf{T}}B^{\mathsf{T}}\)</span>. In the usual case the second is not even a legal product, which is a mercy.
+</dd>
+<dt>Confusing <span class="math inline">\(X^{\mathsf{T}}X\)</span> with <span class="math inline">\(XX^{\mathsf{T}}\)</span></dt>
+<dd>
+For a <span class="math inline">\(500 \times 4\)</span> data matrix these are <span class="math inline">\(4 \times 4\)</span> and <span class="math inline">\(500 \times 500\)</span>. Both compute; one of them will exhaust your memory on a real dataset.
+</dd>
+<dt>Reading a matrix as <em>only</em> a table</dt>
+<dd>
+The table view says what is stored. The operation view says what it does, and that is the view <a href="../maths/m10-linear-systems.html">M10</a>, <a href="../maths/m11-least-squares.html">M11</a> and <a href="../maths/m12-directions.html">M12</a> need — a matrix takes a vector and returns a vector, and the columns are the only directions it can return.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="24.8">
+<h2 data-number="24.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">24.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p><span class="math inline">\(A\)</span> is <span class="math inline">\(3 \times 5\)</span> and <span class="math inline">\(B\)</span> is <span class="math inline">\(5 \times 2\)</span>. What is the shape of <span class="math inline">\(AB\)</span>?</p>
+<ol type="a">
+<li><span class="math inline">\(3 \times 2\)</span> b. <span class="math inline">\(5 \times 5\)</span> c.&nbsp;<span class="math inline">\(2 \times 3\)</span> d.&nbsp;illegal</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>In one sentence, what is entry <span class="math inline">\((i, j)\)</span> of <span class="math inline">\(AB\)</span>?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li><span class="math inline">\(X\)</span> is your <span class="math inline">\(238 \times 2\)</span> design matrix. Give the shapes of <span class="math inline">\(X^{\mathsf{T}}X\)</span> and <span class="math inline">\(XX^{\mathsf{T}}\)</span>, and say which one you want.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li><span class="math inline">\(A\mathbf{x}\)</span> can never be anything other than a combination of the columns of <span class="math inline">\(A\)</span>. Why, and what does that imply if the two columns of a <span class="math inline">\(3 \times 2\)</span> matrix are parallel?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>Your code runs, the shapes are right, and the numbers are wrong. Name two matrix-specific mistakes that behave exactly like that.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(a) <span class="math inline">\(3 \times 2\)</span>.</strong> The inner dimensions (5 and 5) match and vanish; the outer ones survive. Option (b) keeps the inner dimension, which is the one that disappears; (c) has the factors the wrong way round — that would be the shape of <span class="math inline">\(B^{\mathsf{T}}A^{\mathsf{T}}\)</span>.</p></li>
+<li><p>The <strong>dot product of row <span class="math inline">\(i\)</span> of <span class="math inline">\(A\)</span> with column <span class="math inline">\(j\)</span> of <span class="math inline">\(B\)</span></strong>. Row from the left matrix, column from the right one.</p></li>
+<li><p><span class="math inline">\(X^{\mathsf{T}}X\)</span> is <span class="math inline">\(2 \times 2\)</span>; <span class="math inline">\(XX^{\mathsf{T}}\)</span> is <span class="math inline">\(238 \times 238\)</span>. You want <span class="math inline">\(X^{\mathsf{T}}X\)</span> — four numbers summarising the columns, which is what fitting a line needs. The other is one number per pair of students, and it grows with the square of your sample size.</p></li>
+<li><p>Because <span class="math inline">\(A\mathbf{x}\)</span> <em>is</em> the columns scaled by the entries of <span class="math inline">\(\mathbf{x}\)</span> and added — that is the column reading of the product, so no choice of <span class="math inline">\(\mathbf{x}\)</span> can produce a direction the columns do not already span. If the two columns of a <span class="math inline">\(3 \times 2\)</span> matrix are parallel, they span only a single line, so every possible <span class="math inline">\(A\mathbf{x}\)</span> lies on that line and almost every target is unreachable. <a href="../maths/m10-linear-systems.html">M10</a> is about what to do then.</p></li>
+<li><p>Writing <code>*</code> for <code>@</code> on two square matrices of the same size, and a stray transpose — using <span class="math inline">\(A^{\mathsf{T}}\)</span> where <span class="math inline">\(A\)</span> was meant, on a square matrix. Both keep the shape and change the answer, so neither raises anything. (A third: taking entry <span class="math inline">\((i,j)\)</span> from column <span class="math inline">\(i\)</span> of the left matrix and row <span class="math inline">\(j\)</span> of the right, which yields <span class="math inline">\((BA)^{\mathsf{T}}\)</span> — right shape, wrong matrix. On the pair in Exercise 2 it returns <span class="math inline">\(\begin{pmatrix}1 &amp; 8\\ 2 &amp; 14\end{pmatrix}\)</span> while <span class="math inline">\(AB = \begin{pmatrix}11 &amp; 2\\ 23 &amp; 4\end{pmatrix}\)</span>.)</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p><strong><a href="../maths/m10-linear-systems.html">M10</a></strong> asks the reverse question: given <span class="math inline">\(A\)</span> and a target <span class="math inline">\(\mathbf{b}\)</span>, which <span class="math inline">\(\mathbf{x}\)</span> satisfies <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> — and what to do when none does. <strong><a href="../maths/m11-least-squares.html">M11</a></strong> imposes the orthogonality condition <span class="math inline">\(X^{\mathsf{T}}\mathbf{r} = \mathbf{0}\)</span> found in the worked example and solves it, which is least squares in closed form. <strong><a href="../maths/m12-directions.html">M12</a></strong> asks which directions a matrix stretches most, and finds them in <span class="math inline">\(X^{\mathsf{T}}X\)</span>. <strong><a href="../stats/s11-regression.html">S11</a></strong> fits this exact design matrix to the cohort and asks what the fitted slope licenses you to say.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../maths/m08-vectors.html" class="pagination-link" aria-label="Data as vectors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../maths/m10-linear-systems.html" class="pagination-link" aria-label="Solving Ax = b">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

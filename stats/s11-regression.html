@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>38&nbsp; Simple linear regression – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../stats/s12-going-wrong.html" rel="next">
+<link href="../stats/s10-comparing.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s11-regression.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">38.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">38.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">38.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#the-estimates" id="toc-the-estimates" class="nav-link" data-scroll-target="#the-estimates"><span class="header-section-number">38.3.1</span> The estimates</a></li>
+  <li><a href="#the-uncertainty" id="toc-the-uncertainty" class="nav-link" data-scroll-target="#the-uncertainty"><span class="header-section-number">38.3.2</span> The uncertainty</a></li>
+  <li><a href="#r2-and-what-it-is-not" id="toc-r2-and-what-it-is-not" class="nav-link" data-scroll-target="#r2-and-what-it-is-not"><span class="header-section-number">38.3.3</span> <span class="math inline">\(R^2\)</span>, and what it is not</a></li>
+  <li><a href="#two-kinds-of-interval" id="toc-two-kinds-of-interval" class="nav-link" data-scroll-target="#two-kinds-of-interval"><span class="header-section-number">38.3.4</span> Two kinds of interval</a></li>
+  <li><a href="#the-assumptions-and-how-to-check-them" id="toc-the-assumptions-and-how-to-check-them" class="nav-link" data-scroll-target="#the-assumptions-and-how-to-check-them"><span class="header-section-number">38.3.5</span> The assumptions, and how to check them</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">38.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">38.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">38.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">38.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">38.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s11-regression.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></h1>
+<p class="subtitle lead">Statistics · Unit 11</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>S11</strong> · Statistics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>S10, M11</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p><a href="../stats/s10-comparing.html">S10</a> compared groups. Regression does the same job when the explanatory variable is a <em>number</em> rather than a label — and it gives you the answer in the units people actually want: not “these groups differ”, but “<strong>each extra hour is worth this many marks, give or take this much</strong>”.</p>
+<p><a href="../maths/m11-least-squares.html">M11</a> already showed how the line is computed. This unit supplies the part that makes it a statistical statement rather than an arithmetic one: the slope is an estimate, it has a standard error, and there is a specific list of assumptions under which that standard error means what it says. It also supplies the two numbers people most often misuse — <span class="math inline">\(R^2\)</span> and the prediction interval.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="38.1">
+<h2 data-number="38.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">38.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>fit a straight line by least squares and say what it minimises — <a href="../maths/m11-least-squares.html">M11</a>;</li>
+<li>build a confidence interval and read a <span class="math inline">\(p\)</span>-value — <a href="../stats/s09-tests.html">S9</a>, <a href="../stats/s08-intervals.html">S8</a>;</li>
+<li>interpret a correlation and say what it cannot see — <a href="../stats/s03-two-variables.html">S3</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> A fitted line is <span class="math inline">\(\hat{y} = 70 - 0.24x\)</span>, where <span class="math inline">\(y\)</span> is a final score in marks and <span class="math inline">\(x\)</span> is hours of practice. What are the units of <span class="math inline">\(-0.24\)</span>, and what does the 70 mean?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The slope is in <strong>marks per hour</strong>: the fitted line falls by 0.24 marks for each extra hour. The intercept is the fitted value at <span class="math inline">\(x = 0\)</span> — 70 marks for a student who practised not at all.</p>
+<p>Whether that intercept means anything depends on whether <span class="math inline">\(x = 0\)</span> is inside the range of the data. Here the smallest observed practice time is one hour, so 70 is an extrapolation, and one to be careful with.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="38.2">
+<h2 data-number="38.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">38.2</span> The idea</h2>
+<p>The model behind a fitted line is</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_i + \varepsilon_i ,
+\]</span></p>
+<p>where <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are fixed unknown numbers — parameters, in the sense of <a href="../stats/s01-the-question.html">S1</a> — and <span class="math inline">\(\varepsilon_i\)</span> is everything else: measurement noise, omitted causes, individual variation. The <span class="math inline">\(\varepsilon_i\)</span> are assumed to have mean zero, the same variance for every <span class="math inline">\(i\)</span>, and to be independent of each other.</p>
+<p>Least squares gives you <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>, and the crucial point of this unit is that those hats are doing the same work they did in <a href="../stats/s01-the-question.html">S1</a>: <strong>they are estimates, computed from one sample, and a different sample would have produced different ones.</strong></p>
+<div id="cell-fig-uncertainty" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-uncertainty" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uncertainty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s11-regression_files/figure-html/fig-uncertainty-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uncertainty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;38.1: Two hundred lines, each fitted to a resample of the 238 students, drawn faintly behind the fit to the real data. The fan they trace out is what the standard error of the slope measures. A single line drawn on a scatterplot hides this completely, which is why the slope must be reported with an interval.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Every one of those faint lines is a slope somebody could have reported, from data generated the same way. Some are noticeably steeper than the fit and some are noticeably flatter. Quantifying that fan is what the rest of the unit does.</p>
+</section>
+<section id="the-mechanics" class="level2" data-number="38.3">
+<h2 data-number="38.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">38.3</span> The mechanics</h2>
+<section id="the-estimates" class="level3" data-number="38.3.1">
+<h3 data-number="38.3.1" class="anchored" data-anchor-id="the-estimates"><span class="header-section-number">38.3.1</span> The estimates</h3>
+<p>From <a href="../maths/m11-least-squares.html">M11</a>, least squares gives</p>
+<p><span class="math display">\[
+\hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+              = r\,\frac{s_y}{s_x},
+\qquad
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} .
+\]</span></p>
+<p>The second form for the slope is worth carrying: it is the correlation of <a href="../stats/s03-two-variables.html">S3</a>, converted from unitless into marks-per-hour by the ratio of the two standard deviations. Correlation and slope carry the same sign and answer different questions.</p>
+</section>
+<section id="the-uncertainty" class="level3" data-number="38.3.2">
+<h3 data-number="38.3.2" class="anchored" data-anchor-id="the-uncertainty"><span class="header-section-number">38.3.2</span> The uncertainty</h3>
+<p>Let <span class="math inline">\(s_e\)</span> be the <strong>residual standard deviation</strong>, the typical size of a vertical miss:</p>
+<p><span class="math display">\[
+s_e = \sqrt{\frac{1}{n-2}\sum_{i=1}^{n} (y_i - \hat{y}_i)^2 } .
+\]</span></p>
+<p>The divisor is <span class="math inline">\(n - 2\)</span> because two parameters have been estimated from the same data — the same argument that gave <a href="../stats/s02-one-variable.html">S2</a> its <span class="math inline">\(n-1\)</span>. Then</p>
+<p><span class="math display">\[
+\text{SE}(\hat{\beta}_1) = \frac{s_e}{\sqrt{\sum (x_i - \bar{x})^2}} .
+\]</span></p>
+<p>Read what makes a slope precise. <strong>Small residuals</strong> help, obviously. So does a <strong>large <span class="math inline">\(n\)</span></strong>. And so does a <strong>wide spread of <span class="math inline">\(x\)</span></strong> — the denominator is the total spread of the explanatory variable, so measuring people whose practice hours vary a lot pins the slope down far better than measuring the same number of people who all practised about the same amount. That is a design lesson, and it is invisible unless you look at the formula.</p>
+<p>The interval and test then follow the pattern of <a href="../stats/s09-tests.html">S9</a> exactly:</p>
+<p><span class="math display">\[
+\hat{\beta}_1 \pm t^{*}_{n-2}\,\text{SE}(\hat{\beta}_1),
+\qquad
+t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} .
+\]</span></p>
+</section>
+<section id="r2-and-what-it-is-not" class="level3" data-number="38.3.3">
+<h3 data-number="38.3.3" class="anchored" data-anchor-id="r2-and-what-it-is-not"><span class="header-section-number">38.3.3</span> <span class="math inline">\(R^2\)</span>, and what it is not</h3>
+<p><span class="math display">\[
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
+\]</span></p>
+<p>— the proportion of the variance in <span class="math inline">\(y\)</span> that the fitted line accounts for. In simple regression it is exactly the square of the correlation.</p>
+<p>Three things it does <strong>not</strong> tell you. It does not say the model is correct: a curved relationship can produce a respectable <span class="math inline">\(R^2\)</span> while the line is wrong everywhere. It does not say the slope is useful: a slope can be precisely estimated, obviously real, and account for very little of the variation, which is the normal situation with human data. And it does not say anything about cause.</p>
+<p>A low <span class="math inline">\(R^2\)</span> with a tight interval on the slope means “this variable matters a little, and we know that quite precisely” — a perfectly respectable finding, and the one this unit’s worked example produces.</p>
+</section>
+<section id="two-kinds-of-interval" class="level3" data-number="38.3.4">
+<h3 data-number="38.3.4" class="anchored" data-anchor-id="two-kinds-of-interval"><span class="header-section-number">38.3.4</span> Two kinds of interval</h3>
+<p>Asking “what is the fitted value at <span class="math inline">\(x_0\)</span>?” has two different answers, and confusing them is the commonest error in applied regression.</p>
+<ul>
+<li>A <strong>confidence interval for the mean response</strong> says where the <em>average</em> <span class="math inline">\(y\)</span> for everyone at <span class="math inline">\(x_0\)</span> lies. It shrinks as <span class="math inline">\(n\)</span> grows.</li>
+<li>A <strong>prediction interval for a new observation</strong> says where <em>one new individual</em> at <span class="math inline">\(x_0\)</span> is likely to fall. It carries the residual scatter as well, so it stays wide however much data you collect.</li>
+</ul>
+<p><span class="math display">\[
+\text{SE}_{\text{mean}} = s_e\sqrt{\frac{1}{n} + \frac{(x_0-\bar{x})^2}{\sum(x_i-\bar{x})^2}},
+\qquad
+\text{SE}_{\text{pred}} = s_e\sqrt{1 + \frac{1}{n} + \frac{(x_0-\bar{x})^2}{\sum(x_i-\bar{x})^2}}
+\]</span></p>
+<p>The extra 1 under the second root is the individual’s own noise, and it is usually the dominant term.</p>
+</section>
+<section id="the-assumptions-and-how-to-check-them" class="level3" data-number="38.3.5">
+<h3 data-number="38.3.5" class="anchored" data-anchor-id="the-assumptions-and-how-to-check-them"><span class="header-section-number">38.3.5</span> The assumptions, and how to check them</h3>
+<table class="caption-top table">
+<caption>What to check, and where to look</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">assumption</th>
+<th style="text-align: left;">how it fails</th>
+<th style="text-align: left;">how to look</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">the relationship is linear</td>
+<td style="text-align: left;">curvature</td>
+<td style="text-align: left;">residuals against fitted values</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">constant variance</td>
+<td style="text-align: left;">a fan shape</td>
+<td style="text-align: left;">residuals against fitted values</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">errors independent</td>
+<td style="text-align: left;">clustering, time trends</td>
+<td style="text-align: left;">know the design; plot in time order</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">errors roughly normal</td>
+<td style="text-align: left;">skew, heavy tails</td>
+<td style="text-align: left;">Q-Q plot of residuals</td>
+</tr>
+</tbody>
+</table>
+<p>Only the last is about normality, and it is the least important of the four: the intervals rely on the sampling distribution of <span class="math inline">\(\hat{\beta}_1\)</span>, which <a href="../stats/s07-sampling.html">S7</a>’s central limit theorem makes approximately normal for moderate <span class="math inline">\(n\)</span> even when the errors are not. Independence is the one that will hurt you most and shows up in no plot.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="38.4">
+<h2 data-number="38.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">38.4</span> Worked example</h2>
+<p><strong>How much is an hour of practice worth?</strong></p>
+<div id="fit" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"slope     </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss"> marks per hour   (se </span><span class="sc">{</span>fit<span class="sc">.</span>stderr<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"intercept </span><span class="sc">{</span>fit<span class="sc">.</span>intercept<span class="sc">:+.4f}</span><span class="ss"> marks         (se </span><span class="sc">{</span>fit<span class="sc">.</span>intercept_stderr<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, n <span class="op">-</span> <span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% CI for the slope: (</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">-</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">, "</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">+</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"t = </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="op">/</span>fit<span class="sc">.</span>stderr<span class="sc">:.4f}</span><span class="ss">   p = </span><span class="sc">{</span>fit<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">   R^2 = </span><span class="sc">{</span>fit<span class="sc">.</span>rvalue<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n = 238
+slope     -0.2408 marks per hour   (se 0.0652)
+intercept +69.2261 marks         (se 1.1948)
+95% CI for the slope: (-0.3693, -0.1123)
+t = -3.6921   p = 0.000276   R^2 = 0.0546</code></pre>
+</div>
+</div>
+<p>The reportable sentence: <strong>across the cohort, each additional hour of practice goes with 0.24 marks <em>fewer</em> on the final score (95% CI 0.11 to 0.37 marks lower), and practice hours account for 5.5% of the variation in scores.</strong></p>
+<p>Three separate things are true of that sentence and worth separating.</p>
+<p><strong>The slope is negative and the interval excludes zero.</strong> This is not noise.</p>
+<p><strong>The effect is small and the fit is poor.</strong> <span class="math inline">\(R^2 = 0.055\)</span> means practice hours explain about a twentieth of the variation. Read together with the interval, the finding is “a real but modest association, estimated reasonably precisely” — which is what most findings about people look like.</p>
+<p><strong>It is not a statement about what practice does.</strong> <a href="../stats/s01-the-question.html">S1</a> established that the sign reverses inside every background group. The fit above is a correct summary of the pooled cloud and a bad guide to any student’s decision.</p>
+<div id="check-formula" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fitted <span class="op">=</span> fit.intercept <span class="op">+</span> fit.slope <span class="op">*</span> hours</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> score <span class="op">-</span> fitted</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>s_e <span class="op">=</span> np.sqrt((residuals<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>() <span class="op">/</span> (n <span class="op">-</span> <span class="dv">2</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sxx <span class="op">=</span> ((hours <span class="op">-</span> hours.mean())<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"residual sd s_e   </span><span class="sc">{</span>s_e<span class="sc">:.4f}</span><span class="ss">   (sd of the scores themselves </span><span class="sc">{</span>score<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"se by hand        </span><span class="sc">{</span>s_e<span class="op">/</span>np<span class="sc">.</span>sqrt(sxx)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"se from scipy     </span><span class="sc">{</span>fit<span class="sc">.</span>stderr<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R^2 by hand       </span><span class="sc">{</span><span class="dv">1</span> <span class="op">-</span> (residuals<span class="op">**</span><span class="dv">2</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="op">/</span>((score <span class="op">-</span> score.mean())<span class="op">**</span><span class="dv">2</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>residual sd s_e   8.1693   (sd of the scores themselves 8.3841)
+se by hand        0.065219
+se from scipy     0.065219
+R^2 by hand       0.054606</code></pre>
+</div>
+</div>
+<p>The residual standard deviation is 8.17 against the scores’ own 8.38. Knowing a student’s practice hours has bought you almost nothing about where they will land — which is the same fact as <span class="math inline">\(R^2 = 0.055\)</span>, in marks rather than as a proportion.</p>
+<p><strong>The two intervals, drawn.</strong></p>
+<div id="cell-fig-bands" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-bands" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s11-regression_files/figure-html/fig-bands-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;38.2: The fitted line with two bands. The narrow inner band is a 95% confidence interval for the <em>mean</em> score of students at each level of practice — it is not about where individual students fall, and most of them are outside it. The wide outer one is a 95% prediction interval for a single student, and 94.5% of the observed students sit inside it. Those students were used to fit the line, so that figure is a sanity check rather than an independent test.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="prediction" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">20.0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>leverage0 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>n <span class="op">+</span> (x0 <span class="op">-</span> hours.mean())<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> sxx</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> fit.intercept <span class="op">+</span> fit.slope <span class="op">*</span> x0</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"at </span><span class="sc">{</span>x0<span class="sc">:.0f}</span><span class="ss"> hours, the fitted value is </span><span class="sc">{</span>predicted<span class="sc">:.2f}</span><span class="ss"> marks"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  95% CI for the mean score there : "</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"(</span><span class="sc">{</span>predicted <span class="op">-</span> t_star<span class="op">*</span>s_e<span class="op">*</span>np<span class="sc">.</span>sqrt(leverage0)<span class="sc">:.2f}</span><span class="ss">, "</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>predicted <span class="op">+</span> t_star<span class="op">*</span>s_e<span class="op">*</span>np<span class="sc">.</span>sqrt(leverage0)<span class="sc">:.2f}</span><span class="ss">)"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  95% prediction for one student  : "</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"(</span><span class="sc">{</span>predicted <span class="op">-</span> t_star<span class="op">*</span>s_e<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">1</span> <span class="op">+</span> leverage0)<span class="sc">:.2f}</span><span class="ss">, "</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>predicted <span class="op">+</span> t_star<span class="op">*</span>s_e<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">1</span> <span class="op">+</span> leverage0)<span class="sc">:.2f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>at 20 hours, the fitted value is 64.41 marks
+  95% CI for the mean score there : (63.27, 65.55)
+  95% prediction for one student  : (48.28, 80.54)</code></pre>
+</div>
+</div>
+<p>The mean is pinned down to about a mark either way. An individual student is pinned down to about sixteen marks either way. Quoting the first when you meant the second is the standard way a regression is oversold.</p>
+<p><strong>Check the assumptions.</strong></p>
+<div id="cell-fig-residuals" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-residuals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s11-regression_files/figure-html/fig-residuals-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;38.3: Diagnostics. Left: residuals against fitted values, which should show no pattern — no curve, no fan. Right: a Q-Q plot of the residuals against a normal model. Both look acceptable here, which clears the two assumptions these plots can see and says nothing about the two they cannot.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>No curvature, no fan, and residuals that track a normal model closely. Linearity, constant variance and approximate normality are all in reasonable shape.</p>
+<p>Neither plot can check the other two things that matter. <strong>Independence</strong> is a property of the design, not of the residuals: you establish it by knowing how the data were collected. And no residual plot at all can tell you that a variable is <strong>missing</strong> from the model — the fit can look immaculate and still be measuring something other than what you meant. That is precisely this dataset’s situation, and the next section shows what it costs.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="38.5">
+<h2 data-number="38.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">38.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> A regression of weekly sales (in £000) on advertising spend (in £000) gives <span class="math inline">\(\hat{\beta}_1 = 3.2\)</span> with a standard error of 1.5, from <span class="math inline">\(n = 40\)</span> shops.</p>
+<ol type="a">
+<li>Give an approximate 95% interval for the slope.</li>
+<li>Interpret the slope in words, with units.</li>
+<li>The <span class="math inline">\(R^2\)</span> is 0.11. What does that add?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>With <span class="math inline">\(t^{*}_{38} \approx 2.02\)</span>: <span class="math inline">\(3.2 \pm 2.02 \times 1.5 = 3.2 \pm 3.03\)</span>, giving <span class="math inline">\((0.17, 6.23)\)</span>. Zero is outside — just.</p></li>
+<li><p>Each extra £1,000 of advertising goes with about <strong>£3,200 more in weekly sales</strong>, on average across shops. The interval says the data are consistent with anything from £170 to £6,230, which spans “not worth doing” and “extremely worth doing”.</p></li>
+<li><p><span class="math inline">\(R^2 = 0.11\)</span> says advertising spend accounts for 11% of the variation in sales between shops. The other 89% is location, size, season, competition and everything else. It does not weaken the slope estimate, and it does warn you that predicting one shop’s sales from its advertising alone will be poor.</p>
+<p>(The three numbers are not independent, incidentally: in simple regression <span class="math inline">\(t^2 = (n-2)R^2/(1-R^2)\)</span>, so a slope, its standard error, the sample size and <span class="math inline">\(R^2\)</span> determine each other. Here <span class="math inline">\(t = 3.2/1.5 = 2.13\)</span> and <span class="math inline">\(R^2 = 2.13^2/(2.13^2 + 38) = 0.11\)</span>, which is where the figure came from.)</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> Which of these would you expect to make the standard error of a fitted slope smaller?</p>
+<ol type="a">
+<li>Collecting more observations.</li>
+<li>Choosing <span class="math inline">\(x\)</span> values spread over a wider range.</li>
+<li>Reducing measurement noise in <span class="math inline">\(y\)</span>.</li>
+<li>Adding a constant to every <span class="math inline">\(x\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a), (b) and (c).</strong> Look at <span class="math inline">\(\text{SE}(\hat{\beta}_1) = s_e / \sqrt{\sum (x_i - \bar{x})^2}\)</span>:</p>
+<ul>
+<li>more observations add terms to the sum in the denominator — though only if they add <em>spread</em>: an observation placed exactly at <span class="math inline">\(\bar{x}\)</span> contributes nothing to it, and one with a wild <span class="math inline">\(y\)</span> can inflate <span class="math inline">\(s_e\)</span> enough to make the standard error worse. In the ordinary case of more observations across the same range of <span class="math inline">\(x\)</span>, it shrinks;</li>
+<li>a wider spread of <span class="math inline">\(x\)</span> makes each term larger — this is often the cheapest of the three and the one people forget;</li>
+<li>less noise in <span class="math inline">\(y\)</span> shrinks <span class="math inline">\(s_e\)</span>.</li>
+</ul>
+<p><strong>(d) does nothing.</strong> <span class="math inline">\(\sum(x_i - \bar{x})^2\)</span> is unchanged by a shift, because <span class="math inline">\(\bar{x}\)</span> shifts with it. The slope estimate is unchanged too; only the intercept moves, since it is the fitted value at the new <span class="math inline">\(x = 0\)</span>.</p>
+<p>A caution on (b): widening the range only helps if the relationship really is straight over the wider range. Extending the <span class="math inline">\(x\)</span> values into territory where the line stops being a good model buys precision in the estimate of the wrong thing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> Using this unit’s fitted line, a student who has practised 20 hours is predicted to score 64.4 marks.</p>
+<ol type="a">
+<li>A colleague says “so a student who practises 20 hours will get about 64”. What is wrong?</li>
+<li>The same line predicts 69.2 marks at zero hours. What is wrong with that?</li>
+<li>Would it be reasonable to advise a student to practise less?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>It confuses the <strong>mean response with an individual prediction</strong>. The average score among students at 20 hours is pinned down to about <span class="math inline">\((63.3, 65.6)\)</span>. A single student’s score has a 95% prediction interval of about <span class="math inline">\((48.3, 80.5)\)</span> — a range of 32 marks, covering a fail and a first. The fitted value is a centre, not a forecast.</p></li>
+<li><p>It is an <strong>extrapolation</strong>. No student in the data practised fewer than one hour, so nothing in the sample speaks to zero hours. The intercept is a mathematical feature of the line, not an estimate of anything observed.</p></li>
+<li><p><strong>No</strong>, and this is the important one. The fit describes an association across a cohort in which practice hours are entangled with prior background: students who arrive stronger practise less. Within every background group the slope is <em>positive</em>, at about one mark per hour. Advising an individual requires the within-group relationship, and even that is observational — students chose their own hours. <a href="../stats/s12-going-wrong.html">S12</a> takes this apart properly.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="38.6">
+<h2 data-number="38.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">38.6</span> Check it in Python</h2>
+<p>First, that the slope really is the correlation rescaled, and that the “by hand” standard error matches the library:</p>
+<div id="identities" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.corrcoef(hours, score)[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"slope from r * sy/sx  </span><span class="sc">{</span>r <span class="op">*</span> score<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> hours<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:+.6f}</span><span class="ss">"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"slope from scipy      </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="sc">:+.6f}</span><span class="ss">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R^2 from r squared    </span><span class="sc">{</span>r<span class="op">**</span><span class="dv">2</span><span class="sc">:.6f}</span><span class="ss">   from scipy </span><span class="sc">{</span>fit<span class="sc">.</span>rvalue<span class="op">**</span><span class="dv">2</span><span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>slope from r * sy/sx  -0.240793
+slope from scipy      -0.240793
+R^2 from r squared    0.054606   from scipy 0.054606</code></pre>
+</div>
+</div>
+<p>Second, the claim that the standard error measures the fan in the opening figure. Resample the students, refit, and compare the spread of the resulting slopes with the formula:</p>
+<div id="bootstrap-slope" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">11</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>slopes <span class="op">=</span> np.empty(<span class="dv">4000</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(slopes.size):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    pick <span class="op">=</span> rng.integers(<span class="dv">0</span>, n, n)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    slopes[i] <span class="op">=</span> stats.linregress(hours[pick], score[pick]).slope</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"sd of 4000 resampled slopes  </span><span class="sc">{</span>slopes<span class="sc">.</span>std()<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"formula se                   </span><span class="sc">{</span>fit<span class="sc">.</span>stderr<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"bootstrap 95% interval       (</span><span class="sc">{</span>np<span class="sc">.</span>quantile(slopes, <span class="fl">0.025</span>)<span class="sc">:+.4f}</span><span class="ss">, "</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>quantile(slopes, <span class="fl">0.975</span>)<span class="sc">:+.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"formula   95% interval       (</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">-</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">, "</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">+</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sd of 4000 resampled slopes  0.065154
+formula se                   0.065219
+bootstrap 95% interval       (-0.3724, -0.1186)
+formula   95% interval       (-0.3693, -0.1123)</code></pre>
+</div>
+</div>
+<p>Two completely different routes — one algebraic, one brute force — agreeing to three decimal places.</p>
+<p>Now the check that fails, and it is the one this dataset exists to teach. A pooled slope is not the slope within any group:</p>
+<div id="watch-it-fail" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> scored.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>by_group <span class="op">=</span> {name: stats.linregress(part[<span class="st">"hours_practice"</span>], part[<span class="st">"final_score"</span>]).slope</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> name, part <span class="kw">in</span> grouped.groupby(<span class="st">"background"</span>)}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, slope <span class="kw">in</span> by_group.items():</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>name<span class="sc">:&lt;24}</span><span class="ss"> </span><span class="sc">{</span>slope<span class="sc">:+.4f}</span><span class="ss"> marks per hour"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">all</span>(slope <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">for</span> slope <span class="kw">in</span> by_group.values()), (</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"the pooled slope is </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss">, but every one of the "</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(by_group)<span class="sc">}</span><span class="ss"> within-group slopes is positive"</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Computing                +0.6624 marks per hour
+  Engineering              +0.8454 marks per hour
+  Life sciences            +1.1526 marks per hour
+  Mathematics or Physics   +1.0112 marks per hour
+  Social sciences          +1.3445 marks per hour</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> name, slope <span style="font-weight:bold;color:rgb(175,0,255)">in</span> by_group.items():
+<span class="ansi-green-fg">      5</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>name<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">&lt;24</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>slope<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">+.4f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> marks per hour</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> <span style="color:rgb(0,135,0)">all</span>(slope &lt; <span class="ansi-green-fg">0</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> slope <span style="font-weight:bold;color:rgb(175,0,255)">in</span> by_group.values()), (
+<span class="ansi-green-fg">      8</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">the pooled slope is </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>fit.slope<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">+.4f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">, but every one of the </span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      9</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(by_group)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> within-group slopes is positive</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">     10</span> )
+
+<span class="ansi-red-fg">AssertionError</span>: the pooled slope is -0.2408, but every one of the 5 within-group slopes is positive</pre>
+</div>
+</div>
+</div>
+<p>Pooled, the line falls by 0.24 marks an hour. Within each background it rises by between 0.66 and 1.34 marks an hour. Both are correct least-squares fits to the data in front of them.</p>
+<p>Adding the background information to the model — as <a href="../maths/m11-least-squares.html">M11</a> does with the arrival diagnostic — flips the sign of the practice coefficient:</p>
+<div id="adjusted" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> np.column_stack([np.ones(n), hours, scored[<span class="st">"diagnostic_score"</span>].to_numpy()])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>theta, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(design, score, rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"score ~ 1 + hours                 slope </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss">"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"score ~ 1 + hours + diagnostic    slope </span><span class="sc">{</span>theta[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>score ~ 1 + hours                 slope -0.2408
+score ~ 1 + hours + diagnostic    slope +0.9156</code></pre>
+</div>
+</div>
+<p>Same data, same method, opposite sign. Which coefficient answers your question depends entirely on what you were asking, and nothing in the output tells you which one you wanted.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="38.7">
+<h2 data-number="38.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">38.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Reporting a slope without an interval</dt>
+<dd>
+A slope is an estimate. “0.24 marks per hour” and “0.24 marks per hour, 95% CI 0.11 to 0.37” are different claims, and only the second can be argued with.
+</dd>
+<dt>Confusing a confidence band with a prediction band</dt>
+<dd>
+The first is about the mean at a given <span class="math inline">\(x\)</span> and is narrow; the second is about one new individual and is much wider, because it carries the residual scatter. In this unit’s fit they differ by a factor of about fourteen.
+</dd>
+<dt>Reading a low <span class="math inline">\(R^2\)</span> as “no relationship”</dt>
+<dd>
+<span class="math inline">\(R^2 = 0.055\)</span> here, with a slope whose interval excludes zero. Small and real are compatible, and with human data they are the normal case.
+</dd>
+<dt>Reading a high <span class="math inline">\(R^2\)</span> as “the model is right”</dt>
+<dd>
+A curved relationship can produce a high <span class="math inline">\(R^2\)</span> with a line that is wrong everywhere. Look at the residuals against the fitted values, always.
+</dd>
+<dt>Interpreting the intercept outside the data</dt>
+<dd>
+The intercept is the fitted value at <span class="math inline">\(x = 0\)</span>. If no observation is near zero, it is an extrapolation and usually meaningless — sometimes physically impossible.
+</dd>
+<dt>Predicting outside the range of <span class="math inline">\(x\)</span></dt>
+<dd>
+The line is a summary of the region you observed. Nothing in the data says the relationship continues, and the further out you go the more confidently wrong the prediction becomes.
+</dd>
+<dt>Reading the slope as an effect</dt>
+<dd>
+A regression coefficient describes an association in the data you fitted, given the other variables in the model. Making it causal needs a design that supports the claim, not a smaller <span class="math inline">\(p\)</span>-value.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="38.8">
+<h2 data-number="38.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">38.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p>A fitted slope is <span class="math inline">\(2.0\)</span> with standard error <span class="math inline">\(0.5\)</span>, from <span class="math inline">\(n = 100\)</span>. Which is true?</p>
+<ol type="a">
+<li>The relationship explains most of the variation</li>
+<li>A 95% interval for the slope is roughly <span class="math inline">\((1.0, 3.0)\)</span></li>
+<li>The correlation is 2.0</li>
+<li>Each unit of <span class="math inline">\(x\)</span> causes 2 units of <span class="math inline">\(y\)</span></li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>You want a more precise estimate of a slope but cannot collect more data. What else could you change about the design?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Two regressions have identical slopes and identical standard errors, but <span class="math inline">\(R^2\)</span> of 0.9 and 0.2. What differs?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Why does a prediction interval not shrink towards zero width as <span class="math inline">\(n\)</span> grows?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>The cohort’s pooled slope is <span class="math inline">\(-0.24\)</span> and every within-background slope is positive. Which is the “real” relationship between practice and score?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(b).</strong> With <span class="math inline">\(n = 100\)</span> the multiplier is close to 2, so the interval is about <span class="math inline">\(2.0 \pm 1.0\)</span>. (a) confuses the slope with <span class="math inline">\(R^2\)</span> — nothing here says how much variation is explained; (c) confuses the slope with the correlation, which cannot exceed 1; (d) upgrades an association to a cause, which no regression output can license.</p></li>
+<li><p><strong>Spread the <span class="math inline">\(x\)</span> values further apart.</strong> The standard error is <span class="math inline">\(s_e/\sqrt{\sum (x_i - \bar{x})^2}\)</span>, so choosing observations across a wider range of <span class="math inline">\(x\)</span> shrinks it without a single extra data point. Reducing measurement noise in <span class="math inline">\(y\)</span> works too. The caveat from Exercise 2 stands: the relationship must stay straight over the wider range.</p></li>
+<li><p><strong>The residual scatter relative to the spread of <span class="math inline">\(y\)</span>.</strong> The regression with <span class="math inline">\(R^2 = 0.2\)</span> has much more variation in <span class="math inline">\(y\)</span> that the line does not account for. Since the standard errors match, both slopes are estimated equally precisely — which is a clean demonstration that <span class="math inline">\(R^2\)</span> and the precision of a coefficient are separate things.</p></li>
+<li><p>Because it contains the individual’s own noise. As <span class="math inline">\(n\)</span> grows the <em>line</em> is pinned down and the mean-response band shrinks towards nothing, but a new student still scatters about that line with standard deviation <span class="math inline">\(s_e\)</span>. The prediction interval converges to roughly <span class="math inline">\(\hat{y} \pm 2 s_e\)</span>, not to a point.</p></li>
+<li><p><strong>Neither is “the” relationship; they answer different questions.</strong> The pooled slope describes the cohort as a whole, in which practice hours partly stand in for prior background. The within-group slopes describe students compared with others who arrived in a similar position. For advising a student the within-group figure is much closer to the question — and, since nobody assigned practice hours, still not a causal answer. <a href="../stats/s12-going-wrong.html">S12</a> is next.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p><strong><a href="../stats/s12-going-wrong.html">S12</a></strong> takes the reversal in this unit’s failing check, names it, and sets it alongside the other ways an analysis produces a confident wrong answer. <strong><a href="../maths/m12-directions.html">M12</a></strong> is where regression with many correlated predictors goes when the columns start to overlap.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../stats/s10-comparing.html" class="pagination-link" aria-label="Comparing groups, measuring association">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../stats/s12-going-wrong.html" class="pagination-link" aria-label="How analyses go wrong">
+        <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

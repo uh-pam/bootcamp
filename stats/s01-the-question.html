@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>28&nbsp; What is the question? – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../stats/s02-one-variable.html" rel="next">
+<link href="../maths/m12-directions.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s01-the-question.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">28.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">28.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">28.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#four-things-a-usable-question-names" id="toc-four-things-a-usable-question-names" class="nav-link" data-scroll-target="#four-things-a-usable-question-names"><span class="header-section-number">28.3.1</span> Four things a usable question names</a></li>
+  <li><a href="#parameters-and-estimates" id="toc-parameters-and-estimates" class="nav-link" data-scroll-target="#parameters-and-estimates"><span class="header-section-number">28.3.2</span> Parameters and estimates</a></li>
+  <li><a href="#what-kind-of-variable-is-it" id="toc-what-kind-of-variable-is-it" class="nav-link" data-scroll-target="#what-kind-of-variable-is-it"><span class="header-section-number">28.3.3</span> What kind of variable is it?</a></li>
+  <li><a href="#where-the-sample-came-from" id="toc-where-the-sample-came-from" class="nav-link" data-scroll-target="#where-the-sample-came-from"><span class="header-section-number">28.3.4</span> Where the sample came from</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">28.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">28.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">28.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">28.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">28.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s01-the-question.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></h1>
+<p class="subtitle lead">Statistics · Unit 1</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>S1</strong> · Statistics</span> <span>Reading: <strong>8 pages</strong></span> <span>With practice: <strong>≈ 1.5 hours</strong></span> <span>Assumes: <strong>nothing — you can start here</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p>Statistics is usually taught as a menu of procedures, and it is easy to come away thinking the skill is picking the right one. It is not. The procedures are the easy part; a library computes them for you in one line.</p>
+<p>The hard part is knowing <em>what you are asking</em>, <em>about whom</em>, and <em>what the answer entitles you to say</em>. Get that wrong and no amount of correct arithmetic saves you — you get a confident, reproducible, well-presented answer to a question nobody asked. This unit gives you the vocabulary for stating a statistical question properly, and one habit: <strong>write the question down before you touch the data.</strong></p>
+</div>
+<section id="before-you-start" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">28.1</span> Before you start</h2>
+<p>Nothing statistical. You should be able to read a table of data and say what one row of it means, work out an average, and read a percentage.</p>
+<p>If you also want to <em>run</em> the code rather than read it, <a href="../python/p08-pandas-dataframe.html">P8</a> is as much pandas as you need. Nothing in the explanations depends on it.</p>
+<p><strong>Quick check.</strong> A table has one row per student, with columns for their prior background, hours of practice and final score. Five students scored 58, 62, 71, 64 and 65. What is their mean score, and what does one <em>column</em> of that table represent?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The mean is <span class="math inline">\((58 + 62 + 71 + 64 + 65)/5 = 320/5 = 64\)</span>.</p>
+<p>A column is one <strong>variable</strong> — one thing measured on every student. A row is one <strong>unit</strong> — everything measured on one student. Almost every confusion later in this track is really a confusion about which of those two you are talking about.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">28.2</span> The idea</h2>
+<p>Here is a question of the kind people actually ask:</p>
+<blockquote class="blockquote">
+<p><em>Does practice help?</em></p>
+</blockquote>
+<p>It sounds answerable. It is not, and why not is the whole of this unit.</p>
+<p><strong>Help whom?</strong> The students in this table, or students in general? <strong>Help how much, measured how?</strong> Final score, pass rate, something else? <strong>Help in what sense</strong> — do people who practise more <em>tend to</em> score higher, or would a given person score higher <em>if they practised more</em>? Only the second of those is about cause.</p>
+<p>Underneath all three is the gap statistics exists to manage: you have a table, and the claim you want to make is almost never about the table.</p>
+<p>Throughout these notes we use one dataset: a synthetic record of a previous cohort who worked through this material.</p>
+<div id="cell-load" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss"> rows, </span><span class="sc">{</span>cohort<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cohort.head(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>240 rows, 7 columns</code></pre>
+</div>
+<div id="load" class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">student_id</th>
+<th data-quarto-table-cell-role="th">background</th>
+<th data-quarto-table-cell-role="th">diagnostic_score</th>
+<th data-quarto-table-cell-role="th">hours_practice</th>
+<th data-quarto-table-cell-role="th">final_score</th>
+<th data-quarto-table-cell-role="th">completed</th>
+<th data-quarto-table-cell-role="th">started_on</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>S0001</td>
+<td>Mathematics or Physics</td>
+<td>89.1</td>
+<td>12.9</td>
+<td>83.6</td>
+<td>True</td>
+<td>2026-09-23</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>S0002</td>
+<td>Life sciences</td>
+<td>42.4</td>
+<td>22.8</td>
+<td>56.6</td>
+<td>True</td>
+<td>2026-09-25</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>S0003</td>
+<td>Engineering</td>
+<td>68.4</td>
+<td>1.7</td>
+<td>58.5</td>
+<td>True</td>
+<td>2026-09-25</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Two hundred and forty students — and not one of them is the point. They have finished, and nothing you compute will change their marks. What you care about is students <em>like</em> them, including the ones arriving next year. Those rows are interesting only as evidence about a larger group you cannot see.</p>
+<p>The gap has a standard vocabulary, worth learning properly.</p>
+<ul>
+<li>The <strong>population</strong> is the entire group your question is about. Here: something like <em>students starting an MSc in data science from a mixed set of prior backgrounds</em>. Note that you had to <em>decide</em> that. It was not in the file.</li>
+<li>The <strong>sample</strong> is the set of units you actually measured — the 240 rows.</li>
+<li>An <strong>estimand</strong> is the number you want, defined on the population: say <span class="math inline">\(\mu\)</span>, the mean final score across that whole population. It is one fixed number, and short of measuring every single unit you never see it.</li>
+<li>An <strong>estimate</strong> is the number you compute from the sample — here <span class="math inline">\(\bar{x} = 65.3\)</span>, the mean of the 237 rows the worked example keeps. You do see it, and it is not <span class="math inline">\(\mu\)</span>.</li>
+</ul>
+<div id="cell-fig-map" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-map" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s01-the-question_files/figure-html/fig-map-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;28.1: The shape of every statistical question. Arithmetic on a sample is safe and mechanical. The arrow that goes back — from the number you computed to a claim about everyone — is the one that can be wrong while everything on the page looks fine.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>That picture splits the subject in two. <strong>Describing</strong> your sample is arithmetic: the mean of the 237 usable scores <em>is</em> 65.27, and no assumption is needed to say so — <a href="../stats/s02-one-variable.html">S2</a> and <a href="../stats/s03-two-variables.html">S3</a>. <strong>Inferring</strong> something about the population is a <em>claim</em>, it depends on how the sample was collected, and it is only ever true with a margin attached. Nearly everything from <a href="../stats/s04-probability.html">S4</a> onwards exists to make that margin honest.</p>
+</section>
+<section id="the-mechanics" class="level2" data-number="28.3">
+<h2 data-number="28.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">28.3</span> The mechanics</h2>
+<section id="four-things-a-usable-question-names" class="level3" data-number="28.3.1">
+<h3 data-number="28.3.1" class="anchored" data-anchor-id="four-things-a-usable-question-names"><span class="header-section-number">28.3.1</span> Four things a usable question names</h3>
+<p>A question is ready to work on when you can name all four of these. Until then you cannot choose a method, and choosing one anyway wastes a week.</p>
+<ol type="1">
+<li><strong>The unit.</strong> What does one row represent — a student, a submission, a week-of-a-student? Get this wrong and every count you report is wrong.</li>
+<li><strong>The population.</strong> Which units is the answer about? Not “the data”: the group you intend to speak about.</li>
+<li><strong>The estimand.</strong> A number defined on that population, stated precisely enough that someone else would compute the same thing. “How well students do” is not one; “the mean final score” is.</li>
+<li><strong>The design.</strong> How did units get from the population into your table? This is the part people skip, and it decides which conclusions are defensible.</li>
+</ol>
+<p>One legitimate sharpening of our vague question:</p>
+<blockquote class="blockquote">
+<p>Among students arriving from a <em>life sciences</em> background (population), taking a student as the unit, what is the <strong>difference in mean final score</strong> between those who practised <em>more than</em> the group median and those who practised <em>no more than</em> it (estimand)? The data are one past cohort’s recorded outcomes, with nobody assigned to practise (design).</p>
+</blockquote>
+<p>Even the tie rule had to be stated: one life-sciences student practised for exactly the group median, and a definition saying “more” and “less” leaves them in neither group.</p>
+<p>Longer, uglier, answerable — and it makes visible, in that last clause, something the original question hid.</p>
+</section>
+<section id="parameters-and-estimates" class="level3" data-number="28.3.2">
+<h3 data-number="28.3.2" class="anchored" data-anchor-id="parameters-and-estimates"><span class="header-section-number">28.3.2</span> Parameters and estimates</h3>
+<p>The convention is Greek letters for the population and Latin for the sample.</p>
+<table class="caption-top table">
+<caption>The same quantity, in the two places it can live</caption>
+<colgroup>
+<col style="width: 34%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: center;">Population (parameter)</th>
+<th style="text-align: center;">Sample (estimate)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mean</td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\bar{x}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">standard deviation</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(s\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">proportion</td>
+<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\hat{p}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A convention rather than a law — you will meet <span class="math inline">\(\hat{\mu}\)</span> and <span class="math inline">\(\hat{\theta}\)</span> too, where the hat means “estimated from data” — but the distinction is real and load-bearing. <strong>The parameter is fixed and, short of a census, unknown; the estimate is known and varies.</strong> Draw a different 25 students and you will almost certainly compute a different mean; the population mean does not move, because it never depended on who you happened to ask.</p>
+<div id="cell-fig-varies" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-varies" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-varies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s01-the-question_files/figure-html/fig-varies-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-varies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;28.2: Forty-five imaginary studies, each measuring 25 students from the same population and reporting their mean score. The dashed line is the population mean. It does not move; the dots do. Every real study you will ever read is one dot, reported without the rest of the picture.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>That spread is not a defect in anyone’s work. It is what sampling <em>is</em>, and <a href="../stats/s07-sampling.html">S7</a> puts a number on it.</p>
+</section>
+<section id="what-kind-of-variable-is-it" class="level3" data-number="28.3.3">
+<h3 data-number="28.3.3" class="anchored" data-anchor-id="what-kind-of-variable-is-it"><span class="header-section-number">28.3.3</span> What kind of variable is it?</h3>
+<p>The type of a variable decides which arithmetic on it means anything.</p>
+<table class="caption-top table">
+<caption>Five of the cohort’s columns by type</caption>
+<colgroup>
+<col style="width: 24%">
+<col style="width: 30%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">What that permits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>final_score</code></td>
+<td style="text-align: left;">quantitative, continuous</td>
+<td style="text-align: left;">mean, differences, spread</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>background</code></td>
+<td style="text-align: left;">categorical, nominal</td>
+<td style="text-align: left;">counts, proportions, mode</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>completed</code></td>
+<td style="text-align: left;">categorical, binary</td>
+<td style="text-align: left;">counts, proportions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>started_on</code></td>
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">ordering, gaps, counts per day</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>student_id</code></td>
+<td style="text-align: left;">label</td>
+<td style="text-align: left;">nothing — it is a name, not a number</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quantitative splits into continuous and discrete.</strong> A count — submissions, faults, siblings — is discrete: nothing lies between 3 and 4. Time, mass or a score on a fine scale is continuous, and the distinction drives the choice of model in <a href="../stats/s06-distributions.html">S6</a>. It is about the quantity, not the file: <code>final_score</code> is recorded to one decimal, so the stored values are strictly discrete, but the thing measured varies continuously.</p>
+<p><strong>Categorical splits into nominal and ordinal.</strong> Nominal categories have no order — asking whether Computing is “more than” Engineering is meaningless. Ordinal ones are ordered but not evenly spaced: a satisfaction rating, a degree classification. A median is safe there; a <em>mean</em> assumes the gap from 1 to 2 matches the gap from 4 to 5, which nobody has checked and which is usually false. It is done constantly anyway; do it knowing that you are.</p>
+</section>
+<section id="where-the-sample-came-from" class="level3" data-number="28.3.4">
+<h3 data-number="28.3.4" class="anchored" data-anchor-id="where-the-sample-came-from"><span class="header-section-number">28.3.4</span> Where the sample came from</h3>
+<p>Three designs, in decreasing order of how much they let you say. A <strong>census</strong> measures every unit, so there is no inference left to do — rare, and usually impossible. A <strong>simple random sample</strong> gives every unit the same chance of selection, and is what the rest of this track assumes when it says “random”. A <strong>convenience sample</strong> is whoever was available: the people who replied, the users who opted in, the cohort whose records were kept.</p>
+<p>“Random” alone is not enough. A design that samples one subgroup with probability 0.9 and another with probability 0.1 is perfectly random and systematically skewed; such designs are legitimate, and the analysis then has to weight each unit by the reciprocal of its selection probability. And note what even equal chances promise: not that any one sample resembles the population, but that the <em>procedure</em> has no systematic preference and that the variability is quantifiable.</p>
+<p>Two consequences, both denied in practice constantly.</p>
+<p><strong>Sample size does not fix a bad design.</strong> If the mechanism that put units in your table is related to what you are measuring, more data makes the estimate more precisely wrong. A 1936 US election poll collected 2.4 million responses and called the wrong winner, beaten by a survey of a few thousand: two million of the wrong people is still the wrong people.</p>
+<p><strong>Observational is not experimental.</strong> In an experiment the investigator assigns the treatment — who practises more is decided by a coin, not by the student — so a difference in outcome can be laid at the treatment’s door. Our cohort is observational, and students who chose more hours differ from those who chose fewer in every other way too.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="28.4">
+<h2 data-number="28.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">28.4</span> Worked example</h2>
+<p><strong>One vague question, three precise ones, two opposite answers.</strong></p>
+<p>Every analysis on this dataset starts by deciding which rows are usable. The file has three planted defects, described in <a href="../python/p09-pandas-cleaning.html">P9</a>.</p>
+<div id="clean" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"rows in the file </span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss">   usable </span><span class="sc">{</span><span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss">   "</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"excluded </span><span class="sc">{</span><span class="bu">len</span>(cohort) <span class="op">-</span> <span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rows in the file 240   usable 237   excluded 3</code></pre>
+</div>
+</div>
+<p>One row has no recorded score, one has no background, and one scores 187 out of 100. Every unit in these notes that filters on score <em>and</em> group analyses these same 237 students.</p>
+<p>Now three sharpenings of <em>does practice help?</em></p>
+<p><strong>Question A — across the whole cohort.</strong> Split the 237 at the median number of hours — above it against at-or-below it — and compare mean final scores.</p>
+<div id="question-a" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>split <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].median()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>more <span class="op">=</span> usable[usable[<span class="st">"hours_practice"</span>] <span class="op">&gt;</span> split][<span class="st">"final_score"</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>less <span class="op">=</span> usable[usable[<span class="st">"hours_practice"</span>] <span class="op">&lt;=</span> split][<span class="st">"final_score"</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"median hours of practice : </span><span class="sc">{</span>split<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"practised less  n=</span><span class="sc">{</span><span class="bu">len</span>(less)<span class="sc">:&gt;3}</span><span class="ss">   mean </span><span class="sc">{</span>less<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"practised more  n=</span><span class="sc">{</span><span class="bu">len</span>(more)<span class="sc">:&gt;3}</span><span class="ss">   mean </span><span class="sc">{</span>more<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   difference </span><span class="sc">{</span>more<span class="sc">.</span>mean() <span class="op">-</span> less<span class="sc">.</span>mean()<span class="sc">:+.2f}</span><span class="ss"> marks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>median hours of practice : 15.2
+practised less  n=121   mean 68.01
+practised more  n=116   mean 62.40   difference -5.61 marks</code></pre>
+</div>
+</div>
+<p>The students who practised more scored <strong>5.61 marks lower</strong> on average. On this reading, practice looks harmful.</p>
+<p><strong>Question B — within each background.</strong> The same comparison, and the same tie rule, but each group split at its own median, so students are only ever compared with others who arrived in a similar position.</p>
+<div id="question-b" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> practice_gap(frame):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Above-median students' mean score minus the rest's."""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    cut <span class="op">=</span> frame[<span class="st">"hours_practice"</span>].median()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    above <span class="op">=</span> frame[<span class="st">"hours_practice"</span>] <span class="op">&gt;</span> cut</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frame[above][<span class="st">"final_score"</span>].mean() <span class="op">-</span> frame[<span class="op">~</span>above][<span class="st">"final_score"</span>].mean()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>by_group <span class="op">=</span> usable.groupby(<span class="st">"background"</span>).<span class="bu">apply</span>(practice_gap, include_groups<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(by_group.<span class="bu">round</span>(<span class="dv">2</span>).to_string())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>background
+Computing                 4.10
+Engineering               5.14
+Life sciences             7.63
+Mathematics or Physics    5.24
+Social sciences           7.61</code></pre>
+</div>
+</div>
+<p>In <strong>every one of the five groups</strong> the above-median students scored higher, by between 4.10 and 7.63 marks. On this reading, practice helps, and helps consistently.</p>
+<div id="cell-fig-reversal" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-reversal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reversal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s01-the-question_files/figure-html/fig-reversal-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reversal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;28.3: The same 237 students, summarised two ways. Each line joins the mean score of a set’s at-or-below-median students to that of its above-median students. The five indigo lines split their own background group at that group’s median; the orange line splits the whole cohort at the overall median (121 students against 116, the three exactly on 15.2 hours counting as at-or-below). Five lines up, one line down.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Both answers are correct arithmetic on the same 237 rows. They point in opposite directions because they answer different questions, and the reason is in the data.</p>
+<div id="why" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(usable.groupby(<span class="st">"background"</span>)[columns].mean()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      .sort_values(<span class="st">"hours_practice"</span>).<span class="bu">round</span>(<span class="dv">1</span>).to_string())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        diagnostic_score  hours_practice  final_score
+background                                                           
+Mathematics or Physics              89.3             8.0         75.3
+Engineering                         72.4            10.5         67.2
+Computing                           68.9            12.5         65.9
+Life sciences                       47.3            22.6         60.5
+Social sciences                     39.5            27.4         60.2</code></pre>
+</div>
+</div>
+<p>Students from Mathematics or Physics start furthest ahead and practise least; those from life and social sciences start furthest behind and practise most. So Question A compares a mostly-life-and-social-sciences half against a mostly-quantitative half: a comparison of <em>backgrounds</em> wearing the costume of a comparison of <em>practice</em>. Question B holds background fixed and asks the question you meant. The reversal has a name and a large literature, and <a href="../stats/s12-going-wrong.html">S12</a> gives it both.</p>
+<p><strong>Question C — would practising more raise <em>your</em> score?</strong> This is what a student actually wants to know, and the data cannot answer it. Nobody assigned hours of practice, and whatever made a student choose more of them — anxiety, spare time, having further to go — is unmeasured. Question B is closer to the causal question than Question A, and it is still an association among students who chose their own hours.</p>
+<p>Saying so is not a failure of the analysis. It is the analysis.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="28.5">
+<h2 data-number="28.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">28.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> Classify each of these variables as quantitative continuous, quantitative discrete, categorical nominal, categorical ordinal, or a label:</p>
+<ol type="a">
+<li>a student’s postcode;</li>
+<li>the number of assignments a student submitted;</li>
+<li>a satisfaction rating on a scale of 1 (poor) to 5 (excellent);</li>
+<li>time taken to complete an exam, in minutes;</li>
+<li>degree classification: third, 2:2, 2:1, first.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><strong>Nominal categorical.</strong> A postcode contains digits, which tempts people to treat it as a number, but the arithmetic is meaningless — there is no sense in which AL10 is twice AL5.</p></li>
+<li><p><strong>Quantitative discrete.</strong> A count. Nothing lies between 3 and 4 submissions.</p></li>
+<li><p><strong>Ordinal categorical.</strong> Ordered — 4 really is better than 3 — but the gaps are not known to be equal. The median is safe. The mean is a convention that assumes equal spacing; it is reported everywhere, and it is worth knowing that you are making an assumption when you report it.</p></li>
+<li><p><strong>Quantitative continuous.</strong> If it is recorded to the nearest minute the stored values are whole numbers, but the underlying quantity is continuous and you would model it that way.</p></li>
+<li><p><strong>Ordinal categorical</strong>, for the same reason as (c). Whether the gap between a 2:2 and a 2:1 is the same as the gap between a 2:1 and a first is not a question the scale answers.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> A colleague asks: <em>“Do students who use the discussion forum do better?”</em></p>
+<p>Rewrite it as a question you could work on. Name the unit, the population, the estimand and the design, and then name one conclusion the design will not support.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is no single right answer — that is the point of the exercise — but a usable one names all four. For example:</p>
+<ul>
+<li><strong>Unit:</strong> one student.</li>
+<li><strong>Population:</strong> students enrolled on this module in a given year. (If you want to speak about future cohorts, say so, and be ready to defend it.)</li>
+<li><strong>Estimand:</strong> the difference in mean final score between students who posted at least once and students who never posted.</li>
+<li><strong>Design:</strong> observational, from the module’s own records; nobody was assigned to use the forum.</li>
+</ul>
+<p><strong>What it will not support:</strong> that using the forum <em>causes</em> better marks. The students who post are self-selected, and engagement, confidence and available time all plausibly drive both posting and marks. Also worth stating: “at least one post” is a decision you made, not a fact about the world, and the answer may depend on it. Write it down so the choice is visible rather than buried.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> A satisfaction survey is posted on a course forum. Of 900 enrolled students, 180 reply, and their mean rating is 4.2 out of 5.</p>
+<ol type="a">
+<li>What population is 4.2 an estimate for?</li>
+<li>Name two mechanisms that could make it a poor estimate of the mean rating of all 900.</li>
+<li>Would surveying twice as many students the same way fix the problem?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Two different things are being run together, and separating them is the point. As a <strong>description</strong>, 4.2 is the mean rating of the 180 people who replied, and that needs no assumption at all. As an <strong>estimate</strong> it targets whichever population you nominate — nominate all 900 and 4.2 is an estimate of their mean rating, a biased one unless repliers resemble non-repliers <em>in respect of satisfaction</em>. Bias is a property of how good the estimate is, not of whether it is one. The population it describes for free and the population it is offered as evidence about are different, and that gap is the finding.</p></li>
+<li><p>Any two of: <strong>self-selection</strong> — people with strong opinions, in either direction, are likelier to answer; <strong>undercoverage</strong> — the survey lives on a forum, so students who do not read the forum cannot reply, and forum readers are plausibly more engaged; <strong>timing</strong> — a survey posted in week 12 misses everyone who dropped out, who are unlikely to have been the satisfied ones.</p></li>
+<li><p><strong>No.</strong> Surveying more people the same way leaves the mechanism intact. The estimate would become more precise and no less biased: a tighter cluster around the wrong number. Only a change of <em>design</em> — chasing non-respondents, sampling from the enrolment register rather than the forum — helps. Note too that the ceiling here is 900: at some point you cannot buy precision with more people at all, and everything left is bias.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="28.6">
+<h2 data-number="28.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">28.6</span> Check it in Python</h2>
+<p>Two claims in this unit are worth checking rather than believing: that the cleaning step removes three rows and no more, and that the reversal is real rather than a slip in the reading.</p>
+<div id="counts" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(cohort) <span class="op">==</span> <span class="dv">240</span>, <span class="ss">f"expected 240 rows, got </span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(usable) <span class="op">==</span> <span class="dv">237</span>, <span class="ss">f"expected 237 usable, got </span><span class="sc">{</span><span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>dropped <span class="op">=</span> cohort.loc[<span class="op">~</span>cohort.index.isin(usable.index)]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dropped[[<span class="st">"student_id"</span>, <span class="st">"background"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    student_id     background  hours_practice  final_score
+17       S0018      Computing            14.3          NaN
+102      S0103            NaN            26.4         66.2
+188      S0189  Life sciences            23.1        187.0</code></pre>
+</div>
+</div>
+<p>One missing score, one missing background, one impossible score. Exactly the three defects the dataset documents, and no accidental fourth.</p>
+<p>Now the reversal. <code>practice_gap</code> is written once and applied to the whole cohort and to each group, so if the answers differ it is the data doing it rather than two slightly different calculations.</p>
+<div id="gap" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>overall <span class="op">=</span> practice_gap(usable)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"whole cohort : </span><span class="sc">{</span>overall<span class="sc">:+.2f}</span><span class="ss">"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"by group     : </span><span class="sc">{</span>by_group<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:+.2f}</span><span class="ss"> to </span><span class="sc">{</span>by_group<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:+.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>whole cohort : -5.61
+by group     : +4.10 to +7.63</code></pre>
+</div>
+</div>
+<p>A reasonable person, having seen the whole-cohort number, would assume the groups agree with it. Assert that, and watch it fail:</p>
+<div id="watch-it-fail" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (by_group <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">all</span>(), (</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"whole cohort gives </span><span class="sc">{</span>overall<span class="sc">:+.2f}</span><span class="ss">, but "</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>(by_group <span class="op">&gt;</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span><span class="bu">len</span>(by_group)<span class="sc">}</span><span class="ss"> groups disagree in sign"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> (by_group &lt; <span class="ansi-green-fg">0</span>).all(), (
+<span class="ansi-green-fg">      2</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">whole cohort gives </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>overall<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">+.2f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">, but </span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      3</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>(by_group<span style="color:rgb(188,188,188)"> </span>&gt;<span style="color:rgb(188,188,188)"> </span><span class="ansi-green-fg">0</span>).sum()<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> of </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(by_group)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> groups disagree in sign</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      4</span> )
+
+<span class="ansi-red-fg">AssertionError</span>: whole cohort gives -5.61, but 5 of 5 groups disagree in sign</pre>
+</div>
+</div>
+</div>
+<p>That is the check doing its job. The assertion is not wrong about the arithmetic; it is wrong about the world, and it says so loudly instead of letting a false assumption travel unnoticed into a report.</p>
+<p>The statement that survives is the one with both halves in it:</p>
+<div id="the-true-check" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (by_group <span class="op">&gt;</span> <span class="dv">0</span>).<span class="bu">all</span>(), <span class="st">"not every group shows a positive gap"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> overall <span class="op">&lt;</span> <span class="dv">0</span>, <span class="st">"the whole-cohort gap is not negative"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"all </span><span class="sc">{</span><span class="bu">len</span>(by_group)<span class="sc">}</span><span class="ss"> groups positive (smallest </span><span class="sc">{</span>by_group<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:+.2f}</span><span class="ss">), "</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"cohort as a whole </span><span class="sc">{</span>overall<span class="sc">:+.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>all 5 groups positive (smallest +4.10), cohort as a whole -5.61</code></pre>
+</div>
+</div>
+<p>Both facts are true at once, and any sentence you write about this dataset has to be compatible with both.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="28.7">
+<h2 data-number="28.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">28.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Choosing the method before stating the question</dt>
+<dd>
+“Which test should I use?” is not a first question, it is a fourth. Until the unit, population, estimand and design are written down, no test is the right one — and the answer is often that you do not need a test at all, you need an estimate with an interval on it.
+</dd>
+<dt>Reporting a sample statistic as if it were the population value</dt>
+<dd>
+“The mean score was 65.3” describes 237 people. “We estimate the mean score of students on this course at about 65” is a claim about a population. The second needs a margin attached and the first does not; sliding from one to the other is how a description quietly becomes an overclaim.
+</dd>
+<dt>Believing that a large sample makes a sample representative</dt>
+<dd>
+Size controls how much your estimate bounces around; the design controls what it is bouncing around. A million self-selected responses estimate the views of self-selecting people very precisely.
+</dd>
+<dt>Reading an association as a lever</dt>
+<dd>
+In the cohort, practising more goes with scoring higher within a background. That does not establish that a given student adding five hours gains five marks. For that you would need the hours to have been assigned, or an argument about what else differs — and the argument is the hard part.
+</dd>
+<dt>Averaging things that do not average</dt>
+<dd>
+The mean of a satisfaction rating assumes the rungs of the ladder are evenly spaced. The mean of a category code is nonsense dressed as a number. If a variable is nominal, count it; if it is ordinal, prefer the median and say what you did.
+</dd>
+<dt>Letting the data pick the question</dt>
+<dd>
+Slicing until something interesting appears and then reporting the slice as though it had been the plan is the commonest way honest people produce false findings. Writing the question down first is a defence precisely because it is dated evidence of what you meant to ask.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="28.8">
+<h2 data-number="28.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">28.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer — if you cannot say <em>why</em>, treat it as wrong.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p>Which of these is an estimand?</p>
+<ol type="a">
+<li><span class="math inline">\(\bar{x} = 65.3\)</span>, the mean score of the 237 usable rows</li>
+<li>The mean final score of all students on this kind of course</li>
+<li>The <code>final_score</code> column</li>
+<li>The decision to exclude three defective rows</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>A dataset records, for each of 60 patients, their blood pressure at four visits. A colleague computes a confidence interval for mean blood pressure and reports it as based on “<span class="math inline">\(n = 240\)</span> independent observations”. What has gone wrong, and what is the unit?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>True or false: taking a random sample guarantees the sample resembles the population.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>In the worked example, Question A and Question B gave answers with opposite signs. Which one was calculated incorrectly?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>You are given the mean of a variable coded 1 = Computing, 2 = Engineering, 3 = Life sciences, 4 = Mathematics or Physics, 5 = Social sciences. It is 2.87. What does that tell you?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(b).</strong> An estimand is a number defined on the <em>population</em>. (a) is an estimate — computed, known, and liable to differ from one sample to the next. (c) is a variable, not a number. (d) is part of the design and analysis plan, which matters enormously but is not a quantity being estimated.</p></li>
+<li><p>The unit has been confused with the measurement. There really are 240 rows and 240 measurements — that part is fine. What is wrong is <em>independent</em>: the <strong>unit is the patient</strong>, so there are only 60 independent units, and four readings from one person carry much less information than four readings from four people. Treating them as 240 independent observations overstates how much you know — <a href="../stats/s08-intervals.html">S8</a> shows exactly what it costs.</p></li>
+<li><p><strong>False</strong>, and the distinction is worth being precise about. Random sampling makes the <em>procedure</em> well behaved: over many repetitions it neither favours nor disfavours any part of the population, and the variability is quantifiable. Any single random sample can still be unlucky, and small ones often are. What random sampling rules out is <em>systematic</em> mismatch, not bad luck.</p></li>
+<li><p><strong>Neither.</strong> Both are correct arithmetic and you can rerun them. They answer different questions — one compares students against the whole cohort, the other only against students from the same background — and there is no rule that two different questions must have answers of the same sign. The mistake would be to report either one as “the effect of practice”.</p></li>
+<li><p><strong>Nothing.</strong> The codes label a nominal variable, so their mean depends entirely on the arbitrary order in which the names were numbered. Renumber the backgrounds in reverse alphabetical order and the “mean” changes while the data do not. Count the categories or report proportions instead.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p><strong><a href="../stats/s02-one-variable.html">S2</a></strong> takes one variable and describes it properly — centre, spread, shape — and shows why a mean on its own is rarely enough. <strong><a href="../stats/s03-two-variables.html">S3</a></strong> does the same for two variables at once, which is where the comparison in this unit’s worked example gets its proper treatment. <strong><a href="../stats/s04-probability.html">S4</a></strong> starts building the machinery that turns a description of a sample into a claim about a population. <strong><a href="../stats/s12-going-wrong.html">S12</a></strong> returns to the reversal above, names it, and shows how to spot the pattern before it embarrasses you.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../maths/m12-directions.html" class="pagination-link" aria-label="Directions in data: eigenvectors and the SVD">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../stats/s02-one-variable.html" class="pagination-link" aria-label="Describing one variable">
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

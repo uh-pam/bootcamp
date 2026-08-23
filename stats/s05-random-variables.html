@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>32&nbsp; Random variables – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../stats/s06-distributions.html" rel="next">
+<link href="../stats/s04-probability.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s05-random-variables.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">32.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">32.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">32.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#the-cumulative-distribution-function" id="toc-the-cumulative-distribution-function" class="nav-link" data-scroll-target="#the-cumulative-distribution-function"><span class="header-section-number">32.3.1</span> The cumulative distribution function</a></li>
+  <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value"><span class="header-section-number">32.3.2</span> Expected value</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><span class="header-section-number">32.3.3</span> Variance</a></li>
+  <li><a href="#the-consequence-everything-else-is-built-on" id="toc-the-consequence-everything-else-is-built-on" class="nav-link" data-scroll-target="#the-consequence-everything-else-is-built-on"><span class="header-section-number">32.3.4</span> The consequence everything else is built on</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">32.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">32.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">32.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">32.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">32.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s05-random-variables.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></h1>
+<p class="subtitle lead">Statistics · Unit 5</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>S5</strong> · Statistics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>S4, M7</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p><a href="../stats/s04-probability.html">S4</a> attached probabilities to <em>events</em>: things that either happen or do not. That is enough for coins and diagnoses and not much else, because you cannot average an event or add two of them together.</p>
+<p>A <strong>random variable</strong> attaches probabilities to <em>numbers</em>, and numbers can be added, averaged and rescaled. Doing so gives you two quantities — the expected value and the variance — that turn out to obey simple rules, and those rules are what make the rest of statistics possible. Every standard error you will ever compute is one line of algebra away from the variance rules in this unit.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="32.1">
+<h2 data-number="32.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">32.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>compute and interpret a conditional probability — <a href="../stats/s04-probability.html">S4</a>;</li>
+<li>say why <span class="math inline">\(P(A \cap B) = P(A)P(B)\)</span> needs independence — <a href="../stats/s04-probability.html">S4</a>;</li>
+<li>read an integral as the area under a curve — <a href="../maths/m07-accumulation.html">M7</a>;</li>
+<li>compute a mean and a variance from data — <a href="../stats/s02-one-variable.html">S2</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> A fair six-sided die is rolled. What is the probability of rolling a 3, and what is the probability of rolling <em>at most</em> 3?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(P(X = 3) = 1/6\)</span>, and <span class="math inline">\(P(X \le 3) = 3/6 = 1/2\)</span>.</p>
+<p>You have just used both of the functions this unit is about. The first is the <strong>probability mass function</strong>, evaluated at one value; the second is the <strong>cumulative distribution function</strong>, which accumulates everything up to a value.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="32.2">
+<h2 data-number="32.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">32.2</span> The idea</h2>
+<p>A <strong>random variable</strong> is a rule that assigns a number to each outcome of a random process. Roll a die, record the face: that is a random variable. Pick a student from the cohort at random, record their final score: so is that.</p>
+<p>The convention is a capital letter for the variable and a lower-case letter for a value it might take, so <span class="math inline">\(P(X = x)\)</span> reads “the probability that the random variable <span class="math inline">\(X\)</span> turns out to equal the particular number <span class="math inline">\(x\)</span>”. The distinction is worth respecting: <span class="math inline">\(X\)</span> is the <em>procedure</em>, <span class="math inline">\(x\)</span> is <em>one result</em>.</p>
+<p>Random variables come in two kinds, and the difference is not a technicality. (Strictly there is a third possibility — a variable can be part lump, part smooth, like a rainfall total that is exactly zero on dry days and continuous otherwise. Such mixtures are real and are handled by combining the two cases; nothing else in these notes needs them.)</p>
+<div id="cell-fig-mass-density" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-mass-density" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mass-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s05-random-variables_files/figure-html/fig-mass-density-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;32.1: Two ways of carrying a probability. On the left each bar’s height is a probability and the six heights add to 1. On the right the curve’s height is not a probability at all — only the shaded area is, and the total area under the whole curve is 1.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <strong>discrete</strong> random variable takes values you can list — 0, 1, 2, … — and each one carries a probability of its own. The function <span class="math inline">\(p(x) = P(X = x)\)</span> is the <strong>probability mass function</strong>, and its values are genuine probabilities: between 0 and 1, adding to 1 across all the values.</p>
+<p>A <strong>continuous</strong> random variable is one whose probabilities are given by a density, and for such a variable <strong>the probability of any single exact value is zero.</strong> That is a consequence of the definition rather than of having infinitely many values — a variable can have infinitely many possible values and still put a lump of probability on one of them, as the rainfall example does on zero. Under a density there are no lumps, so asking “what is the probability of a score of exactly 64.7?” has the answer 0, and that is not a defect in the question but a fact about the model.</p>
+<p>What carries the probability instead is <strong>area</strong>. A continuous variable is described by a <strong>probability density function</strong> <span class="math inline">\(f(x)\)</span>, and</p>
+<p><span class="math display">\[
+P(a \le X \le b) = \int_a^b f(x)\,dx ,
+\]</span></p>
+<p>the area under the density between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. This is why <a href="../maths/m07-accumulation.html">M7</a> exists in these notes: a probability, for a continuous variable, is an integral, and it obeys the rules of integration because that is what it is.</p>
+<p>Two consequences follow immediately. The total area under a density is 1. And <span class="math inline">\(f(x)\)</span> itself is <em>not</em> a probability — it can exceed 1 quite legitimately, as long as the width it applies over is small enough that the area does not.</p>
+</section>
+<section id="the-mechanics" class="level2" data-number="32.3">
+<h2 data-number="32.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">32.3</span> The mechanics</h2>
+<section id="the-cumulative-distribution-function" class="level3" data-number="32.3.1">
+<h3 data-number="32.3.1" class="anchored" data-anchor-id="the-cumulative-distribution-function"><span class="header-section-number">32.3.1</span> The cumulative distribution function</h3>
+<p>One function works for both kinds:</p>
+<p><span class="math display">\[
+F(x) = P(X \le x) .
+\]</span></p>
+<p>It runs from 0 up to 1, never decreases, and for a continuous variable it is the accumulated area from the left — so <span class="math inline">\(F\)</span> is an antiderivative of <span class="math inline">\(f\)</span>, exactly as <a href="../maths/m07-accumulation.html">M7</a>’s fundamental theorem describes. Every “probability of being below this value” that you will meet in <a href="../stats/s07-sampling.html">S7</a> and <a href="../stats/s09-tests.html">S9</a> is a value of <span class="math inline">\(F\)</span>, and every quantile is a value of <span class="math inline">\(F\)</span> read backwards.</p>
+</section>
+<section id="expected-value" class="level3" data-number="32.3.2">
+<h3 data-number="32.3.2" class="anchored" data-anchor-id="expected-value"><span class="header-section-number">32.3.2</span> Expected value</h3>
+<p><span class="math display">\[
+E[X] = \sum_x x\, p(x) \quad \text{(discrete)}
+\qquad
+E[X] = \int_{-\infty}^{\infty} x\, f(x)\, dx \quad \text{(continuous)}
+\]</span></p>
+<p>Read it as a weighted average: every value the variable can take, weighted by how likely it is. It is the long-run average of the results if you repeated the process for ever, and it is written <span class="math inline">\(\mu\)</span> when it belongs to a population — the <span class="math inline">\(\mu\)</span> of <a href="../stats/s01-the-question.html">S1</a>, which the sample mean <span class="math inline">\(\bar{x}\)</span> estimates.</p>
+<div id="cell-fig-balance" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-balance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-balance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s05-random-variables_files/figure-html/fig-balance-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-balance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;32.2: The left-hand distribution from the previous figure, treated as a pile of weights on a plank. The expected value is the point where it balances — which is why an expectation, unlike a median, is dragged about by values far from the centre.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that <span class="math inline">\(E[X] = 1.45\)</span> is not a value the variable can take — you cannot have 1.45 students out of five. An expected value is a balance point, not a prediction.</p>
+<p>Expectation is <strong>linear</strong>, and this is the most useful fact in the unit:</p>
+<p><span class="math display">\[
+E[aX + b] = a\,E[X] + b, \qquad E[X + Y] = E[X] + E[Y] .
+\]</span></p>
+<p>The second holds <strong>whatever the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span></strong> — no independence required. That is unusual and worth remembering, because the corresponding statement about variance is not free at all.</p>
+</section>
+<section id="variance" class="level3" data-number="32.3.3">
+<h3 data-number="32.3.3" class="anchored" data-anchor-id="variance"><span class="header-section-number">32.3.3</span> Variance</h3>
+<p><span class="math display">\[
+\operatorname{Var}(X) = E\bigl[(X - \mu)^2\bigr] = E[X^2] - \mu^2 ,
+\]</span></p>
+<p>with <span class="math inline">\(\sigma = \sqrt{\operatorname{Var}(X)}\)</span> the standard deviation. Same idea as <a href="../stats/s02-one-variable.html">S2</a>’s <span class="math inline">\(s^2\)</span>, now attached to the distribution rather than to a sample. The second form is the one to compute with; the first is the one to understand.</p>
+<p>The rules look similar to expectation’s and are importantly different:</p>
+<p><span class="math display">\[
+\operatorname{Var}(aX + b) = a^2 \operatorname{Var}(X),
+\qquad
+\operatorname{Var}(X + Y) = \operatorname{Var}(X) + \operatorname{Var}(Y)
+\;\; \text{if } X \text{ and } Y \text{ are independent.}
+\]</span></p>
+<p>Three things to take from that pair.</p>
+<p><strong>Adding a constant does nothing.</strong> Shifting every value by <span class="math inline">\(b\)</span> moves the mean by <span class="math inline">\(b\)</span> and leaves every deviation from the mean unchanged.</p>
+<p><strong>Scaling squares.</strong> Double a variable and its variance quadruples, so its standard deviation doubles. Variance lives in squared units; standard deviations are the ones that scale the way intuition expects.</p>
+<p><strong>The sum needs a condition, and it matters.</strong> The general statement is always <span class="math inline">\(\operatorname{Var}(X + Y) = \operatorname{Var}(X) + \operatorname{Var}(Y) +
+2\operatorname{Cov}(X, Y)\)</span>, with the covariance of <a href="../stats/s03-two-variables.html">S3</a> in it, and the two terms add cleanly exactly when that covariance is zero. Independence guarantees a zero covariance, which is why it is the condition usually quoted, but it is stronger than necessary: two variables can be uncorrelated and still dependent. Assuming a zero covariance you do not have is how a standard error comes out too small, and a confidence interval too narrow.</p>
+</section>
+<section id="the-consequence-everything-else-is-built-on" class="level3" data-number="32.3.4">
+<h3 data-number="32.3.4" class="anchored" data-anchor-id="the-consequence-everything-else-is-built-on"><span class="header-section-number">32.3.4</span> The consequence everything else is built on</h3>
+<p>Put <span class="math inline">\(n\)</span> independent copies of <span class="math inline">\(X\)</span>, each with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, and average them. Expectation is linear, so the mean of the average is <span class="math inline">\(\mu\)</span>. Variance scales by <span class="math inline">\(a^2\)</span> with <span class="math inline">\(a = 1/n\)</span>, and adds across independent terms, so</p>
+<p><span class="math display">\[
+\operatorname{Var}(\bar{X}) = \frac{1}{n^2}\, n \sigma^2 = \frac{\sigma^2}{n},
+\qquad
+\text{sd}(\bar{X}) = \frac{\sigma}{\sqrt{n}} .
+\]</span></p>
+<p>That quantity <span class="math inline">\(\sigma/\sqrt{n}\)</span> is the <strong>standard error</strong> of the mean, and the <span class="math inline">\(\sqrt{n}\)</span> in its denominator is the reason precision is expensive: to halve the standard error you need four times the data. <a href="../stats/s07-sampling.html">S7</a> does nothing but explore this formula, and <a href="../stats/s08-intervals.html">S8</a> puts it to work. It fell out of two lines of algebra here.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="32.4">
+<h2 data-number="32.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">32.4</span> Worked example</h2>
+<p><strong>A student drawn at random.</strong></p>
+<p>Define <span class="math inline">\(X\)</span> to be the final score of one student chosen uniformly at random from the cohort’s 238 usable records. That is a genuine random variable, and because we can see the whole population it is one whose <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> we can compute exactly rather than estimate.</p>
+<div id="population" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> scores.mean()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> scores.std(ddof<span class="op">=</span><span class="dv">0</span>)      <span class="co"># ddof=0: these 238 ARE the population here</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E[X]     = </span><span class="sc">{</span>mu<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(X)   = </span><span class="sc">{</span>sigma<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"sd(X)    = </span><span class="sc">{</span>sigma<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"check: E[X^2] - mu^2 = </span><span class="sc">{</span>(scores<span class="op">**</span><span class="dv">2</span>)<span class="sc">.</span>mean() <span class="op">-</span> mu<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>E[X]     = 65.2718
+Var(X)   = 69.9982
+sd(X)    = 8.3665
+check: E[X^2] - mu^2 = 69.9982</code></pre>
+</div>
+</div>
+<p>Note the <code>ddof=0</code>. <a href="../stats/s02-one-variable.html">S2</a> used <span class="math inline">\(n-1\)</span> because it was <em>estimating</em> a population from a sample; here the 238 records are the entire population we are drawing from, so there is nothing to correct for.</p>
+<p>Now the rules. Rescale to a 0–1 fraction, <span class="math inline">\(Y = X/100\)</span>:</p>
+<div id="rescale" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fractions <span class="op">=</span> scores <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E[Y]   predicted </span><span class="sc">{</span>mu <span class="op">/</span> <span class="dv">100</span><span class="sc">:.4f}</span><span class="ss">      actual </span><span class="sc">{</span>fractions<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(Y) predicted </span><span class="sc">{</span>sigma<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">100</span><span class="op">**</span><span class="dv">2</span><span class="sc">:.6f}</span><span class="ss">   actual </span><span class="sc">{</span>fractions<span class="sc">.</span>var(ddof<span class="op">=</span><span class="dv">0</span>)<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>E[Y]   predicted 0.6527      actual 0.6527
+Var(Y) predicted 0.007000   actual 0.007000</code></pre>
+</div>
+</div>
+<p>The variance fell by a factor of <span class="math inline">\(100^2\)</span>, not 100. Squared units.</p>
+<p>Now the part people get wrong. Draw <em>two</em> students independently and add their scores; compare that with drawing <em>one</em> student and doubling.</p>
+<div id="sum-vs-double" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>two_students <span class="op">=</span> rng.choice(scores, size<span class="op">=</span>(<span class="dv">120_000</span>, <span class="dv">2</span>)).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>one_doubled <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> rng.choice(scores, size<span class="op">=</span><span class="dv">120_000</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"X1 + X2 : mean </span><span class="sc">{</span>two_students<span class="sc">.</span>mean()<span class="sc">:7.2f}</span><span class="ss">   sd </span><span class="sc">{</span>two_students<span class="sc">.</span>std()<span class="sc">:6.2f}</span><span class="ss">"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   predicted sd </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(<span class="dv">2</span>) <span class="op">*</span> sigma<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2X      : mean </span><span class="sc">{</span>one_doubled<span class="sc">.</span>mean()<span class="sc">:7.2f}</span><span class="ss">   sd </span><span class="sc">{</span>one_doubled<span class="sc">.</span>std()<span class="sc">:6.2f}</span><span class="ss">"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   predicted sd </span><span class="sc">{</span><span class="dv">2</span> <span class="op">*</span> sigma<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X1 + X2 : mean  130.52   sd  11.81   predicted sd 11.83
+2X      : mean  130.54   sd  16.74   predicted sd 16.73</code></pre>
+</div>
+</div>
+<div id="cell-fig-sum" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-sum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s05-random-variables_files/figure-html/fig-sum-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;32.3: Two students’ marks added together, against one student’s mark doubled. Both have expected value 130.5, and the second is 40% more spread out. Independent errors partly cancel; a doubled error cannot cancel with anything.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Same expected total, and the doubled version is 40% wider. Both facts come straight from the rules: expectation is linear either way, but <span class="math inline">\(\operatorname{Var}(X_1 + X_2) = 2\sigma^2\)</span> while <span class="math inline">\(\operatorname{Var}(2X) = 4\sigma^2\)</span>, and <span class="math inline">\(\sqrt{4}/\sqrt{2} = \sqrt{2} = 1.41\)</span>.</p>
+<p>The intuition behind the algebra: two independent students can be unlucky in opposite directions and partly cancel. One student, counted twice, cannot cancel with anything — whatever they did, it happens twice over.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="32.5">
+<h2 data-number="32.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">32.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> A random variable <span class="math inline">\(X\)</span> takes the value 0 with probability 0.7 and 1 with probability 0.3.</p>
+<ol type="a">
+<li>Find <span class="math inline">\(E[X]\)</span> and <span class="math inline">\(\operatorname{Var}(X)\)</span>.</li>
+<li>Now let <span class="math inline">\(S = X_1 + X_2 + \dots + X_{10}\)</span> be the sum of ten independent copies. Find <span class="math inline">\(E[S]\)</span> and <span class="math inline">\(\operatorname{Var}(S)\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(E[X] = 0(0.7) + 1(0.3) = 0.3\)</span>. For the variance, note that <span class="math inline">\(X^2 = X\)</span> here because <span class="math inline">\(0^2 = 0\)</span> and <span class="math inline">\(1^2 = 1\)</span>, so <span class="math inline">\(E[X^2] = 0.3\)</span> and</p>
+<p><span class="math display">\[\operatorname{Var}(X) = 0.3 - 0.3^2 = 0.3 \times 0.7 = 0.21 .\]</span></p>
+<p>That shortcut generalises: a variable that is 1 with probability <span class="math inline">\(p\)</span> and 0 otherwise has mean <span class="math inline">\(p\)</span> and variance <span class="math inline">\(p(1-p)\)</span>.</p></li>
+<li><p><span class="math inline">\(E[S] = 10 \times 0.3 = 3\)</span>, and by independence <span class="math inline">\(\operatorname{Var}(S) = 10 \times 0.21 = 2.1\)</span>, so <span class="math inline">\(\text{sd}(S) = 1.45\)</span>.</p>
+<p>A common wrong answer is <span class="math inline">\(\text{sd}(S) = 10 \times 0.458 = 4.58\)</span> — multiplying the standard deviation by 10 rather than the variance. Standard deviations do not add; variances do.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> A continuous random variable has density <span class="math inline">\(f(x) = 2x\)</span> for <span class="math inline">\(0 \le x \le 1\)</span>, and zero elsewhere.</p>
+<ol type="a">
+<li>Check that it really is a density.</li>
+<li>Find <span class="math inline">\(P(X \le 0.5)\)</span>.</li>
+<li>Find <span class="math inline">\(E[X]\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>A density must be non-negative — <span class="math inline">\(2x \ge 0\)</span> on <span class="math inline">\([0,1]\)</span> — and must enclose a total area of 1:</p>
+<p><span class="math display">\[\int_0^1 2x \, dx = \bigl[x^2\bigr]_0^1 = 1 . \checkmark\]</span></p>
+<p>Note in passing that <span class="math inline">\(f(1) = 2 &gt; 1\)</span>. A density is allowed to exceed 1; only its integral is constrained.</p></li>
+<li><p><span class="math inline">\(P(X \le 0.5) = \int_0^{0.5} 2x\,dx = \bigl[x^2\bigr]_0^{0.5} = 0.25\)</span>. Not 0.5 — the density puts more weight on the right, so the left half of the range holds less than half the probability.</p></li>
+<li><p><span class="math inline">\(E[X] = \int_0^1 x \cdot 2x \, dx = \int_0^1 2x^2 dx =
+\bigl[\tfrac{2}{3}x^3\bigr]_0^1 = \tfrac{2}{3}\)</span>.</p>
+<p>Sanity check: <span class="math inline">\(2/3\)</span> is to the right of the middle of the range, which matches a density that rises towards 1.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> Two exam papers are each marked out of 50. A student’s marks <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> each have mean 30 and standard deviation 8.</p>
+<ol type="a">
+<li>What is the expected total, <span class="math inline">\(E[X + Y]\)</span>?</li>
+<li>What is <span class="math inline">\(\text{sd}(X+Y)\)</span> if the two marks are independent?</li>
+<li>In reality a strong student tends to do well on both. Does the true standard deviation of the total go up or down relative to (b)?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(E[X+Y] = 30 + 30 = 60\)</span>, and this needs <strong>no</strong> assumption about independence. Linearity of expectation is unconditional.</p></li>
+<li><p><span class="math inline">\(\operatorname{Var}(X+Y) = 64 + 64 = 128\)</span>, so <span class="math inline">\(\text{sd} = \sqrt{128} = 11.3\)</span>. Note this is well below <span class="math inline">\(8 + 8 = 16\)</span>.</p></li>
+<li><p><strong>Up.</strong> With positive correlation the covariance term is positive:</p>
+<p><span class="math display">\[\operatorname{Var}(X+Y) = 64 + 64 + 2\operatorname{Cov}(X, Y) &gt; 128 .\]</span></p>
+<p>At the extreme of a perfect positive relationship, <span class="math inline">\(Y = X\)</span>, the total is <span class="math inline">\(2X\)</span> with standard deviation 16 — the case in this unit’s worked example. Independence is what lets the two marks partly cancel; correlation removes that cancellation. Assuming independence when it does not hold makes your stated uncertainty too small, which is the dangerous direction to be wrong in.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="32.6">
+<h2 data-number="32.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">32.6</span> Check it in Python</h2>
+<p>The expected value is a long-run average, and that is a claim you can watch come true. Draw students one at a time and keep a running mean.</p>
+<div id="lln" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>draws <span class="op">=</span> rng.choice(scores, size<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>running <span class="op">=</span> np.cumsum(draws) <span class="op">/</span> np.arange(<span class="dv">1</span>, draws.size <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">2000</span>]:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"after </span><span class="sc">{</span>k<span class="sc">:&gt;4}</span><span class="ss"> draws: running mean </span><span class="sc">{</span>running[k<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">   "</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"gap from E[X] </span><span class="sc">{</span>running[k<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> mu<span class="sc">:+.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>after   10 draws: running mean 61.170   gap from E[X] -4.102
+after  100 draws: running mean 63.972   gap from E[X] -1.300
+after 1000 draws: running mean 64.993   gap from E[X] -0.279
+after 2000 draws: running mean 65.120   gap from E[X] -0.152</code></pre>
+</div>
+</div>
+<p>The gap shrinks, unsteadily — this is the <strong>law of large numbers</strong>, and note what it does and does not promise. The running mean converges to <span class="math inline">\(\mu\)</span>; it does not promise the gap shrinks at every step, and it says nothing at all about any individual draw.</p>
+<p>Next, the variance rules, all three at once:</p>
+<div id="rules" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pairs <span class="op">=</span> rng.choice(scores, size<span class="op">=</span>(<span class="dv">200_000</span>, <span class="dv">2</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> pairs[:, <span class="dv">0</span>], pairs[:, <span class="dv">1</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(X)          </span><span class="sc">{</span>X<span class="sc">.</span>var()<span class="sc">:9.4f}</span><span class="ss">   (population value </span><span class="sc">{</span>sigma<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(X + 10)     </span><span class="sc">{</span>(X <span class="op">+</span> <span class="dv">10</span>)<span class="sc">.</span>var()<span class="sc">:9.4f}</span><span class="ss">   predicted </span><span class="sc">{</span>sigma<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(3X)         </span><span class="sc">{</span>(<span class="dv">3</span><span class="op">*</span>X)<span class="sc">.</span>var()<span class="sc">:9.4f}</span><span class="ss">   predicted </span><span class="sc">{</span><span class="dv">9</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(X + Y)      </span><span class="sc">{</span>(X <span class="op">+</span> Y)<span class="sc">.</span>var()<span class="sc">:9.4f}</span><span class="ss">   predicted </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Var(X)            69.8402   (population value 69.9982)
+Var(X + 10)       69.8402   predicted 69.9982
+Var(3X)          628.5615   predicted 629.9842
+Var(X + Y)       139.5885   predicted 139.9965</code></pre>
+</div>
+</div>
+<p>And now the failure mode. The addition rule needs a zero covariance, and it is easy to write code that quietly violates it. Here <span class="math inline">\(Y\)</span> is not a second draw at all — it is the same student again:</p>
+<div id="watch-it-fail" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Y_same <span class="op">=</span> X                      <span class="co"># NOT an independent second draw</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> X <span class="op">+</span> Y_same</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.isclose(total.var(), <span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>, rtol<span class="op">=</span><span class="fl">0.02</span>), (</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Var(X+Y) came out </span><span class="sc">{</span>total<span class="sc">.</span>var()<span class="sc">:.1f}</span><span class="ss">, but the independence rule "</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"predicts </span><span class="sc">{</span><span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span><span class="sc">:.1f}</span><span class="ss">"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> Y_same = X                      <span style="font-style:italic;color:rgb(95,135,135)"># NOT an independent second draw</span>
+<span class="ansi-green-fg">      2</span> total = X + Y_same
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> np.isclose(total.var(), <span class="ansi-green-fg">2</span> * sigma**<span class="ansi-green-fg">2</span>, rtol=<span class="ansi-green-fg">0.02</span>), (
+<span class="ansi-green-fg">      4</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Var(X+Y) came out </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>total.var()<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.1f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">, but the independence rule </span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      5</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">predicts </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span class="ansi-green-fg">2</span><span style="color:rgb(188,188,188)"> </span>*<span style="color:rgb(188,188,188)"> </span>sigma**<span class="ansi-green-fg">2</span><span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.1f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      6</span> )
+
+<span class="ansi-red-fg">AssertionError</span>: Var(X+Y) came out 279.4, but the independence rule predicts 140.0</pre>
+</div>
+</div>
+</div>
+<p>Double, not doubled again: the variance is <span class="math inline">\(4\sigma^2\)</span> because <span class="math inline">\(X + X = 2X\)</span>. In this cell the mistake is obvious. In a real analysis it looks like using the same patient twice, or treating repeated measurements as independent observations, and it inflates nothing visible — the mean comes out fine, and only the stated uncertainty is wrong.</p>
+<div id="covariance-repair" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(X + X)                        </span><span class="sc">{</span>(X <span class="op">+</span> X)<span class="sc">.</span>var()<span class="sc">:9.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Var(X) + Var(X) + 2Cov(X, X)      "</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>X<span class="sc">.</span>var() <span class="op">+</span> X<span class="sc">.</span>var() <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np<span class="sc">.</span>cov(X, X, ddof<span class="op">=</span><span class="dv">0</span>)[<span class="dv">0</span>, <span class="dv">1</span>]<span class="sc">:9.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Var(X + X)                         279.3607
+Var(X) + Var(X) + 2Cov(X, X)       279.3607</code></pre>
+</div>
+</div>
+<p>The general formula, with the covariance term restored, gets it right. The independence version is a special case in which that term happens to be zero.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="32.7">
+<h2 data-number="32.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">32.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Reading a density as a probability</dt>
+<dd>
+<span class="math inline">\(f(x)\)</span> can be greater than 1. It is a probability <em>per unit of <span class="math inline">\(x\)</span></em>, and only an area under it — a density times a width — is a probability. For a continuous variable <span class="math inline">\(P(X = x) = 0\)</span> for every single <span class="math inline">\(x\)</span>.
+</dd>
+<dt>Adding standard deviations</dt>
+<dd>
+Variances add across independent variables; standard deviations do not. Two independent marks with sd 8 give a total with sd <span class="math inline">\(\sqrt{128} = 11.3\)</span>, not 16. Convert to variance, add, convert back.
+</dd>
+<dt>Assuming independence because the code drew twice</dt>
+<dd>
+Independence is a property of the <em>design</em>, not of the number of lines you wrote. Two measurements on the same person, two days from the same week, two students in the same tutorial group — none of these are independent, and each carries a covariance term that the simple addition rule leaves out.
+</dd>
+<dt>Expecting the expected value</dt>
+<dd>
+<span class="math inline">\(E[X] = 1.45\)</span> students, <span class="math inline">\(E[X] = 3.5\)</span> on a die. An expectation is a balance point and often not a possible outcome. It is what the average converges to, not what you should predict for one trial.
+</dd>
+<dt>Believing the law of large numbers applies to short runs</dt>
+<dd>
+It says the <em>average</em> settles down eventually. It does not say a run of bad luck will be compensated by a run of good luck; the earlier draws are simply diluted by the later ones.
+</dd>
+<dt>Using <span class="math inline">\(n-1\)</span> when you have the whole population</dt>
+<dd>
+The correction exists because <span class="math inline">\(\bar{x}\)</span> was estimated from the same data. If the values in front of you are the entire population, divide by <span class="math inline">\(n\)</span>. Getting this wrong is harmless at <span class="math inline">\(n=238\)</span> and material at <span class="math inline">\(n=5\)</span>.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="32.8">
+<h2 data-number="32.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">32.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p><span class="math inline">\(X\)</span> has mean 10 and standard deviation 3. What is the standard deviation of <span class="math inline">\(4X - 7\)</span>?</p>
+<ol type="a">
+<li>5 b. 12 c.&nbsp;33 d.&nbsp;144</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>A continuous random variable has <span class="math inline">\(f(2) = 1.8\)</span>. Is that a problem?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> each have variance 9. Is <span class="math inline">\(\operatorname{Var}(X + Y) = 18\)</span>?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>You average <span class="math inline">\(n\)</span> independent measurements. By what factor must <span class="math inline">\(n\)</span> increase to halve the standard error?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>True or false: <span class="math inline">\(E[X + Y] = E[X] + E[Y]\)</span> requires <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> to be independent.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(b), 12.</strong> <span class="math inline">\(\operatorname{Var}(4X - 7) = 4^2 \times 9 = 144\)</span>, so the standard deviation is <span class="math inline">\(\sqrt{144} = 12\)</span>. Equivalently, multiply the standard deviation by <span class="math inline">\(|4|\)</span>. Option (d) is the variance, offered because reporting a variance where a standard deviation was asked for is the standard slip; the <span class="math inline">\(-7\)</span> affects neither.</p></li>
+<li><p><strong>No.</strong> A density is not a probability; it is a probability per unit of <span class="math inline">\(x\)</span>. A value of 1.8 is fine provided the total area under <span class="math inline">\(f\)</span> is 1 — for instance a variable spread uniformly over an interval of width <span class="math inline">\(0.5\)</span> has density 2 throughout.</p></li>
+<li><p><strong>Only if they are independent</strong> (or, more weakly, uncorrelated). In general <span class="math inline">\(\operatorname{Var}(X+Y) = 9 + 9 + 2\operatorname{Cov}(X,Y)\)</span>, which can be anything from 0 (when <span class="math inline">\(Y = -X\)</span>) to 36 (when <span class="math inline">\(Y = X\)</span>).</p></li>
+<li><p><strong>Four times.</strong> The standard error is <span class="math inline">\(\sigma/\sqrt{n}\)</span>, so halving it needs <span class="math inline">\(\sqrt{n}\)</span> to double, so <span class="math inline">\(n\)</span> to quadruple. This is the single most useful piece of arithmetic in study design, and <a href="../stats/s08-intervals.html">S8</a> returns to it.</p></li>
+<li><p><strong>False</strong>, and this is the asymmetry worth remembering. Linearity of expectation holds for <em>any</em> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, however strongly related. It is the variance rule that needs independence.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p><strong><a href="../stats/s06-distributions.html">S6</a></strong> names the standard families of mass and density functions, and says which real mechanism produces which. <strong><a href="../stats/s07-sampling.html">S7</a></strong> applies <span class="math inline">\(\text{sd}(\bar{X}) = \sigma/\sqrt{n}\)</span> to the sample mean and finds that its shape becomes normal whatever <span class="math inline">\(X\)</span> looked like. <strong><a href="../stats/s08-intervals.html">S8</a></strong> turns the standard error into an interval. <strong><a href="../stats/s11-regression.html">S11</a></strong> treats a fitted slope as a random variable and attaches a standard error to it by exactly the algebra in this unit.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../stats/s04-probability.html" class="pagination-link" aria-label="Probability, conditioning and Bayes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../stats/s06-distributions.html" class="pagination-link" aria-label="Distributions chosen by mechanism">
+        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

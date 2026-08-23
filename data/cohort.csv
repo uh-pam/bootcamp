@@ -1,0 +1,241 @@
+student_id,background,diagnostic_score,hours_practice,final_score,completed,started_on
+S0001,Mathematics or Physics,89.1,12.9,83.6,True,2026-09-23
+S0002,Life sciences,42.4,22.8,56.6,True,2026-09-25
+S0003,Engineering,68.4,1.7,58.5,True,2026-09-25
+S0004,Computing,64.3,7.5,67.5,True,2026-09-24
+S0005,Computing,69.0,13.5,73.8,True,2026-09-24
+S0006,Life sciences,44.9,26.3,67.0,True,2026-09-22
+S0007,Social sciences,46.1,28.6,71.0,True,2026-09-22
+S0008,Mathematics or Physics,97.7,7.6,79.3,True,2026-09-23
+S0009,Life sciences,53.4,26.3,65.2,True,2026-09-25
+S0010,Computing,80.4,18.0,75.5,True,2026-09-23
+S0011,Social sciences,31.9,25.3,53.5,False,2026-09-22
+S0012,Social sciences,41.4,29.8,70.3,True,2026-09-24
+S0013,Life sciences,49.8,18.2,54.8,True,2026-09-21
+S0014,Life sciences,48.4,17.7,58.7,True,2026-09-21
+S0015,Engineering,82.6,13.4,70.6,True,2026-09-22
+S0016,Social sciences,50.7,22.3,57.3,True,2026-09-24
+S0017,Engineering,76.9,11.7,74.4,True,2026-09-25
+S0018,Computing,73.3,14.3,,True,2026-09-21
+S0019,Computing,64.4,16.4,63.3,True,2026-09-21
+S0020,Computing,64.4,8.4,67.4,True,2026-09-23
+S0021,Engineering,75.5,12.5,70.7,True,2026-09-24
+S0022,Computing,69.6,12.5,66.0,True,2026-09-25
+S0023,Life sciences,39.3,27.9,59.5,True,2026-09-23
+S0024,Mathematics or Physics,89.4,4.0,73.5,True,2026-09-21
+S0025,Engineering,73.8,6.6,60.0,True,2026-09-22
+S0026,Computing,74.7,15.0,72.5,True,2026-09-24
+S0027,Mathematics or Physics,89.5,3.6,76.1,True,2026-09-24
+S0028,Life sciences,44.7,16.8,51.6,True,2026-09-22
+S0029,Computing,70.0,16.6,60.0,True,2026-09-23
+S0030,Computing,70.9,14.7,66.4,True,2026-09-22
+S0031,Computing,64.2,1.0,54.4,True,2026-09-23
+S0032,Social sciences,42.2,24.3,63.9,True,2026-09-23
+S0033,Life sciences,57.0,17.6,64.1,True,2026-09-21
+S0034,Life sciences,50.1,24.6,71.1,True,2026-09-21
+S0035,Computing,62.8,18.9,63.1,True,2026-09-25
+S0036,Social sciences,38.5,36.2,73.9,True,2026-09-23
+S0037,Engineering,63.2,13.8,64.0,True,2026-09-21
+S0038,Computing,60.9,8.6,59.3,True,2026-09-23
+S0039,Social sciences,41.3,23.5,44.5,False,2026-09-23
+S0040,Computing,70.4,9.2,67.5,True,2026-09-24
+S0041,Life sciences,42.6,24.0,59.8,True,2026-09-21
+S0042,Computing,59.6,18.1,73.3,True,2026-09-25
+S0043,Computing,63.7,5.3,55.7,True,2026-09-25
+S0044,Life sciences,46.8,24.4,57.8,True,2026-09-25
+S0045,Computing,70.2,16.7,67.2,True,2026-09-21
+S0046,Engineering,75.4,12.3,71.9,True,2026-09-23
+S0047,Life sciences,53.6,34.9,78.9,True,2026-09-22
+S0048,Mathematics or Physics,88.3,9.1,73.1,False,2026-09-25
+S0049,Life sciences,48.3,22.1,56.2,True,2026-09-25
+S0050,Engineering,71.3,13.4,75.2,True,2026-09-25
+S0051,Life sciences,43.5,19.8,54.2,True,2026-09-25
+S0052,Computing,68.8,8.6,61.4,True,2026-09-23
+S0053,Computing,74.8,14.7,69.7,True,2026-09-21
+S0054,Engineering,66.9,15.6,73.7,True,2026-09-21
+S0055,Engineering,77.7,10.1,74.5,True,2026-09-22
+S0056,Life sciences,53.4,25.7,63.5,True,2026-09-22
+S0057,Engineering,72.2,9.5,64.7,True,2026-09-23
+S0058,Computing,71.3,19.5,70.3,True,2026-09-24
+S0059,Mathematics or Physics,82.9,7.9,79.3,True,2026-09-22
+S0060,Life sciences,57.8,24.1,71.6,True,2026-09-23
+S0061,Engineering,76.9,14.1,71.6,True,2026-09-23
+S0062,Computing,70.9,7.6,60.7,True,2026-09-21
+S0063,Engineering,72.3,10.3,68.3,True,2026-09-22
+S0064,Mathematics or Physics,92.3,14.4,82.8,True,2026-09-25
+S0065,Social sciences,34.7,28.1,64.4,True,2026-09-23
+S0066,Social sciences,39.4,33.6,62.0,True,2026-09-24
+S0067,Mathematics or Physics,85.4,10.5,69.7,True,2026-09-22
+S0068,Computing,72.5,5.7,67.8,True,2026-09-21
+S0069,Life sciences,42.6,24.8,57.7,True,2026-09-22
+S0070,Computing,74.5,8.6,72.2,True,2026-09-25
+S0071,Engineering,71.4,12.0,71.0,True,2026-09-25
+S0072,Computing,71.3,11.3,60.2,True,2026-09-23
+S0073,Life sciences,60.8,22.1,66.9,True,2026-09-24
+S0074,Social sciences,42.0,27.7,62.4,True,2026-09-22
+S0075,Social sciences,39.3,29.0,60.5,True,2026-09-25
+S0076,Life sciences,46.2,20.2,58.9,True,2026-09-23
+S0077,Mathematics or Physics,84.8,1.6,63.2,True,2026-09-24
+S0078,Social sciences,43.4,24.0,59.0,True,2026-09-23
+S0079,Mathematics or Physics,98.0,10.7,88.8,True,2026-09-23
+S0080,Computing,70.3,19.9,80.1,True,2026-09-25
+S0081,Computing,78.4,13.9,70.2,True,2026-09-23
+S0082,Life sciences,45.4,25.4,61.1,True,2026-09-24
+S0083,Engineering,63.1,14.9,63.5,True,2026-09-23
+S0084,Mathematics or Physics,86.7,1.5,61.2,True,2026-09-22
+S0085,Mathematics or Physics,84.7,1.0,69.5,True,2026-09-21
+S0086,Life sciences,44.6,21.8,60.6,True,2026-09-23
+S0087,Engineering,75.1,3.4,63.4,True,2026-09-23
+S0088,Life sciences,41.4,20.9,54.4,True,2026-09-21
+S0089,Engineering,71.6,5.1,64.1,True,2026-09-25
+S0090,Social sciences,39.0,25.5,62.1,True,2026-09-22
+S0091,Social sciences,34.3,25.0,59.2,True,2026-09-25
+S0092,Mathematics or Physics,85.5,9.1,73.1,True,2026-09-25
+S0093,Social sciences,38.4,25.4,58.9,True,2026-09-21
+S0094,Life sciences,50.4,17.4,55.9,True,2026-09-23
+S0095,Life sciences,43.0,22.2,55.8,True,2026-09-21
+S0096,Life sciences,42.2,33.9,72.9,True,2026-09-25
+S0097,Engineering,71.3,13.0,68.1,True,2026-09-22
+S0098,Social sciences,39.4,20.2,52.1,True,2026-09-22
+S0099,Computing,67.3,13.4,68.2,True,2026-09-24
+S0100,Life sciences,44.3,32.3,71.3,True,2026-09-24
+S0101,Social sciences,36.8,28.7,56.1,True,2026-09-21
+S0102,Mathematics or Physics,84.6,12.1,73.4,True,2026-09-21
+S0103,,45.1,26.4,66.2,True,2026-09-21
+S0104,Computing,67.2,17.8,72.2,True,2026-09-21
+S0105,Life sciences,53.9,26.2,68.0,True,2026-09-23
+S0106,Mathematics or Physics,87.4,8.1,79.7,True,2026-09-23
+S0107,Life sciences,48.3,21.3,59.6,True,2026-09-22
+S0108,Social sciences,39.9,26.9,51.1,True,2026-09-25
+S0109,Life sciences,40.4,22.5,52.2,True,2026-09-23
+S0110,Computing,63.8,14.7,57.7,False,2026-09-24
+S0111,Life sciences,43.8,16.9,57.7,True,2026-09-21
+S0112,Computing,73.3,11.9,70.5,True,2026-09-22
+S0113,Life sciences,43.1,21.8,57.6,True,2026-09-22
+S0114,Mathematics or Physics,86.7,7.4,62.7,True,2026-09-22
+S0115,Computing,55.5,11.8,49.0,True,2026-09-24
+S0116,Mathematics or Physics,88.0,10.2,76.2,True,2026-09-21
+S0117,Mathematics or Physics,91.6,6.6,67.7,True,2026-09-21
+S0118,Engineering,74.2,9.5,70.7,True,2026-09-24
+S0119,Computing,72.1,8.1,63.1,True,2026-09-21
+S0120,Engineering,70.4,7.9,61.5,True,2026-09-25
+S0121,Life sciences,44.9,22.9,59.0,True,2026-09-21
+S0122,Social sciences,42.2,28.5,58.7,True,2026-09-24
+S0123,Computing,69.3,4.8,53.7,False,2026-09-22
+S0124,Computing,58.5,16.7,54.1,True,2026-09-24
+S0125,Computing,75.1,10.2,67.9,True,2026-09-25
+S0126,Mathematics or Physics,84.6,3.4,69.4,True,2026-09-22
+S0127,Life sciences,52.9,26.5,67.4,True,2026-09-24
+S0128,Social sciences,46.5,32.7,68.9,True,2026-09-24
+S0129,Engineering,75.8,8.2,62.0,True,2026-09-23
+S0130,Engineering,76.5,9.6,69.3,True,2026-09-23
+S0131,Social sciences,47.3,23.1,50.2,False,2026-09-22
+S0132,Life sciences,40.5,25.3,53.6,True,2026-09-24
+S0133,Life sciences,47.3,25.6,60.7,True,2026-09-25
+S0134,Social sciences,39.2,26.2,56.4,True,2026-09-22
+S0135,Computing,65.2,18.6,70.2,True,2026-09-22
+S0136,Life sciences,56.1,25.7,69.0,True,2026-09-24
+S0137,Life sciences,43.1,21.5,57.4,True,2026-09-22
+S0138,Social sciences,34.3,30.9,65.5,True,2026-09-22
+S0139,Computing,71.3,6.4,67.5,True,2026-09-21
+S0140,Life sciences,51.2,20.9,64.7,True,2026-09-22
+S0141,Life sciences,43.0,23.0,63.7,True,2026-09-23
+S0142,Computing,67.0,13.0,72.6,True,2026-09-22
+S0143,Mathematics or Physics,92.5,15.2,86.6,True,2026-09-24
+S0144,Computing,62.9,14.2,57.0,True,2026-09-23
+S0145,Social sciences,34.1,29.5,62.9,True,2026-09-22
+S0146,Computing,65.8,7.7,54.3,True,2026-09-22
+S0147,Mathematics or Physics,87.8,6.3,81.1,True,2026-09-23
+S0148,Computing,69.3,9.9,71.1,True,2026-09-24
+S0149,Mathematics or Physics,99.2,16.4,88.5,True,2026-09-23
+S0150,Computing,74.5,11.3,63.6,True,2026-09-24
+S0151,Social sciences,38.1,28.5,57.1,False,2026-09-22
+S0152,Computing,68.9,17.9,70.8,True,2026-09-22
+S0153,Life sciences,50.4,24.6,70.7,True,2026-09-25
+S0154,Computing,72.1,7.4,57.3,False,2026-09-24
+S0155,Life sciences,50.5,24.6,68.8,True,2026-09-25
+S0156,Mathematics or Physics,96.9,9.8,73.4,True,2026-09-24
+S0157,Life sciences,41.0,21.3,60.4,True,2026-09-25
+S0158,Computing,58.7,14.9,60.7,True,2026-09-25
+S0159,Mathematics or Physics,89.9,7.4,76.2,True,2026-09-22
+S0160,Life sciences,46.4,16.5,53.5,True,2026-09-25
+S0161,Engineering,73.4,8.7,69.4,True,2026-09-23
+S0162,Computing,67.0,13.1,66.7,True,2026-09-25
+S0163,Computing,68.8,10.7,71.4,True,2026-09-25
+S0164,Life sciences,48.8,24.2,55.3,True,2026-09-25
+S0165,Computing,73.1,17.0,69.1,True,2026-09-25
+S0166,Mathematics or Physics,96.7,8.1,74.7,True,2026-09-25
+S0167,Social sciences,27.2,26.5,53.8,True,2026-09-24
+S0168,Mathematics or Physics,81.8,12.5,67.1,True,2026-09-25
+S0169,Mathematics or Physics,97.3,7.6,91.6,True,2026-09-25
+S0170,Engineering,75.0,12.4,70.4,True,2026-09-25
+S0171,Computing,74.0,9.9,72.2,True,2026-09-23
+S0172,Computing,68.6,12.1,60.8,True,2026-09-22
+S0173,Engineering,69.6,15.0,69.6,False,2026-09-21
+S0174,Social sciences,39.0,31.0,66.1,True,2026-09-21
+S0175,Social sciences,33.3,27.3,52.4,True,2026-09-24
+S0176,Mathematics or Physics,82.3,7.0,68.7,True,2026-09-25
+S0177,Social sciences,32.4,28.8,63.5,True,2026-09-24
+S0178,Mathematics or Physics,90.6,3.2,77.3,True,2026-09-22
+S0179,Social sciences,41.2,27.3,63.7,True,2026-09-21
+S0180,Computing,78.3,11.0,79.6,True,2026-09-25
+S0181,Life sciences,47.9,16.5,46.2,True,2026-09-21
+S0182,Life sciences,48.4,22.6,62.8,True,2026-09-25
+S0183,Social sciences,46.4,27.4,63.2,True,2026-09-21
+S0184,Social sciences,34.1,22.1,57.4,True,2026-09-24
+S0185,Computing,65.2,9.8,65.5,True,2026-09-25
+S0186,Life sciences,43.3,21.7,62.2,True,2026-09-22
+S0187,Life sciences,45.5,10.4,44.6,False,2026-09-21
+S0188,Mathematics or Physics,100.0,7.7,85.3,True,2026-09-24
+S0189,Life sciences,44.3,23.1,187.0,True,2026-09-25
+S0190,Computing,76.5,15.6,80.0,True,2026-09-25
+S0191,Mathematics or Physics,87.6,4.6,66.8,True,2026-09-23
+S0192,Engineering,74.5,5.3,59.4,True,2026-09-21
+S0193,Engineering,75.4,13.5,72.4,True,2026-09-21
+S0194,Engineering,74.7,5.5,69.0,True,2026-09-25
+S0195,Life sciences,49.8,24.2,66.8,True,2026-09-23
+S0196,Engineering,68.6,8.3,67.5,True,2026-09-24
+S0197,Social sciences,45.3,24.0,51.9,True,2026-09-25
+S0198,Mathematics or Physics,94.9,8.2,78.4,True,2026-09-25
+S0199,Computing,66.5,17.5,71.3,True,2026-09-22
+S0200,Computing,72.5,12.4,69.4,True,2026-09-22
+S0201,Life sciences,40.6,21.0,46.0,True,2026-09-24
+S0202,Life sciences,46.5,15.2,57.7,True,2026-09-25
+S0203,Computing,64.1,16.3,67.8,True,2026-09-25
+S0204,Life sciences,49.6,22.3,59.9,True,2026-09-21
+S0205,Life sciences,60.8,20.9,73.9,True,2026-09-25
+S0206,Life sciences,53.4,27.2,61.8,False,2026-09-24
+S0207,Mathematics or Physics,93.7,1.0,69.3,True,2026-09-25
+S0208,Computing,65.5,11.0,65.8,True,2026-09-25
+S0209,Social sciences,39.9,28.0,62.6,True,2026-09-21
+S0210,Social sciences,43.9,26.8,61.6,True,2026-09-23
+S0211,Computing,69.6,3.3,56.3,True,2026-09-21
+S0212,Engineering,72.6,12.4,67.2,True,2026-09-21
+S0213,Computing,61.5,12.9,64.9,True,2026-09-22
+S0214,Computing,65.7,17.0,66.7,True,2026-09-25
+S0215,Mathematics or Physics,80.8,15.2,79.7,True,2026-09-24
+S0216,Computing,79.6,12.2,63.6,True,2026-09-23
+S0217,Computing,72.4,14.5,75.7,True,2026-09-21
+S0218,Social sciences,41.6,29.0,74.1,True,2026-09-22
+S0219,Life sciences,45.0,22.7,61.4,True,2026-09-21
+S0220,Mathematics or Physics,82.7,6.4,68.9,True,2026-09-25
+S0221,Computing,70.9,14.5,66.8,True,2026-09-23
+S0222,Engineering,68.8,15.5,71.8,True,2026-09-25
+S0223,Life sciences,41.2,18.6,49.5,True,2026-09-21
+S0224,Engineering,72.3,18.6,70.5,True,2026-09-25
+S0225,Computing,70.5,15.0,59.8,True,2026-09-23
+S0226,Computing,69.1,14.2,68.7,True,2026-09-24
+S0227,Engineering,68.1,2.0,53.4,True,2026-09-24
+S0228,Social sciences,33.1,28.0,55.0,True,2026-09-22
+S0229,Engineering,72.0,7.1,62.5,True,2026-09-23
+S0230,Social sciences,44.1,30.3,63.0,False,2026-09-23
+S0231,Mathematics or Physics,82.0,10.8,74.1,False,2026-09-24
+S0232,Computing,66.7,17.6,64.4,True,2026-09-23
+S0233,Social sciences,37.2,27.3,57.8,True,2026-09-23
+S0234,Engineering,71.2,10.7,64.3,True,2026-09-23
+S0235,Engineering,69.0,12.7,58.4,True,2026-09-22
+S0236,Computing,79.6,4.6,59.9,True,2026-09-21
+S0237,Computing,72.0,11.3,64.0,True,2026-09-25
+S0238,Life sciences,41.1,19.8,51.0,False,2026-09-22
+S0239,Computing,60.6,15.1,63.7,True,2026-09-22
+S0240,Computing,69.1,11.2,62.7,True,2026-09-22

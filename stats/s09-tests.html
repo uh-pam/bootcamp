@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>36&nbsp; Hypothesis tests – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../stats/s10-comparing.html" rel="next">
+<link href="../stats/s08-intervals.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s09-tests.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">36.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">36.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">36.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#the-four-pieces" id="toc-the-four-pieces" class="nav-link" data-scroll-target="#the-four-pieces"><span class="header-section-number">36.3.1</span> The four pieces</a></li>
+  <li><a href="#what-a-p-value-is-in-symbols" id="toc-what-a-p-value-is-in-symbols" class="nav-link" data-scroll-target="#what-a-p-value-is-in-symbols"><span class="header-section-number">36.3.2</span> What a p-value is, in symbols</a></li>
+  <li><a href="#two-ways-to-be-wrong" id="toc-two-ways-to-be-wrong" class="nav-link" data-scroll-target="#two-ways-to-be-wrong"><span class="header-section-number">36.3.3</span> Two ways to be wrong</a></li>
+  <li><a href="#a-test-and-an-interval-are-the-same-calculation" id="toc-a-test-and-an-interval-are-the-same-calculation" class="nav-link" data-scroll-target="#a-test-and-an-interval-are-the-same-calculation"><span class="header-section-number">36.3.4</span> A test and an interval are the same calculation</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">36.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">36.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">36.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">36.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">36.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/s01-the-question.html">Statistics</a></li><li class="breadcrumb-item"><a href="../stats/s09-tests.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></h1>
+<p class="subtitle lead">Statistics · Unit 9</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>S9</strong> · Statistics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>S8</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p>A hypothesis test answers one narrow question: <em>if nothing were going on, how often would I see data at least as extreme as this?</em> That is a useful thing to know and it is much less than people take it for.</p>
+<p>You need this unit for two reasons. Every paper you read for the rest of your degree reports <span class="math inline">\(p\)</span>-values, and you cannot evaluate a claim you cannot decode. And the standard misreadings — that <span class="math inline">\(p\)</span> is the probability the hypothesis is wrong, that a small <span class="math inline">\(p\)</span> means a large effect, that a large <span class="math inline">\(p\)</span> means no effect — are so widespread that being able to spot them is a genuine professional advantage.</p>
+<p>The unit’s other job is to show that a test and a confidence interval are the same calculation. Once you have seen that, the interval is almost always the better thing to report.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="36.1">
+<h2 data-number="36.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">36.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>build a confidence interval for a mean and say what the 95% refers to — <a href="../stats/s08-intervals.html">S8</a>;</li>
+<li>compute a standard error and say why it is not a standard deviation — <a href="../stats/s07-sampling.html">S7</a>;</li>
+<li>write a conditional probability and keep it the right way round — <a href="../stats/s04-probability.html">S4</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> A 95% confidence interval for a mean comes out as <span class="math inline">\((58.6, 62.4)\)</span>. Is the value 65 a plausible value for the population mean?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Not on this evidence: 65 lies outside the interval, so it is not among the values the data are consistent with at the 95% level.</p>
+<p>You have just performed a hypothesis test. The rest of this unit is that sentence, made precise and given a number.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="36.2">
+<h2 data-number="36.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">36.2</span> The idea</h2>
+<p>Take the 57 students who came from a life-sciences background. <a href="../stats/s08-intervals.html">S8</a> found their mean final score to be 60.51 with a 95% interval of <span class="math inline">\((58.58, 62.45)\)</span>.</p>
+<p>Now suppose someone claims the population these students came from has a mean of 65 — the cohort’s overall average. The logic of a test is:</p>
+<ol type="1">
+<li><strong>Assume the claim is true.</strong> Call it the <strong>null hypothesis</strong>, <span class="math inline">\(H_0: \mu = 65\)</span>.</li>
+<li><strong>Work out how the data would behave if it were.</strong> From <a href="../stats/s07-sampling.html">S7</a>, sample means from such a population would be spread around 65 with a standard error of about 0.97.</li>
+<li><strong>See how far out the observed data actually falls.</strong></li>
+<li><strong>Report how often a sample that extreme or more would occur</strong> if the claim were true. That number is the <strong><span class="math inline">\(p\)</span>-value</strong>.</li>
+</ol>
+<div id="cell-fig-pvalue" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-pvalue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s09-tests_files/figure-html/fig-pvalue-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;36.1: The same data against two null hypotheses. In each panel the curve is where the test statistic would fall if the null were true, the vertical line is where it actually fell, and the shaded area is the <span class="math inline">\(p\)</span>-value — both tails, because the question was whether the mean differs, not whether it is smaller. Against 65 the observed value is far out in the tail. Against 62 it is unremarkable.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Against <span class="math inline">\(H_0: \mu = 65\)</span>, data this far out would occur about twice in a hundred thousand samples. Against <span class="math inline">\(H_0: \mu = 62\)</span>, it would occur about thirteen times in a hundred. The first claim looks hard to sustain; the second is perfectly consistent with what we saw.</p>
+<p>Notice what has and has not been established. We have a statement about <strong>how often data like this arises if the null is true</strong>. We have said nothing about how likely the null is, and nothing at all about the second null being <em>correct</em> — only that these 57 students give no reason to doubt it.</p>
+</section>
+<section id="the-mechanics" class="level2" data-number="36.3">
+<h2 data-number="36.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">36.3</span> The mechanics</h2>
+<section id="the-four-pieces" class="level3" data-number="36.3.1">
+<h3 data-number="36.3.1" class="anchored" data-anchor-id="the-four-pieces"><span class="header-section-number">36.3.1</span> The four pieces</h3>
+<p>Every test in the subject has the same four parts.</p>
+<ol type="1">
+<li>A <strong>null hypothesis</strong> <span class="math inline">\(H_0\)</span>: a specific claim precise enough to compute with. “The mean is 65”, “the two groups have the same mean”, “the slope is zero”.</li>
+<li>An <strong>alternative</strong> <span class="math inline">\(H_1\)</span>, which fixes what counts as extreme. Two-sided (<span class="math inline">\(\mu \ne 65\)</span>) is the default and the one to use unless you can justify otherwise.</li>
+<li>A <strong>test statistic</strong>: a number summarising the distance between data and null, scaled by its own uncertainty. For a mean, <span class="math display">\[
+t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} .
+\]</span></li>
+<li>A <strong>null distribution</strong>: where that statistic would fall if <span class="math inline">\(H_0\)</span> were true. For the <span class="math inline">\(t\)</span> statistic it is the <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom, the same one <a href="../stats/s08-intervals.html">S8</a> used to set interval widths.</li>
+</ol>
+<p>The <strong><span class="math inline">\(p\)</span>-value</strong> is the probability, <em>computed under the null</em>, of a test statistic at least as extreme as the observed one.</p>
+</section>
+<section id="what-a-p-value-is-in-symbols" class="level3" data-number="36.3.2">
+<h3 data-number="36.3.2" class="anchored" data-anchor-id="what-a-p-value-is-in-symbols"><span class="header-section-number">36.3.2</span> What a p-value is, in symbols</h3>
+<p><span class="math display">\[
+p = P\bigl(\text{data at least this extreme} \;\bigm|\; H_0 \text{ true}\bigr)
+\]</span></p>
+<p>Everything that goes wrong with <span class="math inline">\(p\)</span>-values goes wrong by moving the bar. It is <strong>not</strong> <span class="math inline">\(P(H_0 \text{ true} \mid \text{data})\)</span> — that is the reversal of <a href="../stats/s04-probability.html">S4</a>, and getting from one to the other would need a prior probability that the test never supplies.</p>
+<p>Three consequences worth stating explicitly.</p>
+<p><strong>A small <span class="math inline">\(p\)</span> does not mean a large effect.</strong> It means the effect is distinguishable from zero given your sample size. With the cohort’s spread of about 7.3 marks and 100,000 observations, a difference of a tenth of a mark gives <span class="math inline">\(t = 4.3\)</span> and <span class="math inline">\(p \approx 10^{-5}\)</span> — a decisive-looking result about a difference nobody could care about.</p>
+<p><strong>A large <span class="math inline">\(p\)</span> does not mean no effect.</strong> It means your data cannot rule the null out. An underpowered study produces large <span class="math inline">\(p\)</span>-values whether or not anything is going on, which is why “we found no significant difference” is nearly uninformative without the interval next to it.</p>
+<p><strong><span class="math inline">\(1 - p\)</span> is not the probability the alternative is true.</strong> It is not a probability about any hypothesis at all.</p>
+</section>
+<section id="two-ways-to-be-wrong" class="level3" data-number="36.3.3">
+<h3 data-number="36.3.3" class="anchored" data-anchor-id="two-ways-to-be-wrong"><span class="header-section-number">36.3.3</span> Two ways to be wrong</h3>
+<p>Fix a threshold <span class="math inline">\(\alpha\)</span> — conventionally 0.05 — and reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(p &lt; \alpha\)</span>. Two mistakes are then possible.</p>
+<table class="caption-top table">
+<caption>The two errors</caption>
+<colgroup>
+<col style="width: 34%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><span class="math inline">\(H_0\)</span> is true</th>
+<th style="text-align: left;"><span class="math inline">\(H_0\)</span> is false</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>reject <span class="math inline">\(H_0\)</span></strong></td>
+<td style="text-align: left;">Type I error, rate <span class="math inline">\(\alpha\)</span></td>
+<td style="text-align: left;">correct</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>do not reject</strong></td>
+<td style="text-align: left;">correct</td>
+<td style="text-align: left;">Type II error, rate <span class="math inline">\(\beta\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Power</strong> is <span class="math inline">\(1 - \beta\)</span>: the probability of detecting a real effect of a given size. It rises with the sample size and with the size of the effect, and falls as the data get noisier.</p>
+<div id="cell-fig-power" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-power" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s09-tests_files/figure-html/fig-power-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;36.2: Two worlds. If the null is true the statistic is drawn from the left curve; if the real effect is the one on the right, from the right curve. The threshold is fixed by <span class="math inline">\(\alpha\)</span> alone, so the shaded slice of the left curve is 5% by construction. Everything of the right curve that falls short of the threshold is a missed real effect.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Note the asymmetry the picture makes obvious. You choose <span class="math inline">\(\alpha\)</span>; you do <strong>not</strong> choose <span class="math inline">\(\beta\)</span>, which follows from <span class="math inline">\(\alpha\)</span>, the sample size and the true effect. Shrinking <span class="math inline">\(\alpha\)</span> to be safer moves the line right and makes <span class="math inline">\(\beta\)</span> worse.</p>
+</section>
+<section id="a-test-and-an-interval-are-the-same-calculation" class="level3" data-number="36.3.4">
+<h3 data-number="36.3.4" class="anchored" data-anchor-id="a-test-and-an-interval-are-the-same-calculation"><span class="header-section-number">36.3.4</span> A test and an interval are the same calculation</h3>
+<p>A two-sided test at level <span class="math inline">\(\alpha\)</span> rejects <span class="math inline">\(H_0: \mu = \mu_0\)</span> <strong>exactly when</strong> <span class="math inline">\(\mu_0\)</span> falls outside the <span class="math inline">\((1-\alpha)\)</span> confidence interval. They are not two methods that usually agree; they are one calculation read two ways.</p>
+<p><span class="math display">\[
+\left|\frac{\bar{x} - \mu_0}{s/\sqrt{n}}\right| &gt; t^{*}
+\quad\Longleftrightarrow\quad
+\mu_0 \notin \left[\bar{x} - t^{*}\frac{s}{\sqrt{n}},\;
+                    \bar{x} + t^{*}\frac{s}{\sqrt{n}}\right]
+\]</span></p>
+<p>(The brackets are square because a <span class="math inline">\(\mu_0\)</span> sitting exactly on an endpoint gives <span class="math inline">\(p\)</span> exactly equal to <span class="math inline">\(\alpha\)</span>, and <span class="math inline">\(p &lt; \alpha\)</span> does not reject. It is a boundary case of no practical consequence and of some pedagogical value: the two statements match exactly, not approximately.)</p>
+<p>Both sides are the same inequality rearranged. This matters practically: the interval contains everything the test would tell you <strong>and</strong> the effect size and its precision, which the test throws away. Report the interval.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="36.4">
+<h2 data-number="36.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">36.4</span> Worked example</h2>
+<p><strong>Testing the life-sciences mean, and watching the duality hold.</strong></p>
+<div id="setup" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">   mean = </span><span class="sc">{</span>mean<span class="sc">:.4f}</span><span class="ss">   sd = </span><span class="sc">{</span>life<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">   se = </span><span class="sc">{</span>se<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>low, high <span class="op">=</span> mean <span class="op">-</span> t_star <span class="op">*</span> se, mean <span class="op">+</span> t_star <span class="op">*</span> se</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% interval for the mean: (</span><span class="sc">{</span>low<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>high<span class="sc">:.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n = 57   mean = 60.5123   sd = 7.2893   se = 0.9655
+95% interval for the mean: (58.5782, 62.4464)</code></pre>
+</div>
+</div>
+<p>Test the claim that this population’s mean is 65, by hand and then with the library:</p>
+<div id="test" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>null <span class="op">=</span> <span class="dv">65</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t_stat <span class="op">=</span> (mean <span class="op">-</span> null) <span class="op">/</span> se</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> stats.t.sf(<span class="bu">abs</span>(t_stat), n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"by hand : t = </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">   p = </span><span class="sc">{</span>p_value<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"scipy   : </span><span class="sc">{</span>stats<span class="sc">.</span>ttest_1samp(life, null)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>by hand : t = -4.6481   p = 2.081e-05
+scipy   : TtestResult(statistic=-4.648132564933887, pvalue=2.080866200706556e-05, df=56)</code></pre>
+</div>
+</div>
+<p>A <span class="math inline">\(p\)</span> of <span class="math inline">\(2 \times 10^{-5}\)</span>: if this population really had a mean of 65, a sample of 57 landing this far away would happen about twice in a hundred thousand studies. That is strong evidence against the claim.</p>
+<p>The sentence to write down, though, is not the <span class="math inline">\(p\)</span>-value. It is: <em>the mean final score of life-sciences students is estimated at 60.5 marks (95% CI 58.6 to 62.4), about 4.5 marks below the cohort average of 65.3.</em> That reports the size of the difference, its uncertainty, and — implicitly — the test.</p>
+<p>Now the duality. Test every possible null value from 55 to 68 and see where the <span class="math inline">\(p\)</span>-value crosses 0.05:</p>
+<div id="duality" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> candidate <span class="kw">in</span> [<span class="fl">58.0</span>, low, <span class="fl">59.0</span>, <span class="fl">60.5</span>, <span class="fl">62.0</span>, high, <span class="fl">63.0</span>]:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    t_c <span class="op">=</span> (mean <span class="op">-</span> candidate) <span class="op">/</span> se</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    p_c <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> stats.t.sf(<span class="bu">abs</span>(t_c), n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    verdict <span class="op">=</span> <span class="st">"reject"</span> <span class="cf">if</span> p_c <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">"do not reject"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"H0: mu = </span><span class="sc">{</span>candidate<span class="sc">:&gt;8.3f}</span><span class="ss">   p = </span><span class="sc">{</span>p_c<span class="sc">:.5f}</span><span class="ss">   </span><span class="sc">{</span>verdict<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>H0: mu =   58.000   p = 0.01183   reject
+H0: mu =   58.578   p = 0.05000   do not reject
+H0: mu =   59.000   p = 0.12290   do not reject
+H0: mu =   60.500   p = 0.98990   do not reject
+H0: mu =   62.000   p = 0.12897   do not reject
+H0: mu =   62.446   p = 0.05000   do not reject
+H0: mu =   63.000   p = 0.01264   reject</code></pre>
+</div>
+</div>
+<div id="cell-fig-duality" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-duality" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-duality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="s09-tests_files/figure-html/fig-duality-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-duality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;36.3: The <span class="math inline">\(p\)</span>-value for every hypothesised mean between 55 and 68. It crosses 0.05 in exactly two places, and those two places are the ends of the 95% confidence interval — marked as vertical lines. The interval is the set of null values this data would not reject.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The two interval endpoints are in that list, and both come out at <span class="math inline">\(p\)</span> exactly 0.05 — the curve crosses the threshold precisely there and nowhere else. Every null inside the interval survives; every null outside it is rejected. One calculation, two presentations.</p>
+<p>Finally, power, because it is the thing that decides whether a non-significant result means anything at all.</p>
+<div id="power" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sd <span class="op">=</span> life.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>effect <span class="op">=</span> <span class="fl">2.0</span>                                   <span class="co"># a difference of 2 marks</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"power to detect a </span><span class="sc">{</span>effect<span class="sc">:.0f}</span><span class="ss">-mark difference (sd </span><span class="sc">{</span>sd<span class="sc">:.2f}</span><span class="ss">, alpha 0.05):"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> size <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">57</span>, <span class="dv">100</span>, <span class="dv">200</span>]:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    critical <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, size <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    ncp <span class="op">=</span> (effect <span class="op">/</span> sd) <span class="op">*</span> np.sqrt(size)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    power <span class="op">=</span> stats.nct.sf(critical, size <span class="op">-</span> <span class="dv">1</span>, ncp) <span class="op">+</span> stats.nct.cdf(<span class="op">-</span>critical, size <span class="op">-</span> <span class="dv">1</span>, ncp)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   n = </span><span class="sc">{</span>size<span class="sc">:&gt;3}</span><span class="ss">   power </span><span class="sc">{</span>power<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>power to detect a 2-mark difference (sd 7.29, alpha 0.05):
+   n =  10   power 0.122
+   n =  30   power 0.306
+   n =  57   power 0.530
+   n = 100   power 0.776
+   n = 200   power 0.971</code></pre>
+</div>
+</div>
+<p>At <span class="math inline">\(n = 57\)</span> the study has a 53% chance of detecting a real 2-mark difference — barely better than a coin toss, and worse than that for anything smaller. If such a study reports <span class="math inline">\(p = 0.3\)</span>, it has told you almost nothing, and saying “there is no difference” would be a serious overstatement.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="36.5">
+<h2 data-number="36.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">36.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> A sample of 40 has mean 12.4 and standard deviation 3.0. Test <span class="math inline">\(H_0: \mu = 11\)</span> against a two-sided alternative, using <span class="math inline">\(t^{*} = 2.023\)</span>.</p>
+<ol type="a">
+<li>Compute the standard error and the test statistic.</li>
+<li>Would you reject at <span class="math inline">\(\alpha = 0.05\)</span>?</li>
+<li>Give the 95% interval, and check the two answers agree.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p><span class="math inline">\(\text{SE} = 3.0/\sqrt{40} = 0.4743\)</span>, so <span class="math inline">\(t = (12.4 - 11)/0.4743 = 2.951\)</span>.</p></li>
+<li><p><span class="math inline">\(|t| = 2.951 &gt; 2.023\)</span>, so <strong>reject</strong> at the 5% level. (The exact <span class="math inline">\(p\)</span>-value is about 0.005.)</p></li>
+<li><p><span class="math inline">\(12.4 \pm 2.023 \times 0.4743 = 12.4 \pm 0.960\)</span>, giving <span class="math inline">\((11.44, 13.36)\)</span>. The null value 11 lies outside it, which is the same conclusion — as it must be, since the two calculations are the same inequality.</p>
+<p>The interval is the better report: it says the data are consistent with any mean between 11.4 and 13.4, where the test says only “not 11”. (As always, the 95% belongs to the procedure — <a href="../stats/s08-intervals.html">S8</a> — not to this particular pair of endpoints.)</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> Two studies test the same drug.</p>
+<ul>
+<li>Study A: 40 patients, mean improvement 5.0 points, 95% CI <span class="math inline">\((0.2, 9.8)\)</span>, <span class="math inline">\(p = 0.04\)</span>.</li>
+<li>Study B: 4,000 patients, mean improvement 0.3 points, 95% CI <span class="math inline">\((0.1, 0.5)\)</span>, <span class="math inline">\(p = 0.003\)</span>.</li>
+</ul>
+<p>Which shows the stronger evidence, and which shows the larger effect?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Study B has the smaller <span class="math inline">\(p\)</span>-value and by far the smaller effect.</strong> Its 0.3-point improvement is estimated precisely: the whole interval lies between 0.1 and 0.5, so the data have ruled out anything larger. Whether an improvement of that size is worth having is a clinical question, not a statistical one — but the interval is what puts the question in front of you, and the <span class="math inline">\(p\)</span>-value of 0.003 does not. The tiny <span class="math inline">\(p\)</span> reflects the sample size.</p>
+<p><strong>Study A shows the larger effect and knows almost nothing about it.</strong> The interval runs from 0.2 to 9.8, so the data are consistent with an improvement that is negligible and with one that is large. Its <span class="math inline">\(p = 0.04\)</span> crosses the conventional threshold and tells you very little.</p>
+<p>The lesson: <strong><span class="math inline">\(p\)</span>-values rank evidence against a null, not effects by importance.</strong> Read the interval, in the units of the thing measured, and ask whether the values it contains would change what anyone does.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> A researcher runs a test, gets <span class="math inline">\(p = 0.08\)</span>, and writes: “there is a 92% chance the treatment works”. Identify every error in that sentence and write a correct one.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Three errors, stacked.</p>
+<p><strong>The conditional is reversed.</strong> <span class="math inline">\(p\)</span> is the probability of data this extreme <em>if the null is true</em>, not the probability that the null is true given the data. Getting from one to the other requires a prior — see <a href="../stats/s04-probability.html">S4</a>.</p>
+<p><strong><span class="math inline">\(1 - p\)</span> is not the probability of the alternative.</strong> Even if <span class="math inline">\(p\)</span> <em>were</em> a probability about the null — it is not — its complement would be about “not the null”, which includes effects of every size, most of them uninteresting.</p>
+<p><strong>“Works” is not what was tested.</strong> The null was almost certainly “no difference”. Rejecting it would be <em>evidence</em> of a difference — not proof, since 5% of tests reject a true null — and a difference is not the same thing as a benefit worth having.</p>
+<p>A correct sentence, with the numbers the original omitted: <em>“The estimated effect was X units (95% CI <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span>). Data this extreme would arise 8% of the time if the treatment had no effect at all, so these data do not rule out a null effect. What else they fail to rule out can be read off the interval — which is why it, and not the <span class="math inline">\(p\)</span>-value, is the thing to report.”</em></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="36.6">
+<h2 data-number="36.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">36.6</span> Check it in Python</h2>
+<p>The claim that a <span class="math inline">\(p\)</span>-value is a probability computed under the null is testable: if the null really is true, <span class="math inline">\(p\)</span>-values should be spread evenly between 0 and 1, and 5% of them should fall below 0.05.</p>
+<div id="null-behaviour" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>trials, size <span class="op">=</span> <span class="dv">20_000</span>, <span class="dv">30</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> rng.normal(loc<span class="op">=</span><span class="dv">50</span>, scale<span class="op">=</span><span class="dv">10</span>, size<span class="op">=</span>(trials, size))   <span class="co"># null is TRUE: mu = 50</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>t_stats <span class="op">=</span> (samples.mean(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">-</span> <span class="dv">50</span>) <span class="op">/</span> (samples.std(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(size))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>p_values <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> stats.t.sf(np.<span class="bu">abs</span>(t_stats), size <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p below 0.05 : </span><span class="sc">{</span>(p_values <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">   (should be 0.05)"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p below 0.10 : </span><span class="sc">{</span>(p_values <span class="op">&lt;</span> <span class="fl">0.10</span>)<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">   (should be 0.10)"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p below 0.50 : </span><span class="sc">{</span>(p_values <span class="op">&lt;</span> <span class="fl">0.50</span>)<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">   (should be 0.50)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p below 0.05 : 0.0494   (should be 0.05)
+p below 0.10 : 0.0963   (should be 0.10)
+p below 0.50 : 0.4965   (should be 0.50)</code></pre>
+</div>
+</div>
+<p>That is what <span class="math inline">\(\alpha = 0.05\)</span> buys: when nothing is going on, one test in twenty comes out significant anyway. Those thousand “significant” results are not mistakes in anyone’s arithmetic — they are the designed behaviour of the procedure, and they are why <a href="../stats/s12-going-wrong.html">S12</a> worries about how many tests were run.</p>
+<p>Now the duality, checked exactly rather than by eye:</p>
+<div id="duality-check" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> candidate <span class="kw">in</span> np.linspace(<span class="dv">55</span>, <span class="dv">68</span>, <span class="dv">27</span>):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    rejects <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> stats.t.sf(<span class="bu">abs</span>((mean <span class="op">-</span> candidate) <span class="op">/</span> se), n <span class="op">-</span> <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    outside <span class="op">=</span> <span class="kw">not</span> (low <span class="op">&lt;=</span> candidate <span class="op">&lt;=</span> high)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> rejects <span class="op">==</span> outside, <span class="ss">f"disagreement at mu0 = </span><span class="sc">{</span>candidate<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"test and interval agree at all 27 candidate values in [55, 68]"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"interval (</span><span class="sc">{</span>low<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>high<span class="sc">:.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test and interval agree at all 27 candidate values in [55, 68]
+interval (58.5782, 62.4464)</code></pre>
+</div>
+</div>
+<p>Now generate data where the null is definitely <strong>false</strong> — a real effect of 2.5 marks — and run two thousand studies of the size we actually have:</p>
+<div id="miss-rate" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>truth, sd_pop <span class="op">=</span> <span class="fl">62.5</span>, <span class="fl">7.29</span>          <span class="co"># the real mean is 2.5 marks above 60</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>studies <span class="op">=</span> rng.normal(loc<span class="op">=</span>truth, scale<span class="op">=</span>sd_pop, size<span class="op">=</span>(<span class="dv">2000</span>, <span class="dv">57</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p_values <span class="op">=</span> stats.ttest_1samp(studies, <span class="fl">60.0</span>, axis<span class="op">=</span><span class="dv">1</span>).pvalue</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>missed <span class="op">=</span> np.flatnonzero(p_values <span class="op">&gt;=</span> <span class="fl">0.05</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"real effect of 2.5 marks, n = 57: missed by </span><span class="sc">{</span>missed<span class="sc">.</span>size<span class="sc">}</span><span class="ss"> of 2000 "</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"studies (</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>missed<span class="sc">.</span>size<span class="op">/</span><span class="dv">2000</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>real effect of 2.5 marks, n = 57: missed by 577 of 2000 studies (28.9%)</code></pre>
+</div>
+</div>
+<p>Nearly three studies in ten find nothing, and every one of them was correctly conducted on data containing a real effect. Take one of those studies and assert what a careless reader would assume — that a real effect shows up:</p>
+<div id="watch-it-fail" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>unlucky <span class="op">=</span> studies[missed[<span class="dv">0</span>]]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> stats.ttest_1samp(unlucky, <span class="fl">60.0</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> result.pvalue <span class="op">&lt;</span> <span class="fl">0.05</span>, (</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"the null (mu = 60) is false by 2.5 marks, yet this study of 57 gives "</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"p = </span><span class="sc">{</span>result<span class="sc">.</span>pvalue<span class="sc">:.3f}</span><span class="ss"> and would 'find no significant difference'"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> unlucky = studies[missed[<span class="ansi-green-fg">0</span>]]
+<span class="ansi-green-fg">      2</span> result = stats.ttest_1samp(unlucky, <span class="ansi-green-fg">60.0</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> result.pvalue &lt; <span class="ansi-green-fg">0.05</span>, (
+<span class="ansi-green-fg">      4</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">the null (mu = 60) is false by 2.5 marks, yet this study of 57 gives </span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      5</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">p = </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>result.pvalue<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.3f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> and would </span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">find no significant difference</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      6</span> )
+
+<span class="ansi-red-fg">AssertionError</span>: the null (mu = 60) is false by 2.5 marks, yet this study of 57 gives p = 0.071 and would 'find no significant difference'</pre>
+</div>
+</div>
+</div>
+<p>A non-significant result is consistent with no effect <em>and</em> with an effect the study was too small to see. The <span class="math inline">\(p\)</span>-value alone cannot tell you which; only the interval and the power can.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="36.7">
+<h2 data-number="36.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">36.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Reading <span class="math inline">\(p\)</span> as the probability that the null is true</dt>
+<dd>
+<span class="math inline">\(p\)</span> is computed <em>assuming</em> the null. It is <span class="math inline">\(P(\text{a statistic at least this extreme} \mid H_0)\)</span>, and turning that into <span class="math inline">\(P(H_0 \mid \text{data})\)</span> needs a base rate the test does not have. This is <a href="../stats/s04-probability.html">S4</a>’s error in its most expensive form. (Note the “at least this extreme”: for continuous data the probability of the exact values you observed is zero, so a <span class="math inline">\(p\)</span>-value could not be that.)
+</dd>
+<dt>Reading a non-significant result as “no effect”</dt>
+<dd>
+It means the data could not rule out the null. An underpowered study cannot rule out anything. Write “no significant difference was found (<span class="math inline">\(p = 0.3\)</span>; the 95% interval runs from <span class="math inline">\(-4\)</span> to <span class="math inline">\(+9\)</span>, so effects of either sign remain plausible)” — and notice how much more that says.
+</dd>
+<dt>Confusing statistical significance with importance</dt>
+<dd>
+A large enough sample makes any non-zero difference significant. The interval, in real units, is what tells you whether the difference matters.
+</dd>
+<dt>Choosing one-sided after seeing the data</dt>
+<dd>
+A one-sided test halves the <span class="math inline">\(p\)</span>-value, which is exactly why it must be decided before looking. Choosing the direction afterwards is not a test at 5%; it is a test at 10% reported as 5%.
+</dd>
+<dt>Testing many things and reporting the smallest <span class="math inline">\(p\)</span></dt>
+<dd>
+Twenty independent tests on pure noise produce a significant result about two-thirds of the time. If you ran many tests, say so and adjust — the machinery is in <a href="../stats/s12-going-wrong.html">S12</a>.
+</dd>
+<dt>Treating <span class="math inline">\(\alpha = 0.05\)</span> as a law of nature</dt>
+<dd>
+It is a convention, and a fairly arbitrary one. There is nothing meaningfully different about <span class="math inline">\(p = 0.049\)</span> and <span class="math inline">\(p = 0.051\)</span>, and reporting one as a discovery and the other as nothing is a failure of judgement, not a rule.
+</dd>
+<dt>Reporting the test instead of the estimate</dt>
+<dd>
+The test discards the effect size and its precision, which are the two things a reader needs. Give the estimate with its interval; the test is a corollary.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="36.8">
+<h2 data-number="36.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">36.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p>A study reports <span class="math inline">\(p = 0.03\)</span>. Which statement is correct?</p>
+<ol type="a">
+<li>There is a 3% chance the null hypothesis is true</li>
+<li>There is a 97% chance the alternative is true</li>
+<li>If the null were true, data at least this extreme would arise 3% of the time</li>
+<li>The effect is small but real</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>A 95% confidence interval for a difference is <span class="math inline">\((-1.2, 8.6)\)</span>. Without computing anything, what do you know about the two-sided <span class="math inline">\(p\)</span>-value for <span class="math inline">\(H_0: \text{difference} = 0\)</span>?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>You lower <span class="math inline">\(\alpha\)</span> from 0.05 to 0.01. What happens to the two error rates?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>In the simulation above, 5% of tests were significant when the null was true. Were those tests computed wrongly?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>Study A: <span class="math inline">\(p = 0.049\)</span>. Study B: <span class="math inline">\(p = 0.051\)</span>. How different is the evidence?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(c).</strong> That is the definition. (a) and (b) reverse the conditional; (d) confuses significance with size and cannot be read off a <span class="math inline">\(p\)</span>-value at all — the effect could be enormous or trivial.</p></li>
+<li><p><strong>It is greater than 0.05.</strong> Zero lies inside the interval, and by the duality a two-sided test rejects exactly when the null value falls outside. You cannot tell <em>how much</em> greater without more information — an interval that only just contains zero corresponds to a <span class="math inline">\(p\)</span> a little above 0.05, one that contains it centrally to a <span class="math inline">\(p\)</span> near 1.</p></li>
+<li><p>The <strong>Type I error rate falls to 1%</strong>, by construction — that is what <span class="math inline">\(\alpha\)</span> means. The <strong>Type II error rate rises</strong>, because the threshold has moved further out and more real effects now fall short of it. You cannot reduce both at once without more data.</p></li>
+<li><p><strong>No.</strong> Every one was computed correctly from data generated under the null. Five percent false positives is what a 5% threshold <em>is</em>. A procedure that never gave a false positive would also never detect anything.</p></li>
+<li><p><strong>Essentially not at all.</strong> The two studies provide near-identical evidence. The threshold is a convention placed at 0.05, and nothing about the underlying quantity changes as you step across it. Treating one as a finding and the other as a null result is the single most damaging convention in applied statistics, and it is a large part of why <a href="../stats/s12-going-wrong.html">S12</a> exists.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p><strong><a href="../stats/s10-comparing.html">S10</a></strong> applies all of this to the comparison people actually want: two groups, and the difference between them. <strong><a href="../stats/s11-regression.html">S11</a></strong> tests whether a fitted slope differs from zero, which is the same calculation again. <strong><a href="../stats/s12-going-wrong.html">S12</a></strong> asks what happens when many tests are run, and why a significant result in a low-prior field is more likely to be false than true.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../stats/s08-intervals.html" class="pagination-link" aria-label="Confidence intervals and the bootstrap">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../stats/s10-comparing.html" class="pagination-link" aria-label="Comparing groups, measuring association">
+        <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>25&nbsp; Solving Ax = b – Data Science Core Skills</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../maths/m11-least-squares.html" rel="next">
+<link href="../maths/m09-matrices.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var p = window.location.pathname;
+  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
+  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
+  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../maths/m01-reading-mathematics.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../maths/m10-linear-systems.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Science Core Skills</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science Core Skills</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Before you start</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to use this</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../start/diagnostic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The diagnostic</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p01-getting-running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Getting Python running</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Values, names and types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p03-collections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p04-decisions-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making decisions, repeating work</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p05-functions-modules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Functions and modules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">NumPy: arrays and indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p07-numpy-computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">NumPy: computing across arrays</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">pandas: the DataFrame</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p09-pandas-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">pandas: cleaning, grouping, joining</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plotting with Matplotlib</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/p11-reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Work someone else can rerun</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m01-reading-mathematics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reading mathematics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m02-functions-logs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Functions, exponentials and logarithms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m03-rates-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rates of change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m04-differentiation-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">The differentiation toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding the best value</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Several variables and the gradient</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m07-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Accumulation and area</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Data as vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m09-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directions in data: eigenvectors and the SVD</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s01-the-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">What is the question?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s02-one-variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Describing one variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s03-two-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Describing two variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s04-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Probability, conditioning and Bayes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s05-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Random variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s06-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Distributions chosen by mechanism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s07-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Sampling distributions and the CLT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s08-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Confidence intervals and the bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s09-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hypothesis tests</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s10-comparing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Comparing groups, measuring association</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s11-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/s12-going-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">How analyses go wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lookup</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Formula card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/python-card.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Python card</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">25.1</span> Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">25.2</span> The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics"><span class="header-section-number">25.3</span> The mechanics</a>
+  <ul class="collapse">
+  <li><a href="#elimination" id="toc-elimination" class="nav-link" data-scroll-target="#elimination"><span class="header-section-number">25.3.1</span> Elimination</a></li>
+  <li><a href="#singular-matrices" id="toc-singular-matrices" class="nav-link" data-scroll-target="#singular-matrices"><span class="header-section-number">25.3.2</span> Singular matrices</a></li>
+  <li><a href="#the-inverse-and-why-not-to-use-it" id="toc-the-inverse-and-why-not-to-use-it" class="nav-link" data-scroll-target="#the-inverse-and-why-not-to-use-it"><span class="header-section-number">25.3.3</span> The inverse, and why not to use it</a></li>
+  <li><a href="#when-solvable-is-too-crude-a-question" id="toc-when-solvable-is-too-crude-a-question" class="nav-link" data-scroll-target="#when-solvable-is-too-crude-a-question"><span class="header-section-number">25.3.4</span> When “solvable” is too crude a question</a></li>
+  <li><a href="#more-equations-than-unknowns" id="toc-more-equations-than-unknowns" class="nav-link" data-scroll-target="#more-equations-than-unknowns"><span class="header-section-number">25.3.5</span> More equations than unknowns</a></li>
+  </ul></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example"><span class="header-section-number">25.4</span> Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">25.5</span> Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python"><span class="header-section-number">25.6</span> Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns"><span class="header-section-number">25.7</span> Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself"><span class="header-section-number">25.8</span> Check yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../maths/m01-reading-mathematics.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../maths/m10-linear-systems.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Solving Ax = b</span></h1>
+<p class="subtitle lead">Mathematics · Unit 10</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="unit-meta">
+<p><span><strong>M10</strong> · Mathematics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M9</strong></span></p>
+</div>
+<div class="why">
+<p><span class="block-label">Why this unit is here</span></p>
+<p><a href="../maths/m09-matrices.html">M9</a> asked what a matrix <em>does</em> to a vector. This unit asks the reverse: given the matrix and the answer you want, which input produces it? That question is what “solving” means, and it is where fitting a model ends up once you stop walking downhill and write the condition for the best fit directly.</p>
+<p>The part that matters most is not the arithmetic — a library does that in one call. It is knowing which of three situations you are in: exactly one solution, none at all, or infinitely many. With real data the honest answer is usually <strong>none</strong>, and recognising that rather than fighting it is precisely what <a href="../maths/m11-least-squares.html">M11</a> is for.</p>
+</div>
+<section id="before-you-start" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">25.1</span> Before you start</h2>
+<p>You should be able to:</p>
+<ul>
+<li>multiply a matrix by a vector, by rows and by columns — <a href="../maths/m09-matrices.html">M9</a>;</li>
+<li>check that two shapes can legally be multiplied — <a href="../maths/m09-matrices.html">M9</a>;</li>
+<li>recognise when two vectors point along the same line — <a href="../maths/m08-vectors.html">M8</a>;</li>
+<li>call a NumPy function and read what it returns — <a href="../python/p06-numpy-arrays.html">P6</a>.</li>
+</ul>
+<p><strong>Quick check.</strong> Solve <span class="math inline">\(2x + y = 7\)</span> and <span class="math inline">\(x - y = 2\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Add the two equations: <span class="math inline">\(3x = 9\)</span>, so <span class="math inline">\(x = 3\)</span>, and then <span class="math inline">\(y = 1\)</span>.</p>
+<p>You have just done Gaussian elimination on a <span class="math inline">\(2 \times 2\)</span> system. Everything below is that, plus a vocabulary for the cases where it does not work.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-idea" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">25.2</span> The idea</h2>
+<p>A system of linear equations is a matrix equation. These two,</p>
+<p><span class="math display">\[
+\begin{aligned}
+2x + y &amp;= 7 \\
+x - y &amp;= 2
+\end{aligned}
+\qquad\text{are}\qquad
+\underbrace{\begin{pmatrix} 2 &amp; 1 \\ 1 &amp; -1\end{pmatrix}}_{A}
+\underbrace{\begin{pmatrix} x \\ y \end{pmatrix}}_{\mathbf{x}}
+=
+\underbrace{\begin{pmatrix} 7 \\ 2 \end{pmatrix}}_{\mathbf{b}} ,
+\]</span></p>
+<p>and as in <a href="../maths/m09-matrices.html">M9</a> there are two ways to look at that, both worth having.</p>
+<p><strong>The row picture.</strong> Each row is one equation, and in two variables each equation is a line. A solution is a point on every line at once — an intersection. Two lines in a plane can cross once, never (parallel), or everywhere (the same line drawn twice), and those are the only possibilities:</p>
+<div id="cell-fig-cases" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-cases" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m10-linear-systems_files/figure-html/fig-cases-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25.1: The three things a system can do, as lines. Left: one crossing, one solution. Middle: parallel lines, no point lies on both, and the system is <em>inconsistent</em>. Right: the two equations describe the same line, so every point on it solves the system and there are infinitely many solutions. Nothing else can happen.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>The column picture.</strong> By the column reading of <a href="../maths/m09-matrices.html">M9</a>, <span class="math inline">\(A\mathbf{x}\)</span> is the columns of <span class="math inline">\(A\)</span> scaled by the entries of <span class="math inline">\(\mathbf{x}\)</span> and added. So the question “does <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> have a solution?” becomes</p>
+<blockquote class="blockquote">
+<p>can I build <span class="math inline">\(\mathbf{b}\)</span> out of the columns of <span class="math inline">\(A\)</span>?</p>
+</blockquote>
+<p>The set of everything you can build that way is called the <strong>span</strong> of the columns — the reachable set. A solution exists exactly when <span class="math inline">\(\mathbf{b}\)</span> lies inside it, and that is a far more useful way to think about it than the lines, because it survives into dimensions you cannot draw.</p>
+<div id="cell-fig-span" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-span" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-span-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m10-linear-systems_files/figure-html/fig-span-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-span-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25.2: The same three cases seen from the columns. Left: two columns pointing in different directions span the whole plane, so every target is reachable and there is one recipe for each. Right: two columns along the same line span only that line — targets on it are reachable in infinitely many ways, and everything off it, including the <span class="math inline">\(\mathbf{b}\)</span> marked here, is unreachable no matter what <span class="math inline">\(\mathbf{x}\)</span> you choose.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-mechanics" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="the-mechanics"><span class="header-section-number">25.3</span> The mechanics</h2>
+<section id="elimination" class="level3" data-number="25.3.1">
+<h3 data-number="25.3.1" class="anchored" data-anchor-id="elimination"><span class="header-section-number">25.3.1</span> Elimination</h3>
+<p>The method is the one from the quick check, written down carefully: add multiples of one equation to another until the system is triangular, then substitute back. On</p>
+<p><span class="math display">\[
+\begin{aligned}
+2x + \phantom{1}y &amp;= 7 \\
+\phantom{2}x - \phantom{1}y &amp;= 2
+\end{aligned}
+\]</span></p>
+<p>subtract <span class="math inline">\(\tfrac12 \times\)</span> (row 1) from row 2 to remove <span class="math inline">\(x\)</span> there, leaving <span class="math inline">\(-\tfrac32 y = -\tfrac32\)</span>, so <span class="math inline">\(y = 1\)</span>; substitute into row 1 to get <span class="math inline">\(x = 3\)</span>.</p>
+<p>Three operations are allowed, because none of them changes the solution set: swap two rows, multiply a row by a nonzero number, and add a multiple of one row to another. That is the whole algorithm, and <code>numpy.linalg.solve</code> is a careful version of it — careful mainly about <em>which</em> row it uses to eliminate with, because dividing by a tiny pivot destroys accuracy.</p>
+</section>
+<section id="singular-matrices" class="level3" data-number="25.3.2">
+<h3 data-number="25.3.2" class="anchored" data-anchor-id="singular-matrices"><span class="header-section-number">25.3.2</span> Singular matrices</h3>
+<p>Elimination breaks down when a row eliminates to nothing. For a square <span class="math inline">\(A\)</span> that happens exactly when the columns are dependent — one is a multiple of the other, or more generally one is a combination of the rest — and such an <span class="math inline">\(A\)</span> is called <strong>singular</strong>. A singular matrix has a span smaller than the space it lives in, so most targets are unreachable, and the few that are reachable are reachable in infinitely many ways. Singular is the boundary between the second and third panels of both figures.</p>
+<p>For a <span class="math inline">\(2 \times 2\)</span> matrix there is a single number that detects it, the <strong>determinant</strong>:</p>
+<p><span class="math display">\[
+\det \begin{pmatrix} a &amp; b \\ c &amp; d\end{pmatrix} = ad - bc ,
+\qquad\text{singular} \iff \det A = 0 .
+\]</span></p>
+<p>For the system above, <span class="math inline">\(\det = (2)(-1) - (1)(1) = -3 \neq 0\)</span>, so one solution, which is what we found.</p>
+</section>
+<section id="the-inverse-and-why-not-to-use-it" class="level3" data-number="25.3.3">
+<h3 data-number="25.3.3" class="anchored" data-anchor-id="the-inverse-and-why-not-to-use-it"><span class="header-section-number">25.3.3</span> The inverse, and why not to use it</h3>
+<p>If <span class="math inline">\(A\)</span> is square and non-singular there is a matrix <span class="math inline">\(A^{-1}\)</span> with <span class="math inline">\(A^{-1}A = AA^{-1} = I\)</span>, and then</p>
+<p><span class="math display">\[
+A\mathbf{x} = \mathbf{b} \implies \mathbf{x} = A^{-1}\mathbf{b} .
+\]</span></p>
+<p>That is the right way to <em>think</em> and the wrong way to <em>compute</em>. Forming <span class="math inline">\(A^{-1}\)</span> does more arithmetic than solving the system, and every extra operation is another chance to lose digits. <strong>Write <code>np.linalg.solve(A, b)</code>, not <code>np.linalg.inv(A) @ b</code></strong> — the two agree on well-behaved problems and diverge exactly when you most need the answer, as the check at the end of this unit shows.</p>
+</section>
+<section id="when-solvable-is-too-crude-a-question" class="level3" data-number="25.3.4">
+<h3 data-number="25.3.4" class="anchored" data-anchor-id="when-solvable-is-too-crude-a-question"><span class="header-section-number">25.3.4</span> When “solvable” is too crude a question</h3>
+<p><span class="math inline">\(\det A \neq 0\)</span> says a unique solution exists. It says nothing about whether you can compute it reliably. If the columns are nearly dependent — the lines nearly parallel — the crossing point is exquisitely sensitive to the right-hand side:</p>
+<div id="cell-fig-conditioning" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-conditioning" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-conditioning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="m10-linear-systems_files/figure-html/fig-conditioning-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conditioning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25.3: Two nearly parallel lines. Moving the second line’s right-hand side from <span class="math inline">\(2.15\)</span> to <span class="math inline">\(2.30\)</span> — a shift you can barely see — slides the crossing point from <span class="math inline">\((1, 1)\)</span> to <span class="math inline">\((0, 2)\)</span>. The system is not singular, so a unique solution exists in both cases; it is just that where the solution <em>is</em> depends on the data far more strongly than you might expect.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The number that measures this is the <strong>condition number</strong>, <code>np.linalg.cond(A)</code>. Roughly: a condition number of <span class="math inline">\(10^{k}\)</span> means you can expect to lose about <span class="math inline">\(k\)</span> digits of accuracy between the data and the answer. It is the same phenomenon that made gradient descent diverge in <a href="../maths/m06-gradients.html">M6</a> — a long narrow valley and a nearly singular matrix are two descriptions of one thing.</p>
+</section>
+<section id="more-equations-than-unknowns" class="level3" data-number="25.3.5">
+<h3 data-number="25.3.5" class="anchored" data-anchor-id="more-equations-than-unknowns"><span class="header-section-number">25.3.5</span> More equations than unknowns</h3>
+<p>A dataset gives you one equation per row and one unknown per parameter, so a model with two parameters fitted to 238 students is 238 equations in 2 unknowns. Such a system is <strong>overdetermined</strong>, and unless the data is exactly linear it has no solution at all. That is not a failure of the data or the method; it is the normal case, and it is the whole reason the next unit exists.</p>
+</section>
+</section>
+<section id="worked-example" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="worked-example"><span class="header-section-number">25.4</span> Worked example</h2>
+<p><strong>The cohort system has no solution — and the one you can solve instead.</strong></p>
+<p>Take the design matrix of <a href="../maths/m09-matrices.html">M9</a> and ask for an <em>exact</em> fit: values of <span class="math inline">\(\boldsymbol{\theta}\)</span> with <span class="math inline">\(X\boldsymbol{\theta} = \mathbf{y}\)</span>, every prediction landing on every student’s actual score.</p>
+<div id="unsolvable" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>h, y <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy(), usable[<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack([np.ones(<span class="bu">len</span>(h)), h])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"X is </span><span class="sc">{</span>X<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> equations in </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> unknowns"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"rank of X            </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>matrix_rank(X)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"rank of [X | y]      </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>matrix_rank(np.column_stack([X, y]))<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X is (238, 2): 238 equations in 2 unknowns
+rank of X            2
+rank of [X | y]      3</code></pre>
+</div>
+</div>
+<p>Those two ranks are the test. The rank of <span class="math inline">\(X\)</span> is the dimension of the span of its columns; here it is 2, so the reachable set is a plane inside a 238-dimensional space. Attaching <span class="math inline">\(\mathbf{y}\)</span> raises the rank to 3, which says <span class="math inline">\(\mathbf{y}\)</span> adds a direction the columns could not reach: <span class="math inline">\(\mathbf{y}\)</span> is <strong>outside the span</strong>, and <span class="math inline">\(X\boldsymbol{\theta} = \mathbf{y}\)</span> has no solution. The right panel of the span figure, in 238 dimensions.</p>
+<p>So ask a different question — not <em>hit <span class="math inline">\(\mathbf{y}\)</span> exactly</em>, but <em>get as close as possible</em> — and the condition for that was already found in <a href="../maths/m09-matrices.html">M9</a>: the residual must be orthogonal to every column of <span class="math inline">\(X\)</span>, that is <span class="math inline">\(X^{\mathsf{T}}(\mathbf{y} - X\boldsymbol{\theta}) = \mathbf{0}\)</span>. Rearranged, that is a system small enough to solve by hand:</p>
+<p><span class="math display">\[
+X^{\mathsf{T}}X\,\boldsymbol{\theta} = X^{\mathsf{T}}\mathbf{y}
+\qquad\Longleftrightarrow\qquad
+\begin{pmatrix} 238 &amp; 3908.4 \\ 3908.4 &amp; 79872.82 \end{pmatrix}
+\begin{pmatrix} a \\ b \end{pmatrix}
+= \begin{pmatrix} 15534.7 \\ 251330.53 \end{pmatrix}
+\]</span></p>
+<p>238 equations have become 2. Check it is solvable, then solve it:</p>
+<p><span class="math display">\[
+\det = (238)(79872.82) - (3908.4)^2 = 19{,}009{,}731.16 - 15{,}275{,}590.56 = 3{,}734{,}140.6 ,
+\]</span></p>
+<p>which is not zero, so there is exactly one answer. Eliminate: multiply row 1 by <span class="math inline">\(3908.4/238\)</span> and subtract it from row 2, leaving a single equation in <span class="math inline">\(b\)</span>; then substitute back for <span class="math inline">\(a\)</span>. The arithmetic is unpleasant enough to be worth handing over:</p>
+<div id="normal-equations" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> X.T <span class="op">@</span> X</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rhs <span class="op">=</span> X.T <span class="op">@</span> y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linalg.solve(A, rhs)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"det(X'X)   </span><span class="sc">{</span>A[<span class="dv">0</span>,<span class="dv">0</span>]<span class="op">*</span>A[<span class="dv">1</span>,<span class="dv">1</span>] <span class="op">-</span> A[<span class="dv">0</span>,<span class="dv">1</span>]<span class="op">*</span>A[<span class="dv">1</span>,<span class="dv">0</span>]<span class="sc">:,.1f}</span><span class="ss">"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"cond(X'X)  </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>cond(A)<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"theta      intercept </span><span class="sc">{</span>theta[<span class="dv">0</span>]<span class="sc">:.6f}</span><span class="ss">   slope </span><span class="sc">{</span>theta[<span class="dv">1</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"residual of the solved system  </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(A <span class="op">@</span> theta <span class="op">-</span> rhs)<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"but of the original system     </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(X <span class="op">@</span> theta <span class="op">-</span> y)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>det(X'X)   3,734,140.6
+cond(X'X)  1716.7
+theta      intercept 69.226117   slope -0.240793
+residual of the solved system  5.846e-11
+but of the original system     125.4985</code></pre>
+</div>
+</div>
+<p>Two residuals, and the difference between them is the whole point of this unit. The <span class="math inline">\(2 \times 2\)</span> system is solved essentially exactly — a residual of <span class="math inline">\(6 \times 10^{-11}\)</span> against right-hand sides of order <span class="math inline">\(10^{5}\)</span> — because that system genuinely has an answer. The original 238-equation system is still missed by 125.5, and no choice of <span class="math inline">\(\boldsymbol{\theta}\)</span> does better, because <span class="math inline">\(\mathbf{y}\)</span> is not in the span and nothing can put it there.</p>
+<p>The answer itself is the one you have seen twice already: intercept <span class="math inline">\(69.226117\)</span>, slope <span class="math inline">\(-0.240793\)</span>, the same numbers gradient descent walked to in <a href="../maths/m06-gradients.html">M6</a> and <code>np.polyfit</code> returned in <a href="../maths/m09-matrices.html">M9</a>. Three routes — an iterative walk, a library call and a <span class="math inline">\(2 \times 2\)</span> system solved by elimination — and one answer, which is the reassurance that all three are computing the same thing.</p>
+</section>
+<section id="try-it-yourself" class="level2" data-number="25.5">
+<h2 data-number="25.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">25.5</span> Try it yourself</h2>
+<div class="exercise">
+<p><span class="num">Exercise 1</span> Solve <span class="math inline">\(\begin{aligned} x + 2y &amp;= 5 \\ 3x - y &amp;= 1\end{aligned}\)</span> by elimination, and check your answer by substitution.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Subtract <span class="math inline">\(3 \times\)</span> (row 1) from row 2: <span class="math inline">\((3x - y) - 3(x + 2y) = 1 - 15\)</span>, so <span class="math inline">\(-7y = -14\)</span> and <span class="math inline">\(y = 2\)</span>. Then row 1 gives <span class="math inline">\(x = 5 - 4 = 1\)</span>.</p>
+<p>Check both equations, not just the one you substituted into: <span class="math inline">\(1 + 4 = 5\)</span> ✓ and <span class="math inline">\(3 - 2 = 1\)</span> ✓. Checking only the equation you used to back-substitute will confirm an arithmetic slip rather than catch it.</p>
+<p><span class="math inline">\(\det = (1)(-1) - (2)(3) = -7 \neq 0\)</span>, consistent with there being exactly one solution.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 2</span> For each system, say how many solutions it has and why.</p>
+<p><span class="math display">\[\text{(a)}\;\begin{aligned} x + y &amp;= 3 \\ 2x + 2y &amp;= 6\end{aligned}
+\qquad\qquad
+\text{(b)}\;\begin{aligned} x + y &amp;= 3 \\ 2x + 2y &amp;= 7\end{aligned}\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Both have <span class="math inline">\(\det = (1)(2) - (1)(2) = 0\)</span>, so neither has a unique solution — but they differ, and the determinant alone cannot tell you how.</p>
+<p><strong>(a) infinitely many.</strong> The second equation is exactly twice the first, so it adds nothing. Every point on <span class="math inline">\(x + y = 3\)</span> is a solution.</p>
+<p><strong>(b) none.</strong> The left-hand sides are still proportional but the right-hand sides are not: <span class="math inline">\(x + y\)</span> cannot be both 3 and 3.5. The lines are parallel and distinct.</p>
+<p>In column language: the columns <span class="math inline">\((1,2)\)</span> and <span class="math inline">\((1,2)\)</span> span only the line through <span class="math inline">\((1,2)\)</span>. In (a), <span class="math inline">\(\mathbf{b} = (3, 6)\)</span> lies on that line and is reachable in infinitely many ways; in (b), <span class="math inline">\(\mathbf{b} = (3, 7)\)</span> does not and is unreachable.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="exercise">
+<p><span class="num">Exercise 3</span> You fit a model with 5 parameters to 300 rows of data, giving a <span class="math inline">\(300 \times 5\)</span> matrix <span class="math inline">\(X\)</span>. Someone asks you to solve <span class="math inline">\(X\boldsymbol{\theta} =
+\mathbf{y}\)</span> exactly. What do you tell them, and what do you compute instead?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There will almost certainly be <strong>no exact solution</strong>. The columns of <span class="math inline">\(X\)</span> span at most a 5-dimensional set inside a 300-dimensional space, and a real <span class="math inline">\(\mathbf{y}\)</span> — with measurement noise, and a model that is at best approximately right — will not lie in it. Only a suspiciously perfect dataset would.</p>
+<p>What you compute instead is the <span class="math inline">\(\boldsymbol{\theta}\)</span> minimising <span class="math inline">\(\lVert \mathbf{y} - X\boldsymbol{\theta}\rVert\)</span>, by solving the <span class="math inline">\(5 \times 5\)</span> system <span class="math inline">\(X^{\mathsf{T}}X\boldsymbol{\theta} = X^{\mathsf{T}}\mathbf{y}\)</span>.</p>
+<p>And the honest footnote: if there <em>were</em> an exact solution with 5 parameters and 300 rows, that would be a reason for suspicion rather than celebration. It would mean <span class="math inline">\(\mathbf{y}\)</span> landed exactly inside a 5-dimensional slice of a 300-dimensional space, which does not happen by accident. The usual explanation is that one of your columns is secretly a copy of the thing you are predicting. (It does not strictly follow that the data is noise-free — noise that happens to lie along the columns leaves no residual either — but that is a coincidence you should not expect, and looking for a leaked column is the right first move.)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-it-in-python" class="level2" data-number="25.6">
+<h2 data-number="25.6" class="anchored" data-anchor-id="check-it-in-python"><span class="header-section-number">25.6</span> Check it in Python</h2>
+<p><strong>Solve, and then check the solution</strong> rather than trusting it:</p>
+<div id="check-solve" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> A_small, b_small <span class="kw">in</span> [(np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]]), np.array([<span class="fl">7.0</span>, <span class="fl">2.0</span>])),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                         (np.array([[<span class="fl">7.0</span>, <span class="fl">2.0</span>], [<span class="fl">3.0</span>, <span class="fl">5.0</span>]]), np.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>]))]:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linalg.solve(A_small, b_small)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"solution </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   A @ x == b ?  </span><span class="sc">{</span>np<span class="sc">.</span>array_equal(A_small <span class="op">@</span> x, b_small)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"    allclose ?  </span><span class="sc">{</span>np<span class="sc">.</span>allclose(A_small <span class="op">@</span> x, b_small)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"    residual </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">abs</span>(A_small <span class="op">@</span> x <span class="op">-</span> b_small)<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>solution [3. 1.]
+   A @ x == b ?  True    allclose ?  True    residual 0.00e+00
+solution [0.10344828 0.13793103]
+   A @ x == b ?  False    allclose ?  True    residual 1.11e-16</code></pre>
+</div>
+</div>
+<p>Both solutions are correct. The first system happens to have a whole-number answer that survives the round trip exactly, so <code>==</code> says <code>True</code>; the second has an answer that does not terminate in binary, and <code>==</code> says <code>False</code> while the residual is <span class="math inline">\(10^{-16}\)</span>. Which one you get is an accident of the arithmetic, so <code>==</code> is never the question to ask. Substitute back and measure the residual.</p>
+<p><strong>A singular system refuses</strong>, which is the behaviour you want:</p>
+<div id="check-singular" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>singular <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">1.0</span>], [<span class="fl">2.0</span>, <span class="fl">2.0</span>]])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> target <span class="kw">in</span> ([<span class="fl">3.0</span>, <span class="fl">6.0</span>], [<span class="fl">3.0</span>, <span class="fl">7.0</span>]):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"b=</span><span class="sc">{</span>target<span class="sc">}</span><span class="ss">  -&gt;"</span>, np.linalg.solve(singular, np.array(target)))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> np.linalg.LinAlgError <span class="im">as</span> exc:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"b=</span><span class="sc">{</span>target<span class="sc">}</span><span class="ss">  -&gt; LinAlgError: </span><span class="sc">{</span>exc<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b=[3.0, 6.0]  -&gt; LinAlgError: Singular matrix
+b=[3.0, 7.0]  -&gt; LinAlgError: Singular matrix</code></pre>
+</div>
+</div>
+<p>Note that <em>both</em> fail with the same error, although mathematically one has infinitely many solutions and the other has none. <code>solve</code> promises a unique answer and declines whenever it cannot give one; distinguishing the two cases is <code>matrix_rank</code>’s job, as in the worked example.</p>
+<p><strong>And the reason not to invert.</strong> The Hilbert matrices below are famous for being very nearly singular, which makes them a stress test rather than a realistic case — but the ordering they reveal holds generally:</p>
+<div id="check-inv" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hilbert(n):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([[<span class="fl">1.0</span><span class="op">/</span>(i <span class="op">+</span> j <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'n'</span><span class="sc">:&gt;3}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'condition'</span><span class="sc">:&gt;10}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'solve error'</span><span class="sc">:&gt;12}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'inv @ b error'</span><span class="sc">:&gt;14}</span><span class="ss">"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">14</span>):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> hilbert(n)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    x_true <span class="op">=</span> np.ones(n)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> H <span class="op">@</span> x_true</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    err_solve <span class="op">=</span> np.<span class="bu">abs</span>(np.linalg.solve(H, b) <span class="op">-</span> x_true).<span class="bu">max</span>()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    err_inv <span class="op">=</span> np.<span class="bu">abs</span>(np.linalg.inv(H) <span class="op">@</span> b <span class="op">-</span> x_true).<span class="bu">max</span>()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;3}</span><span class="ss">  </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>cond(H)<span class="sc">:&gt;10.1e}</span><span class="ss">  </span><span class="sc">{</span>err_solve<span class="sc">:&gt;12.2e}</span><span class="ss">  </span><span class="sc">{</span>err_inv<span class="sc">:&gt;14.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  n   condition   solve error   inv @ b error
+  6     1.5e+07      2.39e-10        1.05e-09
+ 10     1.6e+13      1.69e-04        5.55e-03
+ 14     6.2e+17      8.90e+00        5.41e+02</code></pre>
+</div>
+</div>
+<p>Two lessons in one table. <code>inv</code> is consistently the worse of the two — by a factor of four at <span class="math inline">\(n = 6\)</span>, thirty at <span class="math inline">\(n = 10\)</span> and sixty at <span class="math inline">\(n = 14\)</span> — so prefer <code>solve</code> as a matter of habit. And by <span class="math inline">\(n = 14\)</span> <em>both</em> are useless: the condition number has passed <span class="math inline">\(10^{16}\)</span> and the answer carries no correct digits at all. That last part is a statement about <em>double precision</em>, which carries about 16 digits — the condition number says how many of them you lose, so a problem this bad exhausts the supply. Eighty-digit arithmetic would solve the same system perfectly well. What you cannot do is rescue it with a cleverer algorithm at the same precision: the fix is more digits, or a better-posed question.</p>
+</section>
+<section id="common-wrong-turns" class="level2" data-number="25.7">
+<h2 data-number="25.7" class="anchored" data-anchor-id="common-wrong-turns"><span class="header-section-number">25.7</span> Common wrong turns</h2>
+<div class="wrong-turns">
+<p><span class="block-label">Where this usually goes wrong</span></p>
+<dl>
+<dt>Computing the inverse to solve a system</dt>
+<dd>
+<code>np.linalg.inv(A) @ b</code> does more work than <code>np.linalg.solve(A, b)</code> and is reliably less accurate. There is almost no reason to form an inverse numerically; if you find yourself typing <code>inv</code>, ask what you actually want.
+</dd>
+<dt>Assuming a solution exists because the algebra is legal</dt>
+<dd>
+With more equations than unknowns the normal outcome is no solution at all. That is a fact about the data, not a bug, and it is why least squares exists.
+</dd>
+<dt>Reading <span class="math inline">\(\det A \neq 0\)</span> as “this will work”</dt>
+<dd>
+A determinant is a yes/no on uniqueness and says nothing about accuracy. A matrix can be comfortably non-singular and still have a condition number of <span class="math inline">\(10^{10}\)</span>, at which point the answer you get is mostly noise. Check <code>np.linalg.cond</code>, not just the determinant.
+</dd>
+<dt>Using a tiny determinant as a measure of near-singularity</dt>
+<dd>
+Scale every entry of a <span class="math inline">\(2 \times 2\)</span> matrix by <span class="math inline">\(0.001\)</span> and the determinant falls by a factor of a million while the matrix is exactly as well behaved as before. The determinant has units; the condition number does not.
+</dd>
+<dt>Checking a solution with <code>==</code></dt>
+<dd>
+<code>A @ x == b</code> will be <code>False</code> for reasons that have nothing to do with your mathematics. Use <code>np.allclose</code>, and look at the size of <code>A @ x - b</code>.
+</dd>
+<dt>Expecting more data to make a system easier</dt>
+<dd>
+More rows means more equations against the same unknowns, which makes an exact solution <em>less</em> likely, not more. What more rows buy you is a better approximate answer, which is a different thing.
+</dd>
+</dl>
+</div>
+</section>
+<section id="check-yourself" class="level2" data-number="25.8">
+<h2 data-number="25.8" class="anchored" data-anchor-id="check-yourself"><span class="header-section-number">25.8</span> Check yourself</h2>
+<p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
+<div class="quiz">
+<div class="q">
+<ol type="1">
+<li><p><span class="math inline">\(A\)</span> is <span class="math inline">\(2 \times 2\)</span> with <span class="math inline">\(\det A = 0\)</span> and <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> has at least one solution. How many does it have?</p>
+<ol type="a">
+<li>exactly one b. none c.&nbsp;infinitely many d.&nbsp;cannot tell</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li>In column language, what exactly is the condition for <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> to have a solution?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li><span class="math inline">\(X\)</span> is <span class="math inline">\(300 \times 5\)</span>. What are the shapes of <span class="math inline">\(X^{\mathsf{T}}X\)</span> and <span class="math inline">\(X^{\mathsf{T}}\mathbf{y}\)</span>, and why is turning the problem into that system worth doing?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Two colleagues solve the same system. One writes <code>inv(A) @ b</code>, the other <code>solve(A, b)</code>, and they disagree in the sixth decimal place. Who is right, and what should you check next?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><code>np.linalg.solve</code> raises <code>LinAlgError</code> on your system. Name the two quite different situations that produce that, and how you would tell them apart.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(c) infinitely many.</strong> A zero determinant rules out a unique solution, so the only options are none or infinitely many — and we were told at least one exists. Option (d) is the tempting one, but the extra fact given closes it off.</p></li>
+<li><p><span class="math inline">\(\mathbf{b}\)</span> must lie in the <strong>span of the columns</strong> of <span class="math inline">\(A\)</span> — it must be expressible as a combination of them. That is the same statement as <span class="math inline">\(\operatorname{rank}(A) = \operatorname{rank}([A \mid \mathbf{b}])\)</span>, which is how you check it in code.</p></li>
+<li><p><span class="math inline">\(X^{\mathsf{T}}X\)</span> is <span class="math inline">\(5 \times 5\)</span> and <span class="math inline">\(X^{\mathsf{T}}\mathbf{y}\)</span> has 5 entries. It is worth doing because 300 equations that have no solution become 5 that do, and the size of the system you actually solve stops depending on how much data you have.</p></li>
+<li><p>First establish whether the disagreement is even large. Sixth <em>decimal place</em> is an absolute measure and tells you nothing on its own — if the solution is of size <span class="math inline">\(10^{9}\)</span>, a gap of <span class="math inline">\(10^{-6}\)</span> is the last bit of double precision and both answers are excellent. What matters is the disagreement <em>relative</em> to the size of the answer. If that is around <span class="math inline">\(10^{-6}\)</span>, roughly ten digits have been lost, and the thing to check next is <code>np.linalg.cond(A)</code>. <code>solve</code> is the better bet either way, but when conditioning is the problem the response is to reformulate, not to pick a winner.</p></li>
+<li><p>Either the matrix is <strong>singular</strong> — columns dependent, so no unique solution exists — or it is <strong>not square</strong>, so <code>solve</code> does not apply at all. The shape distinguishes them immediately. If it is square and singular, compare <code>matrix_rank(A)</code> with <code>matrix_rank([A | b])</code> to find out whether you are in the “no solutions” case or the “infinitely many” one.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="next-up">
+<p><span class="block-label">Where this shows up next</span></p>
+<p><strong><a href="../maths/m11-least-squares.html">M11</a></strong> takes the unsolvable system of the worked example seriously: it derives <span class="math inline">\(X^{\mathsf{T}}X\boldsymbol{\theta} =
+X^{\mathsf{T}}\mathbf{y}\)</span> rather than pulling it out of <a href="../maths/m09-matrices.html">M9</a>, and explains why the closest reachable point is the one whose residual is orthogonal to the span. <strong><a href="../maths/m12-directions.html">M12</a></strong> explains the condition number properly, in terms of how much a matrix stretches in its most and least favoured directions. <strong><a href="../stats/s11-regression.html">S11</a></strong> fits this system to the cohort and asks what the answer means, which no amount of linear algebra can settle.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../maths/m09-matrices.html" class="pagination-link" aria-label="Matrices as operations on data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrices as operations on data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../maths/m11-least-squares.html" class="pagination-link" aria-label="When there is no solution: least squares">
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">When there is no solution: least squares</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Data Science Core Skills</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Department of Physics, Astronomy and Mathematics</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
