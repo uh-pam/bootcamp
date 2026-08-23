@@ -43,10 +43,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5416fb0b706cdb8ee832a69eddb66d1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b5574b03c3a2518fe4b1568c8be23e57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,18 +74,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var p = window.location.pathname;
-  if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
-  if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
-  if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
-});
-</script>
 
 
 </head>
@@ -116,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Data Science Core Skills</a> 
         <div class="sidebar-tools-main">
-    <a href="./Data-Science-Core-Skills.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -446,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#what-is-here" id="toc-what-is-here" class="nav-link active" data-scroll-target="#what-is-here"><span class="header-section-number">0.1</span> What is here</a></li>
@@ -561,7 +548,32 @@ document.addEventListener("DOMContentLoaded", function () {
 </section>
 <section id="downloading-it" class="level2" data-number="0.4">
 <h2 data-number="0.4" class="anchored" data-anchor-id="downloading-it"><span class="header-section-number">0.4</span> Downloading it</h2>
-<p>Everything on this site is also available as a <strong>PDF</strong>, linked in the sidebar, if you prefer to read away from a screen or work on paper. The site and the PDF contain exactly the same material.</p>
+<p>Each track is also a PDF booklet, if you prefer to read away from a screen or work on paper. They contain exactly the same material as the site — the code, the figures, and the solutions in full rather than hidden behind a click.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 16%">
+<col style="width: 57%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="Data-Science-Core-Skills-Python.pdf"><strong>Python</strong></a></td>
+<td style="text-align: right;">11 units</td>
+<td style="text-align: left;">installing Python to an analysis someone else can rerun</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="Data-Science-Core-Skills-Mathematics.pdf"><strong>Mathematics</strong></a></td>
+<td style="text-align: right;">12 units</td>
+<td style="text-align: left;">rates of change to eigenvectors and the SVD</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="Data-Science-Core-Skills-Statistics.pdf"><strong>Statistics</strong></a></td>
+<td style="text-align: right;">12 units</td>
+<td style="text-align: left;">what question you are asking to how analyses go wrong</td>
+</tr>
+</tbody>
+</table>
+<p>Three booklets rather than one volume, because a hundred pages on one subject is something you might read and four hundred on three is something you file away.</p>
 </section>
 <section id="about-the-data" class="level2" data-number="0.5">
 <h2 data-number="0.5" class="anchored" data-anchor-id="about-the-data"><span class="header-section-number">0.5</span> About the data</h2>
@@ -659,11 +671,6 @@ document.addEventListener("DOMContentLoaded", function () {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
-            // target, if specified
-            link.setAttribute("target", "_blank");
-            if (link.getAttribute("rel") === null) {
-              link.setAttribute("rel", "noopener");
-            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1004,5 +1011,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
