@@ -449,11 +449,10 @@ document.addEventListener("DOMContentLoaded", function () {
   <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">1.2 The idea</a></li>
   <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">1.3 The mechanics</a>
   <ul class="collapse">
-  <li><a href="#install-python" id="toc-install-python" class="nav-link" data-scroll-target="#install-python">1. Install Python</a></li>
-  <li><a href="#make-a-folder-and-an-isolated-environment" id="toc-make-a-folder-and-an-isolated-environment" class="nav-link" data-scroll-target="#make-a-folder-and-an-isolated-environment">2. Make a folder and an isolated environment</a></li>
-  <li><a href="#install-the-packages" id="toc-install-the-packages" class="nav-link" data-scroll-target="#install-the-packages">3. Install the packages</a></li>
-  <li><a href="#your-first-program" id="toc-your-first-program" class="nav-link" data-scroll-target="#your-first-program">4. Your first program</a></li>
-  <li><a href="#read-the-traceback" id="toc-read-the-traceback" class="nav-link" data-scroll-target="#read-the-traceback">5. Read the traceback</a></li>
+  <li><a href="#what-setup-gave-you" id="toc-what-setup-gave-you" class="nav-link" data-scroll-target="#what-setup-gave-you">1. What setup gave you</a></li>
+  <li><a href="#your-first-program-as-a-script" id="toc-your-first-program-as-a-script" class="nav-link" data-scroll-target="#your-first-program-as-a-script">2. Your first program, as a script</a></li>
+  <li><a href="#the-same-line-in-a-notebook" id="toc-the-same-line-in-a-notebook" class="nav-link" data-scroll-target="#the-same-line-in-a-notebook">3. The same line, in a notebook</a></li>
+  <li><a href="#read-the-traceback" id="toc-read-the-traceback" class="nav-link" data-scroll-target="#read-the-traceback">4. Read the traceback</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">1.4 Worked example</a></li>
   <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">1.5 Try it yourself</a></li>
@@ -497,8 +496,8 @@ document.addEventListener("DOMContentLoaded", function () {
 <section id="before-you-start" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-start">1.1 Before you start</h2>
 <p>Nothing. This is the first unit, and it assumes you have never written a line of code.</p>
-<p>You will need a computer you can install software on, and about an hour.</p>
-<p><strong>Quick check.</strong> Can you find your computer’s terminal? On Windows it is <strong>PowerShell</strong>; on macOS, <strong>Terminal</strong>; on Linux you already know.</p>
+<p>It does assume you have worked through <a href="../start/set-up-python.html">Set up Python</a>, which takes about an hour and leaves you with a <code>bootcamp</code> folder and JupyterLab.</p>
+<p><strong>Quick check.</strong> Can you start JupyterLab and see your <code>data</code> folder in its file panel?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -511,8 +510,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Windows: press the Start button and type <code>powershell</code>. macOS: press ⌘ + Space and type <code>terminal</code>.</p>
-<p>A window opens with a line of text and a blinking cursor. That is a prompt: it is waiting for you to type a command. Nothing you type there will break your computer.</p>
+<p>Open a terminal and type, pressing Enter after each line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bootcamp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span>          <span class="co"># Windows PowerShell</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate       <span class="co"># macOS or Linux, instead of the line above</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A browser tab opens, and the panel on the left lists <code>data</code>. If any line fails, the setup page’s <em>When something goes wrong</em> section covers the usual causes.</p>
 </div>
 </div>
 </div>
@@ -530,55 +533,39 @@ document.addEventListener("DOMContentLoaded", function () {
 </section>
 <section id="the-mechanics" class="level2">
 <h2 class="anchored" data-anchor-id="the-mechanics">1.3 The mechanics</h2>
-<section id="install-python" class="level3">
-<h3 class="anchored" data-anchor-id="install-python">1. Install Python</h3>
-<p>Download it from <a href="https://www.python.org/downloads/">python.org/downloads</a>. These notes use <strong>Python 3.11</strong>; anything from 3.10 will work.</p>
-<div class="callout callout-style-simple callout-important">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>On Windows, tick <strong>“Add python.exe to PATH”</strong> on the first installer screen. It is easy to miss and annoying to fix afterwards. If you missed it, the quickest repair is to run the installer again and choose Modify.</p>
-</div>
-</div>
-</div>
+<section id="what-setup-gave-you" class="level3">
+<h3 class="anchored" data-anchor-id="what-setup-gave-you">1. What setup gave you</h3>
+<p>Three things, each of which you will lean on in every unit:</p>
+<ul>
+<li><strong>Python</strong> itself — the interpreter.</li>
+<li><strong>An environment</strong>, the <code>.venv</code> folder inside <code>bootcamp</code>. <code>venv</code> stands for <em>virtual environment</em>: a private copy of Python with this course’s packages in it. <strong>You must activate it each time you open a new terminal.</strong> Forgetting is the single commonest cause of “but I installed that already”.</li>
+<li><strong>JupyterLab</strong>, which runs in your browser and is where you write both scripts and notebooks.</li>
+</ul>
+<p>Do not repeat the setup commands here. Typing <code>mkdir bootcamp</code> again from inside <code>bootcamp</code> makes a second <code>bootcamp</code> inside the first, and code that looks for <code>data/cohort.csv</code> stops finding it.</p>
 </section>
-<section id="make-a-folder-and-an-isolated-environment" class="level3">
-<h3 class="anchored" data-anchor-id="make-a-folder-and-an-isolated-environment">2. Make a folder and an isolated environment</h3>
-<p>In your terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> bootcamp</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bootcamp</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>venv</code> stands for <em>virtual environment</em>. It creates a private copy of Python inside this folder, so anything you install here cannot disturb anything else on your machine. Activate it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS or Linux</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Your prompt now starts with <code>(.venv)</code>. <strong>You must do this each time you open a new terminal.</strong> Forgetting is the single commonest cause of “but I installed that already”.</p>
+<section id="your-first-program-as-a-script" class="level3">
+<h3 class="anchored" data-anchor-id="your-first-program-as-a-script">2. Your first program, as a script</h3>
+<p>In JupyterLab, choose <strong>File ▸ New ▸ Python File</strong>. An empty editor opens. Type one line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello from my own machine"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Choose <strong>File ▸ Save Python File As…</strong>, name it <code>hello.py</code>, and save. It appears in the file panel, inside <code>bootcamp</code>.</p>
+<p>To run it, choose <strong>File ▸ New ▸ Terminal</strong>. This terminal opens already inside <code>bootcamp</code> and uses the same Python as JupyterLab. Type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> hello.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and press Enter. The line of text appears underneath.</p>
 </section>
-<section id="install-the-packages" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-packages">3. Install the packages</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install numpy==1.26.4 pandas==2.3.3 matplotlib==3.10.8 scipy==1.17.0 jupyterlab==4.5.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Versions are pinned so the numbers you get match the numbers printed here exactly.</p>
-</section>
-<section id="your-first-program" class="level3">
-<h3 class="anchored" data-anchor-id="your-first-program">4. Your first program</h3>
-<p>Create a file called <code>hello.py</code> containing one line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello from my own machine"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Run it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> hello.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="the-same-line-in-a-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="the-same-line-in-a-notebook">3. The same line, in a notebook</h3>
+<p>Choose <strong>File ▸ New ▸ Notebook</strong> (pick <em>Python 3 (ipykernel)</em> if asked). Type the same <code>print(...)</code> line into the empty cell and press <strong>Shift + Enter</strong>. The output appears directly under the cell, and a new empty cell opens below it.</p>
+<p>That is the whole difference: a script runs top to bottom in one go; a notebook runs whichever cell you choose, when you choose. Every code block in these notes can be pasted into a notebook cell.</p>
 </section>
 <section id="read-the-traceback" class="level3">
-<h3 class="anchored" data-anchor-id="read-the-traceback">5. Read the traceback</h3>
-<p>Now make it fail on purpose. Change the file to:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="st">"22C"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperature <span class="op">+</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 class="anchored" data-anchor-id="read-the-traceback">4. Read the traceback</h3>
+<p>Now make it fail on purpose. Change <code>hello.py</code> to this, save it, and run it again:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="st">"22C"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperature <span class="op">+</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Python stops and prints a <strong>traceback</strong>. It looks alarming and is not. It is a report with a fixed shape, and you read it <em>from the bottom</em>.</p>
 <div id="traceback" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="st">"22C"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperature <span class="op">+</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="st">"22C"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperature <span class="op">+</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -596,7 +583,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <div id="fig-traceback" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-traceback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p01-getting-running_files/figure-html/fig-traceback-output-1.png" width="420" height="144" class="figure-img">
+<img src="p01-getting-running_files/figure-html/fig-traceback-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traceback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.1: Every traceback has this shape. The last line names what went wrong; the lines above say where. Read the bottom line first, then look at the line of your own code it points to.
@@ -613,8 +600,8 @@ Figure&nbsp;5.1: Every traceback has this shape. The last line names what went w
 <p><strong>A traceback, diagnosed and fixed.</strong></p>
 <p>Suppose you are asked to add up three measurements and one of them came from a text file, so it is still text:</p>
 <div id="worked-broken" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>measurements <span class="op">=</span> [<span class="fl">12.5</span>, <span class="fl">13.1</span>, <span class="st">"12.9"</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="bu">sum</span>(measurements)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>measurements <span class="op">=</span> [<span class="fl">12.5</span>, <span class="fl">13.1</span>, <span class="st">"12.9"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="bu">sum</span>(measurements)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -632,9 +619,9 @@ Figure&nbsp;5.1: Every traceback has this shape. The last line names what went w
 <p><strong>Which line?</strong> The traceback points at the <code>sum(...)</code> call.</p>
 <p><strong>What actually reached it?</strong> Look at the data:</p>
 <div id="worked-inspect" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>measurements <span class="op">=</span> [<span class="fl">12.5</span>, <span class="fl">13.1</span>, <span class="st">"12.9"</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> value <span class="kw">in</span> measurements:</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">repr</span>(value), <span class="bu">type</span>(value).<span class="va">__name__</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>measurements <span class="op">=</span> [<span class="fl">12.5</span>, <span class="fl">13.1</span>, <span class="st">"12.9"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> value <span class="kw">in</span> measurements:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">repr</span>(value), <span class="bu">type</span>(value).<span class="va">__name__</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>12.5 float
 13.1 float
@@ -644,9 +631,9 @@ Figure&nbsp;5.1: Every traceback has this shape. The last line names what went w
 <p>There it is. The third value is <code>'12.9'</code> with quotation marks — text that looks like a number. <code>repr()</code> shows the quotation marks that <code>print()</code> hides, which is why it is the right tool for this question.</p>
 <p><strong>The fix</strong>, stated deliberately rather than patched:</p>
 <div id="worked-fixed" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>measurements <span class="op">=</span> [<span class="fl">12.5</span>, <span class="fl">13.1</span>, <span class="st">"12.9"</span>]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="bu">float</span>(value) <span class="cf">for</span> value <span class="kw">in</span> measurements]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(numbers))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>measurements <span class="op">=</span> [<span class="fl">12.5</span>, <span class="fl">13.1</span>, <span class="st">"12.9"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="bu">float</span>(value) <span class="cf">for</span> value <span class="kw">in</span> measurements]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(numbers))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>38.5</code></pre>
 </div>
@@ -657,7 +644,7 @@ Figure&nbsp;5.1: Every traceback has this shape. The last line names what went w
 <h2 class="anchored" data-anchor-id="try-it-yourself">1.5 Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Predict the final line of the traceback, then run it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -678,7 +665,7 @@ Figure&nbsp;5.1: Every traceback has this shape. The last line names what went w
 </div>
 <div class="exercise">
 <p><span class="num">Exercise 2</span> This one fails before it runs at all. Why is that different?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -712,7 +699,7 @@ Figure&nbsp;5.1: Every traceback has this shape. The last line names what went w
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You are not in the environment you installed into. Check whether your prompt still shows <code>(.venv)</code>; if not, activate it again.</p>
+<p>You are not in the environment you installed into. Check whether your prompt still shows <code>(.venv)</code>; if not, activate it again. If this happened in JupyterLab, it was started from a terminal where the environment was not active: close it, activate, and start it again.</p>
 <p>The general shape of this error: Python is looking, and not finding, so either it was never installed <em>or you are asking a different Python</em>. Confirm which interpreter is running with the check in the next section.</p>
 </div>
 </div>
@@ -723,13 +710,13 @@ Figure&nbsp;5.1: Every traceback has this shape. The last line names what went w
 <h2 class="anchored" data-anchor-id="check-it-in-python">1.6 Check it in Python</h2>
 <p>Every other unit ends by checking a claim. This one checks your setup, which is the claim that matters here.</p>
 <div id="verify" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy, pandas, matplotlib, scipy</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"python     "</span>, sys.version.split()[<span class="dv">0</span>])</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"interpreter"</span>, sys.executable)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> package <span class="kw">in</span> (numpy, pandas, matplotlib, scipy):</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>package<span class="sc">.</span><span class="va">__name__</span><span class="sc">:&lt;11}</span><span class="ss">"</span>, package.__version__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy, pandas, matplotlib, scipy</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"python     "</span>, sys.version.split()[<span class="dv">0</span>])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"interpreter"</span>, sys.executable)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> package <span class="kw">in</span> (numpy, pandas, matplotlib, scipy):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>package<span class="sc">.</span><span class="va">__name__</span><span class="sc">:&lt;11}</span><span class="ss">"</span>, package.__version__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>python      3.11.14
 interpreter /home/hyperspace/anaconda3/bin/python
@@ -739,7 +726,7 @@ matplotlib  3.10.8
 scipy       1.17.0</code></pre>
 </div>
 </div>
-<p>Two things to look at. The version should start with <strong>3.11</strong> (3.10 or later is fine). And the interpreter path should point <strong>inside your <code>.venv</code> folder</strong> — if it points somewhere else, you are running the wrong Python, and that explains almost every “but I installed it” problem you will hit.</p>
+<p>Two things to look at. The version should start with <strong>3.12</strong> or <strong>3.11</strong> — these notes were run on 3.11, which is why the output above says so. And the interpreter path should point <strong>inside your <code>.venv</code> folder</strong> — if it points somewhere else, you are running the wrong Python, and that explains almost every “but I installed it” problem you will hit.</p>
 <p>Keep this snippet. When you ask anyone for help, the answer is more useful if you paste its output with your question.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
@@ -754,6 +741,10 @@ The top is the least useful part. The bottom line names the problem; work upward
 <dt>Assuming an error means you cannot program</dt>
 <dd>
 Everyone who writes code sees errors constantly, including people who have done it for thirty years. An error is the program telling you something specific and true. It is information, not a verdict.
+</dd>
+<dt>Installing the newest Python</dt>
+<dd>
+The obvious download button gives a version newer than the pinned packages support, and <code>pip install</code> then fails, usually with a long build error that never mentions the Python version. Check <code>python --version</code>, install 3.12, delete <code>.venv</code>, and recreate it.
 </dd>
 <dt>Forgetting to activate the environment</dt>
 <dd>

@@ -558,7 +558,7 @@ window.Quarto = {
 <div id="fig-quadrants" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-quadrants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s03-two-variables_files/figure-html/fig-quadrants-output-1.png" width="494" height="227" class="figure-img">
+<img src="s03-two-variables_files/figure-html/fig-quadrants-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quadrants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;30.1: The 237 students, split at the mean hours of practice (16.4) and the mean final score (65.3). A point in the top-right or bottom-left agrees with both means in the same direction, and contributes a positive product; a point in the other two contributes a negative one. Here 160 points pull negative and 77 pull positive, so the total comes out below zero.
@@ -579,8 +579,17 @@ Figure&nbsp;30.1: The 237 students, split at the mean hours of practice (16.4) a
 \]</span></p>
 <p>The sign is informative. The size is not, because the covariance carries the units of both variables multiplied together — here marks × hours, a quantity nobody has intuition about. Worse, it depends on the units you happened to choose:</p>
 <div id="cov-units" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"cov in marks x hours   </span><span class="sc">{</span>np<span class="sc">.</span>cov(hours, score, ddof<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>, <span class="dv">1</span>]<span class="sc">:10.4f}</span><span class="ss">"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"cov in marks x minutes </span><span class="sc">{</span>np<span class="sc">.</span>cov(hours <span class="op">*</span> <span class="dv">60</span>, score, ddof<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>, <span class="dv">1</span>]<span class="sc">:10.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>, <span class="st">"final_score"</span>])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> usable[usable[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> usable[<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"cov in marks x hours   </span><span class="sc">{</span>np<span class="sc">.</span>cov(hours, score, ddof<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>, <span class="dv">1</span>]<span class="sc">:10.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"cov in marks x minutes </span><span class="sc">{</span>np<span class="sc">.</span>cov(hours <span class="op">*</span> <span class="dv">60</span>, score, ddof<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>, <span class="dv">1</span>]<span class="sc">:10.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cov in marks x hours     -16.0477
 cov in marks x minutes  -962.8637</code></pre>
@@ -612,7 +621,7 @@ r = \frac{\operatorname{cov}(x, y)}{s_x \, s_y}
 <div id="fig-four" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s03-two-variables_files/figure-html/fig-four-output-1.png" width="495" height="139" class="figure-img">
+<img src="s03-two-variables_files/figure-html/fig-four-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;30.2: Four datasets. Three have correlations near <span class="math inline">\(+0.9\)</span> and nothing else in common; the fourth has a correlation of exactly zero and a perfect relationship — every <span class="math inline">\(y\)</span> is determined by its <span class="math inline">\(x\)</span>. One number cannot certify a shape.
@@ -688,7 +697,7 @@ Social sciences            39     +0.66     +0.66</code></pre>
 <div id="fig-groups" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s03-two-variables_files/figure-html/fig-groups-output-1.png" width="499" height="266" class="figure-img">
+<img src="s03-two-variables_files/figure-html/fig-groups-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;30.3: All 237 students in the first panel, then the same students split into their five backgrounds, on shared axes, with a straight line fitted to each panel. The first panel slopes down; the other five slope up. No observation was added, removed or altered — the five panels are a partition of the first.

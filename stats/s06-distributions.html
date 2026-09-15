@@ -559,7 +559,7 @@ window.Quarto = {
 <div id="fig-gallery" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gallery-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s06-distributions_files/figure-html/fig-gallery-output-1.png" width="495" height="264" class="figure-img">
+<img src="s06-distributions_files/figure-html/fig-gallery-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gallery-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;33.1: Six standard distributions, each with the mechanism that produces it. The top row is discrete — the bars are probabilities. The bottom row is continuous — the areas are probabilities. You choose between them by asking which story your data came from, not by matching the picture to a histogram.
@@ -652,7 +652,7 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}}\, e^{-(x-\mu)^2 / (2\sigma^2)}
 <div id="fig-normal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s06-distributions_files/figure-html/fig-normal-output-1.png" width="490" height="179" class="figure-img">
+<img src="s06-distributions_files/figure-html/fig-normal-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;33.2: The 68–95–99.7 rule. Each band is an area under the density, so each is a probability — and the outermost band is thin enough that a three-sigma observation is genuinely rare, about 3 in 1000.
@@ -673,10 +673,14 @@ Figure&nbsp;33.2: The 68–95–99.7 rule. Each band is an area under the densit
 <h2 class="anchored" data-anchor-id="worked-example">6.4 Worked example</h2>
 <p><strong>Two questions about the cohort, two different families.</strong></p>
 <div id="setup" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>scored <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> scored[<span class="st">"final_score"</span>].to_numpy()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>diagnostic <span class="op">=</span> scored[<span class="st">"diagnostic_score"</span>].to_numpy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>scored <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> scored[<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>diagnostic <span class="op">=</span> scored[<span class="st">"diagnostic_score"</span>].to_numpy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Question one: of 20 students picked at random, how many score 70 or more?</strong></p>
 <p>The mechanism is right there: 20 independent draws, each either a success or not, with the same probability each time. That is a binomial, and the only thing to supply is <span class="math inline">\(p\)</span>.</p>
@@ -724,7 +728,7 @@ normal model says  within 1sd 0.683   2sd 0.954   3sd 0.997</code></pre>
 <div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s06-distributions_files/figure-html/fig-qq-output-1.png" width="494" height="207" class="figure-img">
+<img src="s06-distributions_files/figure-html/fig-qq-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;33.3: Quantile-quantile plots against a normal model. Each point puts an observed value against the value the model predicts for that position in the sorted order; a perfect fit lies on the dashed line. The final score follows it closely. The diagnostic score curves away at both ends: the low values are not as low as the model predicts and the high values not as high. That is the signature of a distribution with lighter tails than the normal, which is what a mixture of five well-separated groups produces.

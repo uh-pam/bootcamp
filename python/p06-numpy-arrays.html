@@ -666,7 +666,7 @@ shape (3, 4)</code></pre>
 <div id="fig-view" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-view-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p06-numpy-arrays_files/figure-html/fig-view-output-1.png" width="420" height="181" class="figure-img">
+<img src="p06-numpy-arrays_files/figure-html/fig-view-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-view-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.1: A basic slice is a <em>view</em> — a second way of looking at the same memory, so writing through it changes the original. Advanced indexing, and <code>.copy()</code>, produce independent data.
@@ -720,7 +720,7 @@ boolean shares memory: False</code></pre>
 <div id="worked-load" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> np.genfromtxt(<span class="st">"../data/cohort.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skip_header<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> np.genfromtxt(<span class="st">"data/cohort.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skip_header<span class="op">=</span><span class="dv">1</span>,</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                    usecols<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))          <span class="co"># diagnostic, hours, final</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape"</span>, raw.shape, <span class="st">" dtype"</span>, raw.dtype)</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(raw[:<span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

@@ -560,7 +560,7 @@ window.Quarto = {
 <div id="fig-strips" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-strips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m07-accumulation_files/figure-html/fig-strips-output-1.png" width="500" height="186" class="figure-img">
+<img src="m07-accumulation_files/figure-html/fig-strips-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-strips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.1: The same area estimated with six strips and with twenty-four. Each rectangle takes the height of the curve at its left edge, so every one of them undershoots on a rising curve; the visible gap between the rectangles and the curve is exactly the error, and it shrinks as the strips narrow.
@@ -628,7 +628,7 @@ A'(x) = \lim_{h \to 0} \frac{A(x+h) - A(x)}{h} = f(x).
 <div id="fig-ftc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ftc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m07-accumulation_files/figure-html/fig-ftc-output-1.png" width="494" height="263" class="figure-img">
+<img src="m07-accumulation_files/figure-html/fig-ftc-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ftc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.2: The same function twice. Above: <span class="math inline">\(f\)</span>, with the area accumulated up to <span class="math inline">\(x_0\)</span> shaded and the next thin sliver picked out — its area is about <span class="math inline">\(f(x_0)\)</span> times its width. Below: the accumulated area <span class="math inline">\(A(x)\)</span> as a function of where you stop. The gradient of <span class="math inline">\(A\)</span> at <span class="math inline">\(x_0\)</span> is the <em>height</em> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x_0\)</span>, which is what the fundamental theorem says.
@@ -707,7 +707,7 @@ S(h) = 45h + 3h^{2} - \frac{h^{3}}{12}.
 <div id="density" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)][<span class="st">"final_score"</span>].to_numpy()</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> np.arange(<span class="fl">42.5</span>, <span class="fl">100.1</span>, <span class="fl">2.5</span>)</span>
@@ -732,7 +732,7 @@ proportion scoring 60-70    0.432773</code></pre>
 <div id="fig-density" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m07-accumulation_files/figure-html/fig-density-output-1.png" width="493" height="198" class="figure-img">
+<img src="m07-accumulation_files/figure-html/fig-density-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.3: Final scores as a density: bar heights are proportions of the cohort per mark, and every bar’s area is the proportion of the cohort in that range. The shaded bars are the range 60 to 70, whose total area is 0.433 — which is exactly the fraction of the 238 students who scored there.

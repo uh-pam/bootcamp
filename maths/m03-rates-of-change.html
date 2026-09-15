@@ -562,7 +562,7 @@ window.Quarto = {
 <div id="cell-load" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort[[<span class="st">"background"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>]].head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="load" class="cell-output cell-output-display" data-execution_count="1">
 <div>
@@ -653,7 +653,7 @@ s(h) = 45 + 6h - 0.25h^{2}
 <div id="fig-secants" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-secants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m03-rates-of-change_files/figure-html/fig-secants-output-1.png" width="447" height="228" class="figure-img">
+<img src="m03-rates-of-change_files/figure-html/fig-secants-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-secants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.1: Each faint line joins <span class="math inline">\(h=4\)</span> to a point further along the curve; its gradient is one row of the table above. As that second point slides in, the lines settle onto the single bold line — the tangent, whose gradient is 4.
@@ -747,7 +747,7 @@ step 0.001   from the right +1   from the left -1</code></pre>
 <div id="fig-corner" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m03-rates-of-change_files/figure-html/fig-corner-output-1.png" width="348" height="199" class="figure-img">
+<img src="m03-rates-of-change_files/figure-html/fig-corner-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.2: At every point except the origin, <span class="math inline">\(|x|\)</span> has an unambiguous tangent. At <span class="math inline">\(x=0\)</span> the two sides disagree — one arrives with gradient <span class="math inline">\(-1\)</span>, the other with <span class="math inline">\(+1\)</span> — so no single line fits, and there is no derivative there.
@@ -826,7 +826,7 @@ s'(h) = 6 - 0.5h.
 <div id="fig-rates" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m03-rates-of-change_files/figure-html/fig-rates-output-1.png" width="480" height="235" class="figure-img">
+<img src="m03-rates-of-change_files/figure-html/fig-rates-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;18.3: The same curve with its tangent drawn at three places. The gradient falls steadily, reaches zero at <span class="math inline">\(h=12\)</span> where the curve is momentarily flat, and is negative beyond it.

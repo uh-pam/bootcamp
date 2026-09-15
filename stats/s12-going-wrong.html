@@ -555,22 +555,19 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-idea">12.2 The idea</h2>
 <p>The cohort used throughout these notes contains a planted trap, and by now you have walked into it four times.</p>
 <div id="reversal" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys<span class="op">;</span> sys.path.insert(<span class="dv">0</span>, <span class="st">"../theme"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> figures <span class="im">import</span> figure, note, no_axes, use_style, ACCENT, WARM, COOL, INK, FAINT</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>scored <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> scored.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>])</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pooled <span class="op">=</span> stats.linregress(scored[<span class="st">"hours_practice"</span>], scored[<span class="st">"final_score"</span>])</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"pooled slope, all </span><span class="sc">{</span><span class="bu">len</span>(scored)<span class="sc">}</span><span class="ss"> students: </span><span class="sc">{</span>pooled<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss"> marks per hour"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, part <span class="kw">in</span> grouped.groupby(<span class="st">"background"</span>):</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    within <span class="op">=</span> stats.linregress(part[<span class="st">"hours_practice"</span>], part[<span class="st">"final_score"</span>])</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>name<span class="sc">:&lt;24}</span><span class="ss"> n = </span><span class="sc">{</span><span class="bu">len</span>(part)<span class="sc">:&gt;3}</span><span class="ss">   </span><span class="sc">{</span>within<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>scored <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> scored.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>pooled <span class="op">=</span> stats.linregress(scored[<span class="st">"hours_practice"</span>], scored[<span class="st">"final_score"</span>])</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"pooled slope, all </span><span class="sc">{</span><span class="bu">len</span>(scored)<span class="sc">}</span><span class="ss"> students: </span><span class="sc">{</span>pooled<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss"> marks per hour"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, part <span class="kw">in</span> grouped.groupby(<span class="st">"background"</span>):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    within <span class="op">=</span> stats.linregress(part[<span class="st">"hours_practice"</span>], part[<span class="st">"final_score"</span>])</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>name<span class="sc">:&lt;24}</span><span class="ss"> n = </span><span class="sc">{</span><span class="bu">len</span>(part)<span class="sc">:&gt;3}</span><span class="ss">   </span><span class="sc">{</span>within<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>pooled slope, all 238 students: -0.2408 marks per hour
    Computing                n =  69   +0.6624
@@ -586,7 +583,7 @@ window.Quarto = {
 <div id="fig-simpson" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simpson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s12-going-wrong_files/figure-html/fig-simpson-output-1.png" width="491" height="215" class="figure-img">
+<img src="s12-going-wrong_files/figure-html/fig-simpson-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;39.1: The mechanism, drawn cleanly. Two groups, each with a rising relationship inside it. The right-hand group starts higher on the vertical axis and lower on the horizontal one, so the two clouds are offset along a downward diagonal — and a line fitted to everything follows the offset between the groups rather than the trend inside them.
@@ -630,7 +627,7 @@ Figure&nbsp;39.1: The mechanism, drawn cleanly. Two groups, each with a rising r
 <div id="fig-multiplicity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-multiplicity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s12-going-wrong_files/figure-html/fig-multiplicity-output-1.png" width="492" height="179" class="figure-img">
+<img src="s12-going-wrong_files/figure-html/fig-multiplicity-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multiplicity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;39.2: The probability of at least one significant result when nothing at all is going on, against the number of independent tests run. At five tests it is already better than one in five; by twenty it is nearly two in three. Nothing about any individual test has changed.
@@ -655,7 +652,7 @@ P(\text{true} \mid \text{significant}) =
 <div id="fig-base-rate" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-base-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s12-going-wrong_files/figure-html/fig-base-rate-output-1.png" width="494" height="179" class="figure-img">
+<img src="s12-going-wrong_files/figure-html/fig-base-rate-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-base-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;39.3: The chance that a significant finding is true, against the fraction of hypotheses in the field that are true, at the conventional 5% level. Even with 80% power, a field in which one hypothesis in ten holds up produces significant findings that are right only about two thirds of the time — and at 50% power, barely half.

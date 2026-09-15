@@ -556,7 +556,7 @@ window.Quarto = {
 <div id="fig-stationary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stationary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m05-best-value_files/figure-html/fig-stationary-output-1.png" width="456" height="232" class="figure-img">
+<img src="m05-best-value_files/figure-html/fig-stationary-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stationary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;20.1: Three stationary points, all with <span class="math inline">\(f'(x)=0\)</span>. Only two are turning points, and the third is neither a maximum nor a minimum — which is why a zero derivative is a candidate rather than an answer.
@@ -635,7 +635,7 @@ x^3: f(-0.1)=-0.00100  f(0)=+0.00000  f(0.1)=+0.00100</code></pre>
 <div id="fig-endpoint" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-endpoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m05-best-value_files/figure-html/fig-endpoint-output-1.png" width="433" height="211" class="figure-img">
+<img src="m05-best-value_files/figure-html/fig-endpoint-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-endpoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;20.2: On <span class="math inline">\([-1, 3]\)</span> the <em>highest</em> point is the right-hand endpoint, where the derivative is not zero at all. Checking stationary points alone would have missed it entirely — the only interior stationary point is the local minimum.
@@ -697,21 +697,22 @@ L'(a) = \sum_{i=1}^{n} 2(x_i - a)(-1) = -2\sum_{i=1}^{n}(x_i - a)
 <p><span class="math display">\[L''(a) = 2n &gt; 0\]</span></p>
 <p>Positive for any <span class="math inline">\(n\)</span>, so it curves upwards everywhere: one stationary point, and it is the global minimum.</p>
 <div id="worked" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cohort[<span class="st">"final_score"</span>].dropna()</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> scores[scores.between(<span class="dv">0</span>, <span class="dv">100</span>)].to_numpy()</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loss(a):</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((scores <span class="op">-</span> a)<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(scores.mean() <span class="op">-</span> <span class="dv">6</span>, scores.mean() <span class="op">+</span> <span class="dv">6</span>, <span class="dv">400</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> grid[np.argmin([loss(a) <span class="cf">for</span> a <span class="kw">in</span> grid])]</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean of the data      </span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"grid search minimum   </span><span class="sc">{</span>best<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"agree to 2 dp:        </span><span class="sc">{</span>np<span class="sc">.</span>isclose(scores.mean(), best, atol<span class="op">=</span><span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cohort[<span class="st">"final_score"</span>].dropna()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> scores[scores.between(<span class="dv">0</span>, <span class="dv">100</span>)].to_numpy()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loss(a):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((scores <span class="op">-</span> a)<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(scores.mean() <span class="op">-</span> <span class="dv">6</span>, scores.mean() <span class="op">+</span> <span class="dv">6</span>, <span class="dv">400</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> grid[np.argmin([loss(a) <span class="cf">for</span> a <span class="kw">in</span> grid])]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean of the data      </span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"grid search minimum   </span><span class="sc">{</span>best<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"agree to 2 dp:        </span><span class="sc">{</span>np<span class="sc">.</span>isclose(scores.mean(), best, atol<span class="op">=</span><span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>mean of the data      65.2718
 grid search minimum   65.2568
@@ -723,7 +724,7 @@ agree to 2 dp:        True</code></pre>
 <div id="fig-loss" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m05-best-value_files/figure-html/fig-loss-output-1.png" width="437" height="219" class="figure-img">
+<img src="m05-best-value_files/figure-html/fig-loss-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;20.3: The squared-error loss as the summary value varies. One trough, at the mean — and <span class="math inline">\(L''&gt;0\)</span> everywhere, so there is nowhere else it could be.

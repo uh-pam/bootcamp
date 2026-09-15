@@ -563,7 +563,7 @@ y_i = \beta_0 + \beta_1 x_i + \varepsilon_i ,
 <div id="fig-uncertainty" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-uncertainty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s11-regression_files/figure-html/fig-uncertainty-output-1.png" width="494" height="207" class="figure-img">
+<img src="s11-regression_files/figure-html/fig-uncertainty-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uncertainty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;38.1: Two hundred lines, each fitted to a resample of the 238 students, drawn faintly behind the fit to the real data. The fan they trace out is what the standard error of the slope measures. A single line drawn on a scatterplot hides this completely, which is why the slope must be reported with an interval.
@@ -674,13 +674,24 @@ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
 <h2 class="anchored" data-anchor-id="worked-example">11.4 Worked example</h2>
 <p><strong>How much is an hour of practice worth?</strong></p>
 <div id="fit" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"slope     </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss"> marks per hour   (se </span><span class="sc">{</span>fit<span class="sc">.</span>stderr<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"intercept </span><span class="sc">{</span>fit<span class="sc">.</span>intercept<span class="sc">:+.4f}</span><span class="ss"> marks         (se </span><span class="sc">{</span>fit<span class="sc">.</span>intercept_stderr<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% CI for the slope: (</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">-</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">, "</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">+</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">)"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"t = </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="op">/</span>fit<span class="sc">.</span>stderr<span class="sc">:.4f}</span><span class="ss">   p = </span><span class="sc">{</span>fit<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">   R^2 = </span><span class="sc">{</span>fit<span class="sc">.</span>rvalue<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>scored <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> scored[<span class="st">"hours_practice"</span>].to_numpy()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> scored[<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> hours.size</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> stats.linregress(hours, score)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"slope     </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="sc">:+.4f}</span><span class="ss"> marks per hour   (se </span><span class="sc">{</span>fit<span class="sc">.</span>stderr<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"intercept </span><span class="sc">{</span>fit<span class="sc">.</span>intercept<span class="sc">:+.4f}</span><span class="ss"> marks         (se </span><span class="sc">{</span>fit<span class="sc">.</span>intercept_stderr<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, n <span class="op">-</span> <span class="dv">2</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% CI for the slope: (</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">-</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">, "</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>fit<span class="sc">.</span>slope <span class="op">+</span> t_star<span class="op">*</span>fit<span class="sc">.</span>stderr<span class="sc">:+.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"t = </span><span class="sc">{</span>fit<span class="sc">.</span>slope<span class="op">/</span>fit<span class="sc">.</span>stderr<span class="sc">:.4f}</span><span class="ss">   p = </span><span class="sc">{</span>fit<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">   R^2 = </span><span class="sc">{</span>fit<span class="sc">.</span>rvalue<span class="op">**</span><span class="dv">2</span><span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>n = 238
 slope     -0.2408 marks per hour   (se 0.0652)
@@ -718,7 +729,7 @@ R^2 by hand       0.054606</code></pre>
 <div id="fig-bands" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s11-regression_files/figure-html/fig-bands-output-1.png" width="494" height="216" class="figure-img">
+<img src="s11-regression_files/figure-html/fig-bands-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;38.2: The fitted line with two bands. The narrow inner band is a 95% confidence interval for the <em>mean</em> score of students at each level of practice — it is not about where individual students fall, and most of them are outside it. The wide outer one is a 95% prediction interval for a single student, and 94.5% of the observed students sit inside it. Those students were used to fit the line, so that figure is a sanity check rather than an independent test.
@@ -751,7 +762,7 @@ Figure&nbsp;38.2: The fitted line with two bands. The narrow inner band is a 95%
 <div id="fig-residuals" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s11-regression_files/figure-html/fig-residuals-output-1.png" width="494" height="188" class="figure-img">
+<img src="s11-regression_files/figure-html/fig-residuals-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;38.3: Diagnostics. Left: residuals against fitted values, which should show no pattern — no curve, no fan. Right: a Q-Q plot of the residuals against a normal model. Both look acceptable here, which clears the two assumptions these plots can see and says nothing about the two they cannot.

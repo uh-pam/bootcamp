@@ -564,7 +564,7 @@ window.Quarto = {
 <div id="fig-same" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-same-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s02-one-variable_files/figure-html/fig-same-output-1.png" width="495" height="255" class="figure-img">
+<img src="s02-one-variable_files/figure-html/fig-same-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-same-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;29.1: Three sets of 238 numbers with the same mean (65.3, dashed) and the same standard deviation (8.4). Only the top one is the cohort. A mean and a standard deviation are two numbers; the data is two hundred and thirty-eight. Two numbers cannot be the data.
@@ -619,7 +619,7 @@ s^{2} = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^{2},
 <div id="fig-bins" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s02-one-variable_files/figure-html/fig-bins-output-1.png" width="495" height="140" class="figure-img">
+<img src="s02-one-variable_files/figure-html/fig-bins-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;29.2: The same 238 scores at three bin widths. Too few bins and the shape is a rumour; too many and you are looking at which decimal each mark happened to land on. Nothing about the data changed between these three panels.
@@ -637,12 +637,19 @@ Figure&nbsp;29.2: The same 238 scores at three bin widths. Too few bins and the 
 <h2 class="anchored" data-anchor-id="worked-example">2.4 Worked example</h2>
 <p><strong>Describe the cohort’s final scores, properly.</strong></p>
 <div id="describe" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n        </span><span class="sc">{</span>scores<span class="sc">.</span>size<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean     </span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:6.2f}</span><span class="ss">       sd    </span><span class="sc">{</span>scores<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:6.2f}</span><span class="ss">"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"median   </span><span class="sc">{</span>np<span class="sc">.</span>median(scores)<span class="sc">:6.2f}</span><span class="ss">       IQR   "</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>subtract(<span class="op">*</span>np.quantile(scores, [<span class="fl">0.75</span>, <span class="fl">0.25</span>]))<span class="sc">:6.2f}</span><span class="ss">"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"five-number summary  "</span> <span class="op">+</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"  "</span>.join(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.1f}</span><span class="ss">"</span> <span class="cf">for</span> q <span class="kw">in</span> np.quantile(scores, [<span class="dv">0</span>, <span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="dv">1</span>])))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>scored <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]   <span class="co"># drops the missing and the impossible score</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> scored[<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n        </span><span class="sc">{</span>scores<span class="sc">.</span>size<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean     </span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:6.2f}</span><span class="ss">       sd    </span><span class="sc">{</span>scores<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:6.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"median   </span><span class="sc">{</span>np<span class="sc">.</span>median(scores)<span class="sc">:6.2f}</span><span class="ss">       IQR   "</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>subtract(<span class="op">*</span>np.quantile(scores, [<span class="fl">0.75</span>, <span class="fl">0.25</span>]))<span class="sc">:6.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"five-number summary  "</span> <span class="op">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"  "</span>.join(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.1f}</span><span class="ss">"</span> <span class="cf">for</span> q <span class="kw">in</span> np.quantile(scores, [<span class="dv">0</span>, <span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="dv">1</span>])))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>n        238
 mean      65.27       sd      8.38
@@ -655,7 +662,7 @@ five-number summary  44.5  59.4  64.8  70.7  91.6</code></pre>
 <div id="fig-describe" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-describe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s02-one-variable_files/figure-html/fig-describe-output-1.png" width="495" height="228" class="figure-img">
+<img src="s02-one-variable_files/figure-html/fig-describe-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-describe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;29.3: The 238 final scores as a histogram, with the same data as a Tukey boxplot above it on a shared scale. The box holds the middle half; the whiskers reach the furthest point within 1.5 IQR of it; the three orange points lie beyond that fence and are drawn individually.

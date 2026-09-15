@@ -559,7 +559,7 @@ window.Quarto = {
 <div id="fig-two-widths" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-two-widths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s07-sampling_files/figure-html/fig-two-widths-output-1.png" width="495" height="198" class="figure-img">
+<img src="s07-sampling_files/figure-html/fig-two-widths-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-widths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;34.1: The same quantity, measured two ways. Behind, in grey, the 238 individual scores, spread over 8.4 marks. In front, the means of forty thousand samples of 25, spread over 1.67 marks — five times narrower, because five is the square root of 25. Both are centred in the same place.
@@ -626,7 +626,7 @@ E[\bar{X}] = \mu,
 <div id="fig-clt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-clt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s07-sampling_files/figure-html/fig-clt-output-1.png" width="495" height="149" class="figure-img">
+<img src="s07-sampling_files/figure-html/fig-clt-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;34.2: Sampling distributions of the mean of <span class="math inline">\(n\)</span> draws from an exponential population, which is strongly right-skewed. Each panel is rescaled to the same width — the real widths shrink as <span class="math inline">\(\sigma/\sqrt{n}\)</span> — so that only the change in <em>shape</em> is visible. The lopsidedness falls steadily and by <span class="math inline">\(n = 30\)</span> the distribution is close to symmetric. The population itself, in the first panel, never changed.
@@ -644,7 +644,7 @@ Figure&nbsp;34.2: Sampling distributions of the mean of <span class="math inline
 <div id="fig-slow" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-slow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s07-sampling_files/figure-html/fig-slow-output-1.png" width="495" height="149" class="figure-img">
+<img src="s07-sampling_files/figure-html/fig-slow-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;34.3: The same treatment applied to a much worse population: a lognormal whose skewness is about 24. Panels are again rescaled to a common width, and drawn over the same range as the figure above so the two can be compared directly. The convergence the theorem promises is real and it is slow — at <span class="math inline">\(n = 1000\)</span> the sample mean is still twice as lopsided as the exponential’s was at <span class="math inline">\(n = 30\)</span>.
@@ -671,22 +671,31 @@ Figure&nbsp;34.3: The same treatment applied to a much worse population: a logno
 <p><strong>Watching the formula come true on the cohort.</strong></p>
 <p>Treat the 238 usable scores as the population, and take forty thousand samples at each of three sizes.</p>
 <div id="se-check" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"population: n = </span><span class="sc">{</span>population<span class="sc">.</span>size<span class="sc">}</span><span class="ss">   mu = </span><span class="sc">{</span>mu<span class="sc">:.4f}</span><span class="ss">   sigma = </span><span class="sc">{</span>sigma<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'sample size'</span><span class="sc">:&gt;12}{</span><span class="st">'mean of means'</span><span class="sc">:&gt;16}{</span><span class="st">'sd of means'</span><span class="sc">:&gt;14}</span><span class="ss">"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span><span class="st">'sigma/sqrt(n)'</span><span class="sc">:&gt;16}</span><span class="ss">"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> [<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">100</span>]:</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    draws <span class="op">=</span> rng.choice(population, size<span class="op">=</span>(<span class="dv">40_000</span>, n))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    sample_means <span class="op">=</span> draws.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;12}{</span>sample_means<span class="sc">.</span>mean()<span class="sc">:&gt;16.4f}{</span>sample_means<span class="sc">.</span>std()<span class="sc">:&gt;14.4f}</span><span class="ss">"</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"</span><span class="sc">{</span>sigma <span class="op">/</span> np<span class="sc">.</span>sqrt(n)<span class="sc">:&gt;16.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> cohort.loc[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>), <span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mu, sigma <span class="op">=</span> population.mean(), population.std(ddof<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"population: n = </span><span class="sc">{</span>population<span class="sc">.</span>size<span class="sc">}</span><span class="ss">   mu = </span><span class="sc">{</span>mu<span class="sc">:.4f}</span><span class="ss">   sigma = </span><span class="sc">{</span>sigma<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'sample size'</span><span class="sc">:&gt;12}{</span><span class="st">'mean of means'</span><span class="sc">:&gt;16}{</span><span class="st">'sd of means'</span><span class="sc">:&gt;14}</span><span class="ss">"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span><span class="st">'sigma/sqrt(n)'</span><span class="sc">:&gt;16}</span><span class="ss">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> [<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">100</span>]:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    draws <span class="op">=</span> rng.choice(population, size<span class="op">=</span>(<span class="dv">40_000</span>, n))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    sample_means <span class="op">=</span> draws.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;12}{</span>sample_means<span class="sc">.</span>mean()<span class="sc">:&gt;16.4f}{</span>sample_means<span class="sc">.</span>std()<span class="sc">:&gt;14.4f}</span><span class="ss">"</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"</span><span class="sc">{</span>sigma <span class="op">/</span> np<span class="sc">.</span>sqrt(n)<span class="sc">:&gt;16.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>population: n = 238   mu = 65.2718   sigma = 8.3665
 
  sample size   mean of means   sd of means   sigma/sqrt(n)
-           5         65.2486        3.7609          3.7416
-          25         65.2700        1.6761          1.6733
-         100         65.2712        0.8422          0.8366</code></pre>
+           5         65.2603        3.7478          3.7416
+          25         65.2695        1.6733          1.6733
+         100         65.2731        0.8370          0.8366</code></pre>
 </div>
 </div>
 <p>Three things to take from that table.</p>
@@ -702,9 +711,9 @@ Figure&nbsp;34.3: The same treatment applied to a much worse population: a logno
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">:&gt;3}</span><span class="ss">   skewness </span><span class="sc">{</span>stats<span class="sc">.</span>skew(sample_means)<span class="sc">:+.3f}</span><span class="ss">   "</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"within one sd </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>inside<span class="sc">:.1f}</span><span class="ss">%  (normal: 68.3%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>n =   5   skewness +0.091   within one sd 68.3%  (normal: 68.3%)
-n =  25   skewness +0.034   within one sd 68.2%  (normal: 68.3%)
-n = 100   skewness +0.025   within one sd 68.2%  (normal: 68.3%)</code></pre>
+<pre><code>n =   5   skewness +0.108   within one sd 68.3%  (normal: 68.3%)
+n =  25   skewness +0.050   within one sd 68.7%  (normal: 68.3%)
+n = 100   skewness +0.038   within one sd 68.4%  (normal: 68.3%)</code></pre>
 </div>
 </div>
 <p>Even at <span class="math inline">\(n = 5\)</span> the sampling distribution is within a percentage point of the normal fractions, because the population it came from was already close to symmetric. The lognormal in the previous figure needed more than a thousand. The theorem is the same in both cases; what differs is how long it takes to arrive.</p>
@@ -816,9 +825,9 @@ n = 100   skewness +0.025   within one sd 68.2%  (normal: 68.3%)</code></pre>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:&lt;15}</span><span class="ss"> sigma </span><span class="sc">{</span>pop<span class="sc">.</span>std()<span class="sc">:7.4f}</span><span class="ss">   observed sd of mean "</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"</span><span class="sc">{</span>sample_means<span class="sc">.</span>std()<span class="sc">:7.4f}</span><span class="ss">   sigma/sqrt(n) </span><span class="sc">{</span>pop<span class="sc">.</span>std()<span class="op">/</span>np<span class="sc">.</span>sqrt(n)<span class="sc">:7.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>cohort scores   sigma  8.3665   observed sd of mean  1.3231   sigma/sqrt(n)  1.3229
-exponential     sigma  2.9754   observed sd of mean  0.4720   sigma/sqrt(n)  0.4705
-coin flips      sigma  0.5000   observed sd of mean  0.0796   sigma/sqrt(n)  0.0791</code></pre>
+<pre><code>cohort scores   sigma  8.3665   observed sd of mean  1.3174   sigma/sqrt(n)  1.3229
+exponential     sigma  2.9853   observed sd of mean  0.4704   sigma/sqrt(n)  0.4720
+coin flips      sigma  0.5000   observed sd of mean  0.0788   sigma/sqrt(n)  0.0791</code></pre>
 </div>
 </div>
 <p>Three completely different populations — one roughly bell-shaped, one strongly skewed, one taking only the values 0 and 1 — and the width formula is right in all three.</p>
@@ -843,7 +852,7 @@ coin flips      sigma  0.5000   observed sd of mean  0.0796   sigma/sqrt(n)  0.0
 <span class="ansi-green-fg">      6</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">skewness </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>skewness<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.2f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> (a normal distribution has 0)</span><span class="ansi-yellow-fg">"</span>
 <span class="ansi-green-fg">      7</span> )
 
-<span class="ansi-red-fg">AssertionError</span>: n = 30 was supposed to be enough, but the sample mean still has skewness 4.22 (a normal distribution has 0)</pre>
+<span class="ansi-red-fg">AssertionError</span>: n = 30 was supposed to be enough, but the sample mean still has skewness 5.52 (a normal distribution has 0)</pre>
 </div>
 </div>
 </div>
@@ -853,7 +862,7 @@ coin flips      sigma  0.5000   observed sd of mean  0.0796   sigma/sqrt(n)  0.0
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"cohort scores, n = 5:  skewness of the sample mean </span><span class="sc">{</span>stats<span class="sc">.</span>skew(mild)<span class="sc">:+.3f}</span><span class="ss">"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">abs</span>(stats.skew(mild)) <span class="op">&lt;</span> <span class="fl">0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>cohort scores, n = 5:  skewness of the sample mean +0.110</code></pre>
+<pre><code>cohort scores, n = 5:  skewness of the sample mean +0.077</code></pre>
 </div>
 </div>
 <p>The difference is not the sample size. It is the population, and the only way to know which case you are in is to look at your data before choosing a method.</p>
@@ -867,8 +876,8 @@ coin flips      sigma  0.5000   observed sd of mean  0.0796   sigma/sqrt(n)  0.0
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"one student, 25 times   : sd of mean </span><span class="sc">{</span>repeated<span class="sc">.</span>std()<span class="sc">:.4f}</span><span class="ss">"</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   formula still claims </span><span class="sc">{</span>sigma<span class="op">/</span>np<span class="sc">.</span>sqrt(n)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>25 independent students : sd of mean 1.6766   formula 1.6733
-one student, 25 times   : sd of mean 8.3366   formula still claims 1.6733</code></pre>
+<pre><code>25 independent students : sd of mean 1.6817   formula 1.6733
+one student, 25 times   : sd of mean 8.3464   formula still claims 1.6733</code></pre>
 </div>
 </div>
 <p>The second case is an extreme, but the direction is the one you should expect: positively dependent observations make the true standard error larger than the formula, and the formula gives no warning at all.</p>

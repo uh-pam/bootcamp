@@ -560,7 +560,7 @@ window.Quarto = {
 <div id="fig-stretch" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stretch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m12-directions_files/figure-html/fig-stretch-output-1.png" width="490" height="184" class="figure-img">
+<img src="m12-directions_files/figure-html/fig-stretch-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stretch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.1: Left: every unit vector, with two particular ones picked out. Right: what the matrix <span class="math inline">\(A = \left(\begin{smallmatrix}2 &amp; 0.9\\ 0.4 &amp; 1.4\end{smallmatrix}\right)\)</span> does to all of them. The circle becomes an ellipse, and the two marked directions are the pair that is still perpendicular after the journey: they come out along the ellipse’s axes, stretched by <span class="math inline">\(2.43\)</span> and <span class="math inline">\(1.00\)</span>. No other perpendicular pair survives as one, and no direction is stretched by more than <span class="math inline">\(2.43\)</span> or less than <span class="math inline">\(1.00\)</span>.
@@ -615,7 +615,7 @@ X^{\mathsf{T}}X = V\Sigma^{2}V^{\mathsf{T}},
 <div id="fig-condition" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-condition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m12-directions_files/figure-html/fig-condition-output-1.png" width="411" height="186" class="figure-img">
+<img src="m12-directions_files/figure-html/fig-condition-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.2: The unit circle under two matrices, drawn to the same scale. Left, <span class="math inline">\(\sigma_1/\sigma_2 = 2.4\)</span>: a mild ellipse, and a system you can solve happily. Right, <span class="math inline">\(\sigma_1/\sigma_2 = 39\)</span>: nearly flat, so directions that were far apart on the circle arrive almost on top of one another — which is what it means for information to be lost, and what a large condition number is measuring.
@@ -639,7 +639,7 @@ Figure&nbsp;27.2: The unit circle under two matrices, drawn to the same scale. L
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>]</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> usable[names].to_numpy()</span>
@@ -673,7 +673,7 @@ eigenvalues sum to 3.0000, one per standardised column</code></pre>
 <div id="fig-pca" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m12-directions_files/figure-html/fig-pca-output-1.png" width="284" height="234" class="figure-img">
+<img src="m12-directions_files/figure-html/fig-pca-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.3: The cohort in two of its standardised columns, with the principal axes of that two-column problem drawn to lengths proportional to <span class="math inline">\(\sqrt{\lambda}\)</span>. The cloud is an ellipse and the axes are its principal directions: <span class="math inline">\(90.7\%\)</span> of the variation lies along the long one, which runs down and to the right — students who arrived stronger practised less. The other <span class="math inline">\(9.3\%\)</span> is all that remains once you know where a student sits along it.

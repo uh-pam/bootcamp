@@ -607,7 +607,7 @@ window.Quarto = {
 <div id="fig-broadcast" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-broadcast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p07-numpy-computing_files/figure-html/fig-broadcast-output-1.png" width="480" height="203" class="figure-img">
+<img src="p07-numpy-computing_files/figure-html/fig-broadcast-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-broadcast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Broadcasting a <code>(3,)</code> array against a <code>(2, 3)</code> one. NumPy compares the shapes from the right: 3 matches 3, and the absent first dimension is stretched to 2. The hollow row is not stored — it is the same three numbers, reused.
@@ -637,7 +637,7 @@ v[:, None].shape   (3, 1)
 <div id="fig-broadcast-trap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-broadcast-trap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p07-numpy-computing_files/figure-html/fig-broadcast-trap-output-1.png" width="480" height="218" class="figure-img">
+<img src="p07-numpy-computing_files/figure-html/fig-broadcast-trap-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-broadcast-trap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: Why <code>(3,)</code> and <code>(3, 1)</code> are not interchangeable. Comparing from the right, a column of three against a row of three makes <em>both</em> dimensions stretch, and three numbers become nine. Nothing is raised.
@@ -678,7 +678,7 @@ table.sum(axis=1) -&gt; [ 3 12]  shape (2,)</code></pre>
 <div id="fig-axis" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p07-numpy-computing_files/figure-html/fig-axis-output-1.png" width="495" height="218" class="figure-img">
+<img src="p07-numpy-computing_files/figure-html/fig-axis-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.3: The axis you name is the one that disappears. Reducing over <code>axis=0</code> collapses the row index and leaves one number per column; over <code>axis=1</code> it collapses the column index and leaves one per row.
@@ -743,7 +743,7 @@ A @ A =
 <div id="standardise" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>]</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> cohort[columns].to_numpy()</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>

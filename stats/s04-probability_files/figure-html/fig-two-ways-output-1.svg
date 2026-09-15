@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-08-23T11:37:33.630064</dc:date>
+    <dc:date>2026-09-15T19:50:54.423883</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -45,7 +45,7 @@ L 140.066847 58.089231
 L 140.066847 28.273846 
 L 93.89202 28.273846 
 z
-" clip-path="url(#pd92ea7084e)" style="fill: #6366c9; opacity: 0.6; stroke: #6366c9; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1480beb33d)" style="fill: #6366c9; opacity: 0.6; stroke: #6366c9; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 140.066847 58.089231 
@@ -53,7 +53,7 @@ L 163.154261 58.089231
 L 163.154261 28.273846 
 L 140.066847 28.273846 
 z
-" clip-path="url(#pd92ea7084e)" style="fill: #b9bec8; opacity: 0.4; stroke: #b9bec8; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1480beb33d)" style="fill: #b9bec8; opacity: 0.4; stroke: #b9bec8; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 93.89202 107.781538 
@@ -61,7 +61,7 @@ L 140.066847 107.781538
 L 140.066847 77.966154 
 L 93.89202 77.966154 
 z
-" clip-path="url(#pd92ea7084e)" style="fill: #6366c9; opacity: 0.6; stroke: #6366c9; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1480beb33d)" style="fill: #6366c9; opacity: 0.6; stroke: #6366c9; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 140.066847 107.781538 
@@ -69,12 +69,12 @@ L 226.644648 107.781538
 L 226.644648 77.966154 
 L 140.066847 77.966154 
 z
-" clip-path="url(#pd92ea7084e)" style="fill: #b9bec8; opacity: 0.4; stroke: #b9bec8; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1480beb33d)" style="fill: #b9bec8; opacity: 0.4; stroke: #b9bec8; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 140.066847 110.763077 
 L 140.066847 25.292308 
-" clip-path="url(#pd92ea7084e)" style="fill: none; stroke-dasharray: 1.8,1.8; stroke-dashoffset: 0; stroke: #6366c9; stroke-opacity: 0.8; stroke-width: 0.9"/>
+" clip-path="url(#p1480beb33d)" style="fill: none; stroke-dasharray: 1.8,1.8; stroke-dashoffset: 0; stroke: #6366c9; stroke-opacity: 0.8; stroke-width: 0.9"/>
    </g>
    <g id="matplotlib.axis_1"/>
    <g id="matplotlib.axis_2"/>
@@ -987,7 +987,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pd92ea7084e">
+  <clipPath id="p1480beb33d">
    <rect x="47.717193" y="1.44" width="261.657353" height="116.28"/>
   </clipPath>
  </defs>

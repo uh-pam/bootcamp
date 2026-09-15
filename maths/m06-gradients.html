@@ -565,7 +565,7 @@ L(a, b) = \frac{1}{n}\sum_{i=1}^{n}\bigl(s_i - a - b h_i\bigr)^2,
 <div id="fig-gradient" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gradient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m06-gradients_files/figure-html/fig-gradient-output-1.png" width="459" height="235" class="figure-img">
+<img src="m06-gradients_files/figure-html/fig-gradient-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gradient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;21.1: Contours of a two-variable function: each ring is a set of points of equal height, and the minimum is the bullseye. At the marked point, the slope due east and the slope due north combine into one arrow — the gradient — which points straight uphill and crosses the contour at right angles. Note that its reverse does <em>not</em> point at the minimum.
@@ -620,7 +620,7 @@ f(a + \Delta x,\; b + \Delta y) \;\approx\; f(a,b)
 <div id="fig-saddle" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-saddle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m06-gradients_files/figure-html/fig-saddle-output-1.png" width="478" height="189" class="figure-img">
+<img src="m06-gradients_files/figure-html/fig-saddle-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-saddle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;21.2: The saddle <span class="math inline">\(f(x,y) = x^2 - y^2\)</span> at the origin. Left: its contours, with the flat point marked. Right: the same point, seen along two directions — walk east and it is the bottom of a valley; walk north and it is the top of a ridge. Both partials are zero, and it is neither a maximum nor a minimum.
@@ -678,7 +678,7 @@ b \leftarrow b - \eta\,\frac{\partial L}{\partial b}.
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>h, s <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy(), usable[<span class="st">"final_score"</span>].to_numpy()</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss"> rows;  hours run from </span><span class="sc">{</span>h<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.1f}</span><span class="ss"> to </span><span class="sc">{</span>h<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -737,7 +737,7 @@ step 40   a =  65.2718   b =  -1.9551   loss =   66.1759</code></pre>
 <div id="fig-descent" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-descent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m06-gradients_files/figure-html/fig-descent-output-1.png" width="463" height="232" class="figure-img">
+<img src="m06-gradients_files/figure-html/fig-descent-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-descent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;21.3: The descent above, drawn on the contours of <span class="math inline">\(L(a,b)\)</span>, whose minimum is at <span class="math inline">\(a = 65.27\)</span>, <span class="math inline">\(b = -1.96\)</span>. On this scaling the contours are circles, so downhill points straight at the minimum and the path is a straight run. The steps shorten as it arrives, because the gradient itself shrinks towards zero — the method slows down on its own.

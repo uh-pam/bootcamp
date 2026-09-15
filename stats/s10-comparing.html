@@ -554,23 +554,20 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-idea">10.2 The idea</h2>
 <p>Take the two most different backgrounds in the cohort.</p>
 <div id="setup" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys<span class="op">;</span> sys.path.insert(<span class="dv">0</span>, <span class="st">"../theme"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> figures <span class="im">import</span> figure, note, use_style, ACCENT, WARM, INK, FAINT</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>, <span class="st">"final_score"</span>])</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> usable[usable[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>life <span class="op">=</span> usable[usable[<span class="st">"background"</span>] <span class="op">==</span> <span class="st">"Life sciences"</span>][<span class="st">"final_score"</span>].to_numpy()</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>maths <span class="op">=</span> usable[usable[<span class="st">"background"</span>] <span class="op">==</span> <span class="st">"Mathematics or Physics"</span>][<span class="st">"final_score"</span>].to_numpy()</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, group <span class="kw">in</span> [(<span class="st">"Life sciences"</span>, life), (<span class="st">"Maths or Physics"</span>, maths)]:</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    se <span class="op">=</span> group.std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(group.size)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:&lt;18}</span><span class="ss"> n = </span><span class="sc">{</span>group<span class="sc">.</span>size<span class="sc">:&gt;3}</span><span class="ss">   mean </span><span class="sc">{</span>group<span class="sc">.</span>mean()<span class="sc">:6.2f}</span><span class="ss">   "</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"sd </span><span class="sc">{</span>group<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:5.2f}</span><span class="ss">   se </span><span class="sc">{</span>se<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>, <span class="st">"final_score"</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> usable[usable[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>life <span class="op">=</span> usable[usable[<span class="st">"background"</span>] <span class="op">==</span> <span class="st">"Life sciences"</span>][<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>maths <span class="op">=</span> usable[usable[<span class="st">"background"</span>] <span class="op">==</span> <span class="st">"Mathematics or Physics"</span>][<span class="st">"final_score"</span>].to_numpy()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, group <span class="kw">in</span> [(<span class="st">"Life sciences"</span>, life), (<span class="st">"Maths or Physics"</span>, maths)]:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    se <span class="op">=</span> group.std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(group.size)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:&lt;18}</span><span class="ss"> n = </span><span class="sc">{</span>group<span class="sc">.</span>size<span class="sc">:&gt;3}</span><span class="ss">   mean </span><span class="sc">{</span>group<span class="sc">.</span>mean()<span class="sc">:6.2f}</span><span class="ss">   "</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"sd </span><span class="sc">{</span>group<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:5.2f}</span><span class="ss">   se </span><span class="sc">{</span>se<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Life sciences      n =  57   mean  60.51   sd  7.29   se 0.97
 Maths or Physics   n =  36   mean  75.28   sd  7.63   se 1.27</code></pre>
@@ -583,7 +580,7 @@ Maths or Physics   n =  36   mean  75.28   sd  7.63   se 1.27</code></pre>
 <div id="fig-overlap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s10-comparing_files/figure-html/fig-overlap-output-1.png" width="485" height="178" class="figure-img">
+<img src="s10-comparing_files/figure-html/fig-overlap-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overlap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;37.1: A constructed example, because the cohort’s own groups are too far apart to make the point. Two groups of 30 with means 20 and 23 and standard deviations of 5: their 95% intervals overlap, and yet the interval for the <em>difference</em> excludes zero and the test rejects at <span class="math inline">\(p = 0.024\)</span>. Overlapping intervals do not mean no difference.
@@ -683,7 +680,7 @@ Mann-Whitney               p = 7.992e-12</code></pre>
 <div id="fig-forest" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-forest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s10-comparing_files/figure-html/fig-forest-output-1.png" width="494" height="190" class="figure-img">
+<img src="s10-comparing_files/figure-html/fig-forest-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-forest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;37.2: Every background’s mean final score with a 95% interval, ordered. Reading pairwise comparisons off this picture is exactly what the first figure warned against — but as a description of where the five groups sit, and of how much less is known about the smaller ones, it is the right display.
@@ -720,7 +717,7 @@ smallest expected count = 10.48</code></pre>
 <div id="fig-departures" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-departures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s10-comparing_files/figure-html/fig-departures-output-1.png" width="495" height="169" class="figure-img">
+<img src="s10-comparing_files/figure-html/fig-departures-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-departures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;37.3: Observed counts minus the counts independence predicts, for the ‘70 or more’ column. Two groups have far more high scorers than independence would give them and two have far fewer — which is what the chi-square statistic adds up, and what its single number then hides.

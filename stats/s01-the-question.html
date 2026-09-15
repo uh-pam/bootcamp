@@ -561,7 +561,7 @@ window.Quarto = {
 <div id="cell-load" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss"> rows, </span><span class="sc">{</span>cohort<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cohort.head(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -634,7 +634,7 @@ window.Quarto = {
 <div id="fig-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s01-the-question_files/figure-html/fig-map-output-1.png" width="483" height="207" class="figure-img">
+<img src="s01-the-question_files/figure-html/fig-map-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;28.1: The shape of every statistical question. Arithmetic on a sample is safe and mechanical. The arrow that goes back — from the number you computed to a claim about everyone — is the one that can be wrong while everything on the page looks fine.
@@ -704,7 +704,7 @@ Figure&nbsp;28.1: The shape of every statistical question. Arithmetic on a sampl
 <div id="fig-varies" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-varies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s01-the-question_files/figure-html/fig-varies-output-1.png" width="477" height="164" class="figure-img">
+<img src="s01-the-question_files/figure-html/fig-varies-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-varies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;28.2: Forty-five imaginary studies, each measuring 25 students from the same population and reporting their mean score. The dashed line is the population mean. It does not move; the dots do. Every real study you will ever read is one dot, reported without the rest of the picture.
@@ -777,8 +777,11 @@ Figure&nbsp;28.2: Forty-five imaginary studies, each measuring 25 students from 
 <p><strong>One vague question, three precise ones, two opposite answers.</strong></p>
 <p>Every analysis on this dataset starts by deciding which rows are usable. The file has three planted defects, described in <a href="../python/p09-pandas-cleaning.html">P9</a>.</p>
 <div id="clean" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"rows in the file </span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss">   usable </span><span class="sc">{</span><span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss">   "</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"excluded </span><span class="sc">{</span><span class="bu">len</span>(cohort) <span class="op">-</span> <span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort.dropna(subset<span class="op">=</span>[<span class="st">"background"</span>, <span class="st">"final_score"</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> usable[usable[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"rows in the file </span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss">   usable </span><span class="sc">{</span><span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss">   "</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"excluded </span><span class="sc">{</span><span class="bu">len</span>(cohort) <span class="op">-</span> <span class="bu">len</span>(usable)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rows in the file 240   usable 237   excluded 3</code></pre>
 </div>
@@ -826,7 +829,7 @@ Social sciences           7.61</code></pre>
 <div id="fig-reversal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-reversal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="s01-the-question_files/figure-html/fig-reversal-output-1.png" width="494" height="239" class="figure-img">
+<img src="s01-the-question_files/figure-html/fig-reversal-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reversal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;28.3: The same 237 students, summarised two ways. Each line joins the mean score of a set’s at-or-below-median students to that of its above-median students. The five indigo lines split their own background group at that group’s median; the orange line splits the whole cohort at the overall median (121 students against 116, the three exactly on 15.2 hours counting as at-or-below). Five lines up, one line down.

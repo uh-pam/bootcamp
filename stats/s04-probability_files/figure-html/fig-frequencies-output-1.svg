@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-08-23T11:37:33.834394</dc:date>
+    <dc:date>2026-09-15T19:50:54.692983</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -45,7 +45,7 @@ L 81.079501 69.541364
 L 81.079501 38.785909 
 L 78.296699 38.785909 
 z
-" clip-path="url(#pdc87faa1ea)" style="fill: #e2703a; opacity: 0.55; stroke: #e2703a; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p97f528ea36)" style="fill: #e2703a; opacity: 0.55; stroke: #e2703a; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 81.079501 69.541364 
@@ -53,7 +53,7 @@ L 356.576941 69.541364
 L 356.576941 38.785909 
 L 81.079501 38.785909 
 z
-" clip-path="url(#pdc87faa1ea)" style="fill: #b9bec8; opacity: 0.55; stroke: #b9bec8; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p97f528ea36)" style="fill: #b9bec8; opacity: 0.55; stroke: #b9bec8; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 78.296699 120.068182 
@@ -61,7 +61,7 @@ L 121.109044 120.068182
 L 121.109044 89.312727 
 L 78.296699 89.312727 
 z
-" clip-path="url(#pdc87faa1ea)" style="fill: #e2703a; opacity: 0.55; stroke: #e2703a; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p97f528ea36)" style="fill: #e2703a; opacity: 0.55; stroke: #e2703a; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 121.109044 120.068182 
@@ -69,7 +69,7 @@ L 356.576941 120.068182
 L 356.576941 89.312727 
 L 121.109044 89.312727 
 z
-" clip-path="url(#pdc87faa1ea)" style="fill: #2aa88a; opacity: 0.55; stroke: #2aa88a; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p97f528ea36)" style="fill: #2aa88a; opacity: 0.55; stroke: #2aa88a; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="matplotlib.axis_1"/>
    <g id="matplotlib.axis_2"/>
@@ -872,7 +872,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pdc87faa1ea">
+  <clipPath id="p97f528ea36">
    <rect x="17.075045" y="1.44" width="345.0675" height="144.99"/>
   </clipPath>
  </defs>

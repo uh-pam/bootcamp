@@ -535,7 +535,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="p10-matplotlib_files/figure-html/first-plot-output-1.png" id="first-plot" width="442" height="237" class="figure-img"></p>
+<p><img src="p10-matplotlib_files/figure-html/first-plot-output-1.svg" id="first-plot" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -546,7 +546,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <div id="fig-anatomy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-anatomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p10-matplotlib_files/figure-html/fig-anatomy-output-1.png" width="460" height="166" class="figure-img">
+<img src="p10-matplotlib_files/figure-html/fig-anatomy-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anatomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates drawn on it. Data goes to the axes; saving and sizing belong to the figure.
@@ -564,7 +564,7 @@ Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates draw
 <div id="cell-four-plots" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>cohort[<span class="st">"final_score"</span>] <span class="op">=</span> pd.to_numeric(cohort[<span class="st">"final_score"</span>], errors<span class="op">=</span><span class="st">"raise"</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>) <span class="op">&amp;</span> cohort[<span class="st">"background"</span>].notna()]</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -589,7 +589,7 @@ Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates draw
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="p10-matplotlib_files/figure-html/four-plots-output-1.png" id="four-plots" width="590" height="379" class="figure-img"></p>
+<p><img src="p10-matplotlib_files/figure-html/four-plots-output-1.svg" id="four-plots" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -608,7 +608,7 @@ Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates draw
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="p10-matplotlib_files/figure-html/labels-output-1.png" id="labels" width="475" height="206" class="figure-img"></p>
+<p><img src="p10-matplotlib_files/figure-html/labels-output-1.svg" id="labels" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -632,7 +632,7 @@ Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates draw
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="p10-matplotlib_files/figure-html/shared-scales-output-1.png" id="shared-scales" width="593" height="207" class="figure-img"></p>
+<p><img src="p10-matplotlib_files/figure-html/shared-scales-output-1.svg" id="shared-scales" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -653,7 +653,7 @@ Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates draw
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="p10-matplotlib_files/figure-html/shared-scales-fixed-output-1.png" id="shared-scales-fixed" width="589" height="207" class="figure-img"></p>
+<p><img src="p10-matplotlib_files/figure-html/shared-scales-fixed-output-1.svg" id="shared-scales-fixed" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -677,7 +677,7 @@ Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates draw
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="p10-matplotlib_files/figure-html/not-colour-alone-output-1.png" id="not-colour-alone" width="475" height="207" class="figure-img"></p>
+<p><img src="p10-matplotlib_files/figure-html/not-colour-alone-output-1.svg" id="not-colour-alone" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -727,7 +727,7 @@ Figure&nbsp;14.1: The figure is the page; the axes are a set of coordinates draw
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="p10-matplotlib_files/figure-html/worked-output-1.png" id="worked" width="513" height="254" class="figure-img"></p>
+<p><img src="p10-matplotlib_files/figure-html/worked-output-1.svg" id="worked" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

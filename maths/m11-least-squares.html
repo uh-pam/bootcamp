@@ -565,7 +565,7 @@ window.Quarto = {
 <div id="fig-projection" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m11-least-squares_files/figure-html/fig-projection-output-1.png" width="406" height="196" class="figure-img">
+<img src="m11-least-squares_files/figure-html/fig-projection-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;26.1: Least squares in one picture — a perspective drawing, in which the shaded parallelogram is a flat span seen edge-on from above rather than a region of the page, so the right angle at the foot of <span class="math inline">\(\mathbf{r}\)</span> is a fact about the vectors and not about the printed picture. The shaded region is everything the columns of <span class="math inline">\(X\)</span> can reach; <span class="math inline">\(\mathbf{y}\)</span> is not in it. The closest reachable point <span class="math inline">\(\hat{\mathbf{y}} = X\hat{\boldsymbol{\theta}}\)</span> is directly below <span class="math inline">\(\mathbf{y}\)</span>, and the residual <span class="math inline">\(\mathbf{r}\)</span> joining them meets the span at a right angle. Any other point in the shaded region is further from <span class="math inline">\(\mathbf{y}\)</span>, because moving within the span adds a second perpendicular leg to the triangle.
@@ -614,7 +614,7 @@ L(\boldsymbol{\theta}) = \sum_i r_i^2 ,
 <div id="fig-valley" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-valley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m11-least-squares_files/figure-html/fig-valley-output-1.png" width="475" height="235" class="figure-img">
+<img src="m11-least-squares_files/figure-html/fig-valley-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-valley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;26.2: The loss surface for two independent predictors (left) and two nearly identical ones (right), on the same synthetic data. Both have exactly one minimum, marked. But on the right the floor of the valley is almost level for a long way, so the fit can barely tell one point along it from another — the <em>predictions</em> are pinned down and the individual <em>coefficients</em> are not.
@@ -640,7 +640,7 @@ Figure&nbsp;26.2: The loss surface for two independent predictors (left) and two
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy()</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> usable[<span class="st">"diagnostic_score"</span>].to_numpy()</span>
@@ -677,7 +677,7 @@ corr(diagnostic, score) +0.6579</code></pre>
 <div id="fig-bands" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m11-least-squares_files/figure-html/fig-bands-output-1.png" width="473" height="234" class="figure-img">
+<img src="m11-least-squares_files/figure-html/fig-bands-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;26.3: Practice against final score, with the cohort split by diagnostic score into three groups of roughly equal size (78, 76 and 84 — tied scores at the boundaries stop them being exactly equal) — indigo the third who scored lowest on arrival, orange the third who scored highest. Each group’s own fitted line rises. The overall line, in grey, falls — because the groups sit in different places: students who arrived stronger practised less and still scored higher. The three within-group slopes, <span class="math inline">\(+0.92\)</span>, <span class="math inline">\(+0.44\)</span> and <span class="math inline">\(+0.50\)</span>, are what the multiple-regression coefficient of <span class="math inline">\(+0.92\)</span> is summarising.

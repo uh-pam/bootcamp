@@ -572,7 +572,7 @@ x - y &amp;= 2
 <div id="fig-cases" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m10-linear-systems_files/figure-html/fig-cases-output-1.png" width="495" height="168" class="figure-img">
+<img src="m10-linear-systems_files/figure-html/fig-cases-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;25.1: The three things a system can do, as lines. Left: one crossing, one solution. Middle: parallel lines, no point lies on both, and the system is <em>inconsistent</em>. Right: the two equations describe the same line, so every point on it solves the system and there are infinitely many solutions. Nothing else can happen.
@@ -591,7 +591,7 @@ Figure&nbsp;25.1: The three things a system can do, as lines. Left: one crossing
 <div id="fig-span" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-span-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m10-linear-systems_files/figure-html/fig-span-output-1.png" width="474" height="188" class="figure-img">
+<img src="m10-linear-systems_files/figure-html/fig-span-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-span-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;25.2: The same three cases seen from the columns. Left: two columns pointing in different directions span the whole plane, so every target is reachable and there is one recipe for each. Right: two columns along the same line span only that line — targets on it are reachable in infinitely many ways, and everything off it, including the <span class="math inline">\(\mathbf{b}\)</span> marked here, is unreachable no matter what <span class="math inline">\(\mathbf{x}\)</span> you choose.
@@ -641,7 +641,7 @@ A\mathbf{x} = \mathbf{b} \implies \mathbf{x} = A^{-1}\mathbf{b} .
 <div id="fig-conditioning" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-conditioning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m10-linear-systems_files/figure-html/fig-conditioning-output-1.png" width="448" height="219" class="figure-img">
+<img src="m10-linear-systems_files/figure-html/fig-conditioning-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conditioning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;25.3: Two nearly parallel lines. Moving the second line’s right-hand side from <span class="math inline">\(2.15\)</span> to <span class="math inline">\(2.30\)</span> — a shift you can barely see — slides the crossing point from <span class="math inline">\((1, 1)\)</span> to <span class="math inline">\((0, 2)\)</span>. The system is not singular, so a unique solution exists in both cases; it is just that where the solution <em>is</em> depends on the data far more strongly than you might expect.
@@ -665,7 +665,7 @@ Figure&nbsp;25.3: Two nearly parallel lines. Moving the second line’s right-ha
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>h, y <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy(), usable[<span class="st">"final_score"</span>].to_numpy()</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack([np.ones(<span class="bu">len</span>(h)), h])</span>

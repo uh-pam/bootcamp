@@ -579,7 +579,7 @@ window.Quarto = {
 <div id="fig-scope" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-scope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p05-functions-modules_files/figure-html/fig-scope-output-1.png" width="406" height="159" class="figure-img">
+<img src="p05-functions-modules_files/figure-html/fig-scope-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9.1: A function can see the names around it, but names it creates are its own. <code>deviation</code> does not exist once the function returns.
@@ -727,7 +727,7 @@ Life sciences: n=4, mean=64.20</code></pre>
 </div>
 </div>
 </div>
-<p>Without the assertion this raises <code>ZeroDivisionError</code> from inside <code>sum</code>, which tells you what broke but not what you did wrong. With it, the message names the actual mistake.</p>
+<p>Without the assertion this raises <code>ZeroDivisionError</code> from the division — <code>sum([])</code> is 0, and so is <code>len([])</code> — which tells you what broke but not what you did wrong. With it, the message names the actual mistake.</p>
 </section>
 <section id="modules" class="level3">
 <h3 class="anchored" data-anchor-id="modules">Modules</h3>
@@ -799,7 +799,7 @@ all checks passed</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> <span class="bu">list</span>(csv.DictReader(Path(<span class="st">"../data/cohort.csv"</span>).<span class="bu">open</span>()))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> <span class="bu">list</span>(csv.DictReader(Path(<span class="st">"data/cohort.csv"</span>).<span class="bu">open</span>()))</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>by_group <span class="op">=</span> {}</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> rows:</span>
@@ -843,7 +843,7 @@ all checks passed</code></pre>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> larger(<span class="dv">3</span>, <span class="dv">7</span>) <span class="op">==</span> <span class="dv">7</span>        <span class="co"># second larger</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> larger(<span class="dv">7</span>, <span class="dv">3</span>) <span class="op">==</span> <span class="dv">7</span>        <span class="co"># first larger</span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> larger(<span class="dv">4</span>, <span class="dv">4</span>) <span class="op">==</span> <span class="dv">4</span>        <span class="co"># equal</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The equal case is the one people omit, and it is where an implementation using <code>&gt;</code> versus <code>&gt;=</code> differs. Testing only <code>larger(3, 7)</code> would pass a function that always returns its second argument.</p>
+<p>The equal case is the one people omit, and it is where a version built from two strict tests — <code>if a &gt; b: return a</code>, then <code>if b &gt; a: return b</code> — matches neither, falls off the end, and returns <code>None</code>. Testing only <code>larger(3, 7)</code> would pass a function that always returns its second argument.</p>
 </div>
 </div>
 </div>
@@ -979,7 +979,7 @@ Hides where names came from and lets a later import silently replace an earlier 
 </dd>
 <dt>Assuming a function can change the caller’s variables</dt>
 <dd>
-Names created inside are local. A function communicates back through its return value — which is why a function with no <code>return</code> gives you <code>None</code>.
+Assigning to a name inside a function creates a local name; it never changes what the caller’s name refers to. Results come back through the return value — which is why a function with no <code>return</code> gives you <code>None</code>. The exception is a list the function <em>changes in place</em>: <code>readings.append(value)</code> alters the one list both names label, as the default-argument trap above shows.
 </dd>
 </dl>
 </div>

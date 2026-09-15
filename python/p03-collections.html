@@ -527,7 +527,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <div id="fig-containers" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-containers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="p03-collections_files/figure-html/fig-containers-output-1.png" width="420" height="174" class="figure-img">
+<img src="p03-collections_files/figure-html/fig-containers-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-containers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.1: The four containers, distinguished by three questions. Answer them for your data and the choice is made.
@@ -669,7 +669,7 @@ independent: [1, 2, 3, 4]</code></pre>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique)</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(backgrounds), <span class="st">"values,"</span>, <span class="bu">len</span>(unique), <span class="st">"distinct"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'Computing', 'Social sciences', 'Life sciences'}
+<pre><code>{'Computing', 'Life sciences', 'Social sciences'}
 4 values, 3 distinct</code></pre>
 </div>
 </div>
@@ -696,7 +696,7 @@ independent: [1, 2, 3, 4]</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> <span class="bu">list</span>(csv.DictReader(Path(<span class="st">"../data/cohort.csv"</span>).<span class="bu">open</span>()))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> <span class="bu">list</span>(csv.DictReader(Path(<span class="st">"data/cohort.csv"</span>).<span class="bu">open</span>()))</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(rows), <span class="st">"rows"</span>)</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rows[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">

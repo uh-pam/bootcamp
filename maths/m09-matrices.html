@@ -570,7 +570,7 @@ X\boldsymbol{\theta} = \begin{pmatrix} \text{row}_1 \cdot \boldsymbol{\theta} \\
 <div id="fig-matvec" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-matvec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m09-matrices_files/figure-html/fig-matvec-output-1.png" width="434" height="181" class="figure-img">
+<img src="m09-matrices_files/figure-html/fig-matvec-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matvec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;24.1: A matrix times a vector, with the shapes that make it legal. Each entry of the answer is one dot product: a whole row of the matrix against the whole input vector. The highlighted row gives the highlighted output entry, <span class="math inline">\(2\times5 + 1\times3 = 13\)</span>. The matrix has as many columns as the input has entries — that is the rule — and as many rows as the answer.
@@ -594,7 +594,7 @@ Figure&nbsp;24.1: A matrix times a vector, with the shapes that make it legal. E
 <div id="fig-columns" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m09-matrices_files/figure-html/fig-columns-output-1.png" width="373" height="216" class="figure-img">
+<img src="m09-matrices_files/figure-html/fig-columns-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;24.2: The column reading in the plane. Whatever the two weights are, <span class="math inline">\(A\mathbf{x}\)</span> is built by walking some multiple of the first column and then some multiple of the second. Here <span class="math inline">\(2\mathbf{c}_1 + 1.5\mathbf{c}_2\)</span> lands on <span class="math inline">\((7, 4.75)\)</span>. With two columns pointing in different directions every point in the plane is reachable; if they pointed the same way, only one line would be.
@@ -656,7 +656,7 @@ Figure&nbsp;24.2: The column reading in the plane. Whatever the two weights are,
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"../data/cohort.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> pd.read_csv(<span class="st">"data/cohort.csv"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)]</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>h, y <span class="op">=</span> usable[<span class="st">"hours_practice"</span>].to_numpy(), usable[<span class="st">"final_score"</span>].to_numpy()</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -716,7 +716,7 @@ orthogonal to both columns of X: True</code></pre>
 <div id="fig-residuals" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="m09-matrices_files/figure-html/fig-residuals-output-1.png" width="494" height="215" class="figure-img">
+<img src="m09-matrices_files/figure-html/fig-residuals-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;24.3: The fitted line, with each student’s residual drawn as the vertical gap to it. Orange gaps are above the line, indigo below. <span class="math inline">\(X^{\mathsf{T}}\mathbf{r} = \mathbf{0}\)</span> is the statement that these gaps balance twice over: they sum to zero, and they still sum to zero after each is weighted by that student’s hours of practice.

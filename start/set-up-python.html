@@ -446,10 +446,13 @@ document.addEventListener("DOMContentLoaded", function () {
    
   <ul>
   <li><a href="#install-python" id="toc-install-python" class="nav-link active" data-scroll-target="#install-python">1. Install Python</a></li>
-  <li><a href="#make-a-folder-and-an-environment" id="toc-make-a-folder-and-an-environment" class="nav-link" data-scroll-target="#make-a-folder-and-an-environment">2. Make a folder and an environment</a></li>
-  <li><a href="#install-the-packages" id="toc-install-the-packages" class="nav-link" data-scroll-target="#install-the-packages">3. Install the packages</a></li>
-  <li><a href="#check-it-worked" id="toc-check-it-worked" class="nav-link" data-scroll-target="#check-it-worked">4. Check it worked</a></li>
-  <li><a href="#get-the-data" id="toc-get-the-data" class="nav-link" data-scroll-target="#get-the-data">5. Get the data</a></li>
+  <li><a href="#open-a-terminal" id="toc-open-a-terminal" class="nav-link" data-scroll-target="#open-a-terminal">2. Open a terminal</a></li>
+  <li><a href="#make-your-course-folder" id="toc-make-your-course-folder" class="nav-link" data-scroll-target="#make-your-course-folder">3. Make your course folder</a></li>
+  <li><a href="#install-the-packages" id="toc-install-the-packages" class="nav-link" data-scroll-target="#install-the-packages">4. Install the packages</a></li>
+  <li><a href="#start-jupyterlab" id="toc-start-jupyterlab" class="nav-link" data-scroll-target="#start-jupyterlab">5. Start JupyterLab</a></li>
+  <li><a href="#get-the-data" id="toc-get-the-data" class="nav-link" data-scroll-target="#get-the-data">6. Get the data</a></li>
+  <li><a href="#check-it-all-works" id="toc-check-it-all-works" class="nav-link" data-scroll-target="#check-it-all-works">7. Check it all works</a></li>
+  <li><a href="#every-time-you-come-back" id="toc-every-time-you-come-back" class="nav-link" data-scroll-target="#every-time-you-come-back">Every time you come back</a></li>
   <li><a href="#when-something-goes-wrong" id="toc-when-something-goes-wrong" class="nav-link" data-scroll-target="#when-something-goes-wrong">When something goes wrong</a></li>
   </ul>
 </nav>
@@ -477,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <p>You can read the mathematics without running anything. But every unit ends with a short piece of code that checks the idea, and typing those in yourself — and breaking them, and fixing them — is worth a great deal.</p>
-<p>This takes about half an hour, once.</p>
+<p>This takes about an hour, once. At the end you will have one folder on your computer that holds everything for this course, and a program called <strong>JupyterLab</strong> open in your web browser, where you will write and run all of your code.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -490,45 +493,100 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <section id="install-python" class="level2">
 <h2 class="anchored" data-anchor-id="install-python">1. Install Python</h2>
-<p>Download Python from <a href="https://www.python.org/downloads/">python.org/downloads</a> and install it. This course is written against <strong>Python 3.11</strong>; anything from 3.10 onwards will work.</p>
-<p>On Windows, tick <strong>“Add python.exe to PATH”</strong> on the first installer screen. It is easy to miss and awkward to fix afterwards.</p>
+<p>Install <strong>Python 3.12</strong> — not the newest version. The large yellow button on python.org offers a newer Python, and the packages in step 4 will refuse to install on it. Use one of these instead:</p>
+<ul>
+<li><strong>Windows:</strong> <a href="https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe">Python 3.12.10 for Windows</a></li>
+<li><strong>macOS:</strong> <a href="https://www.python.org/ftp/python/3.12.10/python-3.12.10-macos11.pkg">Python 3.12.10 for macOS</a></li>
+<li><strong>Linux:</strong> run <code>python3 --version</code> first; if it says 3.11 or 3.12, you have what you need.</li>
+</ul>
+<p>Python 3.11 works equally well. Anything older or newer does not.</p>
+<p>Open the file you downloaded and follow the installer. On Windows, tick <strong>“Add python.exe to PATH”</strong> on the first screen — it lets the terminal find Python. It is easy to miss and awkward to fix afterwards.</p>
 </section>
-<section id="make-a-folder-and-an-environment" class="level2">
-<h2 class="anchored" data-anchor-id="make-a-folder-and-an-environment">2. Make a folder and an environment</h2>
-<p>Open a terminal — Terminal on macOS or Linux, PowerShell on Windows — and run:</p>
+<section id="open-a-terminal" class="level2">
+<h2 class="anchored" data-anchor-id="open-a-terminal">2. Open a terminal</h2>
+<p>A <strong>terminal</strong> is a window where you type instructions instead of clicking.</p>
+<ul>
+<li><strong>Windows:</strong> press the Start button, type <code>powershell</code>, and open <strong>Windows PowerShell</strong>.</li>
+<li><strong>macOS:</strong> press ⌘ + Space, type <code>terminal</code>, and press Return.</li>
+</ul>
+<p>A window opens with a line of text ending in a blinking cursor. That line is the <strong>prompt</strong>: it is waiting for you. Type a command, press <strong>Enter</strong> (Return on a Mac), and it runs. Nothing you type here will break your computer.</p>
+<p>A terminal is always <em>inside</em> one folder, and it starts in your home folder — the one with your user name. Every command you run happens there unless you move.</p>
+</section>
+<section id="make-your-course-folder" class="level2">
+<h2 class="anchored" data-anchor-id="make-your-course-folder">3. Make your course folder</h2>
+<p>Type these one at a time, pressing Enter after each:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> bootcamp</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bootcamp</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That creates an isolated environment, so that anything you install here cannot disturb anything else on your machine. Activate it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS or Linux</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Your prompt should now start with <code>(.venv)</code>. You need to do this each time you open a new terminal.</p>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bootcamp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>mkdir</code> makes a folder called <code>bootcamp</code> inside your home folder. <code>cd</code> moves the terminal into it. You can see it in the ordinary way too: in <strong>File Explorer</strong>, open your user folder; in <strong>Finder</strong>, choose <strong>Go ▸ Home</strong>. It is empty for now.</p>
+<p>Now make an <strong>environment</strong> — a private copy of Python for this course, so that nothing you install here can disturb anything else on your machine:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>On macOS and Linux, type <code>python3</code> instead of <code>python</code> on this one line.</p>
+<p>Then switch the environment on (“activate” it):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS or Linux</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Your prompt now starts with <code>(.venv)</code>. From here on, plain <code>python</code> works on every system.</p>
+<p>If Windows answers <em>“running scripts is disabled on this system”</em>, type this, press Enter, answer <code>Y</code>, and then activate again:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-ExecutionPolicy</span> <span class="op">-</span>Scope CurrentUser RemoteSigned</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="install-the-packages" class="level2">
-<h2 class="anchored" data-anchor-id="install-the-packages">3. Install the packages</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install numpy==1.26.4 pandas==2.3.3 matplotlib==3.10.8 scipy==1.17.0 jupyterlab==4.5.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The versions are pinned so that the numbers you get match the numbers printed in these notes exactly.</p>
+<h2 class="anchored" data-anchor-id="install-the-packages">4. Install the packages</h2>
+<p>Python on its own does arithmetic and text. <strong>Packages</strong> are extra, free libraries that other people have written — for tables of data, for charts, for statistics. Install the five this course uses:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install numpy==1.26.4 pandas==2.3.3 matplotlib==3.10.8 scipy==1.17.0 jupyterlab==4.5.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This downloads quite a lot and takes a few minutes. The <code>==</code> numbers ask for exact versions, so that the numbers you get match the numbers printed in these notes.</p>
 </section>
-<section id="check-it-worked" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-worked">4. Check it worked</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import sys, numpy, pandas; print(sys.version); print(numpy.__version__, pandas.__version__)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see a 3.11 version string and then <code>1.26.4 2.3.3</code>.</p>
+<section id="start-jupyterlab" class="level2">
+<h2 class="anchored" data-anchor-id="start-jupyterlab">5. Start JupyterLab</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Your web browser opens a new tab. That is JupyterLab. It is running on your own computer, not on the internet, and the panel on the left is your <code>bootcamp</code> folder.</p>
+<p>Leave the terminal window open — closing it stops JupyterLab.</p>
 </section>
 <section id="get-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="get-the-data">5. Get the data</h2>
-<p>Every example uses one small table. Download <a href="../data/cohort.csv"><code>cohort.csv</code></a> and <a href="../data/background_meta.csv"><code>background_meta.csv</code></a> and put them in a <code>data</code> folder inside <code>bootcamp</code>.</p>
-<p>Check that it loads:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import pandas as pd; print(pd.read_csv('data/cohort.csv').shape)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see <code>(240, 7)</code>.</p>
+<h2 class="anchored" data-anchor-id="get-the-data">6. Get the data</h2>
+<p>Every example in these notes uses one small table.</p>
+<ol type="1">
+<li>In JupyterLab, click the <strong>New Folder</strong> button above the file panel and name the folder <code>data</code>. Double-click it to go inside.</li>
+<li>Download <a href="../data/cohort.csv"><code>cohort.csv</code></a> and <a href="../data/background_meta.csv"><code>background_meta.csv</code></a>. Your browser saves them to your Downloads folder.</li>
+<li>Back in JupyterLab, still inside <code>data</code>, click the <strong>Upload</strong> button (the upward arrow above the file panel) and choose both files from Downloads.</li>
+</ol>
+<p>Click the folder icon at the start of the path above the file panel to return to <code>bootcamp</code>.</p>
+</section>
+<section id="check-it-all-works" class="level2">
+<h2 class="anchored" data-anchor-id="check-it-all-works">7. Check it all works</h2>
+<p>In JupyterLab’s <strong>Launcher</strong> tab, click <strong>Python 3 (ipykernel)</strong> under <em>Notebook</em>. A notebook opens with one empty box, called a <strong>cell</strong>. Click in it, paste this, and press <strong>Shift + Enter</strong> to run it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, numpy, pandas</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.version.split()[<span class="dv">0</span>], numpy.__version__, pandas.__version__)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pandas.read_csv(<span class="st">"data/cohort.csv"</span>).shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see:</p>
+<pre><code>3.12.10 1.26.4 2.3.3
+(240, 7)</code></pre>
+<p>The first number may differ if you installed a different 3.12 or 3.11. If you see those two lines, you are set up, and everything else in this course happens in JupyterLab.</p>
+</section>
+<section id="every-time-you-come-back" class="level2">
+<h2 class="anchored" data-anchor-id="every-time-you-come-back">Every time you come back</h2>
+<p>JupyterLab needs starting again after you restart your computer or close the terminal. Open a terminal and type the same three lines each time:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bootcamp</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS or Linux</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bootcamp</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Save your notebooks inside <code>bootcamp</code>, and code in these notes that reads <code>data/cohort.csv</code> will find the file.</p>
 </section>
 <section id="when-something-goes-wrong" class="level2">
 <h2 class="anchored" data-anchor-id="when-something-goes-wrong">When something goes wrong</h2>
 <p>It very often does, and the error message is usually more helpful than it looks.</p>
-<p><strong>Read the last line first.</strong> A Python error prints a long traceback, but the final line names the problem. <code>ModuleNotFoundError: No module named 'pandas'</code> means step 3 did not run in the environment that step 4 used — check that your prompt still shows <code>(.venv)</code>.</p>
-<p><strong><code>python: command not found</code></strong> usually means the PATH box was missed during installation. Reinstalling and ticking it is faster than fixing it by hand.</p>
+<p><strong>Read the last line first.</strong> A Python error prints a long report called a <strong>traceback</strong>, but the final line names the problem.</p>
+<p><strong><code>ModuleNotFoundError: No module named 'pandas'</code></strong> means Python cannot see the packages from step 4 — almost always because the environment was not active. In the terminal, check the prompt shows <code>(.venv)</code>. If you were in JupyterLab, close it, activate, and start it again.</p>
+<p><strong><code>FileNotFoundError</code> for <code>data/cohort.csv</code></strong> means your notebook is not in the <code>bootcamp</code> folder, or the files are not inside <code>data</code>. Look at the file panel: you should see <code>data</code> next to your notebook, and the two files inside it.</p>
+<p><strong><code>No such file or directory</code> when activating</strong> means the terminal is not in <code>bootcamp</code>. Type <code>cd bootcamp</code> first.</p>
+<p><strong>Step 4 fails with a long error</strong> — often ending in <code>metadata-generation-failed</code>, <code>Unknown compiler</code>, or <code>No matching distribution found</code> — almost always means the wrong Python. Check with <code>python --version</code>. If it is not 3.11 or 3.12, install 3.12 from the links in step 1, delete the <code>.venv</code> folder inside <code>bootcamp</code>, and repeat from <code>python -m venv .venv</code> in step 3 — without the <code>mkdir</code>, since the folder already exists.</p>
+<p><strong><code>python: command not found</code></strong> on macOS or Linux means you need <code>python3</code> for the one line that creates the environment. On Windows it usually means the PATH box was missed during installation; running the installer again and ticking it is faster than fixing it by hand.</p>
 <p><strong>Keep the whole error.</strong> If you need to ask someone, the exact text of the last line is the single most useful thing you can give them.</p>
 <p>None of this is a test, and struggling with an install says nothing whatsoever about whether you can program. It is the least interesting part of the course and the only part where the computer, not the idea, is the obstacle.</p>
 
