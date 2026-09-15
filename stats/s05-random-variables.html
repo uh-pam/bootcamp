@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -515,7 +515,7 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>S5</strong> · Statistics</span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>S4, M7</strong></span></p>
+<p><span><strong>S5</strong> · Statistics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>S4, M7</strong></span></p>
 </div>
 <div class="why">
 <p><span class="block-label">Why this unit is here</span></p>
@@ -576,7 +576,7 @@ Figure&nbsp;32.1: Two ways of carrying a probability. On the left each bar’s h
 P(a \le X \le b) = \int_a^b f(x)\,dx ,
 \]</span></p>
 <p>the area under the density between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. This is why <a href="../maths/m07-accumulation.html">M7</a> exists in these notes: a probability, for a continuous variable, is an integral, and it obeys the rules of integration because that is what it is.</p>
-<p>Two consequences follow immediately. The total area under a density is 1. And <span class="math inline">\(f(x)\)</span> itself is <em>not</em> a probability — it can exceed 1 quite legitimately, as long as the width it applies over is small enough that the area does not.</p>
+<p>Two consequences follow immediately. A density is never negative, and the total area under it is 1. And <span class="math inline">\(f(x)\)</span> itself is <em>not</em> a probability — it can exceed 1 quite legitimately, as long as the width it applies over is small enough that the area does not.</p>
 </section>
 <section id="the-mechanics" class="level2">
 <h2 class="anchored" data-anchor-id="the-mechanics">5.3 The mechanics</h2>
@@ -634,7 +634,7 @@ E[aX + b] = a\,E[X] + b, \qquad E[X + Y] = E[X] + E[Y] .
 <p><strong>Adding a constant does nothing.</strong> Shifting every value by <span class="math inline">\(b\)</span> moves the mean by <span class="math inline">\(b\)</span> and leaves every deviation from the mean unchanged.</p>
 <p><strong>Scaling squares.</strong> Double a variable and its variance quadruples, so its standard deviation doubles. Variance lives in squared units; standard deviations are the ones that scale the way intuition expects.</p>
 <p><strong>The sum needs a condition, and it matters.</strong> The general statement is always <span class="math inline">\(\operatorname{Var}(X + Y) = \operatorname{Var}(X) + \operatorname{Var}(Y) +
-2\operatorname{Cov}(X, Y)\)</span>, with the covariance of <a href="../stats/s03-two-variables.html">S3</a> in it, and the two terms add cleanly exactly when that covariance is zero. Independence guarantees a zero covariance, which is why it is the condition usually quoted, but it is stronger than necessary: two variables can be uncorrelated and still dependent. Assuming a zero covariance you do not have is how a standard error comes out too small, and a confidence interval too narrow.</p>
+2\operatorname{Cov}(X, Y)\)</span>, with the covariance of <a href="../stats/s03-two-variables.html">S3</a> in it, and the two terms add cleanly exactly when that covariance is zero. Independence guarantees a zero covariance, which is why it is the condition usually quoted, but it is stronger than necessary: two variables can be uncorrelated and still dependent. Assuming a zero covariance you do not have makes a standard error wrong: too small when the real covariance is positive, as it is for repeated measurements of the same people, and too large when it is negative.</p>
 </section>
 <section id="the-consequence-everything-else-is-built-on" class="level3">
 <h3 class="anchored" data-anchor-id="the-consequence-everything-else-is-built-on">The consequence everything else is built on</h3>
@@ -686,13 +686,14 @@ Var(Y) predicted 0.007000   actual 0.007000</code></pre>
 <p>Now the part people get wrong. Draw <em>two</em> students independently and add their scores; compare that with drawing <em>one</em> student and doubling.</p>
 <div id="sum-vs-double" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>two_students <span class="op">=</span> rng.choice(scores, size<span class="op">=</span>(<span class="dv">120_000</span>, <span class="dv">2</span>)).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>one_doubled <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> rng.choice(scores, size<span class="op">=</span><span class="dv">120_000</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"X1 + X2 : mean </span><span class="sc">{</span>two_students<span class="sc">.</span>mean()<span class="sc">:7.2f}</span><span class="ss">   sd </span><span class="sc">{</span>two_students<span class="sc">.</span>std()<span class="sc">:6.2f}</span><span class="ss">"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   predicted sd </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(<span class="dv">2</span>) <span class="op">*</span> sigma<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2X      : mean </span><span class="sc">{</span>one_doubled<span class="sc">.</span>mean()<span class="sc">:7.2f}</span><span class="ss">   sd </span><span class="sc">{</span>one_doubled<span class="sc">.</span>std()<span class="sc">:6.2f}</span><span class="ss">"</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   predicted sd </span><span class="sc">{</span><span class="dv">2</span> <span class="op">*</span> sigma<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># rng.choice samples with replacement by default: a student can be drawn twice</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>two_students <span class="op">=</span> rng.choice(scores, size<span class="op">=</span>(<span class="dv">120_000</span>, <span class="dv">2</span>)).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>one_doubled <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> rng.choice(scores, size<span class="op">=</span><span class="dv">120_000</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"X1 + X2 : mean </span><span class="sc">{</span>two_students<span class="sc">.</span>mean()<span class="sc">:7.2f}</span><span class="ss">   sd </span><span class="sc">{</span>two_students<span class="sc">.</span>std()<span class="sc">:6.2f}</span><span class="ss">"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   predicted sd </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(<span class="dv">2</span>) <span class="op">*</span> sigma<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2X      : mean </span><span class="sc">{</span>one_doubled<span class="sc">.</span>mean()<span class="sc">:7.2f}</span><span class="ss">   sd </span><span class="sc">{</span>one_doubled<span class="sc">.</span>std()<span class="sc">:6.2f}</span><span class="ss">"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"   predicted sd </span><span class="sc">{</span><span class="dv">2</span> <span class="op">*</span> sigma<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>X1 + X2 : mean  130.52   sd  11.81   predicted sd 11.83
 2X      : mean  130.54   sd  16.74   predicted sd 16.73</code></pre>
@@ -802,7 +803,7 @@ Figure&nbsp;32.3: Two students’ marks added together, against one student’s 
 <li><p><span class="math inline">\(\operatorname{Var}(X+Y) = 64 + 64 = 128\)</span>, so <span class="math inline">\(\text{sd} = \sqrt{128} = 11.3\)</span>. Note this is well below <span class="math inline">\(8 + 8 = 16\)</span>.</p></li>
 <li><p><strong>Up.</strong> With positive correlation the covariance term is positive:</p>
 <p><span class="math display">\[\operatorname{Var}(X+Y) = 64 + 64 + 2\operatorname{Cov}(X, Y) &gt; 128 .\]</span></p>
-<p>At the extreme of a perfect positive relationship, <span class="math inline">\(Y = X\)</span>, the total is <span class="math inline">\(2X\)</span> with standard deviation 16 — the case in this unit’s worked example. Independence is what lets the two marks partly cancel; correlation removes that cancellation. Assuming independence when it does not hold makes your stated uncertainty too small, which is the dangerous direction to be wrong in.</p></li>
+<p>At the extreme of a perfect positive relationship, <span class="math inline">\(Y = X\)</span>, the total is <span class="math inline">\(2X\)</span> with standard deviation 16 — the case in this unit’s worked example. Independence is what lets the two marks partly cancel; correlation removes that cancellation. Assuming independence when the correlation is positive makes your stated uncertainty too small, which is the dangerous direction to be wrong in.</p></li>
 </ol>
 </div>
 </div>
@@ -815,11 +816,12 @@ Figure&nbsp;32.3: Two students’ marks added together, against one student’s 
 <div id="lln" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>draws <span class="op">=</span> rng.choice(scores, size<span class="op">=</span><span class="dv">2000</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>running <span class="op">=</span> np.cumsum(draws) <span class="op">/</span> np.arange(<span class="dv">1</span>, draws.size <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">2000</span>]:</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"after </span><span class="sc">{</span>k<span class="sc">:&gt;4}</span><span class="ss"> draws: running mean </span><span class="sc">{</span>running[k<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">   "</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"gap from E[X] </span><span class="sc">{</span>running[k<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> mu<span class="sc">:+.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cumsum gives running totals (x1, x1+x2, ...); dividing by 1, 2, ... makes them means</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>running <span class="op">=</span> np.cumsum(draws) <span class="op">/</span> np.arange(<span class="dv">1</span>, draws.size <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">2000</span>]:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"after </span><span class="sc">{</span>k<span class="sc">:&gt;4}</span><span class="ss"> draws: running mean </span><span class="sc">{</span>running[k<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">   "</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"gap from E[X] </span><span class="sc">{</span>running[k<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> mu<span class="sc">:+.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>after   10 draws: running mean 61.170   gap from E[X] -4.102
 after  100 draws: running mean 63.972   gap from E[X] -1.300
@@ -919,9 +921,21 @@ The correction exists because <span class="math inline">\(\bar{x}\)</span> was e
 <ol type="1">
 <li><p><span class="math inline">\(X\)</span> has mean 10 and standard deviation 3. What is the standard deviation of <span class="math inline">\(4X - 7\)</span>?</p>
 <ol type="a">
-<li>5 b. 12 c.&nbsp;33 d.&nbsp;144</li>
+<li>5</li>
+<li>12</li>
+<li>33</li>
+<li>144</li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>Subtracting 7 moves every value, but it does not change how spread out they are.</p>
+</div>
+<div class="hint" data-option="c">
+<p>33 is the <em>mean</em> of <span class="math inline">\(4X - 7\)</span>. The question asks about spread.</p>
+</div>
+<div class="hint" data-option="d">
+<p>144 is the variance. The question asks for the standard deviation.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -975,6 +989,308 @@ The correction exists because <span class="math inline">\(\bar{x}\)</span> was e
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

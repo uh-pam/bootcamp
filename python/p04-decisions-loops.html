@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -524,7 +524,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </section>
 <section id="the-idea" class="level2">
 <h2 class="anchored" data-anchor-id="the-idea">4.2 The idea</h2>
-<p>A <strong>condition</strong> is an expression that evaluates to <code>True</code> or <code>False</code>, and it decides which block of code runs:</p>
+<p>A <strong>condition</strong> is a piece of code whose result is <code>True</code> or <code>False</code>, and it decides which block of code runs:</p>
 <div id="if-basic" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="fl">68.4</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -556,6 +556,7 @@ False
 False</code></pre>
 </div>
 </div>
+<p><code>&gt;</code> means greater than, <code>&lt;</code> less than, <code>&gt;=</code> and <code>&lt;=</code> greater or less than <em>or equal to</em>, <code>==</code> equal to, and <code>!=</code> not equal to. <code>and</code> needs both sides true, <code>or</code> needs at least one, and <code>not</code> flips the result.</p>
 <p><code>==</code> compares, <code>=</code> assigns. Confusing them is a syntax error in a condition, which is fortunate — in some languages it silently assigns instead.</p>
 <p><code>50 &lt;= n &lt;= 100</code> chains, and reads exactly as it looks. That is unusual among programming languages and worth using.</p>
 </section>
@@ -575,6 +576,7 @@ False</code></pre>
 72.0 → pass</code></pre>
 </div>
 </div>
+<p><code>"pass" if score &gt;= 50 else "fail"</code> is the one-line form of <code>if</code>/<code>else</code>: it gives the first value when the condition is true and the second when it is not.</p>
 <p>The name <code>score</code> is created fresh on each pass, taking each value in turn. You do not manage an index and you cannot run off the end.</p>
 <p>Three helpers you will use constantly:</p>
 <div id="for-helpers" class="cell" data-execution_count="4">
@@ -597,7 +599,7 @@ Life sciences    57
 Engineering      36</code></pre>
 </div>
 </div>
-<p><code>enumerate</code> gives you the position alongside the item. <code>zip</code> walks two sequences together — and stops at the shorter one, silently, which is worth remembering.</p>
+<p><code>enumerate</code> gives you the position alongside the item. <code>zip</code> walks two sequences together — and stops at the shorter one, silently, which is worth remembering. The third, <code>range(a, b)</code>, counts whole numbers from <code>a</code> up to but <strong>not including</strong> <code>b</code>, the same convention as slicing: <code>for i in range(1, 4)</code> gives <code>i</code> the values 1, 2 and 3.</p>
 </section>
 <section id="while-repeat-until-a-condition-changes" class="level3">
 <h3 class="anchored" data-anchor-id="while-repeat-until-a-condition-changes"><code>while</code> — repeat until a condition changes</h3>
@@ -614,7 +616,7 @@ Engineering      36</code></pre>
 <pre><code>7 halvings to get below 1.0, ending at 0.7812</code></pre>
 </div>
 </div>
-<p>Use <code>for</code> when you know what you are iterating over, and <code>while</code> when you are waiting for a condition. The danger of <code>while</code> is that <strong>something in the loop must change the condition</strong> — if <code>remaining</code> never shrank, this would run forever. Interrupt a runaway loop with Control-C.</p>
+<p>Use <code>for</code> when you know what you are iterating over, and <code>while</code> when you are waiting for a condition. The danger of <code>while</code> is that <strong>something in the loop must change the condition</strong> — if <code>remaining</code> never shrank, this would run forever. To stop a runaway loop in a notebook, click the ■ (stop) button in the toolbar, or choose <strong>Kernel ▸ Interrupt Kernel</strong>; in a terminal, press Control-C.</p>
 </section>
 <section id="tracing-a-loop-before-running-it" class="level3">
 <h3 class="anchored" data-anchor-id="tracing-a-loop-before-running-it">Tracing a loop before running it</h3>
@@ -800,7 +802,7 @@ Figure&nbsp;8.1: Tracing <code>for value in [3, 1, 4]</code> accumulating a runn
 </div>
 </div>
 <div class="exercise">
-<p><span class="num">Exercise 3</span> Rewrite as a comprehension, then say whether you would keep it.</p>
+<p><span class="num">Exercise 3</span> Rewrite as a comprehension, then say whether you would keep it. (<code>name.upper()</code> gives the name in capital letters.)</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>long_names <span class="op">=</span> []</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> groups:</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(name) <span class="op">&gt;</span> <span class="dv">10</span>:</span>
@@ -840,7 +842,7 @@ Figure&nbsp;8.1: Tracing <code>for value in [3, 1, 4]</code> accumulating a runn
 <pre><code>kept 3, dropped 2, of 5</code></pre>
 </div>
 </div>
-<p>If a value could satisfy both conditions or neither, this assertion fires — a <code>&gt; 50</code> written where <code>&gt;= 50</code> was meant loses every score of exactly 50, and the count catches it. What it cannot catch is Exercise 2’s misordered <code>elif</code> chain: that still puts every score in exactly one branch, just the wrong one. For that you need a case whose answer you already know — check that 85 comes out as <code>distinction</code>.</p>
+<p>If a value could satisfy both conditions or neither, this assertion fires — a <code>&gt; 50</code> written where <code>&gt;= 50</code> was meant loses every score of exactly 50, and the count catches it whenever the data contains a 50 (these values do not, so try adding one). What it cannot catch is Exercise 2’s misordered <code>elif</code> chain: that still puts every score in exactly one branch, just the wrong one. For that you need a case whose answer you already know — check that 85 comes out as <code>distinction</code>.</p>
 <p><strong>Does the <code>while</code> condition actually change?</strong> Add a guard while developing:</p>
 <div id="check-guard" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>remaining, steps <span class="op">=</span> <span class="fl">100.0</span>, <span class="dv">0</span></span>
@@ -872,7 +874,7 @@ The first true branch wins, so <code>&gt;= 50</code> placed first captures every
 </dd>
 <dt>Writing a <code>while</code> whose condition never changes</dt>
 <dd>
-Something in the body must move the loop towards ending. If nothing does, it runs forever. Control-C interrupts it.
+Something in the body must move the loop towards ending. If nothing does, it runs forever. The notebook’s ■ button interrupts it; in a terminal, Control-C.
 </dd>
 <dt>Modifying a list while looping over it</dt>
 <dd>
@@ -897,9 +899,21 @@ A comprehension you have to decode is worse than the loop it replaced. Use one w
 <ol type="1">
 <li><p>How many numbers does <code>range(2, 8)</code> produce?</p>
 <ol type="a">
-<li>5 b. 6 c.&nbsp;7 d.&nbsp;8</li>
+<li>5</li>
+<li>6</li>
+<li>7</li>
+<li>8</li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>Write the numbers out. Did you include the 2?</p>
+</div>
+<div class="hint" data-option="c">
+<p>Does <code>range</code> include its stop value? Write the numbers out.</p>
+</div>
+<div class="hint" data-option="d">
+<p>8 is the stop value, not a count. Write the numbers out, starting at 2.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -953,6 +967,308 @@ A comprehension you have to decode is worse than the loop it replaced. Use one w
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

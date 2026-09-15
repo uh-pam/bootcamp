@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -648,7 +648,7 @@ Figure&nbsp;36.2: Two worlds. If the null is true the statistic is drawn from th
 </div>
 </div>
 </div>
-<p>Note the asymmetry the picture makes obvious. You choose <span class="math inline">\(\alpha\)</span>; you do <strong>not</strong> choose <span class="math inline">\(\beta\)</span>, which follows from <span class="math inline">\(\alpha\)</span>, the sample size and the true effect. Shrinking <span class="math inline">\(\alpha\)</span> to be safer moves the line right and makes <span class="math inline">\(\beta\)</span> worse.</p>
+<p>The picture puts the whole 5% in the right tail, a one-sided test, to keep it readable; the two-sided default splits it, 2.5% in each tail. Note the asymmetry the picture makes obvious. You choose <span class="math inline">\(\alpha\)</span>; you do <strong>not</strong> choose <span class="math inline">\(\beta\)</span>, which follows from <span class="math inline">\(\alpha\)</span>, the sample size and the true effect. Shrinking <span class="math inline">\(\alpha\)</span> to be safer moves the line right and makes <span class="math inline">\(\beta\)</span> worse.</p>
 </section>
 <section id="a-test-and-an-interval-are-the-same-calculation" class="level3">
 <h3 class="anchored" data-anchor-id="a-test-and-an-interval-are-the-same-calculation">A test and an interval are the same calculation</h3>
@@ -691,7 +691,7 @@ Figure&nbsp;36.2: Two worlds. If the null is true the statistic is drawn from th
 <div id="test" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>null <span class="op">=</span> <span class="dv">65</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t_stat <span class="op">=</span> (mean <span class="op">-</span> null) <span class="op">/</span> se</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> stats.t.sf(<span class="bu">abs</span>(t_stat), n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> stats.t.sf(<span class="bu">abs</span>(t_stat), n <span class="op">-</span> <span class="dv">1</span>)   <span class="co"># sf = upper-tail area, 1 - cdf; doubled for two sides</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"by hand : t = </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">   p = </span><span class="sc">{</span>p_value<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"scipy   : </span><span class="sc">{</span>stats<span class="sc">.</span>ttest_1samp(life, null)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -700,7 +700,7 @@ scipy   : TtestResult(statistic=-4.648132564933887, pvalue=2.080866200706556e-05
 </div>
 </div>
 <p>A <span class="math inline">\(p\)</span> of <span class="math inline">\(2 \times 10^{-5}\)</span>: if this population really had a mean of 65, a sample of 57 landing this far away would happen about twice in a hundred thousand studies. That is strong evidence against the claim.</p>
-<p>The sentence to write down, though, is not the <span class="math inline">\(p\)</span>-value. It is: <em>the mean final score of life-sciences students is estimated at 60.5 marks (95% CI 58.6 to 62.4), about 4.5 marks below the cohort average of 65.3.</em> That reports the size of the difference, its uncertainty, and — implicitly — the test.</p>
+<p>The sentence to write down, though, is not the <span class="math inline">\(p\)</span>-value. It is: <em>the mean final score of life-sciences students is estimated at 60.5 marks (95% CI 58.6 to 62.4), about 4.8 marks below the cohort average of 65.3.</em> That reports the size of the difference, its uncertainty, and — implicitly — the test.</p>
 <p>Now the duality. Test every possible null value from 55 to 68 and see where the <span class="math inline">\(p\)</span>-value crosses 0.05:</p>
 <div id="duality" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> candidate <span class="kw">in</span> [<span class="fl">58.0</span>, low, <span class="fl">59.0</span>, <span class="fl">60.5</span>, <span class="fl">62.0</span>, high, <span class="fl">63.0</span>]:</span>
@@ -740,9 +740,10 @@ Figure&nbsp;36.3: The <span class="math inline">\(p\)</span>-value for every hyp
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"power to detect a </span><span class="sc">{</span>effect<span class="sc">:.0f}</span><span class="ss">-mark difference (sd </span><span class="sc">{</span>sd<span class="sc">:.2f}</span><span class="ss">, alpha 0.05):"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> size <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">57</span>, <span class="dv">100</span>, <span class="dv">200</span>]:</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    critical <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, size <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    ncp <span class="op">=</span> (effect <span class="op">/</span> sd) <span class="op">*</span> np.sqrt(size)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    power <span class="op">=</span> stats.nct.sf(critical, size <span class="op">-</span> <span class="dv">1</span>, ncp) <span class="op">+</span> stats.nct.cdf(<span class="op">-</span>critical, size <span class="op">-</span> <span class="dv">1</span>, ncp)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   n = </span><span class="sc">{</span>size<span class="sc">:&gt;3}</span><span class="ss">   power </span><span class="sc">{</span>power<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if the effect is real, t follows a "noncentral" t, shifted by ncp standard errors</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    ncp <span class="op">=</span> (effect <span class="op">/</span> sd) <span class="op">*</span> np.sqrt(size)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    power <span class="op">=</span> stats.nct.sf(critical, size <span class="op">-</span> <span class="dv">1</span>, ncp) <span class="op">+</span> stats.nct.cdf(<span class="op">-</span>critical, size <span class="op">-</span> <span class="dv">1</span>, ncp)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   n = </span><span class="sc">{</span>size<span class="sc">:&gt;3}</span><span class="ss">   power </span><span class="sc">{</span>power<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>power to detect a 2-mark difference (sd 7.29, alpha 0.05):
    n =  10   power 0.122
@@ -828,8 +829,8 @@ Figure&nbsp;36.3: The <span class="math inline">\(p\)</span>-value for every hyp
 <p>Three errors, stacked.</p>
 <p><strong>The conditional is reversed.</strong> <span class="math inline">\(p\)</span> is the probability of data this extreme <em>if the null is true</em>, not the probability that the null is true given the data. Getting from one to the other requires a prior — see <a href="../stats/s04-probability.html">S4</a>.</p>
 <p><strong><span class="math inline">\(1 - p\)</span> is not the probability of the alternative.</strong> Even if <span class="math inline">\(p\)</span> <em>were</em> a probability about the null — it is not — its complement would be about “not the null”, which includes effects of every size, most of them uninteresting.</p>
-<p><strong>“Works” is not what was tested.</strong> The null was almost certainly “no difference”. Rejecting it would be <em>evidence</em> of a difference — not proof, since 5% of tests reject a true null — and a difference is not the same thing as a benefit worth having.</p>
-<p>A correct sentence, with the numbers the original omitted: <em>“The estimated effect was X units (95% CI <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span>). Data this extreme would arise 8% of the time if the treatment had no effect at all, so these data do not rule out a null effect. What else they fail to rule out can be read off the interval — which is why it, and not the <span class="math inline">\(p\)</span>-value, is the thing to report.”</em></p>
+<p><strong>“Works” is not what was tested.</strong> The null was almost certainly “no difference”. Rejecting it would be <em>evidence</em> of a difference — not proof, since a test at 5% rejects a true null 5% of the time — and a difference is not the same thing as a benefit worth having.</p>
+<p>Only the first two errors can be shown from the sentence alone; the third assumes the usual null. With only <span class="math inline">\(p = 0.08\)</span> to go on, a correct sentence is <em>“data at least this extreme would arise 8% of the time if there were no effect”</em>, and a good answer says the estimate and its interval are missing. A full sentence, with placeholders for the numbers the original omitted: <em>“The estimated effect was X units (95% CI <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span>). Data this extreme would arise 8% of the time if the treatment had no effect at all, so these data do not rule out a null effect. What else they fail to rule out can be read off the interval — which is why it, and not the <span class="math inline">\(p\)</span>-value, is the thing to report.”</em></p>
 </div>
 </div>
 </div>
@@ -925,7 +926,7 @@ A large enough sample makes any non-zero difference significant. The interval, i
 </dd>
 <dt>Choosing one-sided after seeing the data</dt>
 <dd>
-A one-sided test halves the <span class="math inline">\(p\)</span>-value, which is exactly why it must be decided before looking. Choosing the direction afterwards is not a test at 5%; it is a test at 10% reported as 5%.
+A one-sided test pointing the way the data happen to lean halves the <span class="math inline">\(p\)</span>-value (pointing the other way, it gives <span class="math inline">\(1 - p/2\)</span>), which is exactly why the direction must be decided before looking. Choosing the direction afterwards is not a test at 5%; it is a test at 10% reported as 5%.
 </dd>
 <dt>Testing many things and reporting the smallest <span class="math inline">\(p\)</span></dt>
 <dd>
@@ -956,6 +957,15 @@ The test discards the effect size and its precision, which are the two things a 
 <li>The effect is small but real</li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>A <span class="math inline">\(p\)</span>-value is calculated by <em>assuming</em> the null is true. Can it then be the probability that the null is true?</p>
+</div>
+<div class="hint" data-option="b">
+<p>The same problem: the <span class="math inline">\(p\)</span>-value assumes the null, so it cannot put a probability on the alternative.</p>
+</div>
+<div class="hint" data-option="d">
+<p>A <span class="math inline">\(p\)</span>-value says nothing about the size of an effect. A large enough study makes a tiny effect significant.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -1009,6 +1019,308 @@ The test discards the effect size and its precision, which are the two things a 
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

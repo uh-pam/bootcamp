@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -522,7 +522,7 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>M3</strong> · Mathematics</span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M1, M2</strong></span></p>
+<p><span><strong>M3</strong> · Mathematics</span> <span>Reading: <strong>7 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M1, M2</strong></span></p>
 </div>
 <div class="why">
 <p><span class="block-label">Why this unit is here</span></p>
@@ -662,7 +662,7 @@ Figure&nbsp;18.1: Each faint line joins <span class="math inline">\(h=4\)</span>
 </div>
 </div>
 </div>
-<p>Both columns are settling on 4 Both columns are settling on 4, one from below and one from above. Neither ever <em>reaches</em> 4 — every row uses a genuine interval of some width — but both get and stay as close to 4 as you like, by taking the interval short enough. That the two sides agree is not a formality; later in this unit you will meet a function where they do not.</p>
+<p>Both columns are settling on 4, one from below and one from above. Neither ever <em>reaches</em> 4 — every row uses a genuine interval of some width — but both get and stay as close to 4 as you like, by taking the interval short enough. That the two sides agree is not a formality; later in this unit you will meet a function where they do not.</p>
 <p>That settled-on value is the <strong>derivative</strong> of <span class="math inline">\(s\)</span> at <span class="math inline">\(h = 4\)</span>, written <span class="math inline">\(s'(4)\)</span>. We say <span class="math inline">\(s'(4) = 4\)</span> marks per hour.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -722,7 +722,7 @@ f'(x) \qquad \frac{df}{dx} \qquad \frac{d}{dx}f(x)
   &amp;= 2x + h.
 \end{aligned}
 \]</span></p>
-<p>That last step is legitimate because <span class="math inline">\(h\)</span> is small but <em>not</em> zero, so dividing by it is allowed. Now let <span class="math inline">\(h\)</span> shrink: the expression settles on <span class="math inline">\(2x\)</span>. So</p>
+<p>The second line multiplies out the bracket: <span class="math inline">\((x+h)^{2} = (x+h)(x+h) = x^{2} + xh + hx + h^{2} = x^{2} + 2xh + h^{2}\)</span>. The last step is legitimate because <span class="math inline">\(h\)</span> is small but <em>not</em> zero, so dividing by it is allowed. Now let <span class="math inline">\(h\)</span> shrink: the expression settles on <span class="math inline">\(2x\)</span>. So</p>
 <p><span class="math display">\[
 f(x) = x^{2} \implies f'(x) = 2x.
 \]</span></p>
@@ -730,7 +730,7 @@ f(x) = x^{2} \implies f'(x) = 2x.
 </section>
 <section id="when-there-is-no-derivative" class="level3">
 <h3 class="anchored" data-anchor-id="when-there-is-no-derivative">When there is no derivative</h3>
-<p>A derivative does not always exist. The clearest failure is a corner. Take <span class="math inline">\(f(x) = |x|\)</span> at <span class="math inline">\(x = 0\)</span>: approaching from the right, the difference quotient is always <span class="math inline">\(+1\)</span>; from the left it is always <span class="math inline">\(-1\)</span>. The two sides disagree, so nothing settles, so <span class="math inline">\(f'(0)\)</span> does not exist.</p>
+<p>A derivative does not always exist. The clearest failure is a corner. Take <span class="math inline">\(f(x) = |x|\)</span>, the <strong>absolute value</strong> (the size of <span class="math inline">\(x\)</span> ignoring its sign, <code>abs(x)</code> in Python), at <span class="math inline">\(x = 0\)</span>: approaching from the right, the difference quotient is always <span class="math inline">\(+1\)</span>; from the left it is always <span class="math inline">\(-1\)</span>. The two sides disagree, so nothing settles, so <span class="math inline">\(f'(0)\)</span> does not exist.</p>
 <div id="corner" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> [<span class="dv">1</span>, <span class="fl">0.1</span>, <span class="fl">0.001</span>]:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    right <span class="op">=</span> (<span class="bu">abs</span>(<span class="dv">0</span> <span class="op">+</span> step) <span class="op">-</span> <span class="bu">abs</span>(<span class="dv">0</span>)) <span class="op">/</span> step</span>
@@ -756,7 +756,7 @@ Figure&nbsp;18.2: At every point except the origin, <span class="math inline">\(
 </div>
 </div>
 </div>
-<p>The function is perfectly well behaved — continuous, defined everywhere, easy to draw. It simply has no single tangent at that point. Continuity is not enough for differentiability, and that gap matters later: some loss functions used in practice have exactly this kind of kink.</p>
+<p>The function is perfectly well behaved — <strong>continuous</strong> (its graph can be drawn without lifting the pen), defined everywhere, easy to draw. It has no single tangent at that point. Continuity is not enough for differentiability, and that gap matters later: some loss functions used in practice have exactly this kind of kink.</p>
 </section>
 <section id="the-tangent-line" class="level3">
 <h3 class="anchored" data-anchor-id="the-tangent-line">The tangent line</h3>
@@ -835,7 +835,7 @@ Figure&nbsp;18.3: The same curve with its tangent drawn at three places. The gra
 </div>
 </div>
 </div>
-<p>Two things are worth saying Two things are worth saying about that last row, and both are habits rather than calculations.</p>
+<p>Two things are worth saying about that last row, and both are habits rather than calculations.</p>
 <p>First, solving <span class="math inline">\(s'(h) = 0\)</span> is how you find <em>candidates</em> for a best value without plotting anything. A zero derivative marks a place where the curve is momentarily flat; whether that is a maximum, a minimum or neither is a further question, and so is whether the true best value sits at the edge of the allowed range instead. Here the model is a downward parabola, so <span class="math inline">\(h = 12\)</span> really is its peak. Doing that properly is the whole of <a href="../maths/m05-best-value.html">M5</a>.</p>
 <p>Note also what <span class="math inline">\(s'(12) = 0\)</span> does <em>not</em> say. It is an instantaneous rate, not the value of one more hour: <span class="math inline">\(s(13) - s(12) = -0.25\)</span> marks. The distinction between a rate at a point and a change over an interval is the same one this unit opened with, and it does not go away once you have a derivative.</p>
 <p>Second, the model predicts that practising for 20 hours is worse than practising for 12. Nothing in the data forces that; it is an artefact of having chosen a downward parabola, which must eventually come down. A derivative tells you what your <em>model</em> does. Whether the model deserves to be believed out there is a separate question, and one that <a href="../stats/s11-regression.html">S11</a> takes seriously.</p>
@@ -888,7 +888,7 @@ Figure&nbsp;18.3: The same curve with its tangent drawn at three places. The gra
 \end{aligned}
 \]</span></p>
 <p>As <span class="math inline">\(h\)</span> shrinks this settles on <span class="math inline">\(f'(x) = 2x - 3\)</span>.</p>
-<p>Sanity check: at <span class="math inline">\(x = 1.5\)</span> the derivative is zero, and <span class="math inline">\(x = 1.5\)</span> is exactly halfway between the roots <span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = 3\)</span> — the bottom of the parabola.</p>
+<p>Sanity check: at <span class="math inline">\(x = 1.5\)</span> the derivative is zero. Since <span class="math inline">\(f(x) = x(x - 3)\)</span>, the curve crosses zero at <span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = 3\)</span>, and a parabola is symmetric, so its bottom sits halfway between them — at <span class="math inline">\(x = 1.5\)</span>.</p>
 </div>
 </div>
 </div>
@@ -995,9 +995,21 @@ A curve can be very high and perfectly flat — high <span class="math inline">\
 <ol type="1">
 <li><p>A function has <span class="math inline">\(f(2) = 10\)</span> and <span class="math inline">\(f'(2) = -3\)</span>. Using the local linear approximation, what is your estimate of <span class="math inline">\(f(2.1)\)</span>?</p>
 <ol type="a">
-<li><span class="math inline">\(10.3\)</span> b. <span class="math inline">\(9.7\)</span> c.&nbsp;<span class="math inline">\(-3\)</span> d.&nbsp;The approximation cannot be used here</li>
+<li><span class="math inline">\(10.3\)</span></li>
+<li><span class="math inline">\(9.7\)</span></li>
+<li><span class="math inline">\(-3\)</span></li>
+<li>The approximation cannot be used here</li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>The rate is negative. As <span class="math inline">\(x\)</span> increases a little, does <span class="math inline">\(f\)</span> go up or down?</p>
+</div>
+<div class="hint" data-option="c">
+<p><span class="math inline">\(-3\)</span> is a rate of change, not a value of <span class="math inline">\(f\)</span>. Start from <span class="math inline">\(f(2)\)</span> and adjust it.</p>
+</div>
+<div class="hint" data-option="d">
+<p>A step of <span class="math inline">\(0.1\)</span> is small, which is exactly what the approximation is for: <span class="math inline">\(f(2) + f'(2) \times 0.1\)</span>.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -1051,6 +1063,308 @@ A curve can be very high and perfectly flat — high <span class="math inline">\
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

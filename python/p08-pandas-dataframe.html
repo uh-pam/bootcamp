@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -808,21 +808,23 @@ S0001</code></pre>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Load the cohort file, convert types deliberately, and validate the schema."""</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    frame <span class="op">=</span> pd.read_csv(path)</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> {<span class="st">"student_id"</span>, <span class="st">"background"</span>, <span class="st">"diagnostic_score"</span>,</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>, <span class="st">"completed"</span>, <span class="st">"started_on"</span>}</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">set</span>(frame.columns) <span class="op">!=</span> expected:</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"unexpected columns: </span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">set</span>(frame.columns) <span class="op">^</span> expected)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> column <span class="kw">in</span> (<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>):</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        frame[column] <span class="op">=</span> pd.to_numeric(frame[column], errors<span class="op">=</span><span class="st">"raise"</span>)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    frame[<span class="st">"started_on"</span>] <span class="op">=</span> pd.to_datetime(frame[<span class="st">"started_on"</span>], errors<span class="op">=</span><span class="st">"raise"</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frame</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the schema: the exact set of column names the file must have</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> {<span class="st">"student_id"</span>, <span class="st">"background"</span>, <span class="st">"diagnostic_score"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>, <span class="st">"completed"</span>, <span class="st">"started_on"</span>}</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">set</span>(frame.columns) <span class="op">!=</span> expected:</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># a ^ b gives the names in one set but not the other</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"unexpected columns: </span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">set</span>(frame.columns) <span class="op">^</span> expected)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> column <span class="kw">in</span> (<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>):</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        frame[column] <span class="op">=</span> pd.to_numeric(frame[column], errors<span class="op">=</span><span class="st">"raise"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    frame[<span class="st">"started_on"</span>] <span class="op">=</span> pd.to_datetime(frame[<span class="st">"started_on"</span>], errors<span class="op">=</span><span class="st">"raise"</span>)</span>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> load_cohort(Path(<span class="st">"data/cohort.csv"</span>))</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cohort.shape)</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cohort.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frame</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> load_cohort(Path(<span class="st">"data/cohort.csv"</span>))</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cohort.shape)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cohort.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(240, 7)
 student_id                  object
@@ -926,7 +928,7 @@ excluded: 3 rows</code></pre>
 </div>
 </div>
 <div class="exercise">
-<p><span class="num">Exercise 2</span> This is meant to flag high scorers in the original table. It does not. Why, and what are the two ways to fix it?</p>
+<p><span class="num">Exercise 2</span> This is meant to flag high scorers. It does not reliably work, and it never changes <code>cohort</code>. Why? Fix it twice: once for a separate table of high scorers, once for a flag in <code>cohort</code> itself.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>high <span class="op">=</span> cohort[cohort[<span class="st">"final_score"</span>] <span class="op">&gt;=</span> <span class="dv">80</span>]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>high[<span class="st">"distinction"</span>] <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -969,6 +971,7 @@ excluded: 3 rows</code></pre>
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (cohort[<span class="st">"background"</span>] <span class="op">==</span> <span class="st">"Life sciences"</span>) <span class="op">&amp;</span> cohort[<span class="st">"final_score"</span>].notna()</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>cohort.loc[mask, <span class="st">"diagnostic_score"</span>].mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you said “it keeps only students whose final score is recorded”, that is what it does; a full answer also says why that matters here, as follows.</p>
 <p>Strictly the <code>notna()</code> is not needed to compute a mean <em>of diagnostic scores</em> — pandas skips missing values automatically, and the missing value is in a different column anyway.</p>
 <p>It is needed because of what the number will be compared with. If you later report this alongside a mean final score computed on a different set of rows, the two summarise different students. Fixing the analysis set once, up front, is what the worked example does and why.</p>
 </div>
@@ -982,7 +985,7 @@ excluded: 3 rows</code></pre>
 <div id="check-schema" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>expected <span class="op">=</span> [<span class="st">"student_id"</span>, <span class="st">"background"</span>, <span class="st">"diagnostic_score"</span>,</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>, <span class="st">"completed"</span>, <span class="st">"started_on"</span>]</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">list</span>(cohort.columns) <span class="op">==</span> expected, <span class="ss">f"got </span><span class="sc">{</span><span class="bu">list</span>(cohort.columns)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">list</span>(cohort.columns) <span class="op">==</span> expected, <span class="ss">f"got </span><span class="sc">{</span><span class="bu">list</span>(cohort.columns)<span class="sc">}</span><span class="ss">"</span>   <span class="co"># fails if you added `distinction` in Exercise 2 — reload first</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"schema as expected:"</span>, <span class="bu">len</span>(expected), <span class="st">"columns in order"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>schema as expected: 7 columns in order</code></pre>
@@ -1028,7 +1031,7 @@ all ranges plausible</code></pre>
 </dd>
 <dt>Trusting the inferred dtype</dt>
 <dd>
-A column of numbers with one stray <code>"n/a"</code> loads as <code>object</code>, and every arithmetic operation on it then behaves strangely. Look at <code>.dtypes</code> after every load.
+A column of numbers with one stray <code>"missing"</code> loads as <code>object</code>, and every arithmetic operation on it then behaves strangely. Look at <code>.dtypes</code> after every load.
 </dd>
 <dt>Using <code>errors="coerce"</code> as a default</dt>
 <dd>
@@ -1057,9 +1060,21 @@ An excluded row is a decision that should be inspectable. Keep the excluded tabl
 <ol type="1">
 <li><p><code>cohort[["final_score"]]</code> returns what?</p>
 <ol type="a">
-<li>a Series b. a DataFrame c.&nbsp;a NumPy array d.&nbsp;a list</li>
+<li>a Series</li>
+<li>a DataFrame</li>
+<li>a NumPy array</li>
+<li>a list</li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>One name in single brackets gives a Series. What do the <em>inner</em> brackets turn the name into?</p>
+</div>
+<div class="hint" data-option="c">
+<p>pandas indexing returns pandas objects. You would need <code>.to_numpy()</code> to get an array.</p>
+</div>
+<div class="hint" data-option="d">
+<p>The inner brackets hold a list of column names, but what comes back is a pandas object.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -1098,7 +1113,7 @@ An excluded row is a decision that should be inspectable. Keep the excluded tabl
 <li><p><strong>(b) a DataFrame</strong> with one column. The inner brackets make it a list of names, and a list always gives a DataFrame.</p></li>
 <li><p><code>.loc[0:2]</code> gives <strong>three</strong> (labels 0, 1 and 2 — the end is included); <code>.iloc[0:2]</code> gives <strong>two</strong> (positions 0 and 1, the usual exclusive end).</p></li>
 <li><p>It converts every unparseable value to <code>NaN</code> without saying so, so a column that is 30% unparseable looks like a column that is 30% missing. Use <code>raise</code> until you have decided otherwise, then count the coerced values.</p></li>
-<li><p>At least one value is not a number — a stray <code>"n/a"</code>, an empty string, a thousands separator, or a stray unit like <code>"22C"</code>. Find it before converting.</p></li>
+<li><p>At least one value is not a number — a word such as <code>"missing"</code>, a thousands separator, or a stray unit like <code>"22C"</code>. (Common markers such as <code>"n/a"</code> and empty cells are read as missing automatically, and do not do this.) Find it before converting.</p></li>
 <li><p>The selection produced a separate object, so the flag was written there and not into the original. Use <code>frame.loc[mask, "flag"] = True</code> to write into the original, or <code>.copy()</code> if you wanted a separate table.</p></li>
 </ol>
 </div>
@@ -1113,6 +1128,308 @@ An excluded row is a decision that should be inspectable. Keep the excluded tabl
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

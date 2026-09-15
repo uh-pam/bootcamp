@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -520,7 +520,7 @@ window.Quarto = {
 </div>
 <div class="why">
 <p><span class="block-label">Why this unit is here</span></p>
-<p>From here on, every claim these notes make is a probability statement. A confidence level, a <span class="math inline">\(p\)</span>-value, “the procedure captures the truth 95% of the time” — all of them are probabilities, and none of them mean what they appear to mean until you can handle conditioning.</p>
+<p>From here on, every claim these notes make is a probability statement. A confidence level, a <span class="math inline">\(p\)</span>-value (both defined in <a href="../stats/s08-intervals.html">S8</a> and <a href="../stats/s09-tests.html">S9</a>), “the procedure captures the truth 95% of the time” — all of them are probabilities, and none of them mean what they appear to mean until you can handle conditioning.</p>
 <p>There is one error in particular that this unit exists to prevent. It is swapping a conditional probability for its reverse: reading <em>the chance of a positive test given the disease</em> as <em>the chance of the disease given a positive test</em>, or <em>the chance of this data if the hypothesis were false</em> as <em>the chance the hypothesis is false</em>. It has sent people to prison. It is the same mistake every time, and once you can see it you cannot unsee it.</p>
 </div>
 <section id="before-you-start" class="level2">
@@ -660,7 +660,7 @@ Figure&nbsp;31.3: Ten thousand people, then only the 585 who test positive. The 
 </div>
 <p>One hundred are ill and 90 of them test positive. Nine thousand nine hundred are well and 5% of them — 495 people — test positive anyway. So 585 people test positive and 90 of them are ill: <span class="math inline">\(90/585 = 15\%\)</span>.</p>
 <p>The test is good. The answer is 15% because the healthy group is a hundred times larger, so its small error rate still produces more positives than the ill group does in total.</p>
-<p>Notice which dial matters. Push the sensitivity from 90% all the way to a perfect 100% and you gain ten true positives: <span class="math inline">\(100/595 = 17\%\)</span>, barely a change. Cut the false-positive rate from 5% to 0.5% instead and the false alarms fall from 495 to 50, giving <span class="math inline">\(90/140 = 64\%\)</span>. <strong>When a condition is rare, the positive predictive value is governed by the false-positive rate and the base rate, and hardly at all by how well the test detects true cases.</strong></p>
+<p>Notice which dial matters. Push the sensitivity from 90% all the way to a perfect 100% and you gain ten true positives: <span class="math inline">\(100/595 = 17\%\)</span>, barely a change. Cut the false-positive rate from 5% to 0.5% instead and the false alarms fall from 495 to 50, giving <span class="math inline">\(90/140 = 64\%\)</span>. <strong>When a condition is rare, the positive predictive value — <span class="math inline">\(P(\text{ill} \mid \text{positive})\)</span>, the share of positive results that are truly ill — is governed by the false-positive rate and the base rate, and hardly at all by how well the test detects true cases.</strong></p>
 </section>
 </section>
 <section id="worked-example" class="level2">
@@ -706,7 +706,7 @@ P(strong finish | strong start)      0.5000   &lt;- 47/94
 P(strong start  | strong finish)     0.6812   &lt;- 47/69</code></pre>
 </div>
 </div>
-<p>Read those last two lines slowly. The diagnostic flags 94 students, and exactly 47 of them go on to score 70 or more: <strong>a positive flag is right half the time.</strong> Yet the test is not useless, because 29% of students score 70+ overall, and among the flagged ones it is 50% — the flag has raised the odds considerably. It has simply not raised them to anything like certainty.</p>
+<p>Read those last two lines slowly. The diagnostic flags 94 students, and exactly 47 of them go on to score 70 or more: <strong>a positive flag is right half the time.</strong> Yet the test is not useless, because 29% of students score 70+ overall, and among the flagged ones it is 50% — the flag has raised the chance considerably. It has not raised it to anything like certainty.</p>
 <p>Now the same numbers as Bayes’ theorem, to see the machine work:</p>
 <p><span class="math display">\[
 P(\text{finish} \mid \text{start}) =
@@ -856,7 +856,7 @@ P(finish | start) by division   0.5000</code></pre>
 </div>
 </div>
 </div>
-<p>Both fractions have 47 on top. They differ because the denominators differ — 94 flagged students against 69 strong finishers. The two are equal only when the two events happen to be equally common, which is a coincidence rather than a rule:</p>
+<p>Both fractions have 47 on top. They differ because the denominators differ — 94 flagged students against 69 strong finishers. The two are equal only when the two events happen to be equally common — or never happen together, when both are zero — which is a coincidence rather than a rule:</p>
 <div id="when-equal" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"P(start)  </span><span class="sc">{</span>start <span class="op">/</span> n<span class="sc">:.4f}</span><span class="ss">   P(finish)  </span><span class="sc">{</span>finish <span class="op">/</span> n<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ratio of the two conditionals </span><span class="sc">{</span>(both <span class="op">/</span> start) <span class="op">/</span> (both <span class="op">/</span> finish)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
@@ -929,6 +929,15 @@ Adding two probabilities counts the overlap twice. Subtract it once. If the even
 <li><span class="math inline">\(P(A \cap B) = 0.4\)</span></li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>0 just means <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> never happen together. Is that impossible?</p>
+</div>
+<div class="hint" data-option="b">
+<p><span class="math inline">\(0.3 \times 0.6 = 0.18\)</span> — that is what independence would give.</p>
+</div>
+<div class="hint" data-option="c">
+<p>That happens when <span class="math inline">\(A\)</span> only ever occurs together with <span class="math inline">\(B\)</span>. Could the overlap be larger than <span class="math inline">\(A\)</span> itself?</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -983,6 +992,308 @@ Adding two probabilities counts the overlap twice. Subtract it once. If the even
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

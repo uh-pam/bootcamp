@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -667,7 +667,7 @@ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
 </tr>
 </tbody>
 </table>
-<p>Only the last is about normality, and it is the least important of the four: the intervals rely on the sampling distribution of <span class="math inline">\(\hat{\beta}_1\)</span>, which <a href="../stats/s07-sampling.html">S7</a>’s central limit theorem makes approximately normal for moderate <span class="math inline">\(n\)</span> even when the errors are not. Independence is the one that will hurt you most and shows up in no plot.</p>
+<p>Only the last is about normality, and it is the least important of the four: the intervals rely on the sampling distribution of <span class="math inline">\(\hat{\beta}_1\)</span>, which <a href="../stats/s07-sampling.html">S7</a>’s central limit theorem makes approximately normal for moderate <span class="math inline">\(n\)</span> even when the errors are not. The exception is the prediction interval: one individual’s own error is never averaged away, so its shape matters at any <span class="math inline">\(n\)</span>. Independence is the one that will hurt you most and shows up in no plot.</p>
 </section>
 </section>
 <section id="worked-example" class="level2">
@@ -702,8 +702,8 @@ t = -3.6921   p = 0.000276   R^2 = 0.0546</code></pre>
 </div>
 <p>The reportable sentence: <strong>across the cohort, each additional hour of practice goes with 0.24 marks <em>fewer</em> on the final score (95% CI 0.11 to 0.37 marks lower), and practice hours account for 5.5% of the variation in scores.</strong></p>
 <p>Three separate things are true of that sentence and worth separating.</p>
-<p><strong>The slope is negative and the interval excludes zero.</strong> This is not noise.</p>
-<p><strong>The effect is small and the fit is poor.</strong> <span class="math inline">\(R^2 = 0.055\)</span> means practice hours explain about a twentieth of the variation. Read together with the interval, the finding is “a real but modest association, estimated reasonably precisely” — which is what most findings about people look like.</p>
+<p><strong>The slope is negative and the interval excludes zero.</strong> Noise alone would rarely produce that — though, as <a href="../stats/s09-tests.html">S9</a> showed, rarely is not never.</p>
+<p><strong>The effect is small and the fit is poor.</strong> <span class="math inline">\(R^2 = 0.055\)</span> means practice hours explain about a twentieth of the variation. Read together with the interval, the finding is “a clear but modest association, estimated reasonably precisely” — which is what most findings about people look like.</p>
 <p><strong>It is not a statement about what practice does.</strong> <a href="../stats/s01-the-question.html">S1</a> established that the sign reverses inside every background group. The fit above is a correct summary of the pooled cloud and a bad guide to any student’s decision.</p>
 <div id="check-formula" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fitted <span class="op">=</span> fit.intercept <span class="op">+</span> fit.slope <span class="op">*</span> hours</span>
@@ -1001,6 +1001,15 @@ A regression coefficient describes an association in the data you fitted, given 
 <li>Each unit of <span class="math inline">\(x\)</span> causes 2 units of <span class="math inline">\(y\)</span></li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>A clear slope need not explain much. Work out <span class="math inline">\(t = 2.0/0.5\)</span>, then use <span class="math inline">\(R^2 = t^2/(t^2 + n - 2)\)</span>.</p>
+</div>
+<div class="hint" data-option="c">
+<p>A correlation always lies between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>; a slope is measured in units of <span class="math inline">\(y\)</span> per unit of <span class="math inline">\(x\)</span>.</p>
+</div>
+<div class="hint" data-option="d">
+<p>A regression describes an association. What would you need before calling it a cause?</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -1036,7 +1045,7 @@ A regression coefficient describes an association in the data you fitted, given 
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p><strong>(b).</strong> With <span class="math inline">\(n = 100\)</span> the multiplier is close to 2, so the interval is about <span class="math inline">\(2.0 \pm 1.0\)</span>. (a) confuses the slope with <span class="math inline">\(R^2\)</span> — nothing here says how much variation is explained; (c) confuses the slope with the correlation, which cannot exceed 1; (d) upgrades an association to a cause, which no regression output can license.</p></li>
+<li><p><strong>(b).</strong> With <span class="math inline">\(n = 100\)</span> the multiplier is close to 2, so the interval is about <span class="math inline">\(2.0 \pm 1.0\)</span>. (a) is false, and you can check it: <span class="math inline">\(t = 2.0/0.5 = 4\)</span>, so <span class="math inline">\(R^2 = 4^2/(4^2 + 98) \approx 0.14\)</span> — a clear relationship that explains little of the variation; (c) confuses the slope with the correlation, which cannot exceed 1; (d) upgrades an association to a cause, which no regression output can license.</p></li>
 <li><p><strong>Spread the <span class="math inline">\(x\)</span> values further apart.</strong> The standard error is <span class="math inline">\(s_e/\sqrt{\sum (x_i - \bar{x})^2}\)</span>, so choosing observations across a wider range of <span class="math inline">\(x\)</span> shrinks it without a single extra data point. Reducing measurement noise in <span class="math inline">\(y\)</span> works too. The caveat from Exercise 2 stands: the relationship must stay straight over the wider range.</p></li>
 <li><p><strong>The residual scatter relative to the spread of <span class="math inline">\(y\)</span>.</strong> The regression with <span class="math inline">\(R^2 = 0.2\)</span> has much more variation in <span class="math inline">\(y\)</span> that the line does not account for. Since the standard errors match, both slopes are estimated equally precisely — which is a clean demonstration that <span class="math inline">\(R^2\)</span> and the precision of a coefficient are separate things.</p></li>
 <li><p>Because it contains the individual’s own noise. As <span class="math inline">\(n\)</span> grows the <em>line</em> is pinned down and the mean-response band shrinks towards nothing, but a new student still scatters about that line with standard deviation <span class="math inline">\(s_e\)</span>. The prediction interval converges to roughly <span class="math inline">\(\hat{y} \pm 2 s_e\)</span>, not to a point.</p></li>
@@ -1054,6 +1063,308 @@ A regression coefficient describes an association in the data you fitted, given 
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

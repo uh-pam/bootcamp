@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -623,7 +623,7 @@ independent: [1, 2, 3, 4]</code></pre>
 </div>
 </div>
 </div>
-<p>The error is the point of a tuple. A coordinate pair, a date, an RGB colour — things whose parts belong together and should not be edited one at a time.</p>
+<p>The error is the point of a tuple. A coordinate pair, a date, a colour stored as its red, green and blue amounts — things whose parts belong together and should not be edited one at a time.</p>
 </section>
 <section id="dictionaries" class="level3">
 <h3 class="anchored" data-anchor-id="dictionaries">Dictionaries</h3>
@@ -638,7 +638,7 @@ independent: [1, 2, 3, 4]</code></pre>
 ['id', 'background', 'score', 'completed']</code></pre>
 </div>
 </div>
-<p>Look-up is by key, and <code>student["score"]</code> says what it means in a way that <code>row[2]</code> never will. Asking for a key that does not exist raises:</p>
+<p>Look-up is by key, and <code>student["score"]</code> says what it means in a way that <code>row[2]</code> never will. A key must be a value that cannot change, such as a string or a number. Asking for a key that does not exist raises:</p>
 <div id="dict-missing" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>student[<span class="st">"age"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -669,7 +669,7 @@ independent: [1, 2, 3, 4]</code></pre>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique)</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(backgrounds), <span class="st">"values,"</span>, <span class="bu">len</span>(unique), <span class="st">"distinct"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'Computing', 'Life sciences', 'Social sciences'}
+<pre><code>{'Social sciences', 'Computing', 'Life sciences'}
 4 values, 3 distinct</code></pre>
 </div>
 </div>
@@ -693,12 +693,13 @@ independent: [1, 2, 3, 4]</code></pre>
 <h2 class="anchored" data-anchor-id="worked-example">3.4 Worked example</h2>
 <p><strong>Summarising the cohort with the right container for each job.</strong></p>
 <div id="worked-load" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv                      <span class="co"># load Python's ready-made tools for CSV files</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path        <span class="co"># and for file paths (imports are explained in P5)</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> <span class="bu">list</span>(csv.DictReader(Path(<span class="st">"data/cohort.csv"</span>).<span class="bu">open</span>()))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(rows), <span class="st">"rows"</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rows[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file, read each row, and collect the rows into a list</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> <span class="bu">list</span>(csv.DictReader(Path(<span class="st">"data/cohort.csv"</span>).<span class="bu">open</span>()))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(rows), <span class="st">"rows"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rows[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>240 rows
 {'student_id': 'S0001', 'background': 'Mathematics or Physics', 'diagnostic_score': '89.1', 'hours_practice': '12.9', 'final_score': '83.6', 'completed': 'True', 'started_on': '2026-09-23'}</code></pre>
@@ -719,18 +720,19 @@ independent: [1, 2, 3, 4]</code></pre>
   Social sciences</code></pre>
 </div>
 </div>
+<p>The curly brackets build a set in one line, keeping the background of each row <code>if</code> it is not empty — an empty string counts as false. This shorthand is a <em>comprehension</em>, explained in <a href="../python/p04-decisions-loops.html">P4</a>.</p>
 <p><strong>What is the mean score in each?</strong> Look-up by name — a dictionary of lists:</p>
 <div id="worked-dict" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>by_background <span class="op">=</span> {}</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>skipped <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> rows:</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    group, raw <span class="op">=</span> row[<span class="st">"background"</span>], row[<span class="st">"final_score"</span>]</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> group <span class="kw">or</span> <span class="kw">not</span> raw:</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        skipped <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    group, raw <span class="op">=</span> row[<span class="st">"background"</span>], row[<span class="st">"final_score"</span>]   <span class="co"># two names, two values, in order</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> group <span class="kw">or</span> <span class="kw">not</span> raw:     <span class="co"># an empty string counts as false</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        skipped <span class="op">+=</span> <span class="dv">1</span>             <span class="co"># short for skipped = skipped + 1</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>                 <span class="co"># skip the rest of this pass; go to the next row</span></span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> <span class="bu">float</span>(raw)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="dv">0</span> <span class="op">&lt;=</span> score <span class="op">&lt;=</span> <span class="dv">100</span>:</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="dv">0</span> <span class="op">&lt;=</span> score <span class="op">&lt;=</span> <span class="dv">100</span>:    <span class="co"># outside 0 to 100 (comparisons: P4)</span></span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        skipped <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
 <span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    by_background.setdefault(group, []).append(score)</span>
@@ -753,8 +755,9 @@ independent: [1, 2, 3, 4]</code></pre>
 <p>Notice the three skipped rows are <strong>counted, not silently dropped</strong>. That number is part of the result; <a href="../python/p09-pandas-cleaning.html">P9</a> makes it an audit file.</p>
 <p><strong>The five highest scores?</strong> Order matters — a sorted list:</p>
 <div id="worked-list" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>all_scores <span class="op">=</span> [s <span class="cf">for</span> scores <span class="kw">in</span> by_background.values() <span class="cf">for</span> s <span class="kw">in</span> scores]</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(all_scores, reverse<span class="op">=</span><span class="va">True</span>)[:<span class="dv">5</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># every score s from every group's list, gathered into one flat list</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>all_scores <span class="op">=</span> [s <span class="cf">for</span> scores <span class="kw">in</span> by_background.values() <span class="cf">for</span> s <span class="kw">in</span> scores]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(all_scores, reverse<span class="op">=</span><span class="va">True</span>)[:<span class="dv">5</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[91.6, 88.8, 88.5, 86.6, 85.3]</code></pre>
 </div>
@@ -852,9 +855,10 @@ independent: [1, 2, 3, 4]</code></pre>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>adjusted <span class="op">=</span> baseline.copy()</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>adjusted.append(<span class="dv">4</span>)</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> baseline <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], <span class="st">"baseline was modified"</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"baseline intact:"</span>, baseline)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same object?    "</span>, adjusted <span class="kw">is</span> baseline)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># assert does nothing if the test is true; if false, it stops with the message</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> baseline <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], <span class="st">"baseline was modified"</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"baseline intact:"</span>, baseline)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same object?    "</span>, adjusted <span class="kw">is</span> baseline)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>baseline intact: [1, 2, 3]
 same object?     False</code></pre>
@@ -877,6 +881,7 @@ same object?     False</code></pre>
 <pre><code>kept 3 of 5; dropped ['', 'not recorded']</code></pre>
 </div>
 </div>
+<p><code>try</code> runs the indented line; if it raises a <code>ValueError</code> — here, because <code>float("not recorded")</code> has no sensible answer — Python jumps to the <code>except</code> block instead of stopping, and the loop carries on with the next value. Any <em>other</em> error still stops the program, which is what you want.</p>
 <p>The assertion says nothing went missing unaccounted for. It is one line and it turns a silent loss into a loud one.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
@@ -919,9 +924,21 @@ Every filtered-out row is a decision. Count them and say how many, or you have n
 <ol type="1">
 <li><p>What does <code>[10, 20, 30, 40][1:3]</code> give?</p>
 <ol type="a">
-<li><code>[10, 20]</code> b. <code>[20, 30]</code> c.&nbsp;<code>[20, 30, 40]</code> d.&nbsp;<code>[10, 20, 30]</code></li>
+<li><code>[10, 20]</code></li>
+<li><code>[20, 30]</code></li>
+<li><code>[20, 30, 40]</code></li>
+<li><code>[10, 20, 30]</code></li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>Counting starts at 0, so index 1 is not the first item.</p>
+</div>
+<div class="hint" data-option="c">
+<p>A slice stops <em>before</em> its stop index.</p>
+</div>
+<div class="hint" data-option="d">
+<p>Check two things: which item sits at index 1, and whether the stop index is included.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -959,7 +976,7 @@ Every filtered-out row is a decision. Count them and say how many, or you have n
 <ol type="1">
 <li><p><strong>(b) <code>[20, 30]</code>.</strong> Start at index 1, stop before index 3.</p></li>
 <li><p><code>[1, 2, 3]</code>. <code>b</code> is another label on the same list, and <code>.append</code> changes the list itself rather than making a new one.</p></li>
-<li><p>Because a dictionary key must not change after it is stored — the dictionary files it by its contents. A tuple cannot change, so it is safe; a list can, which would leave the entry unfindable. (Python enforces this: using a list as a key raises <code>TypeError: unhashable type</code>.)</p></li>
+<li><p>Because a dictionary key must not change after it is stored — the dictionary files it by its contents. A tuple cannot change, so a tuple of strings or numbers is safe; a list can, which would leave the entry unfindable. (Python enforces this: using a list as a key raises <code>TypeError: unhashable type</code> — “unhashable” means “cannot be used as a key”. A tuple that contains a list is refused in the same way.)</p></li>
 <li><p><strong>A set.</strong> <code>in</code> on a set does not depend on how many items it holds; on a list it scans, so a million ids means up to a million comparisons each time.</p></li>
 <li><p><strong>No.</strong> Sets have no order to be wrong about. If order matters to you, that is a signal you should be sorting, or should not be using a set.</p></li>
 </ol>
@@ -975,6 +992,308 @@ Every filtered-out row is a decision. Count them and say how many, or you have n
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

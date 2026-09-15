@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -573,7 +573,7 @@ window.Quarto = {
 <pre><code>[63.8  78.65 70.4  88.55]</code></pre>
 </div>
 </div>
-<p>This is not just shorter. The loop still happens — it happens inside compiled code rather than in the Python interpreter, which for large arrays is dramatically faster. But speed is the lesser reason. The real gain is that <code>scores * 1.1</code> says <em>what</em> you want, while the loop says <em>how</em> to get it, and the first is much easier to read and much harder to get subtly wrong.</p>
+<p>This is not only shorter. The loop still happens — it happens inside <strong>compiled</strong> code (already translated into machine instructions before you run it) rather than in the Python interpreter, which reads your code step by step. For large arrays that is dramatically faster. But speed is the lesser reason. The real gain is that <code>scores * 1.1</code> says <em>what</em> you want, while the loop says <em>how</em> to get it, and the first is much easier to read and much harder to get subtly wrong.</p>
 <p>The same applies to comparisons, which produce arrays of <code>True</code>/<code>False</code>:</p>
 <div id="comparison" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores <span class="op">&gt;</span> <span class="dv">65</span>)</span>
@@ -616,15 +616,16 @@ Figure&nbsp;11.1: Broadcasting a <code>(3,)</code> array against a <code>(2, 3)<
 </div>
 </div>
 </div>
-<p>The <code>(3,)</code> array was stretched The <code>(3,)</code> array was stretched across both rows. Nothing was copied in memory — NumPy simply reuses the same values — but the <em>result</em> is as if it had been.</p>
+<p>The <code>(3,)</code> array was stretched across both rows. Nothing was copied in memory — NumPy reuses the same values — but the <em>result</em> is as if it had been.</p>
 <p>This is concise and it is also where silent errors live. A one-dimensional array of length 3 has shape <code>(3,)</code>. The same numbers as a column have shape <code>(3, 1)</code>. They do not behave the same way:</p>
 <div id="broadcast-trap" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">20.0</span>, <span class="fl">30.0</span>])</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"v.shape           "</span>, v.shape)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"v[:, None].shape  "</span>, v[:, <span class="va">None</span>].shape)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(v - v).shape     "</span>, (v <span class="op">-</span> v).shape)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(v[:, None] - v).shape "</span>, (v[:, <span class="va">None</span>] <span class="op">-</span> v).shape, <span class="st">"  &lt;-- 3x3, not 3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># None inside square brackets inserts a new dimension of length 1 at that place</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"v[:, None].shape  "</span>, v[:, <span class="va">None</span>].shape)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(v - v).shape     "</span>, (v <span class="op">-</span> v).shape)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(v[:, None] - v).shape "</span>, (v[:, <span class="va">None</span>] <span class="op">-</span> v).shape, <span class="st">"  &lt;-- 3x3, not 3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>v.shape            (3,)
 v[:, None].shape   (3, 1)
@@ -646,7 +647,7 @@ Figure&nbsp;11.2: Why <code>(3,)</code> and <code>(3, 1)</code> are not intercha
 </div>
 </div>
 </div>
-<p>The last line is the trap. The last line is the trap. You asked for differences between 3 numbers and got a <span class="math inline">\(3 \times 3\)</span> table of <em>all pairwise</em> differences, with no error raised. If a calculation downstream then averages it, you get a number — the wrong number. <strong>Print the shape whenever you are unsure.</strong></p>
+<p>The last line is the trap. You asked for differences between 3 numbers and got a <span class="math inline">\(3 \times 3\)</span> table of <em>all pairwise</em> differences, with no error raised. If a calculation downstream then averages it, you get a number — the wrong number. <strong>Print the shape whenever you are unsure.</strong></p>
 </section>
 <section id="reductions-and-axis" class="level3">
 <h3 class="anchored" data-anchor-id="reductions-and-axis">Reductions and <code>axis</code></h3>
@@ -687,7 +688,7 @@ Figure&nbsp;11.3: The axis you name is the one that disappears. Reducing over <c
 </div>
 </div>
 </div>
-<p>The reliable way to remember it The reliable way to remember it is by shape rather than by words. The table is <code>(2, 3)</code>. Reducing over <code>axis=0</code> removes the first dimension and leaves <code>(3,)</code>; reducing over <code>axis=1</code> removes the second and leaves <code>(2,)</code>. <em>The axis you name is the one that disappears.</em></p>
+<p>The reliable way to remember it is by shape rather than by words. The table is <code>(2, 3)</code>. Reducing over <code>axis=0</code> removes the first dimension and leaves <code>(3,)</code>; reducing over <code>axis=1</code> removes the second and leaves <code>(2,)</code>. <em>The axis you name is the one that disappears.</em></p>
 </section>
 <section id="ddof-and-a-default-that-will-catch-you" class="level3">
 <h3 class="anchored" data-anchor-id="ddof-and-a-default-that-will-catch-you"><code>ddof</code>, and a default that will catch you</h3>
@@ -708,8 +709,8 @@ sample     (ddof=1): 2.138089935299395</code></pre>
 <p>Create one generator, near the top of the script, and draw from it repeatedly:</p>
 <div id="rng" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span><span class="dv">4</span>))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.integers(low<span class="op">=</span><span class="dv">1</span>, high<span class="op">=</span><span class="dv">7</span>, size<span class="op">=</span><span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span><span class="dv">4</span>))     <span class="co"># bell-shaped: centre loc, spread scale (S6)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.integers(low<span class="op">=</span><span class="dv">1</span>, high<span class="op">=</span><span class="dv">7</span>, size<span class="op">=</span><span class="dv">4</span>))    <span class="co"># whole numbers 1 to 6: high is excluded</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-0.79312248  0.24057128 -1.89632635  1.39577171]
 [4 3 5 5]</code></pre>
@@ -750,10 +751,11 @@ A @ A =
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only rows that are complete and in range. The cohort file contains a</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># deliberate missing value and one impossible score; P9 deals with them</span></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># properly, but arithmetic on a NaN silently poisons everything it touches.</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>valid <span class="op">=</span> np.isfinite(raw).<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&amp;</span> (raw[:, <span class="dv">2</span>] <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">&amp;</span> (raw[:, <span class="dv">2</span>] <span class="op">&lt;=</span> <span class="dv">100</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> raw[valid]</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"kept"</span>, valid.<span class="bu">sum</span>(), <span class="st">"of"</span>, <span class="bu">len</span>(raw), <span class="st">"rows;  shape"</span>, data.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># np.isfinite is False for nan and also for infinity (inf), so it rejects both.</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>valid <span class="op">=</span> np.isfinite(raw).<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&amp;</span> (raw[:, <span class="dv">2</span>] <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">&amp;</span> (raw[:, <span class="dv">2</span>] <span class="op">&lt;=</span> <span class="dv">100</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> raw[valid]</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"kept"</span>, valid.<span class="bu">sum</span>(), <span class="st">"of"</span>, <span class="bu">len</span>(raw), <span class="st">"rows;  shape"</span>, data.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>kept 238 of 240 rows;  shape (238, 3)</code></pre>
 </div>
@@ -777,8 +779,9 @@ shapes: (238, 3) - (3,) -&gt; (238, 3)</code></pre>
 <p>Read what happened. <code>data</code> is <code>(238, 3)</code> and <code>means</code> is <code>(3,)</code>. Comparing from the right, 3 matches 3, and the missing first dimension is stretched to 238. One mean was subtracted from each column, exactly as intended.</p>
 <p>Now check it, rather than assuming:</p>
 <div id="standardise-check" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"largest remaining mean:"</span>, np.<span class="bu">abs</span>(standardised.mean(axis<span class="op">=</span><span class="dv">0</span>)).<span class="bu">max</span>())</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"standard deviations   :"</span>, standardised.std(axis<span class="op">=</span><span class="dv">0</span>, ddof<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># np.abs gives the absolute value: the size, ignoring the sign (-3 becomes 3)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"largest remaining mean:"</span>, np.<span class="bu">abs</span>(standardised.mean(axis<span class="op">=</span><span class="dv">0</span>)).<span class="bu">max</span>())</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"standard deviations   :"</span>, standardised.std(axis<span class="op">=</span><span class="dv">0</span>, ddof<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>largest remaining mean: 2.1593371348696847e-15
 standard deviations   : [1. 1. 1.]</code></pre>
@@ -935,9 +938,21 @@ A single missing value propagates through every sum, mean and product it reaches
 <ol type="1">
 <li><p><code>x</code> has shape <code>(5, 8)</code>. What is the shape of <code>x.sum(axis=1)</code>?</p>
 <ol type="a">
-<li><code>(8,)</code> b. <code>(5,)</code> c.&nbsp;<code>(5, 1)</code> d.&nbsp;a single number</li>
+<li><code>(8,)</code></li>
+<li><code>(5,)</code></li>
+<li><code>(5, 1)</code></li>
+<li>a single number</li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>That is what <code>axis=0</code> gives. Which dimension does <code>axis=1</code> collapse?</p>
+</div>
+<div class="hint" data-option="c">
+<p>Summing removes the axis completely unless you ask for <code>keepdims=True</code>.</p>
+</div>
+<div class="hint" data-option="d">
+<p>That is <code>x.sum()</code> with no axis. Summing along one axis leaves the other dimension.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -991,6 +1006,308 @@ A single missing value propagates through every sum, mean and product it reaches
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

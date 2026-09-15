@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -547,6 +547,7 @@ Figure&nbsp;15.1: A layout that answers the five questions. Source data is never
 </div>
 </div>
 <p>The five questions: <strong>what was the question</strong>, <strong>what data</strong>, <strong>what code</strong>, <strong>what environment</strong>, and <strong>how do I run it</strong>.</p>
+<p>Such a folder is usually kept under <strong>version control</strong> — a tool such as Git that records every saved change to its files — and is then called a <strong>repository</strong>.</p>
 </section>
 <section id="the-mechanics" class="level2">
 <h2 class="anchored" data-anchor-id="the-mechanics">11.3 The mechanics</h2>
@@ -563,8 +564,9 @@ Figure&nbsp;15.1: A layout that answers the five questions. Source data is never
 </div>
 </div>
 <p><code>Path</code> joins with <code>/</code> and works identically on Windows, macOS and Linux. <code>C:\Users\me\project\data.csv</code> written as a string works on exactly one machine — yours, until you rename a folder.</p>
-<p>Build paths relative to the script, never to wherever the terminal happened to be:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path(<span class="va">__file__</span>).resolve().parent</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In a notebook, <code>Path.cwd()</code> is the folder the notebook lives in, which is why the cell above can use it. A <strong>script</strong> can be run from anywhere, so inside a <code>.py</code> file build paths relative to the script itself, never to wherever the terminal happened to be:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path(<span class="va">__file__</span>).resolve().parent     <span class="co"># only in a .py file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>__file__</code> means “this file”, so it exists only in a script. Typed into a notebook it raises <code>NameError</code>.</p>
 </section>
 <section id="pin-the-environment" class="level3">
 <h3 class="anchored" data-anchor-id="pin-the-environment">Pin the environment</h3>
@@ -632,8 +634,12 @@ scipy==1.17.0</code></pre>
 <pre><code>mean 0.0  sd 1.0</code></pre>
 </div>
 </div>
-<p>Written in a file called <code>checks.py</code>, those become a test suite:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checks.py</span></span>
+<p>To turn those checks into a test suite, move them out of the notebook into two files next to it. In JupyterLab, <strong>File ▸ New ▸ Python File</strong> twice:</p>
+<ul>
+<li><code>analysis.py</code> holds the function — paste the <code>def standardise</code> block above, with <code>import numpy as np</code> as its first line;</li>
+<li><code>test_analysis.py</code> holds the tests:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test_analysis.py</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> analysis <span class="im">import</span> standardise</span>
@@ -644,16 +650,20 @@ scipy==1.17.0</code></pre>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.isclose(z.std(ddof<span class="op">=</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_refuses_constant_input():</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):    <span class="co"># passes only if the indented line raises ValueError</span></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        standardise([<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Run them with <code>pytest</code>. A test that a function <em>refuses</em> bad input is worth as much as one that it handles good input — often more, because that is the path nobody exercises by hand.</p>
+<p><code>pytest</code> is not one of the packages from setup. In JupyterLab’s terminal (<strong>File ▸ New ▸ Terminal</strong>), install it once and run the tests:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install pytest==8.3.4</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>pytest</code> finds tests by name: files called <code>test_*.py</code>, functions called <code>test_*</code>. That is why the file is <code>test_analysis.py</code> — call it <code>checks.py</code> and <code>pytest</code> reports that no tests ran. Two passing tests print as <code>2 passed</code>.</p>
+<p>A test that a function <em>refuses</em> bad input is worth as much as one that it handles good input — often more, because that is the path nobody exercises by hand.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>A passing test says the behaviour matched your expectation. It does not say your expectation was right. Tests catch regressions and typos; they cannot tell you that you standardised the wrong column.</p>
+<p>A passing test says the behaviour matched your expectation. It does not say your expectation was right. Tests catch <strong>regressions</strong> (something that used to work, broken by a later change) and typos; they cannot tell you that you standardised the wrong column.</p>
 </div>
 </div>
 </div>
@@ -669,53 +679,53 @@ scipy==1.17.0</code></pre>
 <h2 class="anchored" data-anchor-id="worked-example">11.4 Worked example</h2>
 <p><strong>The pipeline as a script someone else can run.</strong></p>
 <div id="cell-worked" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path.cwd()</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>DATA, OUT <span class="op">=</span> ROOT <span class="op">/</span> <span class="st">"data"</span>, ROOT <span class="op">/</span> <span class="st">"_outputs"</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>OUT.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>SEED <span class="op">=</span> <span class="dv">2026</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load(path):</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Load the cohort file and convert types deliberately."""</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    frame <span class="op">=</span> pd.read_csv(path)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> column <span class="kw">in</span> (<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>):</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        frame[column] <span class="op">=</span> pd.to_numeric(frame[column], errors<span class="op">=</span><span class="st">"raise"</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frame</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split(frame):</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Separate analysable rows from excluded ones, with reasons."""</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> (frame[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>          <span class="op">&amp;</span> frame[<span class="st">"final_score"</span>].notna()</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>          <span class="op">&amp;</span> frame[<span class="st">"background"</span>].notna())</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    kept, dropped <span class="op">=</span> frame.loc[ok].copy(), frame.loc[<span class="op">~</span>ok].copy()</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(kept) <span class="op">+</span> <span class="bu">len</span>(dropped) <span class="op">==</span> <span class="bu">len</span>(frame)</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> kept, dropped</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summarise(frame):</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""One row per background, with counts and spread."""</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (frame.groupby(<span class="st">"background"</span>, as_index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>            .agg(n<span class="op">=</span>(<span class="st">"final_score"</span>, <span class="st">"size"</span>),</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                 mean_score<span class="op">=</span>(<span class="st">"final_score"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                 sd_score<span class="op">=</span>(<span class="st">"final_score"</span>, <span class="st">"std"</span>))</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>            .<span class="bu">round</span>(<span class="dv">2</span>))</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> load(DATA <span class="op">/</span> <span class="st">"cohort.csv"</span>)</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>analysis, excluded <span class="op">=</span> split(cohort)</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarise(analysis)</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>summary.to_csv(OUT <span class="op">/</span> <span class="st">"group_summary.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>excluded.to_csv(OUT <span class="op">/</span> <span class="st">"excluded_rows.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> summary[<span class="st">"n"</span>].<span class="bu">sum</span>() <span class="op">==</span> <span class="bu">len</span>(analysis)</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss"> rows in, </span><span class="sc">{</span><span class="bu">len</span>(analysis)<span class="sc">}</span><span class="ss"> analysed, </span><span class="sc">{</span><span class="bu">len</span>(excluded)<span class="sc">}</span><span class="ss"> excluded"</span>)</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"wrote </span><span class="sc">{</span><span class="bu">len</span>(<span class="bu">list</span>(OUT.glob(<span class="st">'*.csv'</span>)))<span class="sc">}</span><span class="ss"> files to </span><span class="sc">{</span>OUT<span class="sc">.</span>name<span class="sc">}</span><span class="ss">/"</span>)</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path.cwd()          <span class="co"># in a notebook; saved as analysis.py, use Path(__file__).resolve().parent</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>DATA, OUT <span class="op">=</span> ROOT <span class="op">/</span> <span class="st">"data"</span>, ROOT <span class="op">/</span> <span class="st">"_outputs"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>OUT.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>SEED <span class="op">=</span> <span class="dv">2026</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load(path):</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Load the cohort file and convert types deliberately."""</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    frame <span class="op">=</span> pd.read_csv(path)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> column <span class="kw">in</span> (<span class="st">"diagnostic_score"</span>, <span class="st">"hours_practice"</span>, <span class="st">"final_score"</span>):</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        frame[column] <span class="op">=</span> pd.to_numeric(frame[column], errors<span class="op">=</span><span class="st">"raise"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frame</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split(frame):</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Separate analysable rows from excluded ones."""</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> (frame[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>          <span class="op">&amp;</span> frame[<span class="st">"final_score"</span>].notna()</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>          <span class="op">&amp;</span> frame[<span class="st">"background"</span>].notna())</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    kept, dropped <span class="op">=</span> frame.loc[ok].copy(), frame.loc[<span class="op">~</span>ok].copy()</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(kept) <span class="op">+</span> <span class="bu">len</span>(dropped) <span class="op">==</span> <span class="bu">len</span>(frame)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> kept, dropped</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summarise(frame):</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""One row per background, with counts and spread."""</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (frame.groupby(<span class="st">"background"</span>, as_index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>            .agg(n<span class="op">=</span>(<span class="st">"final_score"</span>, <span class="st">"size"</span>),</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>                 mean_score<span class="op">=</span>(<span class="st">"final_score"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>                 sd_score<span class="op">=</span>(<span class="st">"final_score"</span>, <span class="st">"std"</span>))</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>            .<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>cohort <span class="op">=</span> load(DATA <span class="op">/</span> <span class="st">"cohort.csv"</span>)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>analysis, excluded <span class="op">=</span> split(cohort)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarise(analysis)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>summary.to_csv(OUT <span class="op">/</span> <span class="st">"group_summary.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>excluded.to_csv(OUT <span class="op">/</span> <span class="st">"excluded_rows.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> summary[<span class="st">"n"</span>].<span class="bu">sum</span>() <span class="op">==</span> <span class="bu">len</span>(analysis)</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(cohort)<span class="sc">}</span><span class="ss"> rows in, </span><span class="sc">{</span><span class="bu">len</span>(analysis)<span class="sc">}</span><span class="ss"> analysed, </span><span class="sc">{</span><span class="bu">len</span>(excluded)<span class="sc">}</span><span class="ss"> excluded"</span>)</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"wrote </span><span class="sc">{</span><span class="bu">len</span>(<span class="bu">list</span>(OUT.glob(<span class="st">'*.csv'</span>)))<span class="sc">}</span><span class="ss"> files to </span><span class="sc">{</span>OUT<span class="sc">.</span>name<span class="sc">}</span><span class="ss">/"</span>)</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>240 rows in, 237 analysed, 3 excluded
 wrote 2 files to _outputs/</code></pre>
@@ -779,24 +789,24 @@ wrote 2 files to _outputs/</code></pre>
 <p>Four named functions, each testable on its own; every path built from <code>ROOT</code>; every exclusion written out; two assertions guarding the arithmetic. Nothing here is clever, and that is rather the point.</p>
 <section id="the-readme-that-goes-with-it" class="level3">
 <h3 class="anchored" data-anchor-id="the-readme-that-goes-with-it">The README that goes with it</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cohort outcomes by prior background</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>**Question.** Does prior background relate to final score, and how do the</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>groups differ in practice hours?</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>**Data.** <span class="in">`data/cohort.csv`</span> — 240 synthetic records. Generated by</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="in">`data/make_cohort.py`</span> with seed 2026. Not real students.</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>**Setup.**</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    python -m venv .venv &amp;&amp; source .venv/bin/activate</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    pip install -r requirements.txt</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>**Run.**</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    python analysis.py</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>**Outputs.** <span class="in">`outputs/group_summary.csv`</span>, <span class="in">`outputs/excluded_rows.csv`</span>.</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>Three rows are excluded: one missing score, one missing background, one score</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>of 187 (impossible). See <span class="in">`outputs/excluded_rows.csv`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cohort outcomes by prior background</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>**Question.** Does prior background relate to final score, and how do the</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>groups differ in practice hours?</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>**Data.** <span class="in">`data/cohort.csv`</span> — 240 synthetic records. Generated by</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="in">`data/make_cohort.py`</span> with seed 2026. Not real students.</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>**Setup.**</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    python -m venv .venv &amp;&amp; source .venv/bin/activate</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    pip install -r requirements.txt</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>**Run.**</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    python analysis.py</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>**Outputs.** <span class="in">`_outputs/group_summary.csv`</span>, <span class="in">`_outputs/excluded_rows.csv`</span>.</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>Three rows are excluded: one missing score, one missing background, one score</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>of 187 (impossible). See <span class="in">`_outputs/excluded_rows.csv`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Ten lines. It answers all five questions, and it is the difference between a folder and a piece of work.</p>
 </section>
 </section>
@@ -860,7 +870,7 @@ wrote 2 files to _outputs/</code></pre>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>The second run cleans already-cleaned data.</strong> If cleaning is not exactly idempotent — dropping rows, rescaling, recoding — run two gives a different answer from run one, and neither is reproducible.</li>
+<li><strong>The second run cleans already-cleaned data.</strong> If cleaning is not exactly idempotent (giving the same result when run twice as when run once) — dropping rows, rescaling, recoding — run two gives a different answer from run one, and neither is reproducible.</li>
 <li><strong>The original is gone.</strong> You cannot check what the raw values were, cannot rerun with a different rule, and cannot show anyone what you excluded.</li>
 </ul>
 <p>Write to <code>outputs/</code>. Treat <code>data/</code> as read-only, and if you can, make it literally read-only so the mistake becomes an error.</p>
@@ -873,18 +883,18 @@ wrote 2 files to _outputs/</code></pre>
 <h2 class="anchored" data-anchor-id="check-it-in-python">11.6 Check it in Python</h2>
 <p><strong>Record the environment inside the output</strong>, so a result carries its own provenance:</p>
 <div id="check-provenance" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, json, numpy, pandas</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>provenance <span class="op">=</span> {</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"python"</span>: sys.version.split()[<span class="dv">0</span>],</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numpy"</span>: numpy.__version__,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pandas"</span>: pandas.__version__,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"seed"</span>: SEED,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows_in"</span>: <span class="bu">int</span>(<span class="bu">len</span>(cohort)),</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows_analysed"</span>: <span class="bu">int</span>(<span class="bu">len</span>(analysis)),</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows_excluded"</span>: <span class="bu">int</span>(<span class="bu">len</span>(excluded)),</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>(OUT <span class="op">/</span> <span class="st">"provenance.json"</span>).write_text(json.dumps(provenance, indent<span class="op">=</span><span class="dv">2</span>))</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps(provenance, indent<span class="op">=</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, json, numpy, pandas</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>provenance <span class="op">=</span> {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"python"</span>: sys.version.split()[<span class="dv">0</span>],</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numpy"</span>: numpy.__version__,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pandas"</span>: pandas.__version__,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"seed"</span>: SEED,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows_in"</span>: <span class="bu">int</span>(<span class="bu">len</span>(cohort)),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows_analysed"</span>: <span class="bu">int</span>(<span class="bu">len</span>(analysis)),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows_excluded"</span>: <span class="bu">int</span>(<span class="bu">len</span>(excluded)),</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>(OUT <span class="op">/</span> <span class="st">"provenance.json"</span>).write_text(json.dumps(provenance, indent<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps(provenance, indent<span class="op">=</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{
   "python": "3.11.14",
@@ -900,21 +910,21 @@ wrote 2 files to _outputs/</code></pre>
 <p>Six months on, that file answers “which versions produced this?” without anyone having to remember.</p>
 <p><strong>Assert the invariants that must hold</strong>, so a broken run stops rather than producing a plausible wrong answer:</p>
 <div id="check-invariants" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(analysis) <span class="op">+</span> <span class="bu">len</span>(excluded) <span class="op">==</span> <span class="bu">len</span>(cohort), <span class="st">"rows lost in the split"</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> summary[<span class="st">"n"</span>].<span class="bu">sum</span>() <span class="op">==</span> <span class="bu">len</span>(analysis), <span class="st">"group sizes do not match"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> analysis[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>).<span class="bu">all</span>(), <span class="st">"impossible score survived"</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="kw">not</span> analysis[<span class="st">"background"</span>].isna().<span class="bu">any</span>(), <span class="st">"missing background survived"</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"all four invariants hold"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(analysis) <span class="op">+</span> <span class="bu">len</span>(excluded) <span class="op">==</span> <span class="bu">len</span>(cohort), <span class="st">"rows lost in the split"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> summary[<span class="st">"n"</span>].<span class="bu">sum</span>() <span class="op">==</span> <span class="bu">len</span>(analysis), <span class="st">"group sizes do not match"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> analysis[<span class="st">"final_score"</span>].between(<span class="dv">0</span>, <span class="dv">100</span>).<span class="bu">all</span>(), <span class="st">"impossible score survived"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="kw">not</span> analysis[<span class="st">"background"</span>].isna().<span class="bu">any</span>(), <span class="st">"missing background survived"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"all four invariants hold"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>all four invariants hold</code></pre>
 </div>
 </div>
-<p><strong>Confirm the outputs are actually there</strong>, and that nothing was written into the source directory:</p>
+<p><strong>Confirm the outputs are actually there</strong>, and that no new file appeared in the source directory. A listing cannot show that an existing file was overwritten; making <code>data/</code> read-only, as in Exercise 3, is what prevents that:</p>
 <div id="check-outputs" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> (<span class="st">"group_summary.csv"</span>, <span class="st">"excluded_rows.csv"</span>, <span class="st">"provenance.json"</span>):</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> OUT <span class="op">/</span> name</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>name<span class="sc">:&lt;22}</span><span class="ss"> </span><span class="sc">{</span>path<span class="sc">.</span>stat()<span class="sc">.</span>st_size<span class="sc">:&gt;6}</span><span class="ss"> bytes"</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">source data untouched:"</span>, <span class="bu">sorted</span>(p.name <span class="cf">for</span> p <span class="kw">in</span> (ROOT <span class="op">/</span> <span class="st">'data'</span>).glob(<span class="st">'*.csv'</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> (<span class="st">"group_summary.csv"</span>, <span class="st">"excluded_rows.csv"</span>, <span class="st">"provenance.json"</span>):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> OUT <span class="op">/</span> name</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>name<span class="sc">:&lt;22}</span><span class="ss"> </span><span class="sc">{</span>path<span class="sc">.</span>stat()<span class="sc">.</span>st_size<span class="sc">:&gt;6}</span><span class="ss"> bytes"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">source data untouched:"</span>, <span class="bu">sorted</span>(p.name <span class="cf">for</span> p <span class="kw">in</span> (ROOT <span class="op">/</span> <span class="st">'data'</span>).glob(<span class="st">'*.csv'</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  group_summary.csv         177 bytes
   excluded_rows.csv         220 bytes
@@ -977,9 +987,21 @@ It works until it does not, and then you cannot fix it. Read every line you keep
 <ol type="1">
 <li><p>Which belongs in version control?</p>
 <ol type="a">
-<li><code>outputs/figure.svg</code> b. <code>requirements.txt</code> c.&nbsp;<code>.venv/</code> d.&nbsp;all three</li>
+<li><code>outputs/figure.svg</code></li>
+<li><code>requirements.txt</code></li>
+<li><code>.venv/</code></li>
+<li>all three</li>
 </ol></li>
 </ol>
+<div class="hint" data-option="a">
+<p>A figure can be regenerated by running the code. Is it source, or output?</p>
+</div>
+<div class="hint" data-option="c">
+<p>An environment is large and specific to one machine. What small file lets anyone rebuild it?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Two of the three can be rebuilt from something else. Keep only what cannot.</p>
+</div>
 </div>
 <div class="q">
 <ol start="2" type="1">
@@ -1034,6 +1056,308 @@ It works until it does not, and then you cannot fix it. Read every line you keep
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

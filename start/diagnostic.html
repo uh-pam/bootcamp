@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bbd024f62ae0ecd5402acdcab5a73629.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ac0e3bbd5c07b9d8c9364903b42ed136.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -527,7 +527,7 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>1.5 1 1</code></p>
-<p><code>/</code> always gives a float, <code>//</code> divides and throws away the remainder, and <code>%</code> gives the remainder. If the first one surprised you, that is Python 3 behaving differently from most people’s expectations and from Python 2.</p>
+<p><code>/</code> always gives a float (a number with a decimal part), <code>//</code> divides and rounds down to a whole number, and <code>%</code> gives the remainder. If you expected <code>1</code> from the first one, you are thinking of Python 2 or a language like it, where dividing two whole numbers drops the remainder.</p>
 <p>Covers <a href="../python/p02-values-names-types.html">P2</a>.</p>
 </div>
 </div>
@@ -552,7 +552,7 @@ window.Quarto = {
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>[58, 67] 90</code></p>
-<p>A slice <code>a:b</code> starts at <code>a</code> and stops <em>before</em> <code>b</code>, so it has <span class="math inline">\(b - a\)</span> elements. Negative indices count back from the end.</p>
+<p>Positions (indices) count from 0, so <code>marks[1]</code> is <code>58</code>. A slice <code>a:b</code> starts at position <code>a</code> and stops <em>before</em> <code>b</code>, so it has <span class="math inline">\(b - a\)</span> elements. Negative indices count back from the end, so <code>marks[-1]</code> is the last element.</p>
 <p>Covers <a href="../python/p03-collections.html">P3</a>.</p>
 </div>
 </div>
@@ -601,7 +601,7 @@ window.Quarto = {
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It keeps the rows whose score exceeds 70 and averages that column. Rows with a missing score are <strong>silently dropped by the comparison</strong> — <code>NaN &gt; 70</code> is <code>False</code> — and <code>.mean()</code> would skip any that survived anyway.</p>
+<p>It keeps the rows whose score exceeds 70 and averages that column. Rows with a missing score are <strong>silently dropped by the comparison</strong> — pandas stores a missing value as <code>NaN</code>, and <code>NaN &gt; 70</code> is <code>False</code> — and <code>.mean()</code> would skip any that survived anyway.</p>
 <p>The important half of the answer is “silently”. Nothing warns you, and the count you would have reported is smaller than you think.</p>
 <p>Covers <a href="../python/p08-pandas-dataframe.html">P8</a> and <a href="../python/p09-pandas-cleaning.html">P9</a>.</p>
 </div>
@@ -749,7 +749,7 @@ window.Quarto = {
 </div>
 <div class="quiz">
 <div class="q">
-<p><strong>11.</strong> <span class="math inline">\(A\)</span> is <span class="math inline">\(3 \times 4\)</span> and <span class="math inline">\(B\)</span> is <span class="math inline">\(4 \times 2\)</span>. What is the shape of <span class="math inline">\(AB\)</span>? What about <span class="math inline">\(BA\)</span>?</p>
+<p><strong>11.</strong> The matrix <span class="math inline">\(A\)</span> is <span class="math inline">\(3 \times 4\)</span> and the matrix <span class="math inline">\(B\)</span> is <span class="math inline">\(4 \times 2\)</span>. What is the shape of <span class="math inline">\(AB\)</span>? What about <span class="math inline">\(BA\)</span>?</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -848,7 +848,7 @@ window.Quarto = {
 <p><strong>15.</strong> A sample of 64 measurements has a standard deviation of 16.</p>
 <ol type="a">
 <li>What is the standard error of the mean?</li>
-<li>The resulting 95% confidence interval is <span class="math inline">\((10.2, 13.8)\)</span>. Is it correct to say “there is a 95% probability the population mean lies between 10.2 and 13.8”?</li>
+<li>The resulting 95% confidence interval is <span class="math inline">\((8.1, 15.9)\)</span>. Is it correct to say “there is a 95% probability the population mean lies between 8.1 and 15.9”?</li>
 </ol>
 </div>
 </div>
@@ -955,7 +955,7 @@ window.Quarto = {
 <tr class="odd">
 <td style="text-align: left;">13</td>
 <td style="text-align: left;"><a href="../stats/s01-the-question.html">S1</a>, <a href="../stats/s02-one-variable.html">S2</a>, <a href="../stats/s03-two-variables.html">S3</a></td>
-<td style="text-align: left;">skip to S4</td>
+<td style="text-align: left;">read S1, then skip to S4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">14</td>
@@ -971,8 +971,8 @@ window.Quarto = {
 </table>
 <p>Three things the table cannot tell you.</p>
 <p><strong>A confident wrong answer is worse than a blank.</strong> If you were sure and wrong, read the unit rather than skimming it: what needs replacing is a belief, not a gap.</p>
-<p><strong><a href="../stats/s01-the-question.html">S1</a> and <a href="../stats/s12-going-wrong.html">S12</a> are not on the table</strong>, because no short question tests them. They are about choosing what to ask and recognising how an answer goes wrong, and they are the two units most likely to change how you work. Read both regardless of how you scored.</p>
-<p><strong>Seven more units have no question of their own</strong>: <a href="../python/p05-functions-modules.html">P5</a>, <a href="../python/p10-matplotlib.html">P10</a>, <a href="../python/p11-reproducible.html">P11</a>, <a href="../maths/m12-directions.html">M12</a>, <a href="../stats/s06-distributions.html">S6</a>, <a href="../stats/s10-comparing.html">S10</a> and <a href="../stats/s11-regression.html">S11</a>. Read each one unless you can do its <em>Before you start</em> quick check without looking.</p>
+<p><strong>No question tests <a href="../stats/s01-the-question.html">S1</a> or <a href="../stats/s12-going-wrong.html">S12</a></strong>, because no short question can. They are about choosing what to ask and recognising how an answer goes wrong, and they are the two units most likely to change how you work. Read both regardless of how you scored.</p>
+<p><strong>Seven more units have no question of their own</strong>: <a href="../python/p05-functions-modules.html">P5</a>, <a href="../python/p10-matplotlib.html">P10</a>, <a href="../python/p11-reproducible.html">P11</a>, <a href="../maths/m12-directions.html">M12</a>, <a href="../stats/s06-distributions.html">S6</a>, <a href="../stats/s10-comparing.html">S10</a> and <a href="../stats/s11-regression.html">S11</a>. Read each one unless you can answer its <em>Check yourself</em> questions without looking.</p>
 <p><strong>If you missed most of a track’s questions, ignore the table for that track</strong> and read it in order from its first unit. The table is for skipping what you know, not for choosing a path through what you do not.</p>
 <p><strong>Nobody skips everything.</strong> If you answered all fifteen comfortably, you do not need the mechanics — but the <em>Common wrong turns</em> block in each unit is worth twenty minutes on its own, and it is where most of the material that is new to experienced readers lives.</p>
 
@@ -980,6 +980,308 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Check yourself — one question at a time.
+ *
+ * The source stays plain Quarto: a `.quiz` of `.q` blocks followed by a
+ * collapsed "Show the answers" callout whose numbered list holds one answer per
+ * question (or, in the diagnostic, a `.quiz` of one `.q` and a "Show the answer"
+ * callout). The PDF prints exactly that. This script, which runs only in the
+ * HTML, turns each question into something to attempt:
+ *
+ *   - multiple choice: click an option; a wrong one shows that option's hint
+ *     (authored as `::: {.hint option="a"}` inside the `.q`) and lets you try
+ *     again; a right one reveals the explanation;
+ *   - everything else: write an attempt, then compare it with the model answer
+ *     and say honestly how close you were.
+ *
+ * Attempts and ratings are kept in this browser's localStorage and nowhere
+ * else. If a quiz's questions and answers do not pair up one-to-one, the script
+ * leaves that quiz untouched rather than guess.
+ */
+(function () {
+  "use strict";
+
+  var STORE = "dscs-quiz:" + location.pathname;
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { state = {}; }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function answersCallout(quiz) {
+    var next = quiz.nextElementSibling;
+    if (!next || !next.classList.contains("callout")) return null;
+    var title = next.querySelector(".callout-title-container");
+    return title && /Show the answers?/.test(title.textContent) ? next : null;
+  }
+
+  function moveChildren(from, to) {
+    while (from.firstChild) to.appendChild(from.firstChild);
+  }
+
+  function typeset(node) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]).catch(function () {});
+  }
+
+  var RATINGS = [["yes", "I had it"], ["partly", "Partly"], ["no", "Not yet"]];
+
+  function buildChoice(q, id, optionList, answer, correct, onChange) {
+    var s = state[id] || (state[id] = { tried: [] });
+    var hints = {};
+    q.querySelectorAll(".hint[data-option]").forEach(function (h) {
+      hints[h.getAttribute("data-option")] = h;
+      h.hidden = true;
+    });
+    var feedback = el("div", "quiz-feedback");
+    feedback.setAttribute("aria-live", "polite");
+    var explain = el("div", "quiz-answer");
+    moveChildren(answer, explain);
+    explain.hidden = true;
+    var giveUp = el("button", "quiz-link", "Show the answer");
+    giveUp.type = "button";
+    giveUp.hidden = true;
+
+    var items = Array.prototype.slice.call(optionList.children);
+    var letters = "abcdefgh";
+    items.forEach(function (li, i) {
+      var letter = letters[i];
+      var button = el("button", "quiz-option");
+      button.type = "button";
+      var badge = el("span", "quiz-letter", letter);
+      button.appendChild(badge);
+      var label = el("span", "quiz-option-text");
+      moveChildren(li, label);
+      button.appendChild(label);
+      li.appendChild(button);
+      button.addEventListener("click", function () { choose(letter, true); });
+    });
+
+    function choose(letter, fresh) {
+      var index = letters.indexOf(letter);
+      var button = items[index] && items[index].querySelector("button");
+      if (!button) return;
+      if (fresh && s.tried.indexOf(letter) < 0) s.tried.push(letter);
+      Object.keys(hints).forEach(function (k) { hints[k].hidden = true; });
+      if (letter === correct) {
+        button.classList.add("is-right");
+        items.forEach(function (li) { li.querySelector("button").disabled = true; });
+        feedback.className = "quiz-feedback is-right";
+        feedback.textContent = s.tried.length === 1 ? "Right, first time." : "Right.";
+        explain.hidden = false;
+        giveUp.hidden = true;
+        s.done = true;
+      } else {
+        button.classList.add("is-wrong");
+        button.disabled = true;
+        feedback.className = "quiz-feedback is-wrong";
+        feedback.textContent = "Not that one.";
+        var hint = hints[letter];
+        if (hint) {
+          feedback.appendChild(document.createTextNode(" "));
+          hint.hidden = false;
+          feedback.appendChild(hint);
+          typeset(hint);
+        } else {
+          feedback.appendChild(document.createTextNode(" Look again and try another."));
+        }
+        feedback.appendChild(document.createTextNode(" "));
+        giveUp.hidden = false;
+        feedback.appendChild(giveUp);
+      }
+      if (fresh) { save(); onChange(); }
+    }
+
+    giveUp.addEventListener("click", function () {
+      explain.hidden = false;
+      giveUp.hidden = true;
+      s.revealed = true;
+      save(); onChange();
+    });
+
+    var tail = el("div", "quiz-live-panel");
+    tail.appendChild(feedback);
+    tail.appendChild(explain);
+    q.appendChild(tail);
+
+    s.tried.forEach(function (letter) { choose(letter, false); });
+    if (s.revealed && !s.done) { explain.hidden = false; giveUp.hidden = true; }
+  }
+
+  function buildOpen(q, id, answer, onChange) {
+    var s = state[id] || (state[id] = {});
+    var panel = el("div", "quiz-live-panel");
+    var box = el("textarea", "quiz-attempt");
+    box.rows = 3;
+    box.placeholder = "Write your answer here first — even a guess.";
+    box.setAttribute("aria-label", "Your answer");
+    box.value = s.text || "";
+    var check = el("button", "quiz-check", "Compare with the model answer");
+    check.type = "button";
+    var model = el("div", "quiz-answer");
+    moveChildren(answer, model);
+    model.hidden = true;
+    var rate = el("div", "quiz-rate");
+    rate.hidden = true;
+    rate.appendChild(el("span", "quiz-rate-label", "How close were you?"));
+    RATINGS.forEach(function (pair) {
+      var b = el("button", "quiz-rating", pair[1]);
+      b.type = "button";
+      b.setAttribute("data-rating", pair[0]);
+      b.addEventListener("click", function () {
+        s.rating = pair[0];
+        mark();
+        save(); onChange();
+      });
+      rate.appendChild(b);
+    });
+
+    function mark() {
+      rate.querySelectorAll("button").forEach(function (b) {
+        b.classList.toggle("is-chosen", b.getAttribute("data-rating") === s.rating);
+      });
+    }
+    function sync() { check.disabled = box.value.trim().length === 0 && !s.revealed; }
+    function reveal() {
+      model.hidden = false;
+      rate.hidden = false;
+      check.hidden = true;
+    }
+
+    box.addEventListener("input", function () { s.text = box.value; save(); sync(); });
+    check.addEventListener("click", function () { s.revealed = true; reveal(); save(); onChange(); });
+
+    panel.appendChild(box);
+    panel.appendChild(check);
+    panel.appendChild(model);
+    panel.appendChild(rate);
+    q.appendChild(panel);
+    sync();
+    if (s.revealed) reveal();
+    mark();
+  }
+
+  function outcome(id) {
+    var s = state[id];
+    if (!s) return null;
+    if (s.done) return s.tried.length === 1 ? "yes" : "partly";
+    if (s.revealed && s.tried) return "no";
+    return s.rating || null;
+  }
+
+  var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
+  var questionIds = [];
+
+  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+    var callout = answersCallout(quiz);
+    if (!callout) return;
+    var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
+    var body = callout.querySelector(".callout-body");
+    var answers;
+    if (questions.length === 1) {
+      answers = [body];
+    } else {
+      var list = body && body.querySelector(":scope > ol");
+      answers = list ? Array.prototype.slice.call(list.children) : [];
+    }
+    if (!questions.length || answers.length !== questions.length) return;
+
+    var summary = el("p", "quiz-summary");
+    var ids = [];
+    function refresh() {
+      if (diagnostic) { updatePlan(); return; }
+      var attempted = ids.filter(function (id) { return outcome(id); });
+      var notYet = ids.filter(function (id) { return outcome(id) === "no"; });
+      summary.textContent = attempted.length
+        ? attempted.length + " of " + ids.length + " checked" +
+          (notYet.length ? " · " + notYet.length + " worth another look" : "")
+        : "";
+    }
+
+    questions.forEach(function (q, i) {
+      var id = quizIndex + "." + i;
+      ids.push(id);
+      questionIds.push(id);
+      var options = q.querySelector("ol[type='a']");
+      var bold = answers[i].querySelector("strong");
+      var match = bold && /^\(([a-h])\)/.exec(bold.textContent.trim());
+      if (options && match) buildChoice(q, id, options, answers[i], match[1], refresh);
+      else buildOpen(q, id, answers[i], refresh);
+    });
+
+    callout.hidden = true;
+    quiz.classList.add("quiz-live");
+    var intro = quiz.previousElementSibling;
+    if (intro && intro.tagName === "P" && /Answers are at the foot of the page\./.test(intro.textContent)) {
+      intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
+        "Try each question before you open its answer.");
+    }
+    if (!diagnostic) quiz.appendChild(summary);
+    refresh();
+  });
+
+  /* The diagnostic's routing table becomes a reading plan. */
+  function updatePlan() {
+    var plan = document.getElementById("dscs-plan");
+    if (!plan) return;
+    var misses = [];
+    questionIds.forEach(function (id, n) {
+      var o = outcome(id);
+      if (o === "no" || o === "partly") misses.push(n + 1);
+    });
+    var answered = questionIds.filter(function (id) { return outcome(id); }).length;
+    plan.innerHTML = "";
+    plan.appendChild(el("p", "quiz-plan-title", "Your reading plan"));
+    if (!answered) {
+      plan.appendChild(el("p", null, "Answer the questions above and rate yourself honestly; this fills in as you go."));
+      return;
+    }
+    plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
+      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+        "Nothing marked as missed so far.")));
+    var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (!routing) return;
+    var rows = routing.querySelectorAll("tbody tr");
+    var list = el("ul");
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      if (misses.indexOf(n) < 0) return;
+      var item = el("li");
+      item.appendChild(document.createTextNode("Question " + n + ": "));
+      row.cells[1].childNodes.forEach(function (c) { item.appendChild(c.cloneNode(true)); });
+      list.appendChild(item);
+      row.classList.add("quiz-plan-row");
+    });
+    rows.forEach(function (row) {
+      var n = parseInt(row.cells[0].textContent, 10);
+      row.classList.toggle("quiz-plan-row", misses.indexOf(n) >= 0);
+    });
+    if (misses.length) plan.appendChild(list);
+  }
+
+  if (diagnostic) {
+    var table = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
+      return t.tHead && /Missed/.test(t.tHead.textContent);
+    })[0];
+    if (table && questionIds.length) {
+      var plan = el("div", "quiz-plan");
+      plan.id = "dscs-plan";
+      var anchor = table.closest(".quarto-float, figure, .table-responsive") || table;
+      anchor.parentNode.insertBefore(plan, anchor.nextSibling);
+      updatePlan();
+    }
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
