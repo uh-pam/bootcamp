@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7. NumPy: computing across arrays – Data Science Core Skills</title>
+<title>NumPy: computing across arrays – Data Science Core Skills</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fa58cad63ec306db36bb5c2c90682bf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4a65236759963040fad08196f4c7ce94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-02.html">Week 2 · Arrays, and reading maths</a></li><li class="breadcrumb-item"><a href="../python/p07-numpy-computing.html"><span class="chapter-title">P7 · NumPy: computing across arrays</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-02.html">Unit 2 · Arrays and notation</a></li><li class="breadcrumb-item"><a href="../python/p07-numpy-computing.html"><span class="chapter-title">P7 · NumPy: computing across arrays</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,10 +180,7 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Science Core Skills</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="../Data-Science-Core-Skills-Python.pdf" title="Python track as a PDF" class="quarto-navigation-tool px-1" aria-label="Python track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Mathematics.pdf" title="Mathematics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Mathematics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Statistics.pdf" title="Statistics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Statistics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
+        <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -201,13 +198,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Science Core Skills</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Before you start</span></a>
+            <a href="../start/start-here.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start here</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,22 +215,6 @@ window.Quarto = {
   <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to use this</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../start/plan.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The ten-week plan</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../weeks/week-00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 0 · Get running</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up Python</span></a>
@@ -253,13 +234,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1 · The core of Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 1 · The core of Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P2 · Values, names and types</span></a>
@@ -284,13 +265,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 · Arrays, and reading maths</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../units/unit-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 2 · Arrays and notation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P6 · NumPy: arrays and indexing</span></a>
@@ -310,13 +291,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 · Tables and functions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 3 · Tables and functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P8 · pandas: the DataFrame</span></a>
@@ -341,13 +322,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 · Plots, derivatives, questions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 4 · Plots and derivatives</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P10 · Plotting with Matplotlib</span></a>
@@ -372,13 +353,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 · Best values, describing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 5 · Describing data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M5 · Finding the best value</span></a>
@@ -398,13 +379,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 · Gradients, areas, probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 6 · Gradients, probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M6 · Several variables and the gradient</span></a>
@@ -424,13 +405,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7 · Vectors, matrices, randomness</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 7 · Matrices and randomness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M8 · Data as vectors</span></a>
@@ -455,13 +436,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 · Systems, sampling, intervals</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 8 · Sampling and intervals</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M10 · Solving Ax = b</span></a>
@@ -481,13 +462,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 9 · Least squares, tests</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 9 · Least squares and tests</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M11 · When there is no solution: least squares</span></a>
@@ -507,13 +488,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 10 · Directions, regression, pitfalls</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 10 · Regression and pitfalls</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M12 · Directions in data: eigenvectors and the SVD</span></a>
@@ -533,13 +514,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Lookup</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Formula card</span></a>
@@ -567,9 +548,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">7.1 Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">7.2 The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">7.3 The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
   <ul class="collapse">
   <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting">Broadcasting</a></li>
   <li><a href="#reductions-and-axis" id="toc-reductions-and-axis" class="nav-link" data-scroll-target="#reductions-and-axis">Reductions and <code>axis</code></a></li>
@@ -577,21 +558,20 @@ window.Quarto = {
   <li><a href="#random-numbers" id="toc-random-numbers" class="nav-link" data-scroll-target="#random-numbers">Random numbers</a></li>
   <li><a href="#is-not" id="toc-is-not" class="nav-link" data-scroll-target="#is-not"><code>*</code> is not <code>@</code></a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">7.4 Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">7.5 Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">7.6 Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">7.7 Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">7.8 Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-02.html">Week 2 · Arrays, and reading maths</a></li><li class="breadcrumb-item"><a href="../python/p07-numpy-computing.html"><span class="chapter-title">P7 · NumPy: computing across arrays</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-02.html">Unit 2 · Arrays and notation</a></li><li class="breadcrumb-item"><a href="../python/p07-numpy-computing.html"><span class="chapter-title">P7 · NumPy: computing across arrays</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">7. NumPy: computing across arrays</span></h1>
-<p class="subtitle lead">Python · Unit 7</p>
+<h1 class="title"><span class="chapter-title">NumPy: computing across arrays</span></h1>
 </div>
 
 
@@ -609,15 +589,15 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>P7</strong> · Python</span> <span>Plan: <strong>Week 2</strong></span> <span>Reading: <strong>7 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>P6</strong></span></p>
+<p><span><strong>Unit 2</strong> · Lesson 2 of 3 · Python · <strong>P7</strong></span> <span>Reading: <strong>7 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>P6</strong></span></p>
 </div>
 <div class="why">
-<p><span class="block-label">Why this unit is here</span></p>
+<p><span class="block-label">Why this lesson is here</span></p>
 <p>Data science is arithmetic done to whole tables at once. Three ideas make that possible: operations that apply to every element, <em>broadcasting</em> that lets differently-shaped arrays combine, and <em>reductions</em> that collapse an array along one direction.</p>
-<p>They are also the three places where beginners most often get a wrong answer rather than an error message. NumPy will happily subtract the wrong thing from the wrong thing and hand you a perfectly shaped result. This unit is as much about noticing that as about the syntax.</p>
+<p>They are also the three places where beginners most often get a wrong answer rather than an error message. NumPy will happily subtract the wrong thing from the wrong thing and hand you a perfectly shaped result. This lesson is as much about noticing that as about the syntax.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">7.1 Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>create an array and inspect its <code>shape</code>, <code>ndim</code> and <code>dtype</code> — <a href="../python/p06-numpy-arrays.html">P6</a>;</li>
@@ -643,7 +623,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">7.2 The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
 <p>In plain Python, doing something to every number means writing a loop:</p>
 <div id="loop" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="fl">58.0</span>, <span class="fl">71.5</span>, <span class="fl">64.0</span>, <span class="fl">80.5</span>]</span>
@@ -678,7 +658,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">7.3 The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
 <section id="broadcasting" class="level3">
 <h3 class="anchored" data-anchor-id="broadcasting">Broadcasting</h3>
 <p>Two arrays of the same shape combine element by element. Arrays of <em>different</em> shapes may still combine, if their shapes are compatible. NumPy compares them <strong>from the right</strong>, and two dimensions are compatible when they are equal or one of them is 1.</p>
@@ -703,7 +683,7 @@ window.Quarto = {
 <img src="p07-numpy-computing_files/figure-html/fig-broadcast-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-broadcast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.1: Broadcasting a <code>(3,)</code> array against a <code>(2, 3)</code> one. NumPy compares the shapes from the right: 3 matches 3, and the absent first dimension is stretched to 2. The hollow row is not stored — it is the same three numbers, reused.
+Figure&nbsp;11.1: Broadcasting a <code>(3,)</code> array against a <code>(2, 3)</code> one. NumPy compares the shapes from the right: 3 matches 3, and the absent first dimension is stretched to 2. The hollow row is not stored — it is the same three numbers, reused.
 </figcaption>
 </figure>
 </div>
@@ -734,7 +714,7 @@ v[:, None].shape   (3, 1)
 <img src="p07-numpy-computing_files/figure-html/fig-broadcast-trap-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-broadcast-trap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.2: Why <code>(3,)</code> and <code>(3, 1)</code> are not interchangeable. Comparing from the right, a column of three against a row of three makes <em>both</em> dimensions stretch, and three numbers become nine. Nothing is raised.
+Figure&nbsp;11.2: Why <code>(3,)</code> and <code>(3, 1)</code> are not interchangeable. Comparing from the right, a column of three against a row of three makes <em>both</em> dimensions stretch, and three numbers become nine. Nothing is raised.
 </figcaption>
 </figure>
 </div>
@@ -775,7 +755,7 @@ table.sum(axis=1) -&gt; [ 3 12]  shape (2,)</code></pre>
 <img src="p07-numpy-computing_files/figure-html/fig-axis-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-axis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.3: The axis you name is the one that disappears. Reducing over <code>axis=0</code> collapses the row index and leaves one number per column; over <code>axis=1</code> it collapses the column index and leaves one per row.
+Figure&nbsp;11.3: The axis you name is the one that disappears. Reducing over <code>axis=0</code> collapses the row index and leaves one number per column; over <code>axis=1</code> it collapses the column index and leaves one per row.
 </figcaption>
 </figure>
 </div>
@@ -831,7 +811,7 @@ A @ A =
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">7.4 Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
 <p><strong>Standardise every numeric column of the cohort table.</strong></p>
 <p>Standardising means subtracting each column’s mean and dividing by its standard deviation, so that every column ends up centred at 0 with a spread of 1. It uses reductions and broadcasting together, and it is the single most common preprocessing step in data science.</p>
 <div id="standardise" class="cell" data-execution_count="14">
@@ -884,7 +864,7 @@ standard deviations   : [1. 1. 1.]</code></pre>
 <p>Two mistakes were available here, and only one of them would have announced itself. Using <code>axis=1</code> would have computed one mean per <em>student</em>, shape <code>(238,)</code>, and subtracting that from a <code>(238, 3)</code> array raises a <code>ValueError</code> — 238 against 3 cannot broadcast. That one fails loudly, which is the good case. Forgetting <code>ddof=1</code> is the quiet one. It divides by a slightly <em>smaller</em> number, so the standardised columns come out with standard deviations of 1.002 rather than 1 — the factor is <span class="math inline">\(\sqrt{n/(n-1)}\)</span>. Nothing raises, the shapes are all correct, and the result looks entirely reasonable. Two lines of checking catch it.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">7.5 Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> <code>a</code> has shape <code>(4, 3)</code> and <code>b</code> has shape <code>(3,)</code>. What is the shape of <code>a * b</code>? What about <code>a * b[:, None]</code> — and why?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -956,7 +936,7 @@ standard deviations   : [1. 1. 1.]</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">7.6 Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
 <p>Two habits are worth building deliberately. The first is asserting the shape you expect, so a broadcast that goes wrong stops the program instead of quietly continuing:</p>
 <div id="assert-shape" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">20.0</span>, <span class="fl">30.0</span>])</span>
@@ -985,10 +965,10 @@ column means after 'right': [0. 0. 0. 0.]</code></pre>
 </div>
 </div>
 <p>Both produced a <code>(4, 4)</code> array and neither complained. In <code>wrong</code>, the row means were broadcast against columns — the mean of row 1 subtracted from column 1, and so on — which is not a meaningful operation at all. Only the check distinguishes them: after centring columns correctly every column mean must be zero, and in the wrong version they plainly are not.</p>
-<p>If you take one thing from this unit, make it that. <strong>Predict the shape, then verify the property.</strong> It costs one line and it catches the entire class of error that NumPy will not catch for you.</p>
+<p>If you take one thing from this lesson, make it that. <strong>Predict the shape, then verify the property.</strong> It costs one line and it catches the entire class of error that NumPy will not catch for you.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">7.7 Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -1024,7 +1004,7 @@ A single missing value propagates through every sum, mean and product it reaches
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">7.8 Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
 <p>Answers are at the foot of the page.</p>
 <div class="quiz">
 <div class="q">
@@ -1092,7 +1072,7 @@ A single missing value propagates through every sum, mean and product it reaches
 </div>
 <div class="next-up">
 <p><span class="block-label">Where this shows up next</span></p>
-<p><strong><a href="../python/p08-pandas-dataframe.html">P8</a></strong> moves to labelled tables, where columns have names and types instead of positions — but the arithmetic underneath is everything in this unit. <strong><a href="../python/p10-matplotlib.html">P10</a></strong> plots the arrays you build here. <strong><a href="../maths/m09-matrices.html">M9</a></strong> explains what <code>@</code> is actually computing, and why the shape rules are what they are.</p>
+<p><strong><a href="../python/p08-pandas-dataframe.html">P8</a></strong> moves to labelled tables, where columns have names and types instead of positions — but the arithmetic underneath is everything in this lesson. <strong><a href="../python/p10-matplotlib.html">P10</a></strong> plots the arrays you build here. <strong><a href="../maths/m09-matrices.html">M9</a></strong> explains what <code>@</code> is actually computing, and why the shape rules are what they are.</p>
 </div>
 
 
@@ -1363,7 +1343,7 @@ A single missing value propagates through every sum, mean and product it reaches
       return;
     }
     plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
-      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+      (misses.length ? "Read the lessons for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
         "Nothing marked as missed so far.")));
     var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
       return t.tHead && /Missed/.test(t.tHead.textContent);

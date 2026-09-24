@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8. Data as vectors – Data Science Core Skills</title>
+<title>Data as vectors – Data Science Core Skills</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../maths/m09-matrices.html" rel="next">
-<link href="../weeks/week-07.html" rel="prev">
+<link href="../units/unit-07.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fa58cad63ec306db36bb5c2c90682bf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4a65236759963040fad08196f4c7ce94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-07.html">Week 7 · Vectors, matrices, randomness</a></li><li class="breadcrumb-item"><a href="../maths/m08-vectors.html"><span class="chapter-title">M8 · Data as vectors</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-07.html">Unit 7 · Matrices and randomness</a></li><li class="breadcrumb-item"><a href="../maths/m08-vectors.html"><span class="chapter-title">M8 · Data as vectors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,10 +180,7 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Science Core Skills</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="../Data-Science-Core-Skills-Python.pdf" title="Python track as a PDF" class="quarto-navigation-tool px-1" aria-label="Python track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Mathematics.pdf" title="Mathematics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Mathematics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Statistics.pdf" title="Statistics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Statistics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
+        <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -201,13 +198,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Science Core Skills</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Before you start</span></a>
+            <a href="../start/start-here.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start here</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,22 +215,6 @@ window.Quarto = {
   <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to use this</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../start/plan.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The ten-week plan</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../weeks/week-00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 0 · Get running</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up Python</span></a>
@@ -253,13 +234,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1 · The core of Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 1 · The core of Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P2 · Values, names and types</span></a>
@@ -284,13 +265,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 · Arrays, and reading maths</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 2 · Arrays and notation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P6 · NumPy: arrays and indexing</span></a>
@@ -310,13 +291,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 · Tables and functions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 3 · Tables and functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P8 · pandas: the DataFrame</span></a>
@@ -341,13 +322,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 · Plots, derivatives, questions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 4 · Plots and derivatives</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P10 · Plotting with Matplotlib</span></a>
@@ -372,13 +353,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 · Best values, describing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 5 · Describing data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M5 · Finding the best value</span></a>
@@ -398,13 +379,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 · Gradients, areas, probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 6 · Gradients, probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M6 · Several variables and the gradient</span></a>
@@ -424,13 +405,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7 · Vectors, matrices, randomness</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../units/unit-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 7 · Matrices and randomness</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">M8 · Data as vectors</span></a>
@@ -455,13 +436,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 · Systems, sampling, intervals</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 8 · Sampling and intervals</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M10 · Solving Ax = b</span></a>
@@ -481,13 +462,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 9 · Least squares, tests</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 9 · Least squares and tests</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M11 · When there is no solution: least squares</span></a>
@@ -507,13 +488,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 10 · Directions, regression, pitfalls</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 10 · Regression and pitfalls</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M12 · Directions in data: eigenvectors and the SVD</span></a>
@@ -533,13 +514,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Lookup</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Formula card</span></a>
@@ -567,30 +548,29 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">8.1 Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">8.2 The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">8.3 The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
   <ul class="collapse">
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#adding-and-scaling" id="toc-adding-and-scaling" class="nav-link" data-scroll-target="#adding-and-scaling">Adding and scaling</a></li>
   <li><a href="#length-and-distance" id="toc-length-and-distance" class="nav-link" data-scroll-target="#length-and-distance">Length and distance</a></li>
   <li><a href="#the-dot-product" id="toc-the-dot-product" class="nav-link" data-scroll-target="#the-dot-product">The dot product</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">8.4 Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">8.5 Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">8.6 Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">8.7 Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">8.8 Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-07.html">Week 7 · Vectors, matrices, randomness</a></li><li class="breadcrumb-item"><a href="../maths/m08-vectors.html"><span class="chapter-title">M8 · Data as vectors</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-07.html">Unit 7 · Matrices and randomness</a></li><li class="breadcrumb-item"><a href="../maths/m08-vectors.html"><span class="chapter-title">M8 · Data as vectors</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">8. Data as vectors</span></h1>
-<p class="subtitle lead">Mathematics · Unit 8</p>
+<h1 class="title"><span class="chapter-title">Data as vectors</span></h1>
 </div>
 
 
@@ -608,15 +588,15 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>M8</strong> · Mathematics</span> <span>Plan: <strong>Week 7</strong></span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 1.5 hours</strong></span> <span>Assumes: <strong>M1</strong></span></p>
+<p><span><strong>Unit 7</strong> · Lesson 1 of 4 · Mathematics · <strong>M8</strong></span> <span>Reading: <strong>4 pages</strong></span> <span>With practice: <strong>≈ 1.5 hours</strong></span> <span>Assumes: <strong>M1</strong></span></p>
 </div>
 <div class="why">
-<p><span class="block-label">Why this unit is here</span></p>
-<p>A dataset is a grid of numbers, and so far you have treated it one number at a time. This unit treats a whole row or a whole column as a <strong>single object</strong> — a vector — with an arithmetic of its own.</p>
-<p>That change of view pays for itself immediately. The distance between two students becomes the length of a vector. The correlation between two variables turns out to be the cosine of the angle between two vectors, which is why it can never leave the range <span class="math inline">\(-1\)</span> to <span class="math inline">\(1\)</span>. The gradient of <a href="../maths/m06-gradients.html">M6</a> was a vector all along. And every unit from here to the end of the Mathematics track — matrices, solving <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, least squares, the SVD — is built on the two operations defined below.</p>
+<p><span class="block-label">Why this lesson is here</span></p>
+<p>A dataset is a grid of numbers, and so far you have treated it one number at a time. This lesson treats a whole row or a whole column as a <strong>single object</strong> — a vector — with an arithmetic of its own.</p>
+<p>That change of view pays for itself immediately. The distance between two students becomes the length of a vector. The correlation between two variables turns out to be the cosine of the angle between two vectors, which is why it can never leave the range <span class="math inline">\(-1\)</span> to <span class="math inline">\(1\)</span>. The gradient of <a href="../maths/m06-gradients.html">M6</a> was a vector all along. And every lesson from here to the end of the Mathematics track — matrices, solving <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, least squares, the SVD — is built on the two operations defined below.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">8.1 Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>read subscript and <span class="math inline">\(\sum\)</span> notation — <a href="../maths/m01-reading-mathematics.html">M1</a>;</li>
@@ -638,13 +618,13 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[\sqrt{3^2 + 4^2} = \sqrt{25} = 5.\]</span></p>
-<p>Pythagoras. Everything this unit says about length in 238 dimensions is that same calculation with more terms under the square root, and nothing else.</p>
+<p>Pythagoras. Everything this lesson says about length in 238 dimensions is that same calculation with more terms under the square root, and nothing else.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">8.2 The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
 <p>Take two students from the cohort and record two numbers for each — hours of practice and final score:</p>
 <table class="caption-top table">
 <colgroup>
@@ -681,7 +661,7 @@ window.Quarto = {
 <img src="m08-vectors_files/figure-html/fig-vectors-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;28.1: Two students as vectors, and the step from one to the other. The difference vector <span class="math inline">\(\mathbf{b} - \mathbf{a}\)</span> is the arrow joining their tips, and its length, 28.8, is the distance between the two students. The two axes are on different scales — hours span 34, marks span 96 — so the arrows’ apparent directions are not the real angles. That distortion is not a drawing error but the thing Exercise 2 is about: geometry on raw data depends on the units each column happens to use.
+Figure&nbsp;27.1: Two students as vectors, and the step from one to the other. The difference vector <span class="math inline">\(\mathbf{b} - \mathbf{a}\)</span> is the arrow joining their tips, and its length, 28.8, is the distance between the two students. The two axes are on different scales — hours span 34, marks span 96 — so the arrows’ apparent directions are not the real angles. That distortion is not a drawing error but the thing Exercise 2 is about: geometry on raw data depends on the units each column happens to use.
 </figcaption>
 </figure>
 </div>
@@ -690,7 +670,7 @@ Figure&nbsp;28.1: Two students as vectors, and the step from one to the other. T
 <p>Now the move that matters. A student’s row is a vector; so is a <em>column</em>. The 238 usable final scores in the cohort form one vector with 238 components, and the 238 practice hours form another. You cannot draw those, and you do not need to: the arithmetic below is written with <span class="math inline">\(\sum\)</span> and works for any number of components at all. The picture is a two-dimensional aid to intuition. The formulas are the thing.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">8.3 The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
 <section id="notation" class="level3">
 <h3 class="anchored" data-anchor-id="notation">Notation</h3>
 <p>A vector is an ordered list of <span class="math inline">\(n\)</span> real numbers, written in bold: <span class="math inline">\(\mathbf{v} = (v_1, v_2, \ldots, v_n)\)</span>. The set of all of them is written <span class="math inline">\(\mathbb{R}^n\)</span>, and <span class="math inline">\(n\)</span> is the <strong>dimension</strong>. A student’s three measurements live in <span class="math inline">\(\mathbb{R}^3\)</span>; a column of 238 scores lives in <span class="math inline">\(\mathbb{R}^{238}\)</span>.</p>
@@ -730,7 +710,7 @@ c\,\mathbf{a} = (c\,a_1,\; \ldots,\; c\,a_n).
 \qquad\text{so}\qquad
 \cos\theta = \frac{\mathbf{a} \cdot \mathbf{b}}{\lVert \mathbf{a} \rVert \, \lVert \mathbf{b} \rVert},
 \]</span></p>
-<p>where <span class="math inline">\(\theta\)</span> is the angle between the two vectors. One formula, two readings — a sum of products on the left, a geometric fact on the right. The identity is checked numerically at the end of the unit rather than proved here.</p>
+<p>where <span class="math inline">\(\theta\)</span> is the angle between the two vectors. One formula, two readings — a sum of products on the left, a geometric fact on the right. The identity is checked numerically at the end of the lesson rather than proved here.</p>
 <div id="cell-fig-dot" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-dot" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -739,7 +719,7 @@ c\,\mathbf{a} = (c\,a_1,\; \ldots,\; c\,a_n).
 <img src="m08-vectors_files/figure-html/fig-dot-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;28.2: Left: the dot product as reach. Drop <span class="math inline">\(\mathbf{a}\)</span> perpendicularly onto the direction of <span class="math inline">\(\mathbf{b}\)</span>; the dot product is the length of <span class="math inline">\(\mathbf{b}\)</span> times how far <span class="math inline">\(\mathbf{a}\)</span> reaches along it. Right: when the angle is a right angle the reach is zero, so the dot product is zero however long the two vectors are.
+Figure&nbsp;27.2: Left: the dot product as reach. Drop <span class="math inline">\(\mathbf{a}\)</span> perpendicularly onto the direction of <span class="math inline">\(\mathbf{b}\)</span>; the dot product is the length of <span class="math inline">\(\mathbf{b}\)</span> times how far <span class="math inline">\(\mathbf{a}\)</span> reaches along it. Right: when the angle is a right angle the reach is zero, so the dot product is zero however long the two vectors are.
 </figcaption>
 </figure>
 </div>
@@ -749,7 +729,7 @@ Figure&nbsp;28.2: Left: the dot product as reach. Drop <span class="math inline"
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">8.4 Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
 <p><strong>Correlation is the cosine of an angle.</strong></p>
 <p>Take the two cohort columns as vectors in <span class="math inline">\(\mathbb{R}^{238}\)</span> and <strong>centre</strong> them: subtract each one’s mean, so that each has mean zero. Write <span class="math inline">\(\tilde{h}\)</span> and <span class="math inline">\(\tilde{s}\)</span> for the centred hours and centred scores.</p>
 <div id="vectors" class="cell" data-execution_count="3">
@@ -794,7 +774,7 @@ theta              103.51 degrees</code></pre>
 <img src="m08-vectors_files/figure-html/fig-quadrants-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quadrants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;28.3: The 238 students, each plotted at its centred hours and centred score. A student in a shaded quadrant is above average in one column and below in the other, so contributes a negative term to the dot product. There are 160 of those against 78 of the others, and they outweigh them: the sum comes to <span class="math inline">\(-3778\)</span>, and dividing by the two lengths turns it into the correlation <span class="math inline">\(-0.234\)</span>.
+Figure&nbsp;27.3: The 238 students, each plotted at its centred hours and centred score. A student in a shaded quadrant is above average in one column and below in the other, so contributes a negative term to the dot product. There are 160 of those against 78 of the others, and they outweigh them: the sum comes to <span class="math inline">\(-3778\)</span>, and dividing by the two lengths turns it into the correlation <span class="math inline">\(-0.234\)</span>.
 </figcaption>
 </figure>
 </div>
@@ -803,7 +783,7 @@ Figure&nbsp;28.3: The 238 students, each plotted at its centred hours and centre
 <p>That picture is worth holding on to, because it is what a correlation coefficient is doing under the arithmetic: counting students for and against, weighted by how far from average they are. It also shows how little separates the two groups here — 160 against 78 is not a landslide, and <span class="math inline">\(-0.234\)</span> is not a strong number. <a href="../stats/s12-going-wrong.html">S12</a> shows that even this weak negative reverses inside every background group.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">8.5 Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> For <span class="math inline">\(\mathbf{a} = (3, -1, 2)\)</span> and <span class="math inline">\(\mathbf{b} = (1, 4, 0)\)</span>, find <span class="math inline">\(\mathbf{a} + \mathbf{b}\)</span>, <span class="math inline">\(2\mathbf{a}\)</span>, <span class="math inline">\(\mathbf{a} \cdot \mathbf{b}\)</span> and <span class="math inline">\(\lVert \mathbf{a} \rVert\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -873,9 +853,9 @@ Figure&nbsp;28.3: The 238 students, each plotted at its centred hours and centre
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">8.6 Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
 <p>The claim to test is the identity <span class="math inline">\(\mathbf{a} \cdot \mathbf{b} =
-\lVert\mathbf{a}\rVert \lVert\mathbf{b}\rVert \cos\theta\)</span>, which the unit asserted without proof. Nothing in the definition of the dot product mentions an angle, so this needs checking rather than believing.</p>
+\lVert\mathbf{a}\rVert \lVert\mathbf{b}\rVert \cos\theta\)</span>, which the lesson asserted without proof. Nothing in the definition of the dot product mentions an angle, so this needs checking rather than believing.</p>
 <p>In two dimensions the angle can be measured independently, straight off the axes, with <code>arctan2</code>:</p>
 <div id="check-angle" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a2, b2 <span class="op">=</span> np.array([<span class="fl">2.6</span>, <span class="fl">2.5</span>]), np.array([<span class="fl">3.6</span>, <span class="fl">0.6</span>])</span>
@@ -931,7 +911,7 @@ x @ y  = -1.0  -&gt; a number, the dot product
 <p><code>*</code> and <code>@</code> both run without error and return different kinds of thing. Nothing will tell you which one you meant.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">8.7 Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -963,7 +943,7 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">8.8 Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">
@@ -1302,7 +1282,7 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
       return;
     }
     plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
-      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+      (misses.length ? "Read the lessons for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
         "Nothing marked as missed so far.")));
     var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
       return t.tHead && /Missed/.test(t.tHead.textContent);
@@ -1747,8 +1727,8 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/week-07.html" class="pagination-link" aria-label="Week 7 · Vectors, matrices, randomness">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 7 · Vectors, matrices, randomness</span>
+      <a href="../units/unit-07.html" class="pagination-link" aria-label="Unit 7 · Matrices and randomness">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Unit 7 · Matrices and randomness</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

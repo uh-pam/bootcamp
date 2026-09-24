@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7. Sampling distributions and the CLT – Data Science Core Skills</title>
+<title>Sampling distributions and the CLT – Data Science Core Skills</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fa58cad63ec306db36bb5c2c90682bf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4a65236759963040fad08196f4c7ce94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-08.html">Week 8 · Systems, sampling, intervals</a></li><li class="breadcrumb-item"><a href="../stats/s07-sampling.html"><span class="chapter-title">S7 · Sampling distributions and the CLT</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-08.html">Unit 8 · Sampling and intervals</a></li><li class="breadcrumb-item"><a href="../stats/s07-sampling.html"><span class="chapter-title">S7 · Sampling distributions and the CLT</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,10 +180,7 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Science Core Skills</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="../Data-Science-Core-Skills-Python.pdf" title="Python track as a PDF" class="quarto-navigation-tool px-1" aria-label="Python track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Mathematics.pdf" title="Mathematics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Mathematics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Statistics.pdf" title="Statistics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Statistics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
+        <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -201,13 +198,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Science Core Skills</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Before you start</span></a>
+            <a href="../start/start-here.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start here</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,22 +215,6 @@ window.Quarto = {
   <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to use this</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../start/plan.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The ten-week plan</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../weeks/week-00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 0 · Get running</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up Python</span></a>
@@ -253,13 +234,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1 · The core of Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 1 · The core of Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P2 · Values, names and types</span></a>
@@ -284,13 +265,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 · Arrays, and reading maths</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 2 · Arrays and notation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P6 · NumPy: arrays and indexing</span></a>
@@ -310,13 +291,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 · Tables and functions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 3 · Tables and functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P8 · pandas: the DataFrame</span></a>
@@ -341,13 +322,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 · Plots, derivatives, questions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 4 · Plots and derivatives</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P10 · Plotting with Matplotlib</span></a>
@@ -372,13 +353,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 · Best values, describing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 5 · Describing data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M5 · Finding the best value</span></a>
@@ -398,13 +379,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 · Gradients, areas, probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 6 · Gradients, probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M6 · Several variables and the gradient</span></a>
@@ -424,13 +405,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7 · Vectors, matrices, randomness</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 7 · Matrices and randomness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M8 · Data as vectors</span></a>
@@ -455,13 +436,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 · Systems, sampling, intervals</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../units/unit-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 8 · Sampling and intervals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M10 · Solving Ax = b</span></a>
@@ -481,13 +462,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 9 · Least squares, tests</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 9 · Least squares and tests</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M11 · When there is no solution: least squares</span></a>
@@ -507,13 +488,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 10 · Directions, regression, pitfalls</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 10 · Regression and pitfalls</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M12 · Directions in data: eigenvectors and the SVD</span></a>
@@ -533,13 +514,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Lookup</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Formula card</span></a>
@@ -567,30 +548,29 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">7.1 Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">7.2 The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">7.3 The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
   <ul class="collapse">
   <li><a href="#the-standard-error" id="toc-the-standard-error" class="nav-link" data-scroll-target="#the-standard-error">The standard error</a></li>
   <li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem" class="nav-link" data-scroll-target="#the-central-limit-theorem">The central limit theorem</a></li>
   <li><a href="#n-is-big-enough-is-not-a-number" id="toc-n-is-big-enough-is-not-a-number" class="nav-link" data-scroll-target="#n-is-big-enough-is-not-a-number">“n is big enough” is not a number</a></li>
   <li><a href="#two-more-assumptions-worth-naming" id="toc-two-more-assumptions-worth-naming" class="nav-link" data-scroll-target="#two-more-assumptions-worth-naming">Two more assumptions worth naming</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">7.4 Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">7.5 Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">7.6 Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">7.7 Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">7.8 Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-08.html">Week 8 · Systems, sampling, intervals</a></li><li class="breadcrumb-item"><a href="../stats/s07-sampling.html"><span class="chapter-title">S7 · Sampling distributions and the CLT</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-08.html">Unit 8 · Sampling and intervals</a></li><li class="breadcrumb-item"><a href="../stats/s07-sampling.html"><span class="chapter-title">S7 · Sampling distributions and the CLT</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">7. Sampling distributions and the CLT</span></h1>
-<p class="subtitle lead">Statistics · Unit 7</p>
+<h1 class="title"><span class="chapter-title">Sampling distributions and the CLT</span></h1>
 </div>
 
 
@@ -608,15 +588,15 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>S7</strong> · Statistics</span> <span>Plan: <strong>Week 8</strong></span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>S6</strong></span></p>
+<p><span><strong>Unit 8</strong> · Lesson 2 of 3 · Statistics · <strong>S7</strong></span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>S6</strong></span></p>
 </div>
 <div class="why">
-<p><span class="block-label">Why this unit is here</span></p>
+<p><span class="block-label">Why this lesson is here</span></p>
 <p>This is the hinge of the whole track. Everything before it describes data; everything after it makes claims about a population. The bridge between them is one idea: <strong>a statistic computed from a sample is itself a random variable</strong>, with a distribution of its own, and knowing that distribution is what lets you say how far your number might be from the truth.</p>
-<p>The unit’s two results are the standard error, <span class="math inline">\(\sigma/\sqrt{n}\)</span>, and the central limit theorem, which says the sample mean becomes normally distributed almost whatever the population looks like. Together they are why a single study can say anything at all — and the limits of the second one are why some studies cannot.</p>
+<p>The lesson’s two results are the standard error, <span class="math inline">\(\sigma/\sqrt{n}\)</span>, and the central limit theorem, which says the sample mean becomes normally distributed almost whatever the population looks like. Together they are why a single study can say anything at all — and the limits of the second one are why some studies cannot.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">7.1 Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>name a distribution from the mechanism that produced it — <a href="../stats/s06-distributions.html">S6</a>;</li>
@@ -638,14 +618,14 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\sigma/\sqrt{n} = 12/\sqrt{9} = 12/3 = 4\)</span>.</p>
-<p>If you answered 12, you have given the spread of the <em>observations</em>, not of the <em>mean</em>. Distinguishing those two is what this unit is for, and everything from <a href="../stats/s08-intervals.html">S8</a> onwards depends on it.</p>
+<p>If you answered 12, you have given the spread of the <em>observations</em>, not of the <em>mean</em>. Distinguishing those two is what this lesson is for, and everything from <a href="../stats/s08-intervals.html">S8</a> onwards depends on it.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">7.2 The idea</h2>
-<p>Take the cohort’s 238 usable final scores and treat them, for the length of this unit, as an entire population whose mean we happen to know. Now imagine drawing 25 of them at random and computing the mean. Then do it again. And again.</p>
+<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<p>Take the cohort’s 238 usable final scores and treat them, for the length of this lesson, as an entire population whose mean we happen to know. Now imagine drawing 25 of them at random and computing the mean. Then do it again. And again.</p>
 <p>Each of those means is a number you could have reported. Collect them and you have a <strong>sampling distribution</strong>: the distribution of a statistic across all the samples you might have taken.</p>
 <div id="cell-fig-two-widths" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
@@ -655,18 +635,18 @@ window.Quarto = {
 <img src="s07-sampling_files/figure-html/fig-two-widths-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-widths-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;33.1: The same quantity, measured two ways. Behind, in grey, the 238 individual scores, spread over 8.4 marks. In front, the means of forty thousand samples of 25, spread over 1.67 marks — five times narrower, because five is the square root of 25. Both are centred in the same place.
+Figure&nbsp;32.1: The same quantity, measured two ways. Behind, in grey, the 238 individual scores, spread over 8.4 marks. In front, the means of forty thousand samples of 25, spread over 1.67 marks — five times narrower, because five is the square root of 25. Both are centred in the same place.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Two things about that picture are the content of the unit.</p>
+<p>Two things about that picture are the content of the lesson.</p>
 <p><strong>The sampling distribution is much narrower.</strong> Individual students are spread over 8.4 marks; the means of 25 students are spread over 1.67. Averaging cancels some of the noise, and the cancellation is exactly the variance arithmetic of <a href="../stats/s05-random-variables.html">S5</a>.</p>
 <p><strong>It is centred in the same place.</strong> The sample mean is <em>unbiased</em>: over many samples it neither systematically overshoots nor undershoots. That is a property of the procedure, not a guarantee about any single sample.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">7.3 The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
 <section id="the-standard-error" class="level3">
 <h3 class="anchored" data-anchor-id="the-standard-error">The standard error</h3>
 <p>For a mean of <span class="math inline">\(n\)</span> independent draws from a population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, <a href="../stats/s05-random-variables.html">S5</a> gave</p>
@@ -722,7 +702,7 @@ E[\bar{X}] = \mu,
 <img src="s07-sampling_files/figure-html/fig-clt-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;33.2: Sampling distributions of the mean of <span class="math inline">\(n\)</span> draws from an exponential population, which is strongly right-skewed. Each panel is rescaled to the same width — the real widths shrink as <span class="math inline">\(\sigma/\sqrt{n}\)</span> — so that only the change in <em>shape</em> is visible. The lopsidedness falls steadily and by <span class="math inline">\(n = 30\)</span> the distribution is close to symmetric. The population itself, in the first panel, never changed.
+Figure&nbsp;32.2: Sampling distributions of the mean of <span class="math inline">\(n\)</span> draws from an exponential population, which is strongly right-skewed. Each panel is rescaled to the same width — the real widths shrink as <span class="math inline">\(\sigma/\sqrt{n}\)</span> — so that only the change in <em>shape</em> is visible. The lopsidedness falls steadily and by <span class="math inline">\(n = 30\)</span> the distribution is close to symmetric. The population itself, in the first panel, never changed.
 </figcaption>
 </figure>
 </div>
@@ -740,7 +720,7 @@ Figure&nbsp;33.2: Sampling distributions of the mean of <span class="math inline
 <img src="s07-sampling_files/figure-html/fig-slow-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;33.3: The same treatment applied to a much worse population: a lognormal whose skewness is about 24. Panels are again rescaled to a common width, and drawn over the same range as the figure above so the two can be compared directly. The convergence the theorem promises is real and it is slow — at <span class="math inline">\(n = 1000\)</span> the sample mean is still twice as lopsided as the exponential’s was at <span class="math inline">\(n = 30\)</span>.
+Figure&nbsp;32.3: The same treatment applied to a much worse population: a lognormal whose skewness is about 24. Panels are again rescaled to a common width, and drawn over the same range as the figure above so the two can be compared directly. The convergence the theorem promises is real and it is slow — at <span class="math inline">\(n = 1000\)</span> the sample mean is still twice as lopsided as the exponential’s was at <span class="math inline">\(n = 30\)</span>.
 </figcaption>
 </figure>
 </div>
@@ -760,7 +740,7 @@ Figure&nbsp;33.3: The same treatment applied to a much worse population: a logno
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">7.4 Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
 <p><strong>Watching the formula come true on the cohort.</strong></p>
 <p>Treat the 238 usable scores as the population, and take forty thousand samples at each of three sizes.</p>
 <div id="se-check" class="cell" data-execution_count="4">
@@ -812,7 +792,7 @@ n = 100   skewness +0.038   within one sd 68.4%  (normal: 68.3%)</code></pre>
 <p>Even at <span class="math inline">\(n = 5\)</span> the sampling distribution is within a percentage point of the normal fractions, because the population it came from was already close to symmetric. The lognormal in the previous figure needed more than a thousand. The theorem is the same in both cases; what differs is how long it takes to arrive.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">7.5 Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> A population has <span class="math inline">\(\mu = 50\)</span> and <span class="math inline">\(\sigma = 20\)</span>.</p>
 <ol type="a">
@@ -905,7 +885,7 @@ n = 100   skewness +0.038   within one sd 68.4%  (normal: 68.3%)</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">7.6 Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
 <p>The standard error formula is exact, so it should hold for a population of any shape at all. Check it on three:</p>
 <div id="any-shape" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>populations <span class="op">=</span> {</span>
@@ -977,7 +957,7 @@ one student, 25 times   : sd of mean 8.3464   formula still claims 1.6733</code>
 <p>The second case is an extreme, but the direction is the one you should expect: positively dependent observations make the true standard error larger than the formula, and the formula gives no warning at all.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">7.7 Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -1009,7 +989,7 @@ Some distributions have tails so heavy that the variance does not exist. The sam
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">7.8 Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">
@@ -1068,7 +1048,7 @@ Some distributions have tails so heavy that the variance does not exist. The sam
 <ol type="1">
 <li><p><strong>(b).</strong> The sample standard deviation estimates <span class="math inline">\(\sigma\)</span>, which is a property of the population and does not change: it stays near 30. The standard error is <span class="math inline">\(30/\sqrt{n}\)</span>, falling from <span class="math inline">\(30/10 = 3\)</span> to <span class="math inline">\(30/30 = 1\)</span>. Option (c) swaps the two, which is exactly the confusion the question is testing.</p></li>
 <li><p><strong>No.</strong> The theorem is a statement about a limit: the sampling distribution approaches normality as <span class="math inline">\(n \to \infty\)</span>. It says nothing about <em>how fast</em>, and the rate depends on the population. Both observations are the theorem behaving exactly as stated.</p></li>
-<li><p><strong>No.</strong> It is exact for any population with a finite variance and any <span class="math inline">\(n\)</span>, given independent draws. The approximation in this unit is the <em>shape</em> — the claim that the sampling distribution is normal — not the width.</p></li>
+<li><p><strong>No.</strong> It is exact for any population with a finite variance and any <span class="math inline">\(n\)</span>, given independent draws. The approximation in this lesson is the <em>shape</em> — the claim that the sampling distribution is normal — not the width.</p></li>
 <li><p><strong>No.</strong> Drawing 60% of a finite population without replacement makes the draws dependent, and in this direction it <em>helps</em>: the true standard error is smaller than <span class="math inline">\(s/\sqrt{n}\)</span>, by a factor of roughly <span class="math inline">\(\sqrt{1 - 0.6} = 0.63\)</span>. In the limit where you sample everybody there is no sampling error at all, because there is no sampling left.</p></li>
 <li><p><strong>Almost nothing.</strong> The standard error measures how much the estimate would bounce around between repeated samples <em>drawn the same way</em> — and every one of those samples would be recruited through the same social-media post, with the same people systematically missing. A narrow standard error around a biased estimate is a precise answer to the wrong question, which is <a href="../stats/s01-the-question.html">S1</a>’s lesson arriving with a number attached.</p></li>
 </ol>
@@ -1348,7 +1328,7 @@ Some distributions have tails so heavy that the variance does not exist. The sam
       return;
     }
     plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
-      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+      (misses.length ? "Read the lessons for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
         "Nothing marked as missed so far.")));
     var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
       return t.tHead && /Missed/.test(t.tHead.textContent);

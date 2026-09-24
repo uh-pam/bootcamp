@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10. Solving Ax = b – Data Science Core Skills</title>
+<title>Solving Ax = b – Data Science Core Skills</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../stats/s07-sampling.html" rel="next">
-<link href="../weeks/week-08.html" rel="prev">
+<link href="../units/unit-08.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fa58cad63ec306db36bb5c2c90682bf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4a65236759963040fad08196f4c7ce94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-08.html">Week 8 · Systems, sampling, intervals</a></li><li class="breadcrumb-item"><a href="../maths/m10-linear-systems.html"><span class="chapter-title">M10 · Solving Ax = b</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-08.html">Unit 8 · Sampling and intervals</a></li><li class="breadcrumb-item"><a href="../maths/m10-linear-systems.html"><span class="chapter-title">M10 · Solving Ax = b</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,10 +180,7 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Science Core Skills</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="../Data-Science-Core-Skills-Python.pdf" title="Python track as a PDF" class="quarto-navigation-tool px-1" aria-label="Python track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Mathematics.pdf" title="Mathematics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Mathematics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Statistics.pdf" title="Statistics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Statistics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
+        <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -201,13 +198,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Science Core Skills</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Before you start</span></a>
+            <a href="../start/start-here.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start here</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,22 +215,6 @@ window.Quarto = {
   <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to use this</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../start/plan.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The ten-week plan</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../weeks/week-00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 0 · Get running</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up Python</span></a>
@@ -253,13 +234,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1 · The core of Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 1 · The core of Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P2 · Values, names and types</span></a>
@@ -284,13 +265,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 · Arrays, and reading maths</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 2 · Arrays and notation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P6 · NumPy: arrays and indexing</span></a>
@@ -310,13 +291,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 · Tables and functions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 3 · Tables and functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P8 · pandas: the DataFrame</span></a>
@@ -341,13 +322,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 · Plots, derivatives, questions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 4 · Plots and derivatives</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P10 · Plotting with Matplotlib</span></a>
@@ -372,13 +353,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 · Best values, describing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 5 · Describing data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M5 · Finding the best value</span></a>
@@ -398,13 +379,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 · Gradients, areas, probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 6 · Gradients, probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M6 · Several variables and the gradient</span></a>
@@ -424,13 +405,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7 · Vectors, matrices, randomness</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 7 · Matrices and randomness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M8 · Data as vectors</span></a>
@@ -455,13 +436,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 · Systems, sampling, intervals</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../units/unit-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 8 · Sampling and intervals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">M10 · Solving Ax = b</span></a>
@@ -481,13 +462,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 9 · Least squares, tests</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 9 · Least squares and tests</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M11 · When there is no solution: least squares</span></a>
@@ -507,13 +488,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 10 · Directions, regression, pitfalls</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 10 · Regression and pitfalls</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M12 · Directions in data: eigenvectors and the SVD</span></a>
@@ -533,13 +514,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Lookup</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Formula card</span></a>
@@ -567,9 +548,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">10.1 Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">10.2 The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">10.3 The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
   <ul class="collapse">
   <li><a href="#elimination" id="toc-elimination" class="nav-link" data-scroll-target="#elimination">Elimination</a></li>
   <li><a href="#singular-matrices" id="toc-singular-matrices" class="nav-link" data-scroll-target="#singular-matrices">Singular matrices</a></li>
@@ -577,21 +558,20 @@ window.Quarto = {
   <li><a href="#when-solvable-is-too-crude-a-question" id="toc-when-solvable-is-too-crude-a-question" class="nav-link" data-scroll-target="#when-solvable-is-too-crude-a-question">When “solvable” is too crude a question</a></li>
   <li><a href="#more-equations-than-unknowns" id="toc-more-equations-than-unknowns" class="nav-link" data-scroll-target="#more-equations-than-unknowns">More equations than unknowns</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">10.4 Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">10.5 Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">10.6 Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">10.7 Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">10.8 Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-08.html">Week 8 · Systems, sampling, intervals</a></li><li class="breadcrumb-item"><a href="../maths/m10-linear-systems.html"><span class="chapter-title">M10 · Solving Ax = b</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-08.html">Unit 8 · Sampling and intervals</a></li><li class="breadcrumb-item"><a href="../maths/m10-linear-systems.html"><span class="chapter-title">M10 · Solving Ax = b</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">10. Solving Ax = b</span></h1>
-<p class="subtitle lead">Mathematics · Unit 10</p>
+<h1 class="title"><span class="chapter-title">Solving Ax = b</span></h1>
 </div>
 
 
@@ -609,15 +589,15 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>M10</strong> · Mathematics</span> <span>Plan: <strong>Week 8</strong></span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M9</strong></span></p>
+<p><span><strong>Unit 8</strong> · Lesson 1 of 3 · Mathematics · <strong>M10</strong></span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M9</strong></span></p>
 </div>
 <div class="why">
-<p><span class="block-label">Why this unit is here</span></p>
-<p><a href="../maths/m09-matrices.html">M9</a> asked what a matrix <em>does</em> to a vector. This unit asks the reverse: given the matrix and the answer you want, which input produces it? That question is what “solving” means, and it is where fitting a model ends up once you stop walking downhill and write the condition for the best fit directly.</p>
+<p><span class="block-label">Why this lesson is here</span></p>
+<p><a href="../maths/m09-matrices.html">M9</a> asked what a matrix <em>does</em> to a vector. This lesson asks the reverse: given the matrix and the answer you want, which input produces it? That question is what “solving” means, and it is where fitting a model ends up once you stop walking downhill and write the condition for the best fit directly.</p>
 <p>The part that matters most is not the arithmetic — a library does that in one call. It is knowing which of three situations you are in: exactly one solution, none at all, or infinitely many. With real data the honest answer is usually <strong>none</strong>, and recognising that rather than fighting it is precisely what <a href="../maths/m11-least-squares.html">M11</a> is for.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">10.1 Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>multiply a matrix by a vector, by rows and by columns — <a href="../maths/m09-matrices.html">M9</a>;</li>
@@ -645,7 +625,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">10.2 The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
 <p>A system of linear equations is a matrix equation. These two,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -668,7 +648,7 @@ x - y &amp;= 2
 <img src="m10-linear-systems_files/figure-html/fig-cases-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;32.1: The three things a system can do, as lines. Left: one crossing, one solution. Middle: parallel lines, no point lies on both, and the system is <em>inconsistent</em>. Right: the two equations describe the same line, so every point on it solves the system and there are infinitely many solutions. Nothing else can happen.
+Figure&nbsp;31.1: The three things a system can do, as lines. Left: one crossing, one solution. Middle: parallel lines, no point lies on both, and the system is <em>inconsistent</em>. Right: the two equations describe the same line, so every point on it solves the system and there are infinitely many solutions. Nothing else can happen.
 </figcaption>
 </figure>
 </div>
@@ -687,7 +667,7 @@ Figure&nbsp;32.1: The three things a system can do, as lines. Left: one crossing
 <img src="m10-linear-systems_files/figure-html/fig-span-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-span-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;32.2: The same three cases seen from the columns. Left: two columns pointing in different directions span the whole plane, so every target is reachable and there is one recipe for each. Right: two columns along the same line span only that line — targets on it are reachable in infinitely many ways, and everything off it, including the <span class="math inline">\(\mathbf{b}\)</span> marked here, is unreachable no matter what <span class="math inline">\(\mathbf{x}\)</span> you choose.
+Figure&nbsp;31.2: The same three cases seen from the columns. Left: two columns pointing in different directions span the whole plane, so every target is reachable and there is one recipe for each. Right: two columns along the same line span only that line — targets on it are reachable in infinitely many ways, and everything off it, including the <span class="math inline">\(\mathbf{b}\)</span> marked here, is unreachable no matter what <span class="math inline">\(\mathbf{x}\)</span> you choose.
 </figcaption>
 </figure>
 </div>
@@ -695,7 +675,7 @@ Figure&nbsp;32.2: The same three cases seen from the columns. Left: two columns 
 </div>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">10.3 The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
 <section id="elimination" class="level3">
 <h3 class="anchored" data-anchor-id="elimination">Elimination</h3>
 <p>The method is the one from the quick check, written down carefully: add multiples of one equation to another until the system is triangular, then substitute back. On</p>
@@ -724,7 +704,7 @@ Figure&nbsp;32.2: The same three cases seen from the columns. Left: two columns 
 <p><span class="math display">\[
 A\mathbf{x} = \mathbf{b} \implies \mathbf{x} = A^{-1}\mathbf{b} .
 \]</span></p>
-<p>That is the right way to <em>think</em> and the wrong way to <em>compute</em>. Forming <span class="math inline">\(A^{-1}\)</span> does more arithmetic than solving the system, and every extra operation is another chance to lose digits. <strong>Write <code>np.linalg.solve(A, b)</code>, not <code>np.linalg.inv(A) @ b</code></strong> — the two agree on well-behaved problems and diverge exactly when you most need the answer, as the check at the end of this unit shows.</p>
+<p>That is the right way to <em>think</em> and the wrong way to <em>compute</em>. Forming <span class="math inline">\(A^{-1}\)</span> does more arithmetic than solving the system, and every extra operation is another chance to lose digits. <strong>Write <code>np.linalg.solve(A, b)</code>, not <code>np.linalg.inv(A) @ b</code></strong> — the two agree on well-behaved problems and diverge exactly when you most need the answer, as the check at the end of this lesson shows.</p>
 </section>
 <section id="when-solvable-is-too-crude-a-question" class="level3">
 <h3 class="anchored" data-anchor-id="when-solvable-is-too-crude-a-question">When “solvable” is too crude a question</h3>
@@ -737,7 +717,7 @@ A\mathbf{x} = \mathbf{b} \implies \mathbf{x} = A^{-1}\mathbf{b} .
 <img src="m10-linear-systems_files/figure-html/fig-conditioning-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conditioning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;32.3: Two nearly parallel lines. Moving the second line’s right-hand side from <span class="math inline">\(2.15\)</span> to <span class="math inline">\(2.30\)</span> — a shift you can barely see — slides the crossing point from <span class="math inline">\((1, 1)\)</span> to <span class="math inline">\((0, 2)\)</span>. The system is not singular, so a unique solution exists in both cases; it is just that where the solution <em>is</em> depends on the data far more strongly than you might expect.
+Figure&nbsp;31.3: Two nearly parallel lines. Moving the second line’s right-hand side from <span class="math inline">\(2.15\)</span> to <span class="math inline">\(2.30\)</span> — a shift you can barely see — slides the crossing point from <span class="math inline">\((1, 1)\)</span> to <span class="math inline">\((0, 2)\)</span>. The system is not singular, so a unique solution exists in both cases; it is just that where the solution <em>is</em> depends on the data far more strongly than you might expect.
 </figcaption>
 </figure>
 </div>
@@ -747,11 +727,11 @@ Figure&nbsp;32.3: Two nearly parallel lines. Moving the second line’s right-ha
 </section>
 <section id="more-equations-than-unknowns" class="level3">
 <h3 class="anchored" data-anchor-id="more-equations-than-unknowns">More equations than unknowns</h3>
-<p>A dataset gives you one equation per row and one unknown per parameter, so a model with two parameters fitted to 238 students is 238 equations in 2 unknowns. Such a system is <strong>overdetermined</strong>, and unless the data is exactly linear it has no solution at all. That is not a failure of the data or the method; it is the normal case, and it is the whole reason the next unit exists.</p>
+<p>A dataset gives you one equation per row and one unknown per parameter, so a model with two parameters fitted to 238 students is 238 equations in 2 unknowns. Such a system is <strong>overdetermined</strong>, and unless the data is exactly linear it has no solution at all. That is not a failure of the data or the method; it is the normal case, and it is the whole reason M11 exists.</p>
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">10.4 Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
 <p><strong>The cohort system has no solution — and the one you can solve instead.</strong></p>
 <p>Take the design matrix of <a href="../maths/m09-matrices.html">M9</a> and ask for an <em>exact</em> fit: values of <span class="math inline">\(\boldsymbol{\theta}\)</span> with <span class="math inline">\(X\boldsymbol{\theta} = \mathbf{y}\)</span>, every prediction landing on every student’s actual score.</p>
 <div id="unsolvable" class="cell" data-execution_count="4">
@@ -804,11 +784,11 @@ residual of the solved system  5.846e-11
 but of the original system     125.4985</code></pre>
 </div>
 </div>
-<p>Two residuals, and the difference between them is the whole point of this unit. The <span class="math inline">\(2 \times 2\)</span> system is solved essentially exactly — a residual of <span class="math inline">\(6 \times 10^{-11}\)</span> against right-hand sides of order <span class="math inline">\(10^{5}\)</span> — because that system genuinely has an answer. The original 238-equation system is still missed by 125.5, and no choice of <span class="math inline">\(\boldsymbol{\theta}\)</span> does better, because <span class="math inline">\(\mathbf{y}\)</span> is not in the span and nothing can put it there.</p>
+<p>Two residuals, and the difference between them is the whole point of this lesson. The <span class="math inline">\(2 \times 2\)</span> system is solved essentially exactly — a residual of <span class="math inline">\(6 \times 10^{-11}\)</span> against right-hand sides of order <span class="math inline">\(10^{5}\)</span> — because that system genuinely has an answer. The original 238-equation system is still missed by 125.5, and no choice of <span class="math inline">\(\boldsymbol{\theta}\)</span> does better, because <span class="math inline">\(\mathbf{y}\)</span> is not in the span and nothing can put it there.</p>
 <p>The answer itself is the one you have seen twice already: intercept <span class="math inline">\(69.226117\)</span>, slope <span class="math inline">\(-0.240793\)</span>, the same numbers gradient descent walked to in <a href="../maths/m06-gradients.html">M6</a> and <code>np.polyfit</code> returned in <a href="../maths/m09-matrices.html">M9</a>. Three routes — an iterative walk, a library call and a <span class="math inline">\(2 \times 2\)</span> system solved by elimination — and one answer, which is the reassurance that all three are computing the same thing.</p>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">10.5 Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Solve <span class="math inline">\(\begin{aligned} x + 2y &amp;= 5 \\ 3x - y &amp;= 1\end{aligned}\)</span> by elimination, and check your answer by substitution.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -879,7 +859,7 @@ but of the original system     125.4985</code></pre>
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">10.6 Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
 <p><strong>Solve, and then check the solution</strong> rather than trusting it:</p>
 <div id="check-solve" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> A_small, b_small <span class="kw">in</span> [(np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]]), np.array([<span class="fl">7.0</span>, <span class="fl">2.0</span>])),</span>
@@ -934,7 +914,7 @@ b=[3.0, 7.0]  -&gt; LinAlgError: Singular matrix</code></pre>
 <p>Two lessons in one table. <code>inv</code> is consistently the worse of the two — by a factor of four at <span class="math inline">\(n = 6\)</span>, thirty at <span class="math inline">\(n = 10\)</span> and sixty at <span class="math inline">\(n = 14\)</span> — so prefer <code>solve</code> as a matter of habit. And by <span class="math inline">\(n = 14\)</span> <em>both</em> are useless: the condition number has passed <span class="math inline">\(10^{16}\)</span> and the answer carries no correct digits at all. That last part is a statement about <em>double precision</em>, which carries about 16 digits — the condition number says how many of them you lose, so a problem this bad exhausts the supply. Eighty-digit arithmetic would solve the same system perfectly well. What you cannot do is rescue it with a cleverer algorithm at the same precision: the fix is more digits, or a better-posed question.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">10.7 Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -966,7 +946,7 @@ More rows means more equations against the same unknowns, which makes an exact s
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">10.8 Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">
@@ -1306,7 +1286,7 @@ X^{\mathsf{T}}\mathbf{y}\)</span> rather than pulling it out of <a href="../math
       return;
     }
     plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
-      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+      (misses.length ? "Read the lessons for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
         "Nothing marked as missed so far.")));
     var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
       return t.tHead && /Missed/.test(t.tHead.textContent);
@@ -1751,8 +1731,8 @@ X^{\mathsf{T}}\mathbf{y}\)</span> rather than pulling it out of <a href="../math
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/week-08.html" class="pagination-link" aria-label="Week 8 · Systems, sampling, intervals">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 8 · Systems, sampling, intervals</span>
+      <a href="../units/unit-08.html" class="pagination-link" aria-label="Unit 8 · Sampling and intervals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Unit 8 · Sampling and intervals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

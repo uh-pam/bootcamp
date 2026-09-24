@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7. Accumulation and area – Data Science Core Skills</title>
+<title>Accumulation and area – Data Science Core Skills</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fa58cad63ec306db36bb5c2c90682bf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4a65236759963040fad08196f4c7ce94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-06.html">Week 6 · Gradients, areas, probability</a></li><li class="breadcrumb-item"><a href="../maths/m07-accumulation.html"><span class="chapter-title">M7 · Accumulation and area</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-06.html">Unit 6 · Gradients, probability</a></li><li class="breadcrumb-item"><a href="../maths/m07-accumulation.html"><span class="chapter-title">M7 · Accumulation and area</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,10 +180,7 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Science Core Skills</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="../Data-Science-Core-Skills-Python.pdf" title="Python track as a PDF" class="quarto-navigation-tool px-1" aria-label="Python track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Mathematics.pdf" title="Mathematics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Mathematics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
-    <a href="../Data-Science-Core-Skills-Statistics.pdf" title="Statistics track as a PDF" class="quarto-navigation-tool px-1" aria-label="Statistics track as a PDF"><i class="bi bi-filetype-pdf"></i></a>
+        <div class="sidebar-tools-main">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -201,13 +198,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Science Core Skills</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Before you start</span></a>
+            <a href="../start/start-here.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Start here</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,22 +215,6 @@ window.Quarto = {
   <a href="../start/how-to-use.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to use this</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../start/plan.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The ten-week plan</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../weeks/week-00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 0 · Get running</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../start/set-up-python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Set up Python</span></a>
@@ -253,13 +234,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1 · The core of Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 1 · The core of Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p02-values-names-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P2 · Values, names and types</span></a>
@@ -284,13 +265,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 · Arrays, and reading maths</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 2 · Arrays and notation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p06-numpy-arrays.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P6 · NumPy: arrays and indexing</span></a>
@@ -310,13 +291,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 · Tables and functions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 3 · Tables and functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p08-pandas-dataframe.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P8 · pandas: the DataFrame</span></a>
@@ -341,13 +322,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 · Plots, derivatives, questions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 4 · Plots and derivatives</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../python/p10-matplotlib.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">P10 · Plotting with Matplotlib</span></a>
@@ -372,13 +353,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 · Best values, describing data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 5 · Describing data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m05-best-value.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M5 · Finding the best value</span></a>
@@ -398,13 +379,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 · Gradients, areas, probability</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../units/unit-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 6 · Gradients, probability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m06-gradients.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M6 · Several variables and the gradient</span></a>
@@ -424,13 +405,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7 · Vectors, matrices, randomness</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 7 · Matrices and randomness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m08-vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M8 · Data as vectors</span></a>
@@ -455,13 +436,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 · Systems, sampling, intervals</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 8 · Sampling and intervals</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m10-linear-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M10 · Solving Ax = b</span></a>
@@ -481,13 +462,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 9 · Least squares, tests</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 9 · Least squares and tests</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m11-least-squares.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M11 · When there is no solution: least squares</span></a>
@@ -507,13 +488,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/week-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 10 · Directions, regression, pitfalls</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../units/unit-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit 10 · Regression and pitfalls</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../maths/m12-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">M12 · Directions in data: eigenvectors and the SVD</span></a>
@@ -533,13 +514,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Lookup</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../reference/formula-card.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Formula card</span></a>
@@ -567,30 +548,29 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">7.1 Before you start</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">7.2 The idea</a></li>
-  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">7.3 The mechanics</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
+  <li><a href="#the-mechanics" id="toc-the-mechanics" class="nav-link" data-scroll-target="#the-mechanics">The mechanics</a>
   <ul class="collapse">
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#the-fundamental-theorem" id="toc-the-fundamental-theorem" class="nav-link" data-scroll-target="#the-fundamental-theorem">The fundamental theorem</a></li>
   <li><a href="#the-antiderivative-table" id="toc-the-antiderivative-table" class="nav-link" data-scroll-target="#the-antiderivative-table">The antiderivative table</a></li>
   <li><a href="#where-this-stops-working" id="toc-where-this-stops-working" class="nav-link" data-scroll-target="#where-this-stops-working">Where this stops working</a></li>
   </ul></li>
-  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">7.4 Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">7.5 Try it yourself</a></li>
-  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">7.6 Check it in Python</a></li>
-  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">7.7 Common wrong turns</a></li>
-  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">7.8 Check yourself</a></li>
+  <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
+  <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
+  <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-06.html">Week 6 · Gradients, areas, probability</a></li><li class="breadcrumb-item"><a href="../maths/m07-accumulation.html"><span class="chapter-title">M7 · Accumulation and area</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../units/unit-06.html">Unit 6 · Gradients, probability</a></li><li class="breadcrumb-item"><a href="../maths/m07-accumulation.html"><span class="chapter-title">M7 · Accumulation and area</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">7. Accumulation and area</span></h1>
-<p class="subtitle lead">Mathematics · Unit 7</p>
+<h1 class="title"><span class="chapter-title">Accumulation and area</span></h1>
 </div>
 
 
@@ -608,15 +588,15 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>M7</strong> · Mathematics</span> <span>Plan: <strong>Week 6</strong></span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M4</strong></span></p>
+<p><span><strong>Unit 6</strong> · Lesson 2 of 3 · Mathematics · <strong>M7</strong></span> <span>Reading: <strong>5 pages</strong></span> <span>With practice: <strong>≈ 2 hours</strong></span> <span>Assumes: <strong>M4</strong></span></p>
 </div>
 <div class="why">
-<p><span class="block-label">Why this unit is here</span></p>
-<p>A derivative answers <em>how fast is this changing?</em> This unit answers the opposite question: <em>how much has accumulated?</em> Given a rate, what is the total; given a curve, what is the area underneath it.</p>
-<p>You need this for one reason above all others. In the Statistics track a continuous quantity is described by a <strong>density</strong>, and a density on its own is not a probability — you get a probability by taking the area under it between two values. Every statement of the form “about 43% of the cohort scored between 60 and 70” is an area, and from <a href="../stats/s05-random-variables.html">S5</a> onwards you will be reading them constantly. The other half of the unit is the fact that makes areas computable at all: accumulation and differentiation are inverse operations.</p>
+<p><span class="block-label">Why this lesson is here</span></p>
+<p>A derivative answers <em>how fast is this changing?</em> This lesson answers the opposite question: <em>how much has accumulated?</em> Given a rate, what is the total; given a curve, what is the area underneath it.</p>
+<p>You need this for one reason above all others. In the Statistics track a continuous quantity is described by a <strong>density</strong>, and a density on its own is not a probability — you get a probability by taking the area under it between two values. Every statement of the form “about 43% of the cohort scored between 60 and 70” is an area, and from <a href="../stats/s05-random-variables.html">S5</a> onwards you will be reading them constantly. The other half of the lesson is the fact that makes areas computable at all: accumulation and differentiation are inverse operations.</p>
 </div>
 <section id="before-you-start" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-start">7.1 Before you start</h2>
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
 <p>You should be able to:</p>
 <ul>
 <li>differentiate with the rules — <a href="../maths/m04-differentiation-toolkit.html">M4</a>;</li>
@@ -638,13 +618,13 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[F'(x) = x^2 - 2.\]</span></p>
-<p>Now read that backwards: you have just found a function whose derivative is <span class="math inline">\(x^2 - 2\)</span>. Going in that direction — from a rate back to the thing that accumulated it — is what this unit is about, and by the end of it you will see that <span class="math inline">\(\tfrac{1}{3}x^3 - 2x\)</span> is exactly what computes areas under <span class="math inline">\(x^2 - 2\)</span>.</p>
+<p>Now read that backwards: you have just found a function whose derivative is <span class="math inline">\(x^2 - 2\)</span>. Going in that direction — from a rate back to the thing that accumulated it — is what this lesson is about, and by the end of it you will see that <span class="math inline">\(\tfrac{1}{3}x^3 - 2x\)</span> is exactly what computes areas under <span class="math inline">\(x^2 - 2\)</span>.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="the-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-idea">7.2 The idea</h2>
+<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
 <p>Start with a rate that does not change. If water runs into a tank at a steady 5 litres per minute for 12 minutes, the total is <span class="math inline">\(5 \times 12 = 60\)</span> litres. Draw the rate against time and that total is the area of a rectangle: height times width.</p>
 <p>Now let the rate vary, and the trick is to pretend for a moment that it does not. Chop the 12 minutes into short strips. Across one short strip the rate barely changes, so treat it as constant, and that strip contributes about (rate) <span class="math inline">\(\times\)</span> (width) — a rectangle. Add the rectangles up and you have an estimate of the total. Take narrower strips and the estimate improves.</p>
 <p>Here is that estimate for the score model of <a href="../maths/m03-rates-of-change.html">M3</a>, <span class="math inline">\(s(h) = 45 + 6h - 0.25h^2\)</span>, over <span class="math inline">\(0 \le h \le 12\)</span>, using six strips and then twenty-four:</p>
@@ -656,7 +636,7 @@ window.Quarto = {
 <img src="m07-accumulation_files/figure-html/fig-strips-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-strips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;26.1: The same area estimated with six strips and with twenty-four. Each rectangle takes the height of the curve at its left edge, so every one of them undershoots on a rising curve; the visible gap between the rectangles and the curve is exactly the error, and it shrinks as the strips narrow.
+Figure&nbsp;25.1: The same area estimated with six strips and with twenty-four. Each rectangle takes the height of the curve at its left edge, so every one of them undershoots on a rising curve; the visible gap between the rectangles and the curve is exactly the error, and it shrinks as the strips narrow.
 </figcaption>
 </figure>
 </div>
@@ -685,7 +665,7 @@ Figure&nbsp;26.1: The same area estimated with six strips and with twenty-four. 
 <p>Two readings, as with the derivative. <strong>Geometrically</strong> it is the area between the curve and the horizontal axis, between those two limits. <strong>Practically</strong> it is a total accumulated from a rate: here, marks-per-student summed over an interval of hours, so the answer carries units of marks <span class="math inline">\(\times\)</span> hours. An integral always carries the units of the thing being integrated multiplied by the units of the variable you integrate over.</p>
 </section>
 <section id="the-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="the-mechanics">7.3 The mechanics</h2>
+<h2 class="anchored" data-anchor-id="the-mechanics">The mechanics</h2>
 <section id="notation" class="level3">
 <h3 class="anchored" data-anchor-id="notation">Notation</h3>
 <p><span class="math display">\[
@@ -710,7 +690,7 @@ A(x) = \int_{a}^{x} f(t)\,dt ,
 <p><span class="math display">\[
 A'(x) = \lim_{h \to 0} \frac{A(x+h) - A(x)}{h} = f(x).
 \]</span></p>
-<p>The sliver argument needs <span class="math inline">\(f\)</span> to be continuous at <span class="math inline">\(x\)</span>: if <span class="math inline">\(f\)</span> jumps there, the sliver has no single height and <span class="math inline">\(A\)</span> has a corner instead of a tangent. Every <span class="math inline">\(f\)</span> in this unit is continuous, and the result is stated for that case.</p>
+<p>The sliver argument needs <span class="math inline">\(f\)</span> to be continuous at <span class="math inline">\(x\)</span>: if <span class="math inline">\(f\)</span> jumps there, the sliver has no single height and <span class="math inline">\(A\)</span> has a corner instead of a tangent. Every <span class="math inline">\(f\)</span> in this lesson is continuous, and the result is stated for that case.</p>
 <p><strong>Accumulating and differentiating undo each other.</strong> That is the fundamental theorem of calculus, and its practical form is: if you can find any <span class="math inline">\(F\)</span> with <span class="math inline">\(F' = f\)</span>, then</p>
 <p><span class="math display">\[
 \int_{a}^{b} f(x)\,dx \;=\; F(b) - F(a),
@@ -724,7 +704,7 @@ A'(x) = \lim_{h \to 0} \frac{A(x+h) - A(x)}{h} = f(x).
 <img src="m07-accumulation_files/figure-html/fig-ftc-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ftc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;26.2: The same function twice. Above: <span class="math inline">\(f\)</span>, with the area accumulated up to <span class="math inline">\(x_0\)</span> shaded and the next thin sliver picked out — its area is about <span class="math inline">\(f(x_0)\)</span> times its width. Below: the accumulated area <span class="math inline">\(A(x)\)</span> as a function of where you stop. The gradient of <span class="math inline">\(A\)</span> at <span class="math inline">\(x_0\)</span> is the <em>height</em> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x_0\)</span>, which is what the fundamental theorem says.
+Figure&nbsp;25.2: The same function twice. Above: <span class="math inline">\(f\)</span>, with the area accumulated up to <span class="math inline">\(x_0\)</span> shaded and the next thin sliver picked out — its area is about <span class="math inline">\(f(x_0)\)</span> times its width. Below: the accumulated area <span class="math inline">\(A(x)\)</span> as a function of where you stop. The gradient of <span class="math inline">\(A\)</span> at <span class="math inline">\(x_0\)</span> is the <em>height</em> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x_0\)</span>, which is what the fundamental theorem says.
 </figcaption>
 </figure>
 </div>
@@ -772,15 +752,15 @@ Figure&nbsp;26.2: The same function twice. Above: <span class="math inline">\(f\
 </table>
 <p>Sums and constant multiples pass through unchanged: <span class="math inline">\(\int (f + cg) = \int f + c
 \int g\)</span>. There is nothing so convenient for products or quotients — the chain rule and product rule run backwards into methods (substitution, integration by parts) that these notes do not need.</p>
-<p>Antiderivatives are not unique: <span class="math inline">\(F(x) + C\)</span> works for any constant <span class="math inline">\(C\)</span>, because a constant differentiates to zero. Hence the <span class="math inline">\(+ C\)</span> you may remember. For a <em>definite</em> integral it cancels — <span class="math inline">\(\bigl(F(b) + C\bigr) - \bigl(F(a) + C\bigr)\)</span> — so you may drop it, and this unit does.</p>
+<p>Antiderivatives are not unique: <span class="math inline">\(F(x) + C\)</span> works for any constant <span class="math inline">\(C\)</span>, because a constant differentiates to zero. Hence the <span class="math inline">\(+ C\)</span> you may remember. For a <em>definite</em> integral it cancels — <span class="math inline">\(\bigl(F(b) + C\bigr) - \bigl(F(a) + C\bigr)\)</span> — so you may drop it, and this lesson does.</p>
 </section>
 <section id="where-this-stops-working" class="level3">
 <h3 class="anchored" data-anchor-id="where-this-stops-working">Where this stops working</h3>
-<p>Plenty of ordinary functions have no antiderivative expressible in the usual symbols. The one that matters most is <span class="math inline">\(e^{-x^2}\)</span>, whose area is the whole business of the normal distribution in <a href="../stats/s06-distributions.html">S6</a>. No amount of cleverness will produce a formula for it. Such integrals are computed numerically, by a better-organised version of the strips above, and the last section of this unit does exactly that.</p>
+<p>Plenty of ordinary functions have no antiderivative expressible in the usual symbols. The one that matters most is <span class="math inline">\(e^{-x^2}\)</span>, whose area is the whole business of the normal distribution in <a href="../stats/s06-distributions.html">S6</a>. No amount of cleverness will produce a formula for it. Such integrals are computed numerically, by a better-organised version of the strips above, and the last section of this lesson does exactly that.</p>
 </section>
 </section>
 <section id="worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="worked-example">7.4 Worked example</h2>
+<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
 <p><strong>Part 1: an average, from an integral.</strong> Over the first 12 hours of practice, what score does the model of <a href="../maths/m03-rates-of-change.html">M3</a> predict <em>on average</em>? Not the average of a few sampled points — the average over the whole continuous range, which is the accumulated total divided by the width:</p>
 <p><span class="math display">\[
 \text{average} = \frac{1}{b - a}\int_{a}^{b} f(x)\,dx .
@@ -828,7 +808,7 @@ proportion scoring 60-70    0.432773</code></pre>
 <img src="m07-accumulation_files/figure-html/fig-density-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;26.3: Final scores as a density: bar heights are proportions of the cohort per mark, and every bar’s area is the proportion of the cohort in that range. The shaded bars are the range 60 to 70, whose total area is 0.433 — which is exactly the fraction of the 238 students who scored there.
+Figure&nbsp;25.3: Final scores as a density: bar heights are proportions of the cohort per mark, and every bar’s area is the proportion of the cohort in that range. The shaded bars are the range 60 to 70, whose total area is 0.433 — which is exactly the fraction of the 238 students who scored there.
 </figcaption>
 </figure>
 </div>
@@ -836,7 +816,7 @@ Figure&nbsp;26.3: Final scores as a density: bar heights are proportions of the 
 </div>
 </section>
 <section id="try-it-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="try-it-yourself">7.5 Try it yourself</h2>
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> Evaluate <span class="math inline">\(\displaystyle\int_{1}^{3} (2x + 1)\,dx\)</span>, then check the answer without calculus.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -908,7 +888,7 @@ Figure&nbsp;26.3: Final scores as a density: bar heights are proportions of the 
 </div>
 </section>
 <section id="check-it-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="check-it-in-python">7.6 Check it in Python</h2>
+<h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
 <p>The claim to test is the fundamental theorem: that evaluating an antiderivative at the two limits gives the same number as adding up strips. Two ways of adding up strips, in fact — the crude left-edge rectangles from earlier, and the <strong>trapezoid rule</strong>, which joins consecutive points with a straight line instead of a flat one, so each strip follows the slope of the curve rather than ignoring it.</p>
 <div id="check-ftc" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> left_rectangles(f, a, b, n):</span>
@@ -954,7 +934,7 @@ over [-6, 6] with n= 100000   1.7724538509   matches sqrt(pi): True</code></pre>
 <p>The first line is the one to study. It uses a thousand strips — ten times as many as the line below it, which lands on the right answer — and it is still wrong in the fifth decimal place, and adding strips will never fix it. The error is not in the step size but in the <em>interval</em>: cutting the curve off at <span class="math inline">\(\pm 3\)</span> throws away real area in the tails. Two different things can go wrong with a numerical integral, and they need opposite responses.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
-<h2 class="anchored" data-anchor-id="common-wrong-turns">7.7 Common wrong turns</h2>
+<h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
 <div class="wrong-turns">
 <p><span class="block-label">Where this usually goes wrong</span></p>
 <dl>
@@ -968,7 +948,7 @@ It is a signed area. <span class="math inline">\(\int_0^2 (x-1)\,dx = 0\)</span>
 </dd>
 <dt>Reading a density as a probability</dt>
 <dd>
-A density has units — here, proportion of the cohort per mark — and its height can be any positive number at all, including numbers far above 1. Only its <em>area</em> is a probability, which is why this unit is a prerequisite for <a href="../stats/s05-random-variables.html">S5</a>.
+A density has units — here, proportion of the cohort per mark — and its height can be any positive number at all, including numbers far above 1. Only its <em>area</em> is a probability, which is why this lesson is a prerequisite for <a href="../stats/s05-random-variables.html">S5</a>.
 </dd>
 <dt>Losing the constant of integration where it matters</dt>
 <dd>
@@ -986,7 +966,7 @@ Too few strips and too narrow an interval look alike — both give an answer tha
 </div>
 </section>
 <section id="check-yourself" class="level2">
-<h2 class="anchored" data-anchor-id="check-yourself">7.8 Check yourself</h2>
+<h2 class="anchored" data-anchor-id="check-yourself">Check yourself</h2>
 <p>Answers are at the foot of the page. Give a reason as well as an answer.</p>
 <div class="quiz">
 <div class="q">
@@ -1057,7 +1037,7 @@ Too few strips and too narrow an interval look alike — both give an answer tha
 </div>
 <div class="next-up">
 <p><span class="block-label">Where this shows up next</span></p>
-<p><strong><a href="../stats/s05-random-variables.html">S5</a></strong> is the unit this one exists for: a continuous random variable is described by a density, and every probability it gives you is an area computed by integration. <strong><a href="../stats/s06-distributions.html">S6</a></strong> meets <span class="math inline">\(e^{-x^2}\)</span> properly, as the normal distribution, and lives with the fact that its integral has no formula. <strong><a href="../stats/s07-sampling.html">S7</a></strong> and <strong><a href="../stats/s08-intervals.html">S8</a></strong> read areas in the tails of a distribution to say how far an estimate might be from the truth.</p>
+<p><strong><a href="../stats/s05-random-variables.html">S5</a></strong> is the lesson this one exists for: a continuous random variable is described by a density, and every probability it gives you is an area computed by integration. <strong><a href="../stats/s06-distributions.html">S6</a></strong> meets <span class="math inline">\(e^{-x^2}\)</span> properly, as the normal distribution, and lives with the fact that its integral has no formula. <strong><a href="../stats/s07-sampling.html">S7</a></strong> and <strong><a href="../stats/s08-intervals.html">S8</a></strong> read areas in the tails of a distribution to say how far an estimate might be from the truth.</p>
 </div>
 
 
@@ -1328,7 +1308,7 @@ Too few strips and too narrow an interval look alike — both give an answer tha
       return;
     }
     plan.appendChild(el("p", null, answered + " of " + questionIds.length + " answered. " +
-      (misses.length ? "Read the units for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
+      (misses.length ? "Read the lessons for question" + (misses.length > 1 ? "s " : " ") + misses.join(", ") + ":" :
         "Nothing marked as missed so far.")));
     var routing = Array.prototype.filter.call(document.querySelectorAll("table"), function (t) {
       return t.tHead && /Missed/.test(t.tHead.textContent);
