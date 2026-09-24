@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4a65236759963040fad08196f4c7ce94.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,6 +120,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (p.indexOf("/maths/")  > -1) document.body.classList.add("track-maths");
   if (p.indexOf("/stats/")  > -1) document.body.classList.add("track-stats");
   if (p.indexOf("/python/") > -1) document.body.classList.add("track-python");
+
+  // The menu labels units "3 · Tables and functions", and Quarto reuses that
+  // label for the breadcrumb, which on a phone is the only "where am I" line.
+  // Put the word back there.
+  document.querySelectorAll(".breadcrumb-item a").forEach(function (a) {
+    if (/^\d+ · /.test(a.textContent.trim())) a.textContent = "Unit " + a.textContent.trim();
+  });
 });
 </script>
 
@@ -151,13 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Science Core Skills</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
-</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 1 · The core of Python</span></a>
+ <span class="menu-text">1 · The core of Python</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 2 · Arrays and notation</span></a>
+ <span class="menu-text">2 · Arrays and notation</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 3 · Tables and functions</span></a>
+ <span class="menu-text">3 · Tables and functions</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 4 · Plots and derivatives</span></a>
+ <span class="menu-text">4 · Plots and derivatives</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 5 · Describing data</span></a>
+ <span class="menu-text">5 · Describing data</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 6 · Gradients, probability</span></a>
+ <span class="menu-text">6 · Gradients, probability</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -377,7 +377,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 7 · Matrices and randomness</span></a>
+ <span class="menu-text">7 · Matrices and randomness</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -408,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 8 · Sampling and intervals</span></a>
+ <span class="menu-text">8 · Sampling and intervals</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 9 · Least squares and tests</span></a>
+ <span class="menu-text">9 · Least squares and tests</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -460,7 +460,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../units/unit-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit 10 · Regression and pitfalls</span></a>
+ <span class="menu-text">10 · Regression and pitfalls</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
