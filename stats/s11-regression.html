@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,10 @@ window.Quarto = {
   <li><a href="#the-assumptions-and-how-to-check-them" id="toc-the-assumptions-and-how-to-check-them" class="nav-link" data-scroll-target="#the-assumptions-and-how-to-check-them">The assumptions, and how to check them</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -938,6 +941,105 @@ Figure&nbsp;38.3: Diagnostics. Left: residuals against fitted values, which shou
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> A line fitted to flats in one city is <span class="math inline">\(\hat{y} = 150 + 12x\)</span>, where <span class="math inline">\(y\)</span> is the monthly rent in pounds and <span class="math inline">\(x\)</span> is the floor area in square metres. What rent does it give for a 50 m² flat? Say what the 12 means, in words and with units.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> The correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is <span class="math inline">\(r = 0.6\)</span>, with <span class="math inline">\(s_x = 4\)</span> and <span class="math inline">\(s_y = 10\)</span>. What is the least-squares slope, and what is <span class="math inline">\(R^2\)</span>?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>A regression of crop yield (kg per plot) on fertiliser (g per m²) across 27 plots gives <span class="math inline">\(\hat{\beta}_1 = 0.45\)</span> with standard error 0.15. Using <span class="math inline">\(t^{*}_{25} = 2.060\)</span>, give the <span class="math inline">\(t\)</span> statistic for <span class="math inline">\(H_0: \beta_1 = 0\)</span> and the 95% interval for the slope, and state the result as a sentence with units.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Fit a line by hand to the five points <span class="math inline">\((1, 2)\)</span>, <span class="math inline">\((2, 4)\)</span>, <span class="math inline">\((3, 5)\)</span>, <span class="math inline">\((4, 4)\)</span> and <span class="math inline">\((5, 5)\)</span>. Find the slope, the intercept, the residual standard deviation <span class="math inline">\(s_e\)</span>, the standard error of the slope, and <span class="math inline">\(R^2\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>A study of 2,000 adults, eating as they normally do, regresses systolic blood pressure on daily salt intake. The slope is 1.2 mmHg per gram, 95% CI <span class="math inline">\((0.9, 1.5)\)</span>, and <span class="math inline">\(R^2 = 0.03\)</span>. Which reading is best?</p>
+<ol type="a">
+<li>Salt does not matter for blood pressure, because <span class="math inline">\(R^2\)</span> is tiny.</li>
+<li>Among these adults, each extra gram of salt a day goes with blood pressure about 1.2 mmHg higher on average (0.9 to 1.5), and salt intake accounts for only a small share of the differences between people.</li>
+<li>Cutting your salt by a gram a day will lower your blood pressure by 1.2 mmHg.</li>
+<li>The straight-line model must be wrong, because <span class="math inline">\(R^2\)</span> is so low.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p><span class="math inline">\(R^2\)</span> and the precision of a slope are separate things. Does the interval for the slope include zero?</p>
+</div>
+<div class="hint" data-option="c">
+<p>Two leaps in one sentence: from an association to a cause, and from an average to one person. What would you need for either?</p>
+</div>
+<div class="hint" data-option="d">
+<p><span class="math inline">\(R^2\)</span> measures how much of the scatter the line accounts for, not whether a line is the right shape. Where would you look to check the shape?</p>
+</div>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p>On another course, a fitted line gives a student who practises 30 hours a fitted score of 70 marks, with a 95% confidence interval for the mean of <span class="math inline">\((68, 72)\)</span> and a 95% prediction interval of <span class="math inline">\((54, 86)\)</span>. The student asks what they will score. Which answer is right?</p>
+<ol type="a">
+<li>Between 68 and 72.</li>
+<li>Roughly 54 to 86 is a reasonable range for one student, if the model’s assumptions hold; 70 is the centre, not a forecast.</li>
+<li>70 marks.</li>
+<li>Between 54 and 86 for now, but with a much larger dataset the range would shrink to about 68 to 72.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>That interval is for the <em>average</em> score of all students who practise 30 hours. Is one student an average?</p>
+</div>
+<div class="hint" data-option="c">
+<p>A fitted value is the centre of a spread. How much do individual students scatter about the line?</p>
+</div>
+<div class="hint" data-option="d">
+<p>More data pins the line down. Does it make individual students any less scattered about it?</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> Go back to your fit in question 4. (a) Using <span class="math inline">\(t^{*}_{3} = 3.182\)</span>, give the 95% interval for the slope. (b) Compute <span class="math inline">\(t\)</span> for <span class="math inline">\(H_0: \beta_1 = 0\)</span>, and check the identity <span class="math inline">\(t^2 = (n-2)R^2/(1 - R^2)\)</span> from Exercise 1. (c) An <span class="math inline">\(R^2\)</span> of 0.6 sounds impressive. What do (a) and (b) say about it?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(\hat{y} = 150 + 12 \times 50 = 750\)</span>, so £750 a month. The 12 is in pounds per square metre per month: among flats in the data, each extra square metre goes with £12 more rent a month, on average. The £750 is the centre for 50 m² flats, not a quote for any one of them.</p></li>
+<li><p><span class="math inline">\(\hat{\beta}_1 = r\,s_y/s_x = 0.6 \times 10/4 = 1.5\)</span>, in units of <span class="math inline">\(y\)</span> per unit of <span class="math inline">\(x\)</span>, and <span class="math inline">\(R^2 = r^2 = 0.36\)</span>. The correlation 0.6 is not the slope: it has no units, and the slope does.</p></li>
+<li><p><span class="math inline">\(t = 0.45/0.15 = 3.0\)</span> (two-sided <span class="math inline">\(p \approx 0.006\)</span>). The interval is <span class="math inline">\(0.45 \pm 2.060 \times 0.15 = 0.45 \pm 0.309\)</span>, giving <span class="math inline">\((0.14, 0.76)\)</span>. As a sentence: each extra gram of fertiliser per square metre goes with an estimated 0.45 kg more yield per plot (95% CI 0.14 to 0.76 kg). If the amounts were assigned to plots at random, that can be read as an effect of the fertiliser; if the farmers chose them, it is an association.</p></li>
+<li><p><span class="math inline">\(\bar{x} = 3\)</span> and <span class="math inline">\(\bar{y} = 4\)</span>. Then <span class="math inline">\(\sum(x_i - \bar{x})(y_i - \bar{y}) = 4 + 0 + 0 + 0 + 2 = 6\)</span> and <span class="math inline">\(\sum(x_i - \bar{x})^2 = 10\)</span>, so <span class="math inline">\(\hat{\beta}_1 = 6/10 = 0.6\)</span> and <span class="math inline">\(\hat{\beta}_0 = 4 - 0.6 \times 3 = 2.2\)</span>. The residuals are <span class="math inline">\(-0.8, 0.6, 1.0, -0.6, -0.2\)</span>, whose squares sum to 2.4, so <span class="math inline">\(s_e = \sqrt{2.4/3} \approx 0.894\)</span>; divide by <span class="math inline">\(n - 2 = 3\)</span>, not by 5. Then <span class="math inline">\(\text{SE}(\hat{\beta}_1) = 0.894/\sqrt{10} \approx 0.283\)</span>. The total <span class="math inline">\(\sum(y_i - \bar{y})^2 = 6\)</span>, so <span class="math inline">\(R^2 = 1 - 2.4/6 = 0.6\)</span>.</p></li>
+<li><p><strong>(b) A clear but small association.</strong> The interval for the slope is well away from zero, and <span class="math inline">\(R^2 = 0.03\)</span> says most of the variation between people lies elsewhere. Both are true at once, which is normal with human data. (c) turns an observational association into a promise to one person.</p></li>
+<li><p><strong>(b) Roughly 54 to 86.</strong> One student carries their own scatter about the line: that is the extra 1 under the square root, and it does not shrink as <span class="math inline">\(n\)</span> grows. (d) is the tempting half-truth: with more data the confidence band narrows towards the line, but the prediction interval narrows only towards about <span class="math inline">\(\hat{y} \pm 2s_e\)</span>.</p></li>
+<li><ol type="a">
+<li><span class="math inline">\(0.6 \pm 3.182 \times 0.283 = 0.6 \pm 0.90\)</span>, giving <span class="math inline">\((-0.30, 1.50)\)</span>.</li>
+<li><span class="math inline">\(t = 0.6/0.283 \approx 2.12\)</span>, so <span class="math inline">\(t^2 = 4.5\)</span>, and <span class="math inline">\((5 - 2) \times 0.6/0.4 = 4.5\)</span>. They agree. The two-sided <span class="math inline">\(p\)</span> is about 0.12.</li>
+<li>With five points a line can account for 60% of the variation while the data still cannot rule out a slope of zero, or even a negative one. A high <span class="math inline">\(R^2\)</span> from a handful of points is easy to get by chance. Judge the slope by its interval, not by <span class="math inline">\(R^2\)</span>; and “cannot rule out zero” is not the same as “no relationship” either.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1106,7 +1208,7 @@ A regression coefficient describes an association in the data you fitted, given 
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1115,7 +1217,7 @@ A regression coefficient describes an association in the data you fitted, given 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b).</strong> With <span class="math inline">\(n = 100\)</span> the multiplier is close to 2, so the interval is about <span class="math inline">\(2.0 \pm 1.0\)</span>. (a) is false, and you can check it: <span class="math inline">\(t = 2.0/0.5 = 4\)</span>, so <span class="math inline">\(R^2 = 4^2/(4^2 + 98) \approx 0.14\)</span> — a clear relationship that explains little of the variation; (c) confuses the slope with the correlation, which cannot exceed 1; (d) upgrades an association to a cause, which no regression output can license.</p></li>
@@ -1335,7 +1437,20 @@ A regression coefficient describes an association in the data you fitted, given 
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1379,7 +1494,7 @@ A regression coefficient describes an association in the data you fitted, given 
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

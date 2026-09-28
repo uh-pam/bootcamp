@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -557,7 +557,10 @@ window.Quarto = {
   <li><a href="#the-full-procedure" id="toc-the-full-procedure" class="nav-link" data-scroll-target="#the-full-procedure">The full procedure</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -882,6 +885,86 @@ Figure&nbsp;21.3: The squared-error loss as the summary value varies. One trough
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> Find the stationary point of <span class="math inline">\(f(x) = 2x^2 - 8x + 3\)</span> and the value of <span class="math inline">\(f\)</span> there.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><p><em>Warm-up.</em> You want the largest value of <span class="math inline">\(f\)</span> on <span class="math inline">\([0, 5]\)</span>. You know <span class="math inline">\(f'\)</span> exists everywhere and is zero only at <span class="math inline">\(x = 2\)</span>. Which list holds every candidate?</p>
+<ol type="a">
+<li><span class="math inline">\(x = 2\)</span></li>
+<li><span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = 5\)</span></li>
+<li><span class="math inline">\(x = 0\)</span>, <span class="math inline">\(x = 2\)</span> and <span class="math inline">\(x = 5\)</span></li>
+<li><span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = 2\)</span></li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>On a closed interval the best value can sit at an end, where <span class="math inline">\(f'\)</span> need not be zero. What about the ends of <span class="math inline">\([0, 5]\)</span>?</p>
+</div>
+<div class="hint" data-option="b">
+<p>The ends are candidates, but so is any stationary point inside the interval. Is 2 inside <span class="math inline">\([0, 5]\)</span>?</p>
+</div>
+<div class="hint" data-option="d">
+<p>An interval has two ends. Which one is missing?</p>
+</div>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Find and classify the stationary points of <span class="math inline">\(f(x) = x^3 - 12x + 1\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Find the largest and smallest values of the same <span class="math inline">\(f(x) = x^3 - 12x + 1\)</span> on the interval <span class="math inline">\([0, 3]\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>Find and classify the stationary point of <span class="math inline">\(f(x) = x e^{-x}\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>Three measurements of a length are 4 cm, 6 cm and 11 cm. Choose <span class="math inline">\(a\)</span> to minimise <span class="math inline">\(L(a) = (4 - a)^2 + (6 - a)^2 + (11 - a)^2\)</span> by calculus, check that it is a minimum, and say in words what your <span class="math inline">\(a\)</span> is.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> Find and classify the stationary points of <span class="math inline">\(f(x) = x^4 - 4x^3\)</span>. The second-derivative test fails at one of them; settle that one another way.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(f'(x) = 4x - 8\)</span>, which is zero at <span class="math inline">\(x = 2\)</span>, and <span class="math inline">\(f(2) = 8 - 16 + 3 = -5\)</span>. Since <span class="math inline">\(f''(x) = 4 &gt; 0\)</span>, it is a minimum.</p></li>
+<li><p><strong>(c) <span class="math inline">\(x = 0\)</span>, <span class="math inline">\(x = 2\)</span> and <span class="math inline">\(x = 5\)</span>.</strong> The stationary point inside the interval and both endpoints. There are no corners to add, because <span class="math inline">\(f'\)</span> exists everywhere. Then evaluate <span class="math inline">\(f\)</span> at all three and take the largest.</p></li>
+<li><p><span class="math inline">\(f'(x) = 3x^2 - 12 = 3(x - 2)(x + 2)\)</span>, zero at <span class="math inline">\(x = -2\)</span> and <span class="math inline">\(x = 2\)</span>. <span class="math inline">\(f''(x) = 6x\)</span>. At <span class="math inline">\(x = -2\)</span>, <span class="math inline">\(f'' = -12 &lt; 0\)</span>: a local <strong>maximum</strong>, with <span class="math inline">\(f(-2) = 17\)</span>. At <span class="math inline">\(x = 2\)</span>, <span class="math inline">\(f'' = 12 &gt; 0\)</span>: a local <strong>minimum</strong>, with <span class="math inline">\(f(2) = -15\)</span>.</p></li>
+<li><p>The candidates are <span class="math inline">\(x = 2\)</span> (the stationary point <span class="math inline">\(x = -2\)</span> is not in <span class="math inline">\([0, 3]\)</span>) and the endpoints <span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = 3\)</span>. <span class="math inline">\(f(0) = 1\)</span>, <span class="math inline">\(f(2) = -15\)</span> and <span class="math inline">\(f(3) = 27 - 36 + 1 = -8\)</span>. The smallest value is <span class="math inline">\(-15\)</span>, at <span class="math inline">\(x = 2\)</span>. The largest is <span class="math inline">\(1\)</span>, at the endpoint <span class="math inline">\(x = 0\)</span>, where <span class="math inline">\(f'(0) = -12\)</span> is not zero at all: setting <span class="math inline">\(f' = 0\)</span> alone would never have found it.</p></li>
+<li><p>Product rule: <span class="math inline">\(f'(x) = e^{-x} - x e^{-x} = e^{-x}(1 - x)\)</span>, zero only at <span class="math inline">\(x = 1\)</span>, because <span class="math inline">\(e^{-x}\)</span> is never zero. Then <span class="math inline">\(f''(x) = -e^{-x}(1 - x) - e^{-x} = e^{-x}(x - 2)\)</span>, so <span class="math inline">\(f''(1) = -e^{-1} &lt; 0\)</span>: a local <strong>maximum</strong>, with <span class="math inline">\(f(1) = e^{-1} \approx 0.368\)</span>.</p></li>
+<li><p><span class="math inline">\(L'(a) = -2(4 - a) - 2(6 - a) - 2(11 - a) = 6a - 42\)</span>, which is zero at <span class="math inline">\(a = 7\)</span>. <span class="math inline">\(L''(a) = 6 &gt; 0\)</span>, so it is a minimum. In words: <span class="math inline">\(a = 7\)</span> cm is the mean of the three measurements, the single length that makes the total squared error smallest, with <span class="math inline">\(L(7) = 9 + 1 + 16 = 26\)</span> cm². Minimising the absolute errors instead would give the median, 6 cm.</p></li>
+<li><p><span class="math inline">\(f'(x) = 4x^3 - 12x^2 = 4x^2(x - 3)\)</span>, zero at <span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = 3\)</span>. <span class="math inline">\(f''(x) = 12x^2 - 24x\)</span>. At <span class="math inline">\(x = 3\)</span>, <span class="math inline">\(f'' = 36 &gt; 0\)</span>: a local <strong>minimum</strong>, with <span class="math inline">\(f(3) = 81 - 108 = -27\)</span>. At <span class="math inline">\(x = 0\)</span>, <span class="math inline">\(f'' = 0\)</span> and the test says nothing. Look at the sign of <span class="math inline">\(f'\)</span> instead: <span class="math inline">\(4x^2\)</span> is positive either side of 0 and <span class="math inline">\(x - 3\)</span> is negative, so <span class="math inline">\(f' &lt; 0\)</span> on both sides. The function falls, flattens for an instant and keeps falling: <strong>neither</strong>. Since <span class="math inline">\(f' &lt; 0\)</span> everywhere left of 3 (apart from the single point 0) and <span class="math inline">\(f' &gt; 0\)</span> to its right, <span class="math inline">\(x = 3\)</span> is in fact the global minimum.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1014,7 +1097,7 @@ Minimising squared error gives the mean; minimising absolute error gives the med
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1023,7 +1106,7 @@ Minimising squared error gives the mean; minimising absolute error gives the med
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b) a local maximum.</strong> Negative second derivative means the curve bends downwards, so the stationary point is a peak.</p></li>
@@ -1243,7 +1326,20 @@ Minimising squared error gives the mean; minimising absolute error gives the med
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1287,7 +1383,7 @@ Minimising squared error gives the mean; minimising absolute error gives the med
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,10 @@ window.Quarto = {
   <li><a href="#principal-components" id="toc-principal-components" class="nav-link" data-scroll-target="#principal-components">Principal components</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -626,7 +629,7 @@ window.Quarto = {
 </section>
 <section id="the-idea" class="level2">
 <h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
-<p>Take every unit vector — a whole circle of directions — and apply a matrix to all of them. What comes back is an <strong>ellipse</strong>. Not sometimes: always, for any <span class="math inline">\(2 \times 2\)</span> matrix, and the higher-dimensional version is an ellipsoid.</p>
+<p>Take every unit vector — a whole circle of directions — and apply a matrix to all of them. What comes back is an <strong>ellipse</strong>. Not sometimes: always, for any invertible <span class="math inline">\(2 \times 2\)</span> matrix (a singular one squashes the circle flat, into a line segment or a point), and the higher-dimensional version is an ellipsoid.</p>
 <p>That is a strong statement and it is the whole geometry of the subject. It says a matrix does exactly three things: it picks out a set of perpendicular input directions, stretches each by its own factor, and lays the results down along a (possibly different) set of perpendicular output directions.</p>
 <div id="cell-fig-stretch" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
@@ -848,6 +851,94 @@ Figure&nbsp;37.3: The cohort in two of its standardised columns, with the princi
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, five at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> Check that <span class="math inline">\((1, 1)\)</span> is an eigenvector of <span class="math inline">\(A = \begin{pmatrix} 4 &amp; 1 \\ 2 &amp; 3\end{pmatrix}\)</span>, and give its eigenvalue.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><p><em>Warm-up.</em> Which of these is an eigenvector of <span class="math inline">\(\begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 7\end{pmatrix}\)</span>?</p>
+<ol type="a">
+<li><span class="math inline">\((0, 3)\)</span></li>
+<li><span class="math inline">\((1, 1)\)</span></li>
+<li><span class="math inline">\((2, 7)\)</span></li>
+<li><span class="math inline">\((0, 0)\)</span></li>
+</ol></li>
+</ol>
+<div class="hint" data-option="b">
+<p>Multiply it by the matrix. Is the result a multiple of <span class="math inline">\((1, 1)\)</span>?</p>
+</div>
+<div class="hint" data-option="c">
+<p>Multiply it by the matrix and compare the result with <span class="math inline">\((2, 7)\)</span>. Is one a multiple of the other?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Reread the definition: what does it require of <span class="math inline">\(\mathbf{v}\)</span> besides <span class="math inline">\(A\mathbf{v} = \lambda\mathbf{v}\)</span>?</p>
+</div>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Find the eigenvalues and eigenvectors of <span class="math inline">\(\begin{pmatrix} 2 &amp; 2 \\ 2 &amp; -1\end{pmatrix}\)</span>, and check that the eigenvectors are orthogonal.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Find the other eigenvalue and an eigenvector for it of <span class="math inline">\(A = \begin{pmatrix} 4 &amp; 1 \\ 2 &amp; 3\end{pmatrix}\)</span> from question 1. Are the two eigenvectors orthogonal? Does that contradict the theorem in the lesson?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>A design matrix <span class="math inline">\(X\)</span> has singular values <span class="math inline">\(6\)</span>, <span class="math inline">\(3\)</span> and <span class="math inline">\(0.5\)</span>. What is <span class="math inline">\(\operatorname{cond}(X)\)</span>? What are the eigenvalues of <span class="math inline">\(X^{\mathsf{T}}X\)</span>, and its condition number?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>Two standardised columns have correlation matrix <span class="math inline">\(\begin{pmatrix} 1 &amp; 0.8 \\ 0.8 &amp; 1\end{pmatrix}\)</span>. Find its eigenvalues and eigenvectors. What share of the variation does the first principal component carry, and what does that component say about the two columns, in words?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li>Let <span class="math inline">\(X = \begin{pmatrix} 3 &amp; 0 \\ 0 &amp; -2 \\ 0 &amp; 0\end{pmatrix}\)</span>. Does <span class="math inline">\(X\)</span> have eigenvalues? Find its singular values, using <span class="math inline">\(X^{\mathsf{T}}X\)</span>, and <span class="math inline">\(\operatorname{cond}(X)\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="8" type="1">
+<li><em>Stretch.</em> Take the rotation by <span class="math inline">\(180°\)</span>, <span class="math inline">\(\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1\end{pmatrix}\)</span>, and the rotation by <span class="math inline">\(90°\)</span>, <span class="math inline">\(\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0\end{pmatrix}\)</span>. For each, find the real eigenvalues and eigenvectors, if there are any, and the singular values. What does the pair of answers say about the difference between eigenvalues and singular values?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(A(1, 1) = (4 + 1,\; 2 + 3) = (5, 5) = 5\,(1, 1)\)</span>. So <span class="math inline">\((1, 1)\)</span> is an eigenvector with <strong>eigenvalue 5</strong>: the matrix stretches that direction by 5 and does not turn it.</p></li>
+<li><p><strong>(a) <span class="math inline">\((0, 3)\)</span>.</strong> The matrix sends it to <span class="math inline">\((0, 21) = 7\,(0, 3)\)</span>, so it is an eigenvector with eigenvalue 7. Any nonzero multiple of <span class="math inline">\((0, 1)\)</span> is. Option (b) goes to <span class="math inline">\((2, 7)\)</span>, which has turned, and (d) is excluded by the definition: an eigenvector must be nonzero.</p></li>
+<li><p><span class="math inline">\(\det(A - \lambda I) = (2 - \lambda)(-1 - \lambda) - 4 = \lambda^2 - \lambda - 6
+= (\lambda - 3)(\lambda + 2)\)</span>, so the eigenvalues are <strong>3 and <span class="math inline">\(-2\)</span></strong>. For <span class="math inline">\(\lambda = 3\)</span>: <span class="math inline">\(-v_1 + 2v_2 = 0\)</span>, so <span class="math inline">\(\mathbf{v} \propto (2, 1)\)</span>. For <span class="math inline">\(\lambda = -2\)</span>: <span class="math inline">\(4v_1 + 2v_2 = 0\)</span>, so <span class="math inline">\(\mathbf{v} \propto (1, -2)\)</span>. Check: <span class="math inline">\((2, 1) \cdot (1, -2) = 2 - 2 = 0\)</span>, orthogonal, as promised for a symmetric matrix.</p></li>
+<li><p><span class="math inline">\(\det(A - \lambda I) = (4 - \lambda)(3 - \lambda) - 2 = \lambda^2 - 7\lambda + 10
+= (\lambda - 5)(\lambda - 2)\)</span>, so the other eigenvalue is <strong>2</strong>. For <span class="math inline">\(\lambda = 2\)</span>: <span class="math inline">\(2v_1 + v_2 = 0\)</span>, so <span class="math inline">\(\mathbf{v} \propto (1, -2)\)</span>. Then <span class="math inline">\((1, 1) \cdot (1, -2) = -1 \neq 0\)</span>: <strong>not orthogonal</strong>. No contradiction: the theorem is about symmetric matrices, and this <span class="math inline">\(A\)</span> is not symmetric, since its off-diagonal entries are 1 and 2.</p></li>
+<li><p><span class="math inline">\(\operatorname{cond}(X) = 6 / 0.5 = 12\)</span>. The eigenvalues of <span class="math inline">\(X^{\mathsf{T}}X\)</span> are the squares of the singular values, <strong>36, 9 and 0.25</strong>, so <span class="math inline">\(\operatorname{cond}(X^{\mathsf{T}}X) = 36 / 0.25 = 144 = 12^2\)</span>.</p></li>
+<li><p><span class="math inline">\(\det(A - \lambda I) = (1 - \lambda)^2 - 0.64 = 0\)</span>, so <span class="math inline">\(1 - \lambda = \pm 0.8\)</span> and the eigenvalues are <strong>1.8 and 0.2</strong>, with eigenvectors along <span class="math inline">\((1, 1)\)</span> and <span class="math inline">\((1, -1)\)</span>. They sum to 2, the number of columns, so PC1 carries <span class="math inline">\(1.8 / 2 = 90\%\)</span> of the variation. In words: <strong>most of what varies is the two columns rising and falling together</strong>. PC1 is (proportional to) their sum; the remaining 10% is along <span class="math inline">\((1, -1)\)</span>, how far they differ from each other.</p></li>
+<li><p><strong>No eigenvalues:</strong> <span class="math inline">\(X\)</span> is <span class="math inline">\(3 \times 2\)</span>, not square, so <span class="math inline">\(X\mathbf{v}\)</span> lives in a different space from <span class="math inline">\(\mathbf{v}\)</span> and <span class="math inline">\(X\mathbf{v} = \lambda\mathbf{v}\)</span> makes no sense. <span class="math inline">\(X^{\mathsf{T}}X = \begin{pmatrix} 9 &amp; 0 \\ 0 &amp; 4\end{pmatrix}\)</span>, with eigenvalues 9 and 4, so the singular values are <strong>3 and 2</strong>, and <span class="math inline">\(\operatorname{cond}(X) = 3/2 = 1.5\)</span>. Note the singular value is 2, not <span class="math inline">\(-2\)</span>: singular values are never negative, and the minus sign is carried by <span class="math inline">\(U\)</span> or <span class="math inline">\(V\)</span> instead.</p></li>
+<li><p><strong>The <span class="math inline">\(180°\)</span> rotation</strong> is <span class="math inline">\(-I\)</span>: it sends every <span class="math inline">\(\mathbf{v}\)</span> to <span class="math inline">\(-\mathbf{v}\)</span>, so its only eigenvalue is <span class="math inline">\(-1\)</span> and every nonzero vector is an eigenvector. Each line through the origin stays where it is, with the arrow reversed, and scaling by <span class="math inline">\(-1\)</span> counts as scaling. <strong>The <span class="math inline">\(90°\)</span> rotation</strong> has <span class="math inline">\(\det(A - \lambda I) = \lambda^2 + 1\)</span>, which is never zero for real <span class="math inline">\(\lambda\)</span>, so it has <strong>no real eigenvalues</strong> and no real eigenvectors: it turns every direction. Both have <span class="math inline">\(A^{\mathsf{T}}A = I\)</span>, so both have <strong>singular values 1 and 1</strong>, and condition number 1. Eigenvalues ask which directions come out unturned; singular values ask how much anything is stretched. A rotation stretches nothing, whatever its eigenvalues do.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -983,7 +1074,7 @@ It usually means your columns overlap. The remedy is in the data — drop a colu
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -992,7 +1083,7 @@ It usually means your columns overlap. The remedy is in the data — drop a colu
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b) <span class="math inline">\(25\)</span>.</strong> <span class="math inline">\(\operatorname{cond}(X) = 10/2 = 5\)</span>, and the eigenvalues of <span class="math inline">\(X^{\mathsf{T}}X\)</span> are the squares of the singular values, so the ratio squares: <span class="math inline">\(25\)</span>. Option (a) is <span class="math inline">\(\operatorname{cond}(X)\)</span>, the most tempting wrong answer; (d) squares the wrong thing.</p></li>
@@ -1213,7 +1304,20 @@ It usually means your columns overlap. The remedy is in the data — drop a colu
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1257,7 +1361,7 @@ It usually means your columns overlap. The remedy is in the data — drop a colu
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

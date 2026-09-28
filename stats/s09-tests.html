@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -558,7 +558,10 @@ window.Quarto = {
   <li><a href="#a-test-and-an-interval-are-the-same-calculation" id="toc-a-test-and-an-interval-are-the-same-calculation" class="nav-link" data-scroll-target="#a-test-and-an-interval-are-the-same-calculation">A test and an interval are the same calculation</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -908,6 +911,105 @@ Figure&nbsp;35.3: The <span class="math inline">\(p\)</span>-value for every hyp
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> A sample of 16 has mean 52 and standard deviation 8. Compute the test statistic for <span class="math inline">\(H_0: \mu = 50\)</span>. With <span class="math inline">\(t^{*} = 2.131\)</span> (15 degrees of freedom), do you reject at the 5% level?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><p><em>Warm-up.</em> A test gives <span class="math inline">\(p = 0.20\)</span>. Which reading is correct?</p>
+<ol type="a">
+<li>There is a 20% chance the null hypothesis is true.</li>
+<li>The study shows there is no effect.</li>
+<li>If the null were true, a result at least this extreme would turn up about 20% of the time, so the data give no strong reason to doubt it.</li>
+<li>There is an 80% chance the alternative is true.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>The <span class="math inline">\(p\)</span>-value is computed by <em>assuming</em> the null is true. Can it then be the probability that the null is true?</p>
+</div>
+<div class="hint" data-option="b">
+<p>Failing to rule something out is not the same as showing it. What would a small, underpowered study give you even if the effect were real?</p>
+</div>
+<div class="hint" data-option="d">
+<p><span class="math inline">\(1 - p\)</span> is not a probability about any hypothesis. What is <span class="math inline">\(p\)</span> the probability of, and under what assumption?</p>
+</div>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>A 95% confidence interval for the mean weight change on a diet is <span class="math inline">\((-0.4, 2.6)\)</span> kg. Without computing anything, would a two-sided test at the 5% level reject <span class="math inline">\(H_0: \mu = 0\)</span>? <span class="math inline">\(H_0: \mu = 3\)</span>? <span class="math inline">\(H_0: \mu = -1\)</span>? Then say in words what the interval tells you that the first test does not.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>A machine is meant to fill bottles with 100 ml. A sample of 25 bottles has mean 103 ml and standard deviation 5 ml. Test <span class="math inline">\(H_0: \mu = 100\)</span> against a two-sided alternative using <span class="math inline">\(t^{*} = 2.064\)</span> (24 degrees of freedom), give the 95% interval, and write the result as a sentence with units.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>A website tries a new button colour on 50,000 visitors. Time on the page rises by 0.2 seconds, 95% CI <span class="math inline">\((0.1, 0.3)\)</span> seconds, <span class="math inline">\(p &lt; 0.001\)</span>. The manager says: “Highly significant, so this is a big win.” Which response is best?</p>
+<ol type="a">
+<li>Agreed: a <span class="math inline">\(p\)</span>-value that small shows a large effect.</li>
+<li>The result is probably a false positive, since the effect is so small.</li>
+<li>The increase is hard to explain by chance alone, but it is small, 0.1 to 0.3 seconds, and whether that is a win is a business question the <span class="math inline">\(p\)</span>-value cannot answer.</li>
+<li>Nothing can be concluded, because a <span class="math inline">\(p\)</span>-value is not the probability that the null is true.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>What happens to the <span class="math inline">\(p\)</span>-value for the same small difference as the sample grows? Which number in the report measures the size?</p>
+</div>
+<div class="hint" data-option="b">
+<p>A tiny <span class="math inline">\(p\)</span> says chance alone would rarely produce a result like this. With 50,000 visitors, is a small effect a sign of a false positive, or of something else?</p>
+</div>
+<div class="hint" data-option="d">
+<p>It is true that <span class="math inline">\(p\)</span> is not the probability of the null. But is the <span class="math inline">\(p\)</span>-value the only thing in the report?</p>
+</div>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>A lab runs 40 independent tests in which, unknown to them, the null hypothesis is true every time. At <span class="math inline">\(\alpha = 0.05\)</span>, how many significant results should they expect? What is the probability of at least one? Say in words what this means for a paper that reports only its one significant result.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> A two-sided <span class="math inline">\(t\)</span>-test with 30 degrees of freedom gives <span class="math inline">\(t = 1.80\)</span> and <span class="math inline">\(p = 0.082\)</span>. Having seen that the mean came out above the null value, the researcher switches to a one-sided test and reports <span class="math inline">\(p = 0.041\)</span>, “significant at 5%”. (a) Check both <span class="math inline">\(p\)</span>-values with <code>stats.t.sf</code>. (b) Why is 0.041 half of 0.082? (c) What is wrong with the switch, and how often does “choose the direction after looking, then test at 5%” reject a true null?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(\text{SE} = 8/\sqrt{16} = 2\)</span>, so <span class="math inline">\(t = (52 - 50)/2 = 1.0\)</span>. Since <span class="math inline">\(1.0 &lt; 2.131\)</span>, <strong>do not reject</strong>; the exact two-sided <span class="math inline">\(p\)</span> is about 0.33. That is not evidence that <span class="math inline">\(\mu = 50\)</span>. It says only that 50 is among the values these 16 observations cannot rule out.</p></li>
+<li><p><strong>(c) A result at least this extreme would turn up about 20% of the time if the null were true.</strong> (a) and (d) turn the conditional round. (b) is the other classic misreading: a large <span class="math inline">\(p\)</span> says only that the data cannot rule the null out, and an underpowered study says that whether or not there is an effect.</p></li>
+<li><p>By the duality, a two-sided test rejects exactly when the null value lies outside the interval. 0 is inside, so <strong>do not reject</strong> <span class="math inline">\(\mu = 0\)</span>; 3 and <span class="math inline">\(-1\)</span> are outside, so <strong>reject</strong> both. The interval adds the size: the data are consistent with anything from a loss of 0.4 kg to a gain of 2.6 kg. So “not significant” here does not mean “no change”; a gain of 2 kg fits these data at least as well as no change does.</p></li>
+<li><p><span class="math inline">\(\text{SE} = 5/\sqrt{25} = 1\)</span> ml, so <span class="math inline">\(t = (103 - 100)/1 = 3.0\)</span>, beyond 2.064: <strong>reject</strong> <span class="math inline">\(H_0\)</span> (the exact <span class="math inline">\(p\)</span> is about 0.006). The interval is <span class="math inline">\(103 \pm 2.064 = (100.94, 105.06)\)</span> ml. As a sentence: the machine fills an estimated 103 ml on average (95% CI 100.9 to 105.1 ml), overfilling by somewhere between about 1 and 5 ml. Whether that matters is a question about cost, not statistics.</p></li>
+<li><p><strong>(c) Hard to explain by chance, but small.</strong> With 50,000 visitors almost any non-zero difference comes out significant. The size lives in the interval, in seconds, and the whole interval is under a third of a second. (d) is true about <span class="math inline">\(p\)</span> and throws away the interval, which is the most useful part of the report.</p></li>
+<li><p>Each test is significant with probability 0.05, so expect <span class="math inline">\(40 \times 0.05 = 2\)</span>. The number significant is <span class="math inline">\(\text{Binomial}(40, 0.05)\)</span>, from <a href="../stats/s06-distributions.html">S6</a>, and <span class="math inline">\(P(\text{at least one}) = 1 - 0.95^{40} \approx 0.87\)</span>. In words: even with nothing going on, a lab that runs 40 tests will very probably find something “significant”. A single significant result, reported without saying how many tests were run, carries little weight. <a href="../stats/s12-going-wrong.html">S12</a> returns to this.</p></li>
+<li><ol type="a">
+<li><code>2 * stats.t.sf(1.80, 30)</code> gives 0.082 and <code>stats.t.sf(1.80, 30)</code> gives 0.041.</li>
+<li>The <span class="math inline">\(t\)</span> distribution is symmetric, so its two tails are equal, and the one-sided test counts only one of them.</li>
+<li>The direction was chosen because of the data. If the null is true, a researcher who always points the test the way the data lean rejects whenever either tail passes the one-sided 5% line, which happens 10% of the time. It is a test at 10% reported as 5%. The honest report is the two-sided <span class="math inline">\(p = 0.082\)</span>, with the interval.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1062,7 +1164,7 @@ The test discards the effect size and its precision, which are the two things a 
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1071,12 +1173,12 @@ The test discards the effect size and its precision, which are the two things a 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(c).</strong> That is the definition. (a) and (b) reverse the conditional; (d) confuses significance with size and cannot be read off a <span class="math inline">\(p\)</span>-value at all — the effect could be enormous or trivial.</p></li>
 <li><p><strong>It is greater than 0.05.</strong> Zero lies inside the interval, and by the duality a two-sided test rejects exactly when the null value falls outside. You cannot tell <em>how much</em> greater without more information — an interval that only just contains zero corresponds to a <span class="math inline">\(p\)</span> a little above 0.05, one that contains it centrally to a <span class="math inline">\(p\)</span> near 1.</p></li>
-<li><p>The <strong>Type I error rate falls to 1%</strong>, by construction — that is what <span class="math inline">\(\alpha\)</span> means. The <strong>Type II error rate rises</strong>, because the threshold has moved further out and more real effects now fall short of it. You cannot reduce both at once without more data.</p></li>
+<li><p>The <strong>Type I error rate falls to 1%</strong>, by construction — that is what <span class="math inline">\(\alpha\)</span> means. The <strong>Type II error rate rises</strong>, because the threshold has moved further out and more real effects now fall short of it. With the same data you cannot reduce both at once: that takes more data, or less noisy measurement.</p></li>
 <li><p><strong>No.</strong> Every one was computed correctly from data generated under the null. Five percent false positives is what a 5% threshold <em>is</em>. A procedure that never gave a false positive would also never detect anything.</p></li>
 <li><p><strong>Essentially not at all.</strong> The two studies provide near-identical evidence. The threshold is a convention placed at 0.05, and nothing about the underlying quantity changes as you step across it. Treating one as a finding and the other as a null result is the single most damaging convention in applied statistics, and it is a large part of why <a href="../stats/s12-going-wrong.html">S12</a> exists.</p></li>
 </ol>
@@ -1291,7 +1393,20 @@ The test discards the effect size and its precision, which are the two things a 
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1335,7 +1450,7 @@ The test discards the effect size and its precision, which are the two things a 
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

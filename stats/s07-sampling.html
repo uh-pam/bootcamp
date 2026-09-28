@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -558,7 +558,10 @@ window.Quarto = {
   <li><a href="#two-more-assumptions-worth-naming" id="toc-two-more-assumptions-worth-naming" class="nav-link" data-scroll-target="#two-more-assumptions-worth-naming">Two more assumptions worth naming</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -883,6 +886,106 @@ n = 100   skewness +0.038   within one sd 68.4%  (normal: 68.3%)</code></pre>
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> A report gives the reaction times of 36 people: mean 420 ms, standard deviation 60 ms. What is the standard error of the mean? Say in words what the 60 ms and the standard error each describe.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> Score each flip of a fair coin 1 for heads and 0 for tails. That population has mean 0.5 and standard deviation 0.5 (the Bernoulli of <a href="../stats/s06-distributions.html">S6</a>). What is the standard error of the proportion of heads in 100 flips?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>A pilot study of 16 people gives a standard error of 2.5 marks. Roughly how many people would you need for a standard error of 1 mark, assuming the standard deviation stays about the same?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>A takeaway’s delivery times have mean 30 minutes and standard deviation 12 minutes, and are mildly right-skewed. Take 36 deliveries at random. Roughly what is the probability that their mean time is over 34 minutes? Say in words why the same calculation would not work for a single delivery.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>A survey of 400 people, drawn independently at random, reports a mean income with standard error £500. Which statement follows?</p>
+<ol type="a">
+<li>About 95% of the people surveyed have incomes within £1,000 of the mean.</li>
+<li>The sample mean is within £500 of the population mean.</li>
+<li>If the survey were repeated the same way, its mean would typically move by around £500 from one repeat to the next.</li>
+<li>With 400 people, incomes are approximately normally distributed.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>The standard error is about the mean, not about individual people. How does it relate to the spread of individual incomes?</p>
+</div>
+<div class="hint" data-option="b">
+<p>A standard error is the typical size of the sampling wobble, not a guaranteed bound. And could a survey be off for a reason that repeating it would never reveal?</p>
+</div>
+<div class="hint" data-option="d">
+<p>What does the central limit theorem make approximately normal: the incomes, or something computed from them?</p>
+</div>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p>Insurance claim amounts are extremely right-skewed: most claims are small and a few are enormous. An analyst takes 40 claims and says: “<span class="math inline">\(n\)</span> is over 30, so the sample mean is approximately normal.” Which response is best?</p>
+<ol type="a">
+<li>Correct: the central limit theorem guarantees it once <span class="math inline">\(n\)</span> is over 30.</li>
+<li>Wrong: the central limit theorem does not apply to skewed populations.</li>
+<li>The theorem may well apply, but how large <span class="math inline">\(n\)</span> must be depends on the population, and for claims this skewed 40 may be far too few. Look at the skewness and check with the bootstrap.</li>
+<li>Correct, and at this sample size the individual claims will be roughly normal too.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Where did the number 30 come from, and on which kind of population was it calibrated?</p>
+</div>
+<div class="hint" data-option="b">
+<p>The theorem needs a finite variance, not symmetry. Is the question whether it applies, or how fast it arrives?</p>
+</div>
+<div class="hint" data-option="d">
+<p>The theorem is about the distribution of the mean. What happens to the shape of the individual observations as you collect more of them?</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> Two readings <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> each have standard deviation 10. Using the variance formula in <em>Two more assumptions worth naming</em>, find the standard deviation of their mean <span class="math inline">\(\bar{X} = (X_1 + X_2)/2\)</span> when the correlation <span class="math inline">\(\rho\)</span> between them is (a) 0, (b) 0.5, (c) <span class="math inline">\(-0.5\)</span>. (Their covariance is <span class="math inline">\(\rho \times 10 \times 10\)</span>.) Say in words what the three answers show.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(\text{SE} = s/\sqrt{n} = 60/\sqrt{36} = 60/6 = 10\)</span> ms. The 60 ms says how much individual people’s reaction times differ from one another. The 10 ms says roughly how much the mean of 36 people would move from one sample to another drawn the same way. Measure more people and the 60 stays about the same while the 10 shrinks.</p></li>
+<li><p>A proportion is the mean of the 0s and 1s, so <span class="math inline">\(\text{SE} = 0.5/\sqrt{100} = 0.05\)</span>, which is five percentage points. The 0.5 is <span class="math inline">\(\sqrt{p(1-p)} = \sqrt{0.25}\)</span>.</p></li>
+<li><p>From the pilot, <span class="math inline">\(s \approx 2.5 \times \sqrt{16} = 10\)</span> marks. For <span class="math inline">\(10/\sqrt{n} = 1\)</span> you need <span class="math inline">\(\sqrt{n} = 10\)</span>, so <span class="math inline">\(n = 100\)</span>. Shrinking the standard error by a factor of 2.5 takes <span class="math inline">\(2.5^2 = 6.25\)</span> times the data, not 2.5 times.</p></li>
+<li><p><span class="math inline">\(\text{SE} = 12/\sqrt{36} = 2\)</span> minutes, and 34 is <span class="math inline">\((34 - 30)/2 = 2\)</span> standard errors above 30. The mean of 36 from a mildly skewed population is close to normal, so the chance is about 2.5% from the 68–95–99.7 rule (<code>stats.norm.sf(2)</code> gives 2.3%). In words: an average over 36 deliveries of more than 34 minutes would happen roughly one time in forty. For a single delivery the spread is 12 minutes, not 2, and the times themselves stay skewed: the theorem makes the <em>mean</em> close to normal, not the observations.</p></li>
+<li><p><strong>(c) The mean would typically move by around £500.</strong> That is what a standard error is: the standard deviation of the sample mean over repeated samples drawn the same way. It says nothing about bias: if the survey reaches the wrong people, every repeat is wrong in the same way. (a) confuses the standard error with the standard deviation, which here would be about <span class="math inline">\(500 \times \sqrt{400} = 10{,}000\)</span> pounds.</p></li>
+<li><p><strong>(c) The theorem may apply, but 40 may be far too few.</strong> <span class="math inline">\(n = 30\)</span> is a rule of thumb calibrated on mildly skewed populations; the lognormal in the lesson was still visibly skewed at <span class="math inline">\(n = 1000\)</span>. (b) is the opposite error: a skewed population with a finite variance does obey the theorem, just slowly.</p></li>
+<li><p><span class="math inline">\(\operatorname{Var}(\bar{X}) = \tfrac{1}{4}\bigl(100 + 100 + 2 \times 100\rho\bigr) = 50(1 + \rho)\)</span>.</p>
+<ol type="a">
+<li><span class="math inline">\(\rho = 0\)</span>: variance 50, standard deviation <span class="math inline">\(\sqrt{50} \approx 7.07\)</span>, which is the usual <span class="math inline">\(10/\sqrt{2}\)</span>.</li>
+<li><span class="math inline">\(\rho = 0.5\)</span>: variance 75, standard deviation <span class="math inline">\(\approx 8.66\)</span>.</li>
+<li><span class="math inline">\(\rho = -0.5\)</span>: variance 25, standard deviation 5. In words: positively related readings carry less information than independent ones, so their mean is less precise than <span class="math inline">\(\sigma/\sqrt{n}\)</span> claims; negatively related readings carry more, and their mean is more precise. Of the three, <span class="math inline">\(\sigma/\sqrt{n}\)</span> is right only for (a).</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1034,7 +1137,7 @@ Some distributions have tails so heavy that the variance does not exist. The sam
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1043,7 +1146,7 @@ Some distributions have tails so heavy that the variance does not exist. The sam
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b).</strong> The sample standard deviation estimates <span class="math inline">\(\sigma\)</span>, which is a property of the population and does not change: it stays near 30. The standard error is <span class="math inline">\(30/\sqrt{n}\)</span>, falling from <span class="math inline">\(30/10 = 3\)</span> to <span class="math inline">\(30/30 = 1\)</span>. Option (c) swaps the two, which is exactly the confusion the question is testing.</p></li>
@@ -1263,7 +1366,20 @@ Some distributions have tails so heavy that the variance does not exist. The sam
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1307,7 +1423,7 @@ Some distributions have tails so heavy that the variance does not exist. The sam
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

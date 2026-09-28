@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,10 @@ window.Quarto = {
   <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes’ theorem</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -892,6 +895,105 @@ ratio 1.72 — a strong start makes a strong finish 1.72 times likelier than cha
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> In a class of 50 students, 20 play football, 15 play tennis and 6 play both. One student is picked at random. Find <span class="math inline">\(P(\text{football or tennis})\)</span> and <span class="math inline">\(P(\text{neither})\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> In the same class, find <span class="math inline">\(P(\text{tennis} \mid \text{football})\)</span> and <span class="math inline">\(P(\text{football} \mid \text{tennis})\)</span>, and say what the denominator of each is.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>In the same class, are playing football and playing tennis independent? Say what your answer means in words.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li><p><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, with <span class="math inline">\(P(A) = 0.2\)</span> and <span class="math inline">\(P(B) = 0.5\)</span>. Which of these is true?</p>
+<ol type="a">
+<li><span class="math inline">\(P(A \cap B) = 0\)</span></li>
+<li><span class="math inline">\(P(A \cup B) = 0.7\)</span></li>
+<li><span class="math inline">\(P(A \cap B) = 0.1\)</span></li>
+<li><span class="math inline">\(P(A \mid B) = 0.5\)</span></li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>An overlap of zero is what <em>mutually exclusive</em> means. What does independence make the overlap?</p>
+</div>
+<div class="hint" data-option="b">
+<p>Adding two probabilities counts the overlap twice. What has to come off?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Under independence, learning that <span class="math inline">\(B\)</span> happened leaves the chance of <span class="math inline">\(A\)</span> where it was. Where was it?</p>
+</div>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>A factory has two machines. Machine 1 makes 60% of the items, and 2% of its items are faulty; machine 2 makes 40%, and 5% of its items are faulty. Working in counts, find the proportion of all items that are faulty, and the probability that a faulty item came from machine 2.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p>A spam filter flags 95% of spam emails and 2% of legitimate ones. A colleague says: “This email was flagged, so there is a 95% chance it is spam.” What do you need to know before you can say how likely it is to be spam?</p>
+<ol type="a">
+<li>Nothing more: the 95% already answers it.</li>
+<li>The proportion of spam emails that the filter misses.</li>
+<li>Nothing more: the answer is 98%, since only 2% of legitimate emails are flagged.</li>
+<li>The proportion of all incoming email that is spam.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Write the 95% with a bar in it. Which side of the bar is “spam”? Which side does the colleague want it on?</p>
+</div>
+<div class="hint" data-option="b">
+<p>That is <span class="math inline">\(1 - 0.95\)</span>, which you already have. What is missing is not about the filter at all.</p>
+</div>
+<div class="hint" data-option="c">
+<p>The 2% is also a probability given something. Given what?</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> Take the filter in question 6. Using 10,000 emails, find <span class="math inline">\(P(\text{spam} \mid \text{flagged})\)</span> (a) in an inbox where 20% of email is spam, and (b) in one where 1% is. Say in words why the same filter gives such different answers.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(P(\text{football or tennis}) = (20 + 15 - 6)/50 = 29/50 = 0.58\)</span>, and <span class="math inline">\(P(\text{neither}) = 1 - 0.58 = 0.42\)</span>. Adding 20 and 15 without subtracting gives <span class="math inline">\(35/50 = 0.70\)</span>, which counts the 6 who play both twice.</p></li>
+<li><p><span class="math inline">\(P(\text{tennis} \mid \text{football}) = 6/20 = 0.3\)</span>: of the 20 who play football, 6 play tennis. <span class="math inline">\(P(\text{football} \mid \text{tennis}) = 6/15 = 0.4\)</span>: of the 15 who play tennis, 6 play football. The same 6 students are on top; the denominators differ, so the answers do.</p></li>
+<li><p><strong>Yes.</strong> <span class="math inline">\(P(\text{football})\,P(\text{tennis}) = 0.4 \times 0.3 = 0.12\)</span>, and <span class="math inline">\(P(\text{both}) = 6/50 = 0.12\)</span>, which is the same. Equivalently, <span class="math inline">\(P(\text{tennis} \mid \text{football}) = 0.3 = P(\text{tennis})\)</span>. In words: knowing that a student plays football tells you nothing about whether they play tennis, since 30% of the footballers play tennis and so do 30% of the whole class. Note that the two conditionals in question 2 still differ; independence does not make them equal.</p></li>
+<li><p><strong>(c) <span class="math inline">\(P(A \cap B) = 0.1\)</span>.</strong> Independence makes the overlap the product, <span class="math inline">\(0.2 \times 0.5 = 0.1\)</span>. So <span class="math inline">\(P(A \cup B) = 0.2 + 0.5 - 0.1 = 0.6\)</span>, not 0.7, and <span class="math inline">\(P(A \mid B) = 0.1/0.5 = 0.2 = P(A)\)</span>, not 0.5. (a) would make them mutually exclusive, which with both probabilities positive rules out independence: knowing that <span class="math inline">\(B\)</span> happened would make <span class="math inline">\(A\)</span> impossible.</p></li>
+<li><p>Take 1,000 items: 600 from machine 1, of which 12 are faulty, and 400 from machine 2, of which 20 are faulty. So <span class="math inline">\(32/1000 = 0.032\)</span> of all items are faulty, the weighted average <span class="math inline">\(0.6 \times 0.02 + 0.4 \times 0.05\)</span>. Of the 32 faulty items, 20 came from machine 2: <span class="math inline">\(P = 20/32 = 0.625\)</span>. In words: five in every eight faulty items come from machine 2, although it makes fewer than half of the items, because its fault rate is two and a half times machine 1’s.</p></li>
+<li><p><strong>(d).</strong> The 95% is <span class="math inline">\(P(\text{flagged} \mid \text{spam})\)</span>; the colleague wants <span class="math inline">\(P(\text{spam} \mid \text{flagged})\)</span>. Reversing a conditional needs the base rate, how common spam is in the first place. (c) makes the same swap with the other number: it reads <span class="math inline">\(P(\text{flagged} \mid \text{legitimate}) = 0.02\)</span> as <span class="math inline">\(P(\text{legitimate} \mid \text{flagged})\)</span>.</p></li>
+<li><ol type="a">
+<li><p>2,000 spam, of which 1,900 are flagged; 8,000 legitimate, of which 160 are flagged. <span class="math inline">\(P = 1900/2060 = 0.92\)</span>.</p></li>
+<li><p>100 spam, of which 95 are flagged; 9,900 legitimate, of which 198 are flagged. <span class="math inline">\(P = 95/293 = 0.32\)</span>.</p></li>
+</ol>
+<p>Same filter, same error rates. In the second inbox legitimate email so outnumbers spam that its 2% error rate produces about twice as many flags as the spam does, so fewer than a third of flagged emails are spam.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1035,7 +1137,7 @@ Adding two probabilities counts the overlap twice. Subtract it once. If the even
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1044,7 +1146,7 @@ Adding two probabilities counts the overlap twice. Subtract it once. If the even
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(d).</strong> An intersection cannot be larger than either event on its own, and <span class="math inline">\(0.4 &gt; 0.3 = P(A)\)</span>. Note that (a), (b) and (c) are all possible: 0 makes them mutually exclusive, 0.18 makes them independent, and 0.3 means <span class="math inline">\(A\)</span> is entirely contained in <span class="math inline">\(B\)</span>.</p></li>
@@ -1264,7 +1366,20 @@ Adding two probabilities counts the overlap twice. Subtract it once. If the even
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1308,7 +1423,7 @@ Adding two probabilities counts the overlap twice. Subtract it once. If the even
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

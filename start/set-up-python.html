@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -528,6 +528,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <li><a href="#check-it-all-works" id="toc-check-it-all-works" class="nav-link" data-scroll-target="#check-it-all-works">7. Check it all works</a></li>
   <li><a href="#every-time-you-come-back" id="toc-every-time-you-come-back" class="nav-link" data-scroll-target="#every-time-you-come-back">Every time you come back</a></li>
   <li><a href="#when-something-goes-wrong" id="toc-when-something-goes-wrong" class="nav-link" data-scroll-target="#when-something-goes-wrong">When something goes wrong</a></li>
+  <li><a href="#if-it-still-will-not-install" id="toc-if-it-still-will-not-install" class="nav-link" data-scroll-target="#if-it-still-will-not-install">If it still will not install</a></li>
   </ul>
 </nav>
     </div>
@@ -663,6 +664,24 @@ document.addEventListener("DOMContentLoaded", function () {
 <p><strong><code>python: command not found</code></strong> on macOS or Linux means you need <code>python3</code> for the one line that creates the environment. On Windows it usually means the PATH box was missed during installation; running the installer again and ticking it is faster than fixing it by hand.</p>
 <p><strong>Keep the whole error.</strong> If you need to ask someone, the exact text of the last line is the single most useful thing you can give them.</p>
 <p>None of this is a test, and struggling with an install says nothing whatsoever about whether you can program. It is the least interesting part of the course and the only part where the computer, not the idea, is the obstacle.</p>
+</section>
+<section id="if-it-still-will-not-install" class="level2">
+<h2 class="anchored" data-anchor-id="if-it-still-will-not-install">If it still will not install</h2>
+<p>Do not let the install hold up everything else. While you sort it out, two things keep you moving.</p>
+<p><strong>Read what needs no code.</strong> <a href="../maths/m01-reading-mathematics.html">M1</a> (reading mathematics) and <a href="../stats/s01-the-question.html">S1</a> (what is the question?) explain everything in prose and pictures; their code only checks the idea. Read them now, and run their code once Python works.</p>
+<p><strong>Run the code in your browser for now.</strong> Google Colab runs Python notebooks on Google’s computers, with NumPy, pandas and Matplotlib already installed. You need a Google account.</p>
+<ol type="1">
+<li>Go to <a href="https://colab.research.google.com/">colab.research.google.com</a> and choose <strong>New notebook</strong>.</li>
+<li>Click the <strong>folder icon</strong> on the left to open the file panel. Make a folder called <code>data</code> there, and upload <code>cohort.csv</code> and <code>background_meta.csv</code> into it (from step 6 above).</li>
+<li>Paste the check from step 7 into a cell and run it. The versions it prints will differ from the ones above, and the table should still be <code>(240, 7)</code>.</li>
+</ol>
+<p>Three things are different, so treat it as a stopgap rather than a home:</p>
+<ul>
+<li><strong>Colab forgets your files</strong> when you close it for a while. Download any notebook you want to keep (<strong>File ▸ Download ▸ .ipynb</strong>), and upload the two data files again at the start of each session.</li>
+<li><strong>Its versions are newer than the ones this course pins</strong>, so some printed output looks different. A number may appear as <code>np.float64(65.27)</code> where these notes show <code>65.27</code>, and some warnings in the pandas lessons may differ.</li>
+<li><strong>P11 needs Python on your own computer</strong>, because it is about setting up a project folder that someone else can rerun.</li>
+</ul>
+<p>Keep the exact error from your install and try again, or ask someone to look at it with you. Nearly every install problem is one of those listed above.</p>
 
 
 </section>
@@ -867,7 +886,20 @@ document.addEventListener("DOMContentLoaded", function () {
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -911,7 +943,7 @@ document.addEventListener("DOMContentLoaded", function () {
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

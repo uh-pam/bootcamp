@@ -47,7 +47,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Try it yourself</strong></td>
-<td style="text-align: left;">Two or three exercises. Full solutions, hidden until you ask.</td>
+<td style="text-align: left;">A few exercises, with full solutions hidden until you ask. In Mathematics and Statistics it ends with <em>More practice</em>: optional questions that start easy and get harder.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Check it in Python</strong></td>
@@ -582,7 +582,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </section>
 <section id="how-to-work-through-a-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-work-through-a-lesson">How to work through a lesson</h2>
-<p>Read it once without stopping, then go back and do the exercises. The reading is a few printed pages and takes most people half an hour to an hour the first time. The exercises take longer, and they are where the learning actually happens.</p>
+<p>Read it through, then go back and do the exercises. The reading is a few printed pages and takes most people half an hour to an hour the first time. The exercises take longer, and they are where the learning actually happens. The longest lessons mark <em>a place to stop</em> partway through the reading, with one question to answer before you go: answering it at the start of your next sitting is even better, because recalling something after a gap is what makes it stick.</p>
 <p>Three habits are worth building deliberately:</p>
 <p><strong>Predict before you run.</strong> When you reach a piece of code, decide what it will print before you run it. When you get it wrong you have learned something specific; when you get it right you have earned some confidence.</p>
 <p><strong>Reveal solutions late.</strong> The solutions are one click away, which makes them very easy to look at too early. Write something down first — even something you suspect is wrong. Comparing a wrong attempt with a correct solution teaches far more than reading a correct solution cold.</p>
@@ -615,7 +615,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <section id="a-note-on-honesty" class="level2">
 <h2 class="anchored" data-anchor-id="a-note-on-honesty">A note on honesty</h2>
 <p>Nothing on this site is marked, which means there is nothing to be gained by getting through it quickly. You can have an AI assistant produce every answer on this site in a few minutes and learn nothing at all.</p>
-<p>If you are taking this as a module, its quizzes work the same way: one for each unit, whose job is to show you, and the people teaching you, where to look again. A score that an assistant earned shows you nothing.</p>
+<p>If you are taking this as a module, its quizzes are the one part that does count: completing them is how the module is passed. But their main job is the same as everything here, to show you, and the people teaching you, where to look again. A score that an assistant earned shows you nothing.</p>
 <p>If you use one — and it is a reasonable tool — use it the way you would use a tutor rather than an answer key: ask it to explain a step you did not follow, ask it why your attempt was wrong, ask it for another example of the same type. Then close it and do the next exercise yourself.</p>
 
 
@@ -821,7 +821,20 @@ document.addEventListener("DOMContentLoaded", function () {
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -865,7 +878,7 @@ document.addEventListener("DOMContentLoaded", function () {
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -558,7 +558,10 @@ window.Quarto = {
   <li><a href="#the-consequence-everything-else-is-built-on" id="toc-the-consequence-everything-else-is-built-on" class="nav-link" data-scroll-target="#the-consequence-everything-else-is-built-on">The consequence everything else is built on</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -882,6 +885,92 @@ Figure&nbsp;29.3: Two students’ marks added together, against one student’s 
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, five at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> A market stall sells <span class="math inline">\(X\)</span> trays of bread a day, where <span class="math inline">\(X\)</span> is 1, 2 or 3 with probabilities 0.2, 0.5 and <span class="math inline">\(c\)</span>. Find <span class="math inline">\(c\)</span>, and find <span class="math inline">\(F(2) = P(X \le 2)\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> A continuous random variable has density <span class="math inline">\(f(x) = 2.5\)</span> for <span class="math inline">\(0 \le x \le 0.4\)</span>, and zero elsewhere. Is it a valid density, although <span class="math inline">\(2.5 &gt; 1\)</span>? Find <span class="math inline">\(P(X \le 0.1)\)</span> and <span class="math inline">\(P(X = 0.1)\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>For the <span class="math inline">\(X\)</span> of question 1, find <span class="math inline">\(E[X]\)</span>, <span class="math inline">\(\operatorname{Var}(X)\)</span> and the standard deviation.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>The stall’s daily profit, in pounds, is <span class="math inline">\(Y = 50X - 20\)</span>, with <span class="math inline">\(X\)</span> as in question 1. Find <span class="math inline">\(E[Y]\)</span> and <span class="math inline">\(\text{sd}(Y)\)</span>, and say what they mean in words.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>A commute is a bus ride (mean 20 minutes, standard deviation 6 minutes) followed by a walk (mean 10 minutes, standard deviation 8 minutes), and the two times are independent. Find the mean and standard deviation of the total.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p>For which pair is it reasonable to add the variances, with no covariance term?</p>
+<ol type="a">
+<li>One person’s blood pressure, measured on Monday and again on Tuesday.</li>
+<li>The incomes of the two adults in one household.</li>
+<li>The scores of two students drawn independently at random from two schools’ registers.</li>
+<li>The rainfall in one town on two consecutive days.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Someone whose blood pressure is high on Monday is likely to have high blood pressure on Tuesday. What sign would the covariance have?</p>
+</div>
+<div class="hint" data-option="b">
+<p>Do two adults in one household share anything that could affect both incomes?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Weather comes in spells. Is a wet Monday informative about Tuesday?</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li>Individual scores have standard deviation <span class="math inline">\(\sigma = 12\)</span> marks. What is the standard error of the mean of 36 independent scores? How many scores would you need for a standard error of 1 mark?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="8" type="1">
+<li><em>Stretch.</em> Two students are drawn independently from a population whose scores have standard deviation 5 marks. A friend says: “They come from the same population, so the difference <span class="math inline">\(X_1 - X_2\)</span> has standard deviation 0.” Find the true standard deviation of <span class="math inline">\(X_1 - X_2\)</span>, and say what the friend has mixed up.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>The probabilities must add to 1, so <span class="math inline">\(c = 1 - 0.2 - 0.5 = 0.3\)</span>. Then <span class="math inline">\(F(2) = P(X = 1) + P(X = 2) = 0.2 + 0.5 = 0.7\)</span>: on 70% of days the stall sells at most two trays.</p></li>
+<li><p><strong>Yes.</strong> It is never negative, and the total area is <span class="math inline">\(2.5 \times 0.4 = 1\)</span>. <span class="math inline">\(P(X \le 0.1) = 2.5 \times 0.1 = 0.25\)</span>, the area of the strip from 0 to 0.1. <span class="math inline">\(P(X = 0.1) = 0\)</span>: a single point has no width, so no area. The height 2.5 is a probability per unit of <span class="math inline">\(x\)</span>, not a probability.</p></li>
+<li><p><span class="math inline">\(E[X] = 1(0.2) + 2(0.5) + 3(0.3) = 2.1\)</span> trays. <span class="math inline">\(E[X^2] = 1(0.2) + 4(0.5) + 9(0.3) = 4.9\)</span>, so <span class="math inline">\(\operatorname{Var}(X) = 4.9 - 2.1^2 = 4.9 - 4.41 = 0.49\)</span> and the standard deviation is <span class="math inline">\(\sqrt{0.49} = 0.7\)</span> trays. Note that 2.1 is not a value <span class="math inline">\(X\)</span> can take: it is a balance point, not a prediction.</p></li>
+<li><p><span class="math inline">\(E[Y] = 50 \times 2.1 - 20 = 85\)</span> pounds. <span class="math inline">\(\operatorname{Var}(Y) = 50^2 \times 0.49 = 1225\)</span>, so <span class="math inline">\(\text{sd}(Y) = 35\)</span> pounds, which is <span class="math inline">\(50 \times 0.7\)</span>; the <span class="math inline">\(-20\)</span> moves the centre and not the spread. In words: in the long run the stall makes £85 a day on average, and its daily profit has a standard deviation of £35 about that.</p></li>
+<li><p>The mean is <span class="math inline">\(20 + 10 = 30\)</span> minutes, with no assumption needed. By independence the variances add: <span class="math inline">\(36 + 64 = 100\)</span> minutes², so the standard deviation is <span class="math inline">\(\sqrt{100} = 10\)</span> minutes. Not <span class="math inline">\(6 + 8 = 14\)</span>: standard deviations do not add, and a slow bus and a quick walk can partly cancel.</p></li>
+<li><p><strong>(c).</strong> Independence is a property of the design, and only (c) has a design that makes the two values independent: separate random draws. In (a), (b) and (d) the two values share a source (one person, one household, one spell of weather), so the covariance is likely to be positive, and adding the variances without it would understate the variance of the total.</p></li>
+<li><p><span class="math inline">\(\sigma/\sqrt{n} = 12/\sqrt{36} = 12/6 = 2\)</span> marks. For a standard error of 1 you need <span class="math inline">\(12/\sqrt{n} = 1\)</span>, so <span class="math inline">\(\sqrt{n} = 12\)</span> and <span class="math inline">\(n = 144\)</span>: four times the data to halve the standard error.</p></li>
+<li><p>Write the difference as <span class="math inline">\(X_1 + (-1)X_2\)</span>. Multiplying by <span class="math inline">\(-1\)</span> multiplies the variance by <span class="math inline">\((-1)^2 = 1\)</span>, and the two draws are independent, so <span class="math inline">\(\operatorname{Var}(X_1 - X_2) = 25 + 25 = 50\)</span> marks² and the standard deviation is <span class="math inline">\(\sqrt{50} = 7.07\)</span> marks. The difference is <em>more</em> variable than either score, because one student can be high while the other is low. The friend has mixed up the mean and the spread: <span class="math inline">\(E[X_1 - X_2] = 0\)</span> is what “same population” gives you. A standard deviation of 0 would need the difference never to vary, as when the same student is counted twice.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1032,7 +1121,7 @@ The correction exists because <span class="math inline">\(\bar{x}\)</span> was e
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1041,7 +1130,7 @@ The correction exists because <span class="math inline">\(\bar{x}\)</span> was e
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b), 12.</strong> <span class="math inline">\(\operatorname{Var}(4X - 7) = 4^2 \times 9 = 144\)</span>, so the standard deviation is <span class="math inline">\(\sqrt{144} = 12\)</span>. Equivalently, multiply the standard deviation by <span class="math inline">\(|4|\)</span>. Option (d) is the variance, offered because reporting a variance where a standard deviation was asked for is the standard slip; the <span class="math inline">\(-7\)</span> affects neither.</p></li>
@@ -1261,7 +1350,20 @@ The correction exists because <span class="math inline">\(\bar{x}\)</span> was e
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1305,7 +1407,7 @@ The correction exists because <span class="math inline">\(\bar{x}\)</span> was e
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

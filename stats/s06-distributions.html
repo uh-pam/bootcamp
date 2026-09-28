@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -560,7 +560,10 @@ window.Quarto = {
   <li><a href="#choosing-then-checking" id="toc-choosing-then-checking" class="nav-link" data-scroll-target="#choosing-then-checking">Choosing, then checking</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -901,6 +904,106 @@ Figure&nbsp;30.3: Quantile-quantile plots against a normal model. Each point put
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> <span class="math inline">\(X \sim \text{Binomial}(10, 0.3)\)</span>. Find <span class="math inline">\(E[X]\)</span>, <span class="math inline">\(\operatorname{Var}(X)\)</span> and <span class="math inline">\(\text{sd}(X)\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> A small shop’s phone rings at a steady average rate of 2 calls an hour, each call independent of the others. Using a Poisson model, what is the probability of an hour with no calls? Say what that means in plain words.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>A quiz has 5 true-or-false questions, and a student guesses every one, independently. What is the probability they get exactly 4 right? At least 4 right?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li><p>Over 60 days a help desk counts the tickets that arrive each day. The mean is 3.0 and the variance is 3.2. A colleague says: “So the data are Poisson distributed.” Which response is best?</p>
+<ol type="a">
+<li>Agreed: the data are Poisson distributed.</li>
+<li>No: the variance is not equal to the mean, so the Poisson is ruled out.</li>
+<li>A Poisson model is tenable: it predicts that the mean equals the variance, and these two are close. That supports the model without proving it.</li>
+<li>A normal model would be better, because 60 days is a large sample.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Data are not “distributed”; they are data. What can a mean and a variance tell you about a model, and what can they not?</p>
+</div>
+<div class="hint" data-option="b">
+<p>Even counts that really do come from a Poisson give a sample mean and variance that differ a little. How far apart are 3.0 and 3.2, next to the lesson’s example of a mean of 4 and a variance of 15?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Each day’s value is still a small whole-number count. What would a normal model say about a day with 2.5 tickets, or with a negative number?</p>
+</div>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>Bags of flour from a filling machine weigh 1000 g on average, with standard deviation 5 g, and a normal model is adequate. Using the 68–95–99.7 rule, roughly what fraction of bags weigh between 995 g and 1010 g? Say the answer in words.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p>A ward has 20 patients, and each has about a 10% chance of catching a winter virus this month. A colleague models the number who catch it as <span class="math inline">\(\text{Binomial}(20, 0.1)\)</span> and quotes a standard deviation of <span class="math inline">\(\sqrt{20 \times 0.1 \times 0.9} \approx 1.34\)</span> patients. What is the main concern with that?</p>
+<ol type="a">
+<li>A probability of 0.1 is too small for a binomial.</li>
+<li>A virus spreads between patients on one ward, so the trials are not independent, and the count is likely to be more spread out than 1.34 suggests.</li>
+<li>It should be a Poisson instead, because catching a virus is a rare event.</li>
+<li>Patients differ in their risk, which makes the true spread larger than 1.34.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>The binomial formula works for any <span class="math inline">\(p\)</span> between 0 and 1. Look instead at the two assumptions the lesson says fail most often.</p>
+</div>
+<div class="hint" data-option="c">
+<p>A Poisson assumes the events happen independently too. Would switching family fix what is wrong with the binomial here?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Check the direction. The lesson shows that independent trials with different probabilities give a <em>smaller</em> variance than the binomial formula. So what could make it larger?</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> Taxis pass a street corner as a Poisson process at an average of 6 an hour, so your wait is exponential with rate 6 per hour. (a) What is the mean wait, in minutes? (b) What is the probability you wait more than 20 minutes? (c) You have already waited 15 minutes. What is the probability you wait at least another 20? (d) Why would this model be poor for a bus that runs to a timetable every 10 minutes?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(E[X] = np = 10 \times 0.3 = 3\)</span> and <span class="math inline">\(\operatorname{Var}(X) = np(1-p) = 10 \times 0.3 \times 0.7 = 2.1\)</span>, so <span class="math inline">\(\text{sd}(X) = \sqrt{2.1} \approx 1.45\)</span>. Stopping at the variance and reporting 2.1 as the spread is the usual slip.</p></li>
+<li><p><span class="math inline">\(P(X = 0) = e^{-2} \times 2^0/0! = e^{-2} \approx 0.135\)</span>, since <span class="math inline">\(2^0 = 1\)</span> and <span class="math inline">\(0! = 1\)</span>. In words: under this model about 13.5% of hours, roughly one hour in seven, pass with no calls at all.</p></li>
+<li><p>The count of right answers is <span class="math inline">\(\text{Binomial}(5, 0.5)\)</span>. <span class="math inline">\(P(X = 4) = \binom{5}{4} \times 0.5^4 \times 0.5 = 5/32 \approx 0.156\)</span>. At least 4 adds <span class="math inline">\(P(X = 5) = 1/32\)</span>, so <span class="math inline">\(P(X \ge 4) = 6/32 \approx 0.188\)</span>. The tempting slip is to forget the <span class="math inline">\(\binom{5}{4} = 5\)</span>: there are five different questions the one wrong answer could be.</p></li>
+<li><p><strong>(c) A Poisson model is tenable.</strong> Mean equal to variance is the prediction a Poisson makes, and 3.0 against 3.2 passes it. Passing a check supports a model; it does not make the data “Poisson”, which is not a property data have. (b) is too strict: the sample mean and variance of genuine Poisson counts differ a little by chance, and what refutes the model is a variance several times the mean.</p></li>
+<li><p>995 g is one standard deviation below the mean and 1010 g is two above. The range is not symmetric about 1000, so each side takes half of its own band: half of 68% between 995 and 1000, and half of 95% between 1000 and 1010. That is <span class="math inline">\(34\% + 47.5\% = 81.5\%\)</span>. In words: about four bags in five weigh between 995 g and 1010 g. (<code>stats.norm.cdf</code> gives 81.9%; the rule is rounded.)</p></li>
+<li><p><strong>(b) The trials are not independent.</strong> One infected patient raises the chance for the others, so patients tend to catch it together or not at all. That is positive dependence, and it inflates the variance above <span class="math inline">\(np(1-p)\)</span>. The mean is still about <span class="math inline">\(20 \times 0.1 = 2\)</span> patients; it is the 1.34 that is too small. (d) gets the direction wrong: unequal risks on their own, with the patients independent, make the spread no larger, and usually a little smaller.</p></li>
+<li><ol type="a">
+<li><span class="math inline">\(E[X] = 1/\lambda = 1/6\)</span> of an hour, which is 10 minutes.</li>
+<li>Waiting more than 20 minutes means no taxi in 20 minutes. In a third of an hour you expect <span class="math inline">\(6/3 = 2\)</span> taxis, so this is a Poisson count with mean 2 coming out 0: <span class="math inline">\(e^{-2} \approx 0.135\)</span>, the same number as question 2 and for the same reason.</li>
+<li>Still <span class="math inline">\(e^{-2} \approx 0.135\)</span>. The exponential is memoryless, so the 15 minutes already spent tell you nothing.</li>
+<li>A timetabled bus is the opposite of memoryless: the longer you have waited, the sooner the next one is due, and if it keeps to time you never wait more than 10 minutes. The exponential model would put <span class="math inline">\(e^{-1} \approx 0.37\)</span> on waiting longer than that.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1020,7 +1123,7 @@ It does no such thing. It says something about the distribution of the <em>sampl
 </ol></li>
 </ol>
 <div class="hint" data-option="a">
-<p>A binomial’s variance, <span class="math inline">\(np(1-p)\)</span>, is always below its mean <span class="math inline">\(np\)</span>. Here they are almost equal.</p>
+<p>A binomial’s variance, <span class="math inline">\(np(1-p)\)</span>, is below its mean <span class="math inline">\(np\)</span> whenever <span class="math inline">\(p &gt; 0\)</span>. Here they are almost equal.</p>
 </div>
 <div class="hint" data-option="c">
 <p>The variable is a count of whole numbers. Look for a family made for counts.</p>
@@ -1051,7 +1154,7 @@ It does no such thing. It says something about the distribution of the <em>sampl
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1060,7 +1163,7 @@ It does no such thing. It says something about the distribution of the <em>sampl
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b), Poisson.</strong> Mean and variance being nearly equal is the Poisson’s signature. (a) is possible but a binomial has variance <span class="math inline">\(np(1-p)\)</span>, which is below its mean <span class="math inline">\(np\)</span> for every <span class="math inline">\(p\)</span> strictly between 0 and 1; (c) and (d) are for continuous variables, and an exponential would have variance <span class="math inline">\(36\)</span>, not 6.</p></li>
@@ -1282,7 +1385,20 @@ It does no such thing. It says something about the distribution of the <em>sampl
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1326,7 +1442,7 @@ It does no such thing. It says something about the distribution of the <em>sampl
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

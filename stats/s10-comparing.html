@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,10 @@ window.Quarto = {
   <li><a href="#when-the-assumptions-are-uncomfortable" id="toc-when-the-assumptions-are-uncomfortable" class="nav-link" data-scroll-target="#when-the-assumptions-are-uncomfortable">When the assumptions are uncomfortable</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -891,6 +894,97 @@ Figure&nbsp;36.3: Observed counts minus the counts independence predicts, for th
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> Two independent groups are compared. The standard error of the difference between their means is 2.5 marks, and group A’s mean has standard error 1.5 marks. What is the standard error of group B’s mean, and which group’s mean is estimated more precisely?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> In one town 24 of 80 surveyed households compost their food waste; in another, 36 of 90 do. Comparing the second town with the first, give the difference in percentage points and the ratio of the two proportions, and say each in words.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Group A: <span class="math inline">\(n = 36\)</span>, mean 68 marks, standard deviation 12. Group B: <span class="math inline">\(n = 64\)</span>, mean 62 marks, standard deviation 8. Compute the standard error of the difference and an approximate 95% interval for it (use <span class="math inline">\(t^{*} \approx 2\)</span>). State the result as a sentence with units.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Five runners time a 5 km run before and after a training plan. Their improvements, in minutes, are 1, 3, 2, 4 and 5. Using <span class="math inline">\(t_{0.975,\,4} = 2.776\)</span>, give a 95% interval for the mean improvement and say what it means in words. Why would a two-sample test on the “before” and “after” times be the wrong analysis?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>A trial of two diets finds that the diet B group lost 1.5 kg more on average than the diet A group, 95% CI <span class="math inline">\((-0.5, 3.5)\)</span> kg, <span class="math inline">\(p = 0.14\)</span>. Which summary is best?</p>
+<ol type="a">
+<li>The two diets work equally well.</li>
+<li>The data are consistent with diet B doing anywhere from 0.5 kg worse to 3.5 kg better, so this trial cannot tell which diet is better.</li>
+<li>There is an 86% chance that diet B is better.</li>
+<li>Diet B is 1.5 kg better; the <span class="math inline">\(p\)</span>-value only reflects a small sample.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>“Not significant” means the data could not rule out a difference of zero. Do they rule out a difference of 3 kg?</p>
+</div>
+<div class="hint" data-option="c">
+<p><span class="math inline">\(1 - p\)</span> is not the probability of anything about the diets. What is <span class="math inline">\(p\)</span> computed assuming?</p>
+</div>
+<div class="hint" data-option="d">
+<p>1.5 kg is the centre of the interval, not a settled answer. Which values does the interval still include?</p>
+</div>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>Of 50 students who used a course forum, 40 completed the course; of 50 who did not, 30 completed. (a) Work out the expected counts under independence and the chi-square statistic, by hand. (b) With 1 degree of freedom, <code>stats.chi2.sf(statistic, 1)</code> gives the <span class="math inline">\(p\)</span>-value. What is it? (c) Does this show that using the forum makes students complete?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> A drug trial reports that a side effect “doubles the risk”: 6 of 200 treated patients had it, against 3 of 200 on placebo. (a) Give the difference in percentage points and the ratio. (b) Compute the normal-approximation 95% interval for the difference. (c) Give two reasons “doubles the risk” claims more than these data support.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Standard errors combine through their squares, so <span class="math inline">\(2.5^2 = 1.5^2 + \text{SE}_B^2\)</span>, giving <span class="math inline">\(\text{SE}_B = \sqrt{6.25 - 2.25}
+= \sqrt{4} = 2.0\)</span> marks. Not <span class="math inline">\(2.5 - 1.5 = 1.0\)</span>: subtracting the standard errors themselves is the same slip as adding them. Group A’s mean, with the smaller standard error, is estimated more precisely.</p></li>
+<li><p><span class="math inline">\(24/80 = 0.30\)</span> and <span class="math inline">\(36/90 = 0.40\)</span>. Taking the second town minus the first, the difference is 10 percentage points and the ratio is <span class="math inline">\(0.40/0.30 \approx 1.33\)</span>. In words: in the second town 10 more households in every 100 compost, which is a third more than in the first. Both statements are true; they answer different questions, and giving both lets a reader judge the size for themselves.</p></li>
+<li><p><span class="math inline">\(\text{SE} = \sqrt{12^2/36 + 8^2/64} = \sqrt{4 + 1} = \sqrt{5} \approx 2.24\)</span> marks. A minus B is 6 marks, so the interval is <span class="math inline">\(6 \pm 2 \times 2.236 =
+6 \pm 4.47\)</span>, giving <span class="math inline">\((1.53, 10.47)\)</span>. As a sentence: group A scored an estimated 6 marks higher than group B (95% CI about 1.5 to 10.5 marks). Welch’s exact multiplier for these numbers is 2.006, which moves each end by less than 0.02.</p></li>
+<li><p>The mean improvement is 3 minutes. The deviations from 3 are <span class="math inline">\(-2, 0, -1, 1, 2\)</span>, whose squares sum to 10, so <span class="math inline">\(s^2 = 10/4 = 2.5\)</span> and <span class="math inline">\(s \approx 1.58\)</span>. Then <span class="math inline">\(\text{SE} = 1.581/\sqrt{5} \approx 0.707\)</span>, the half-width is <span class="math inline">\(2.776 \times 0.707 \approx 1.96\)</span>, and the interval is <span class="math inline">\((1.04, 4.96)\)</span> minutes. In words: the mean improvement for runners like these is estimated at 3 minutes, and anything from about 1 to 5 minutes is consistent with the data. With no comparison group, some of that could be the season or plain practice rather than the plan. A two-sample test is wrong because the “before” and “after” times are the same five people, not two independent groups: its standard error would include the large differences between runners, which pairing removes.</p></li>
+<li><p><strong>(b) Anything from 0.5 kg worse to 3.5 kg better.</strong> A non-significant result is not evidence of no difference. This interval contains zero, and it also contains differences large enough to matter. (d) overclaims in the other direction, reporting the centre as if the interval were not there.</p></li>
+<li><ol type="a">
+<li>The completion totals are 70 and 30 out of 100, and each row has 50, so each group’s expected counts are <span class="math inline">\(50 \times 70/100 = 35\)</span> completers and 15 non-completers. Every cell is 5 away from its expected count, so <span class="math inline">\(\chi^2 = 5^2/35 + 5^2/15 + 5^2/35 + 5^2/15 \approx 4.76\)</span>.</li>
+<li><span class="math inline">\(p \approx 0.029\)</span>.</li>
+<li><strong>No.</strong> Students chose whether to use the forum, and those who did may have been more motivated to begin with. The test says completion and forum use are associated in these 100 students, more strongly than chance would easily produce; it says nothing about why. (If you check in Python, <code>stats.chi2_contingency</code> applies a continuity correction to a 2×2 table unless you pass <code>correction=False</code>, and reports 3.86 instead.)</li>
+</ol></li>
+<li><ol type="a">
+<li>3% against 1.5%: a difference of 1.5 percentage points, and a ratio of 2.</li>
+<li><span class="math inline">\(\text{SE} = \sqrt{0.03 \times 0.97/200 + 0.015 \times 0.985/200}
+\approx 0.0148\)</span>, so <span class="math inline">\(0.015 \pm 1.96 \times 0.0148\)</span> gives about <span class="math inline">\((-0.014, 0.044)\)</span>: from 1.4 points lower to 4.4 points higher.</li>
+<li>Any two of these. The interval includes zero, so the data cannot rule out no difference at all, let alone pin the ratio at 2. With only 6 and 3 events the normal approximation is itself unreliable (the rule of thumb wants at least ten of each), so even that interval is rough. And “doubles” without the baseline hides that the absolute change is 1.5 extra cases per 100 patients.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -978,11 +1072,11 @@ df = (rows - 1)(cols - 1) = 4   scipy says 4</code></pre>
 <dl>
 <dt>Comparing two intervals by eye instead of computing the difference</dt>
 <dd>
-Overlapping intervals can hide a significant difference and non-overlapping ones can exaggerate. The difference has its own standard error, <span class="math inline">\(\sqrt{\text{SE}_A^2 + \text{SE}_B^2}\)</span>, and its own interval. Compute it.
+Overlapping intervals can hide a significant difference, because the eyeball test demands far stronger evidence than the 5% it seems to use. The difference has its own standard error, <span class="math inline">\(\sqrt{\text{SE}_A^2 + \text{SE}_B^2}\)</span>, and its own interval. Compute it.
 </dd>
 <dt>Adding standard errors instead of adding their squares</dt>
 <dd>
-<span class="math inline">\(\text{SE}_A + \text{SE}_B\)</span> is always too big. Square, add, take the root — the variance rule of <a href="../stats/s05-random-variables.html">S5</a>.
+<span class="math inline">\(\text{SE}_A + \text{SE}_B\)</span> is too big whenever both are above zero. Square, add, take the root — the variance rule of <a href="../stats/s05-random-variables.html">S5</a>.
 </dd>
 <dt>Using a two-sample test on paired data</dt>
 <dd>
@@ -1053,7 +1147,7 @@ Five groups make ten pairwise comparisons, and with ten tests at 5% a “signifi
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1062,7 +1156,7 @@ Five groups make ten pairwise comparisons, and with ten tests at 5% a “signifi
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b), 5.</strong> <span class="math inline">\(\sqrt{3^2 + 4^2} = \sqrt{25} = 5\)</span>. Option (c) adds the standard errors, which is what you would get only if the two estimates were perfectly <em>negatively</em> correlated — the covariance term <span class="math inline">\(-2\rho\,\text{SE}_A \text{SE}_B\)</span> is largest when <span class="math inline">\(\rho = -1\)</span>; (d) is the variance, not the standard error.</p></li>
@@ -1282,7 +1376,20 @@ Five groups make ten pairwise comparisons, and with ten tests at 5% a “signifi
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1326,7 +1433,7 @@ Five groups make ten pairwise comparisons, and with ten tests at 5% a “signifi
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

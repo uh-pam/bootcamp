@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,10 @@ window.Quarto = {
   <li><a href="#the-other-two-combinations" id="toc-the-other-two-combinations" class="nav-link" data-scroll-target="#the-other-two-combinations">The other two combinations</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -857,6 +860,117 @@ Figure&nbsp;23.3: All 237 students in the first panel, then the same students sp
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> Three points have <span class="math inline">\(x = 1, 2, 3\)</span> and <span class="math inline">\(y = 6, 4, 2\)</span>. Compute the covariance. Then, without further arithmetic, say what <span class="math inline">\(r\)</span> is.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><p><em>Warm-up.</em> Over a summer, the correlation between the day’s temperature in °C and the number of ice creams sold is <span class="math inline">\(0.7\)</span>. A colleague recodes temperature as “degrees below 30 °C”, that is, <span class="math inline">\(30 - C\)</span>. What is the correlation between the new variable and ice creams sold?</p>
+<ol type="a">
+<li><span class="math inline">\(0.7\)</span></li>
+<li><span class="math inline">\(-0.7\)</span></li>
+<li><span class="math inline">\(0.3\)</span></li>
+<li><span class="math inline">\(0\)</span></li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Subtracting from 30 is a shift and a multiplication by <span class="math inline">\(-1\)</span>. The shift does nothing. What does the <span class="math inline">\(-1\)</span> do?</p>
+</div>
+<div class="hint" data-option="c">
+<p>Recoding a variable does no arithmetic on <span class="math inline">\(r\)</span> itself. Which property of <span class="math inline">\(r\)</span> covers multiplying by a negative number?</p>
+</div>
+<div class="hint" data-option="d">
+<p>The points are exactly as tightly clustered about a line as before. What, if anything, has changed?</p>
+</div>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Compute Pearson’s <span class="math inline">\(r\)</span> for the five pairs <span class="math inline">\((1, 2)\)</span>, <span class="math inline">\((2, 1)\)</span>, <span class="math inline">\((3, 4)\)</span>, <span class="math inline">\((4, 3)\)</span>, <span class="math inline">\((5, 5)\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Five pairs of values have <span class="math inline">\(x = 10, 20, 30, 40, 50\)</span> and <span class="math inline">\(y = 7, 3, 9, 12, 8\)</span>. Find Spearman’s rank correlation.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>A firm of 200 employees has 60 who work from home, of whom 45 report high job satisfaction, and 140 who work in the office, of whom 70 do.</p>
+<ol type="a">
+<li>What proportion of home workers report high satisfaction?</li>
+<li>What proportion of those reporting high satisfaction work from home?</li>
+<li>Which of the two answers “are home workers more satisfied than office workers?”, and what is the answer, in words?</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p>Across 30 towns, the correlation between the number of cafés and the number of recorded burglaries is <span class="math inline">\(0.85\)</span>. What is the best first response?</p>
+<ol type="a">
+<li>Cafés attract burglars, so the relationship is causal.</li>
+<li>With <span class="math inline">\(r = 0.85\)</span> the relationship must be close to a straight line.</li>
+<li>Both counts probably grow with population: compare rates per 1,000 residents.</li>
+<li>The correlation is meaningless, because the towns differ.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>The coefficient is symmetric and knows nothing about the design. What else could make both counts large in the same towns?</p>
+</div>
+<div class="hint" data-option="b">
+<p>Think of the four-panel figure. Can one number certify a shape?</p>
+</div>
+<div class="hint" data-option="d">
+<p>The number is a correct description of these 30 towns. The question is what it is a description of.</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><p><em>Stretch.</em> In one background group, hours of practice have mean 20 and standard deviation 6, final scores have mean 60 and standard deviation 8.4, and <span class="math inline">\(r = 0.5\)</span>.</p>
+<ol type="a">
+<li>What score does the fitted line predict for students in the group who practised 26 hours?</li>
+<li>What is the slope of the fitted line in marks per hour?</li>
+<li>Name one thing (b) does not entitle you to say.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>The means are 2 and 4. The deviations are <span class="math inline">\(-1, 0, 1\)</span> for <span class="math inline">\(x\)</span> and <span class="math inline">\(2, 0, -2\)</span> for <span class="math inline">\(y\)</span>, so the products are <span class="math inline">\(-2, 0, -2\)</span>, adding to <span class="math inline">\(-4\)</span>. Dividing by <span class="math inline">\(n - 1 = 2\)</span> gives <span class="math inline">\(\operatorname{cov}(x, y) = -2\)</span>. And <span class="math inline">\(r = -1\)</span>: the three points lie exactly on the line <span class="math inline">\(y = 8 - 2x\)</span>, which has negative slope.</p></li>
+<li><p><strong>(b) <span class="math inline">\(-0.7\)</span>.</strong> <span class="math inline">\(30 - C\)</span> is a shift, which changes nothing, and a multiplication by <span class="math inline">\(-1\)</span>, which flips the sign of <span class="math inline">\(r\)</span> and leaves its size alone. Hot days now have small values, so the cloud leans the other way, exactly as tightly as before.</p></li>
+<li><p>Both means are 3. The deviations are <span class="math inline">\(-2, -1, 0, 1, 2\)</span> for <span class="math inline">\(x\)</span> and <span class="math inline">\(-1, -2, 1, 0, 2\)</span> for <span class="math inline">\(y\)</span>, so the products are <span class="math inline">\(2, 2, 0, 0, 4\)</span>, adding to 8, and <span class="math inline">\(\operatorname{cov} = 8/4 = 2\)</span>. Each variable’s squared deviations add to 10, so <span class="math inline">\(s_x^2 = s_y^2 = 10/4 = 2.5\)</span>. Then <span class="math inline">\(r = 2/(\sqrt{2.5}\sqrt{2.5}) = 2/2.5 = 0.8\)</span>.</p></li>
+<li><p>The <span class="math inline">\(x\)</span> ranks are <span class="math inline">\(1, 2, 3, 4, 5\)</span>. Ranking <span class="math inline">\(y\)</span> gives <span class="math inline">\(2, 1, 4, 5, 3\)</span> (3 is smallest, 12 largest). Correlating the ranks: the rank deviations are <span class="math inline">\(-2, -1, 0, 1, 2\)</span> and <span class="math inline">\(-1, -2, 1, 2, 0\)</span>, whose products add to <span class="math inline">\(6\)</span>, so the covariance is <span class="math inline">\(6/4 = 1.5\)</span>; each set of ranks has variance <span class="math inline">\(2.5\)</span>. Spearman’s correlation is <span class="math inline">\(1.5/2.5 = 0.6\)</span>.</p></li>
+<li><ol type="a">
+<li><span class="math inline">\(45/60 = 0.75\)</span>. (b) <span class="math inline">\(45 + 70 = 115\)</span> report high satisfaction, and <span class="math inline">\(45/115 = 0.39\)</span> of them work from home. (c) Question (a) does, set beside its office counterpart <span class="math inline">\(70/140 = 0.50\)</span>: 75% of home workers report high satisfaction against 50% of office workers. The 0.39 in (b) is below a half only because fewer people work from home; it answers “who are the satisfied staff?”, a different question. And the design is observational, so it does not show that working from home causes the difference.</li>
+</ol></li>
+<li><p><strong>(c).</strong> Bigger towns tend to have more of both, so a correlation across towns of very different sizes partly measures size. Dividing by population, or comparing towns of similar size, asks the question you meant. (a) reads a correlation as a cause; (b) does not follow, since one distant point or two clusters can produce an <span class="math inline">\(r\)</span> that high; (d) goes too far, since the number is a correct description of these 30 towns.</p></li>
+<li><ol type="a">
+<li><p>26 hours is <span class="math inline">\((26 - 20)/6 = 1\)</span> standard deviation above the mean. In standardised units the fitted line has slope <span class="math inline">\(r\)</span>, so it predicts a score <span class="math inline">\(0.5\)</span> standard deviations above the mean score: <span class="math inline">\(60 + 0.5 \times 8.4 = 64.2\)</span> marks. That is the line’s prediction; the summaries alone cannot tell you what those students actually averaged.</p></li>
+<li><p><span class="math inline">\(0.5 \times 8.4/6 = 0.7\)</span> marks per hour. The tempting slip is to read <span class="math inline">\(r = 0.5\)</span> as half a mark per hour; <span class="math inline">\(r\)</span> has no units, and the slope in the original units is <span class="math inline">\(r\,s_y/s_x\)</span>.</p></li>
+<li><p>That one extra hour of practice would raise a particular student’s score by 0.7 marks. The slope describes the cloud of students who chose their own hours; it is not a lever.</p></li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1001,7 +1115,7 @@ A correlation from 8 observations and one from 8,000 are not the same kind of ev
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1010,7 +1124,7 @@ A correlation from 8 observations and one from 8,000 are not the same kind of ev
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(d).</strong> Correlation is invariant to shifting and positive rescaling, so (a),</p>
@@ -1233,7 +1347,20 @@ A correlation from 8 observations and one from 8,000 are not the same kind of ev
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1277,7 +1404,7 @@ A correlation from 8 observations and one from 8,000 are not the same kind of ev
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

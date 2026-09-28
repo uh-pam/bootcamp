@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -558,7 +558,10 @@ window.Quarto = {
   <li><a href="#the-dot-product" id="toc-the-dot-product" class="nav-link" data-scroll-target="#the-dot-product">The dot product</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -851,6 +854,107 @@ Figure&nbsp;27.3: The 238 students, each plotted at its centred hours and centre
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, five at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> For <span class="math inline">\(\mathbf{u} = (2, -1, 3)\)</span> and <span class="math inline">\(\mathbf{v} = (1, 4, -2)\)</span>, find <span class="math inline">\(\mathbf{u} - 2\mathbf{v}\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><p><em>Warm-up.</em> What is the length of <span class="math inline">\((2, -6, 3)\)</span>?</p>
+<ol type="a">
+<li><span class="math inline">\(7\)</span></li>
+<li><span class="math inline">\(-1\)</span></li>
+<li><span class="math inline">\(49\)</span></li>
+<li><span class="math inline">\(11\)</span></li>
+</ol></li>
+</ol>
+<div class="hint" data-option="b">
+<p>A length cannot be negative. What does Pythagoras do to each component before adding?</p>
+</div>
+<div class="hint" data-option="c">
+<p>That is the sum of the squares. There is one more step.</p>
+</div>
+<div class="hint" data-option="d">
+<p>You added the sizes of the components. Pythagoras squares them first.</p>
+</div>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>For <span class="math inline">\(\mathbf{a} = (1, 2)\)</span> and <span class="math inline">\(\mathbf{b} = (3, 1)\)</span>, find <span class="math inline">\(\mathbf{a} \cdot \mathbf{b}\)</span>, both lengths, and the angle between the two vectors.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Find the value of <span class="math inline">\(k\)</span> that makes <span class="math inline">\((2, k, 1)\)</span> and <span class="math inline">\((3, -1, 4)\)</span> orthogonal.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>A spreadsheet records 4 measurements on each of 150 plants, one row per plant. Which statement is right?</p>
+<ol type="a">
+<li>The petal-length column is a vector in <span class="math inline">\(\mathbb{R}^{150}\)</span>, and one plant’s row is a vector in <span class="math inline">\(\mathbb{R}^{4}\)</span>.</li>
+<li>The petal-length column is a vector in <span class="math inline">\(\mathbb{R}^{4}\)</span>, and one plant’s row is a vector in <span class="math inline">\(\mathbb{R}^{150}\)</span>.</li>
+<li>Both are vectors in <span class="math inline">\(\mathbb{R}^{600}\)</span>, since the table holds 600 numbers.</li>
+<li>The petal-length column is a vector in <span class="math inline">\(\mathbb{R}^{1}\)</span>, since it is one variable.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="b">
+<p>The dimension is the number of components. How many numbers are in one column, and how many in one row?</p>
+</div>
+<div class="hint" data-option="c">
+<p>A vector here is one row or one column, not the whole table. Count the numbers in just one of them.</p>
+</div>
+<div class="hint" data-option="d">
+<p>One variable, but how many numbers does its column hold? The dimension counts components, not variables.</p>
+</div>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>Three students are recorded as (hours of practice, score): <span class="math inline">\(A = (10, 60)\)</span>, <span class="math inline">\(B = (12, 64)\)</span> and <span class="math inline">\(C = (30, 61)\)</span>. Find the distances from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> and from <span class="math inline">\(A\)</span> to <span class="math inline">\(C\)</span>. Which student is nearer to <span class="math inline">\(A\)</span>, and what does “nearer” mean here in words?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li>Two columns are <span class="math inline">\(\mathbf{x} = (2, 3, 4)\)</span> and <span class="math inline">\(\mathbf{y} = (4, 6, 5)\)</span>. Centre both, then find the cosine of the angle between the centred vectors and the angle itself. What is the correlation, and what does it say about the two columns?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="8" type="1">
+<li><em>Stretch.</em> For the same <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{y}\)</span>, compute the cosine of the angle <em>without</em> centring. Why is it so different from the answer to question 7, and which one is the correlation? If you like, confirm with <code>np.corrcoef(x, y)[0, 1]</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(2\mathbf{v} = (2, 8, -4)\)</span>, so <span class="math inline">\(\mathbf{u} - 2\mathbf{v} = (2 - 2,\; -1 - 8,\; 3 + 4) = (0, -9, 7)\)</span>. The last component is the one to watch: subtracting <span class="math inline">\(-4\)</span> adds 4.</p></li>
+<li><p><strong>(a) <span class="math inline">\(7\)</span>.</strong> <span class="math inline">\(\sqrt{2^2 + 6^2 + 3^2} = \sqrt{4 + 36 + 9} = \sqrt{49} = 7\)</span>. Squaring first is what makes the minus sign stop mattering. Option (b) adds the raw components, and (c) forgets the square root.</p></li>
+<li><p><span class="math inline">\(\mathbf{a} \cdot \mathbf{b} = 3 + 2 = 5\)</span>, <span class="math inline">\(\lVert\mathbf{a}\rVert = \sqrt{5}\)</span> and <span class="math inline">\(\lVert\mathbf{b}\rVert = \sqrt{10}\)</span>. So <span class="math inline">\(\cos\theta = 5/\sqrt{50} = 1/\sqrt{2} \approx 0.707\)</span>, and <span class="math inline">\(\theta = 45°\)</span>.</p></li>
+<li><p>The dot product must be zero: <span class="math inline">\((2)(3) + (k)(-1) + (1)(4) = 10 - k = 0\)</span>, so <span class="math inline">\(k = 10\)</span>. Check: <span class="math inline">\(6 - 10 + 4 = 0\)</span>.</p></li>
+<li><p><strong>(a).</strong> A column holds one number per plant, 150 of them, so it lives in <span class="math inline">\(\mathbb{R}^{150}\)</span>. A row holds one number per measurement, so it lives in <span class="math inline">\(\mathbb{R}^{4}\)</span>. Option (d) is the mistake from <em>Common wrong turns</em>: one variable, but 150 components.</p></li>
+<li><p><span class="math inline">\(A - B = (-2, -4)\)</span>, so <span class="math inline">\(\lVert A - B \rVert = \sqrt{20} \approx 4.47\)</span>. <span class="math inline">\(A - C = (-20, -1)\)</span>, so <span class="math inline">\(\lVert A - C \rVert = \sqrt{401} \approx 20.02\)</span>. <strong><span class="math inline">\(B\)</span> is nearer.</strong> In words: <span class="math inline">\(B\)</span> practised 2 hours more and scored 4 marks more, while <span class="math inline">\(C\)</span> scored almost the same but practised 20 hours more, and this distance counts an hour and a mark as the same size of gap. That is a choice of units, not a fact about students: the distance has no single unit, and its verdict can change if you rescale a column.</p></li>
+<li><p><span class="math inline">\(\bar{x} = 3\)</span> and <span class="math inline">\(\bar{y} = 5\)</span>, so the centred vectors are <span class="math inline">\(\tilde{\mathbf{x}} = (-1, 0, 1)\)</span> and <span class="math inline">\(\tilde{\mathbf{y}} = (-1, 1, 0)\)</span>. Their dot product is 1 and both lengths are <span class="math inline">\(\sqrt{2}\)</span>, so <span class="math inline">\(\cos\theta = 1/2\)</span> and <span class="math inline">\(\theta = 60°\)</span>. The <strong>correlation is 0.5</strong>, a moderate positive linear relationship: when one column is above its average the other tends to be too, but the points are far from lying on a straight line.</p></li>
+<li><p>Uncentred, <span class="math inline">\(\mathbf{x} \cdot \mathbf{y} = 8 + 18 + 20 = 46\)</span>, <span class="math inline">\(\lVert\mathbf{x}\rVert = \sqrt{29}\)</span> and <span class="math inline">\(\lVert\mathbf{y}\rVert = \sqrt{77}\)</span>, so <span class="math inline">\(\cos\theta = 46/\sqrt{2233} \approx 0.973\)</span>. Every entry of both vectors is positive, so the angle between them is under <span class="math inline">\(90°\)</span> whatever the relationship. And because the values sit far from zero compared with how much they vary, both vectors point nearly along <span class="math inline">\((1, 1, 1)\)</span>, so the angle is small. The correlation is the <strong>centred</strong> one, 0.5, which is what <code>np.corrcoef</code> returns. The 0.973 measures mostly that both columns are well above zero.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -988,7 +1092,7 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -997,7 +1101,7 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b) <span class="math inline">\(3\)</span>.</strong> <span class="math inline">\(\sqrt{1 + 4 + 4} = \sqrt{9} = 3\)</span>. Option (a) adds the components; (c) forgets to square them; (d) is <span class="math inline">\(\lVert\mathbf{a}\rVert^2\)</span>, which is <span class="math inline">\(\mathbf{a} \cdot \mathbf{a}\)</span> — a related quantity, and a common slip when the square root gets dropped.</p></li>
@@ -1217,7 +1321,20 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1261,7 +1378,7 @@ The formulas hold in any dimension; two- and three-dimensional <em>intuition</em
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

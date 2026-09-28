@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,10 @@ window.Quarto = {
   <li><a href="#seeing-it" id="toc-seeing-it" class="nav-link" data-scroll-target="#seeing-it">Seeing it</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -660,6 +663,31 @@ Figure&nbsp;22.1: Three sets of 238 numbers with the same mean (65.3, dashed) an
 <p>The <strong>median</strong> is the half-way point <em>by count</em>: sort the values, take the middle one, or the average of the two middle ones if <span class="math inline">\(n\)</span> is even. Half the data is at or below it. Moving the largest observation from 92 to 920 does not move the median at all, because it is still the largest.</p>
 <p>The <strong>mode</strong> is the most frequent value. It is the natural centre for a <em>nominal</em> variable, where neither the mean nor the median is available. For continuous data it is mostly an artefact of rounding — our scores are recorded to one decimal place, and the “most common score” is just whichever value happened to be recorded four times rather than three.</p>
 <p><strong>When the mean and the median disagree, the disagreement is information.</strong> It says the values on one side of the median sit further from it than the values on the other, so the mean has been pulled that way — and that is usually the first sign of a long tail or a handful of extreme observations.</p>
+<div class="pause">
+<p><span class="block-label">A place to stop</span></p>
+<p>That is the three measures of centre. If you stop here, answer this first, or better, at the start of your next sitting.</p>
+<div class="quiz">
+<div class="q">
+<p>A mean sits well above the median. What does that suggest, and why has the mean moved?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Values above the median lie further from it, often a long right tail. The mean weighs every value, so they pull it up; the median only counts.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="quantiles" class="level3">
 <h3 class="anchored" data-anchor-id="quantiles">Quantiles</h3>
@@ -677,6 +705,31 @@ s^{2} = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^{2},
 <p><strong>Why square?</strong> Because the deviations <span class="math inline">\(x_i - \bar{x}\)</span> sum to zero by construction — that is what makes <span class="math inline">\(\bar{x}\)</span> the balance point — so their average is always 0 and carries no information. Squaring removes the signs. It also weights a deviation of 10 four times as heavily as one of 5, which is a real modelling choice and part of why <span class="math inline">\(s\)</span> is sensitive to extreme values.</p>
 <p><strong>Why <span class="math inline">\(n-1\)</span>?</strong> Because the deviations are measured from <span class="math inline">\(\bar{x}\)</span> rather than from the population mean <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\bar{x}\)</span> sits in the middle of <em>this particular sample</em> by construction. That makes the squared deviations systematically a little too small. Dividing by <span class="math inline">\(n - 1\)</span> instead of <span class="math inline">\(n\)</span> corrects it exactly, in the sense that under independent sampling with finite variance the long-run average of <span class="math inline">\(s^2\)</span> equals <span class="math inline">\(\sigma^2\)</span>. Note what that does <em>not</em> say: it does <strong>not</strong> make <span class="math inline">\(s\)</span> an unbiased estimate of <span class="math inline">\(\sigma\)</span>, because a square root is not a linear operation and averaging does not survive it.</p>
 <p><strong>Units matter.</strong> If scores are in marks then <span class="math inline">\(s^2\)</span> is in marks <em>squared</em>, which is not a quantity anyone has intuition about. <span class="math inline">\(s\)</span> is back in marks and can be compared to the data. That is the only reason the standard deviation is reported more often than the variance.</p>
+<div class="pause">
+<p><span class="block-label">A place to stop</span></p>
+<p>That is quantiles and spread. If you stop here, answer this first, or at the start of your next sitting.</p>
+<div class="quiz">
+<div class="q">
+<p>Why does the variance square the deviations from the mean, rather than average them?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The deviations from the mean add up to zero, so their average is always 0. Squaring removes the signs; taking the square root, <span class="math inline">\(s\)</span>, returns to the data’s units.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="what-shape-is-it" class="level3">
 <h3 class="anchored" data-anchor-id="what-shape-is-it">What shape is it?</h3>
@@ -783,7 +836,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 <div class="exercise">
 <p><span class="num">Exercise 1</span> For the sample <span class="math inline">\(\{2, 3, 4, 5, 6, 6, 7\}\)</span>, compute by hand: the mean, the median, the mode, the sample variance and the sample standard deviation.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -792,7 +845,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The sum is 33 and <span class="math inline">\(n = 7\)</span>, so <span class="math inline">\(\bar{x} = 33/7 = 4.71\)</span> (to 2 d.p.).</p>
 <p>Sorted, the middle value is the fourth: the <strong>median is 5</strong>. The <strong>mode is 6</strong>, the only value appearing twice.</p>
@@ -815,7 +868,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 <li>What would you need to see before trusting either?</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -824,7 +877,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p>At least half the graduates earn £31,000 or less, and the mean sits £11,000 above that. So the salaries above the median must reach a very long way above it to drag the average up — a minority earning a great deal. For salaries that is nearly always a long right tail, and it is what you should expect before looking. Strictly, the gap tells you which way the mean has been pulled, not that the skewness coefficient is positive; the <em>What shape is it?</em> section has a five-value counterexample.</p></li>
@@ -844,7 +897,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 <li>The mean is 61.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -853,7 +906,7 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Only <strong>(b)</strong>, and even that is “about” — quartiles are approximate for finite samples, and ties can make the counts uneven.</p>
 <ol type="a">
@@ -865,6 +918,107 @@ Social sciences            39  60.21   60.50  6.58</code></pre>
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, five at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> On five days you receive 3, 7, 7, 10 and 13 emails. Find the mean, the median and the mode.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> The five-number summary of a group’s commuting times, in minutes, is 12, 20, 26, 35, 58. Find the range and the IQR, and say in words what the IQR tells you.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Five parcels weigh 4, 6, 9, 11 and 15 kg. Find the sample variance and the sample standard deviation, with their units.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>A boxplot of a shop’s daily sales has <span class="math inline">\(Q_1 = 40\)</span> and <span class="math inline">\(Q_3 = 56\)</span>. The data include days with sales of 12, 18, 83 and 90. In the Tukey convention, which of those four are drawn as individual points? Should those days be deleted?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>A hospital’s A&amp;E department reports a mean wait of 95 minutes and a median wait of 60 minutes. Which statement do those two numbers support?</p>
+<ol type="a">
+<li>A typical patient waits about 95 minutes.</li>
+<li>The waiting times are roughly symmetric.</li>
+<li>At least half of the patients waited 60 minutes or less.</li>
+<li>The longest waits must be recording errors.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>The mean is a balance point. When it sits far above the median, is it describing a typical patient?</p>
+</div>
+<div class="hint" data-option="b">
+<p>In a symmetric distribution, where would the mean sit relative to the median?</p>
+</div>
+<div class="hint" data-option="d">
+<p>A long wait is far from the middle. Is that a description or a verdict, and what would you need to check first?</p>
+</div>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p>A histogram of the heights of 400 adults has two clear peaks, near 163 cm and 177 cm. What is the best next step?</p>
+<ol type="a">
+<li>Report the mean and standard deviation, which use every value.</li>
+<li>Report the median, because it is robust.</li>
+<li>Delete the smaller peak as unusual values.</li>
+<li>Look for a variable that separates the groups, such as sex, and describe each.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Where would the mean land relative to the two peaks? Would it describe many of the people in either?</p>
+</div>
+<div class="hint" data-option="b">
+<p>Robust to a few extreme values, yes. Is the trouble here a few extreme values?</p>
+</div>
+<div class="hint" data-option="c">
+<p>A whole peak is not a handful of stragglers. What might two peaks mean about who was measured?</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li>Nine delivery times, in minutes, have mean 20 and median 18. The largest, 40, turns out to be a typing error for 31, which is still the largest value. Find the corrected mean and median.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="8" type="1">
+<li><em>Stretch.</em> A city’s daily maximum temperatures, in °C, have mean 12, median 11, standard deviation 5 and IQR 6. Convert to Fahrenheit, <span class="math inline">\(F = 1.8C + 32\)</span>. Give all four summaries in °F, and say what happens to the variance.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>The mean is <span class="math inline">\(40/5 = 8\)</span> emails. The median is the third value once sorted, 7 emails, and the mode is also 7, the only value that appears twice. The mean sits 1 above the median because the values above 7 lie further from it in total (<span class="math inline">\(3 + 6 = 9\)</span>) than the one below (<span class="math inline">\(4\)</span>).</p></li>
+<li><p>Range <span class="math inline">\(= 58 - 12 = 46\)</span> minutes; IQR <span class="math inline">\(= 35 - 20 = 15\)</span> minutes. In words: the middle half of the group’s commutes lie within a 15-minute band, from 20 to 35 minutes. The range depends on just the two most extreme commuters.</p></li>
+<li><p>The mean is <span class="math inline">\(45/5 = 9\)</span> kg. The deviations are <span class="math inline">\(-5, -3, 0, 2, 6\)</span>, whose squares add to <span class="math inline">\(25 + 9 + 0 + 4 + 36 = 74\)</span>. So <span class="math inline">\(s^2 = 74/4 = 18.5\)</span> kg² and <span class="math inline">\(s = \sqrt{18.5} = 4.30\)</span> kg. Dividing by 5 instead gives 14.8 kg², the variance of these five parcels treated as the whole population, and what <code>numpy.var</code> returns by default.</p></li>
+<li><p><span class="math inline">\(\mathrm{IQR} = 56 - 40 = 16\)</span> and <span class="math inline">\(1.5 \times 16 = 24\)</span>, so the fences are at <span class="math inline">\(40 - 24 = 16\)</span> and <span class="math inline">\(56 + 24 = 80\)</span>. <strong>12, 83 and 90</strong> lie beyond them and are drawn as points; 18 is inside the lower fence, so the whisker covers it. <strong>No</strong>, not on this evidence: a fence is a drawing convention, not a test for error. Check those days against the records; a big sale on a bank holiday is real data.</p></li>
+<li><p><strong>(c).</strong> That is what a median means: half the values at or below it. The mean sitting 35 minutes above it says the waits above the median lie further from it, in total, than those below, which usually means a long right tail of very long waits. So the mean is not a typical wait (a), and the shape is not symmetric (b). Nothing says the long waits are errors (d); only the records could.</p></li>
+<li><p><strong>(d).</strong> Two peaks usually mean two groups stacked together, and the useful description is of each group. A single mean or median lands in the valley between the peaks, where relatively few people are, and the standard deviation mostly measures the gap between the groups.</p></li>
+<li><p>The total is <span class="math inline">\(9 \times 20 = 180\)</span> minutes, and the correction takes off 9, so the mean becomes <span class="math inline">\(171/9 = 19\)</span> minutes. The median stays at <strong>18 minutes</strong>: the changed value is still the largest, so the middle of the sorted list is unchanged. One value moved by 9 minutes; the mean moved by one minute and the median not at all.</p></li>
+<li><p>The centres take both steps: mean <span class="math inline">\(1.8 \times 12 + 32 = 53.6\)</span> °F and median <span class="math inline">\(1.8 \times 11 + 32 = 51.8\)</span> °F. The spreads take only the multiplication, because adding 32 moves every value and changes no difference: standard deviation <span class="math inline">\(1.8 \times 5 = 9\)</span> °F and IQR <span class="math inline">\(1.8 \times 6 = 10.8\)</span> °F. The variance, <span class="math inline">\(25\)</span> °C², is multiplied by <span class="math inline">\(1.8^2 = 3.24\)</span>, giving <span class="math inline">\(81\)</span> °F². The tempting slip is to add 32 to the spreads as well.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1015,7 +1169,7 @@ A histogram with two peaks is usually two groups. Splitting them and describing 
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1024,7 +1178,7 @@ A histogram with two peaks is usually two groups. Splitting them and describing 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(c).</strong> This is the first figure in the lesson. Same mean and same standard deviation is compatible with one peak, two peaks, or a tight cluster plus a long tail. (b) is the tempting answer and is wrong: matching two numbers constrains location and scale, not shape.</p></li>
@@ -1244,7 +1398,20 @@ A histogram with two peaks is usually two groups. Splitting them and describing 
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1288,7 +1455,7 @@ A histogram with two peaks is usually two groups. Splitting them and describing 
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

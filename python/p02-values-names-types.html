@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -875,7 +875,7 @@ the gap        : 5.551115123125783e-17</code></pre>
 </div>
 </div>
 <p>The gap prints as <code>5.551115123125783e-17</code>, where <code>e-17</code> is Python’s way of writing × 10⁻¹⁷. So it is about 5.6 × 10⁻¹⁷ — far too small to matter for any measurement, and far too large for <code>==</code> to ignore.</p>
-<p><code>np.isclose</code> uses a tiny default tolerance. When your data have a natural precision, say so with <code>atol</code> (the largest difference you will call equal): exam marks recorded to one decimal place might use <code>np.isclose(a, b, atol=0.05)</code>.</p>
+<p><code>np.isclose</code> uses a tiny default tolerance. When your data have a natural precision, say so with <code>atol</code>, the absolute tolerance: exam marks recorded to one decimal place might use <code>np.isclose(a, b, atol=0.05)</code>. Think of <code>atol</code> as roughly the largest difference you will call equal. <code>np.isclose</code> also adds a tiny relative allowance, <code>rtol</code>, so pass <code>rtol=0</code> when the cut-off must be exact.</p>
 </section>
 <section id="common-wrong-turns" class="level2">
 <h2 class="anchored" data-anchor-id="common-wrong-turns">Common wrong turns</h2>
@@ -1187,7 +1187,20 @@ You will not remember what they held. <code>temperature_c</code> costs eleven ch
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1231,7 +1244,7 @@ You will not remember what they held. <code>temperature_c</code> costs eleven ch
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

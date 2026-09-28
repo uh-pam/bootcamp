@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -559,7 +559,10 @@ window.Quarto = {
   <li><a href="#more-equations-than-unknowns" id="toc-more-equations-than-unknowns" class="nav-link" data-scroll-target="#more-equations-than-unknowns">More equations than unknowns</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -857,6 +860,92 @@ but of the original system     125.4985</code></pre>
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, five at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> Find <span class="math inline">\(\det\begin{pmatrix} 3 &amp; 2 \\ 4 &amp; 1\end{pmatrix}\)</span>. How many solutions does <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> have with this <span class="math inline">\(A\)</span>?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> Solve <span class="math inline">\(\begin{aligned} 2x + 3y &amp;= 8 \\ x - y &amp;= -1\end{aligned}\)</span> by elimination, and check both equations.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Solve by elimination: <span class="math display">\[\begin{aligned} x + y + z &amp;= 6 \\ y + 2z &amp;= 8 \\ 2x + y + z &amp;= 7 .\end{aligned}\]</span></li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>For which <span class="math inline">\(k\)</span> is <span class="math inline">\(A = \begin{pmatrix} 1 &amp; k \\ 2 &amp; 6\end{pmatrix}\)</span> singular? For that <span class="math inline">\(k\)</span>, how many solutions does <span class="math inline">\(A\mathbf{x} = (3, 9)\)</span> have?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><span class="math inline">\(A\)</span> is <span class="math inline">\(3 \times 2\)</span> with columns <span class="math inline">\((1, 2, 0)\)</span> and <span class="math inline">\((0, 1, 1)\)</span>. Is <span class="math inline">\(\mathbf{b} = (2, 5, 1)\)</span> in the span of the columns? If so, find <span class="math inline">\(\mathbf{x}\)</span> with <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>. Then ask the same of <span class="math inline">\(\mathbf{c} = (1, 1, 1)\)</span>.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li><p><span class="math inline">\(A = \begin{pmatrix} 0.002 &amp; 0.001 \\ 0.001 &amp; 0.001\end{pmatrix}\)</span> has <span class="math inline">\(\det A = 10^{-6}\)</span>. Is <span class="math inline">\(A\)</span> nearly singular?</p>
+<ol type="a">
+<li>Yes, because its determinant is tiny.</li>
+<li>No: it is exactly as well behaved as <span class="math inline">\(\begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 1\end{pmatrix}\)</span>.</li>
+<li>Yes, and <code>np.linalg.solve</code> will raise an error on it.</li>
+<li>You cannot tell without knowing <span class="math inline">\(\mathbf{b}\)</span>.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Multiply every entry by 1000. Has the matrix changed in any way that matters? What happened to its determinant?</p>
+</div>
+<div class="hint" data-option="c">
+<p><span class="math inline">\(10^{-6}\)</span> is small but it is not zero. Which matrices does <code>solve</code> refuse?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Being nearly singular is a property of the matrix alone. Which number measures it?</p>
+</div>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li>Show that this system has no solution, and say in words what that means: <span class="math display">\[\begin{aligned} x + y &amp;= 2 \\ x - y &amp;= 0 \\ x + 2y &amp;= 4 .\end{aligned}\]</span></li>
+</ol>
+</div>
+<div class="q">
+<ol start="8" type="1">
+<li><em>Stretch.</em> Solve <span class="math inline">\(\begin{aligned} x + y &amp;= 2 \\ x + 1.01y &amp;= 2.01\end{aligned}\)</span>. Now change the second right-hand side from <span class="math inline">\(2.01\)</span> to <span class="math inline">\(2.02\)</span> and solve again. What happened, and what does it say about trusting an answer to this system when the right-hand sides are measurements? You can check the condition number with <code>np.linalg.cond</code>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(\det = (3)(1) - (2)(4) = 3 - 8 = -5\)</span>. It is not zero, so there is <strong>exactly one solution</strong> for every <span class="math inline">\(\mathbf{b}\)</span>.</p></li>
+<li><p>Subtract <span class="math inline">\(2 \times\)</span> (row 2) from row 1: <span class="math inline">\((2x + 3y) - 2(x - y) = 8 - (-2)\)</span>, so <span class="math inline">\(5y = 10\)</span> and <span class="math inline">\(y = 2\)</span>. Then row 2 gives <span class="math inline">\(x = y - 1 = 1\)</span>. Check both: <span class="math inline">\(2 + 6 = 8\)</span> and <span class="math inline">\(1 - 2 = -1\)</span>. The solution is <span class="math inline">\((x, y) = (1, 2)\)</span>.</p></li>
+<li><p>Subtract <span class="math inline">\(2 \times\)</span> (row 1) from row 3 to remove <span class="math inline">\(x\)</span>: <span class="math inline">\(-y - z = -5\)</span>, that is <span class="math inline">\(y + z = 5\)</span>. Subtract this from row 2: <span class="math inline">\(z = 3\)</span>. Then <span class="math inline">\(y = 2\)</span>, and row 1 gives <span class="math inline">\(x = 1\)</span>. The solution is <span class="math inline">\((x, y, z) = (1, 2, 3)\)</span>. Check all three: <span class="math inline">\(1 + 2 + 3 = 6\)</span>, <span class="math inline">\(2 + 6 = 8\)</span>, <span class="math inline">\(2 + 2 + 3 = 7\)</span>.</p></li>
+<li><p><span class="math inline">\(\det A = 6 - 2k\)</span>, which is zero when <span class="math inline">\(k = 3\)</span>. Then the equations are <span class="math inline">\(x + 3y = 3\)</span> and <span class="math inline">\(2x + 6y = 9\)</span>. Twice the first says <span class="math inline">\(2x + 6y = 6\)</span>, which cannot also equal 9, so there are <strong>no solutions</strong>: two parallel, distinct lines. In column language, <span class="math inline">\((3, 9)\)</span> is not a multiple of the column <span class="math inline">\((1, 2)\)</span>.</p></li>
+<li><p>The rows say <span class="math inline">\(x_1 = 2\)</span>, <span class="math inline">\(2x_1 + x_2 = 5\)</span> and <span class="math inline">\(x_2 = 1\)</span>. The first and third give <span class="math inline">\(\mathbf{x} = (2, 1)\)</span>, and the middle one agrees: <span class="math inline">\(4 + 1 = 5\)</span>. So <strong><span class="math inline">\(\mathbf{b}\)</span> is in the span</strong>, as <span class="math inline">\(2 \times (1, 2, 0) + 1 \times (0, 1, 1)\)</span>. For <span class="math inline">\(\mathbf{c}\)</span>, the first and third rows force <span class="math inline">\(x_1 = 1\)</span> and <span class="math inline">\(x_2 = 1\)</span>, but then the middle row gives <span class="math inline">\(2 + 1 = 3\)</span>, not 1. So <strong><span class="math inline">\(\mathbf{c}\)</span> is not in the span</strong>. Three equations in two unknowns: two columns reach only a plane in three dimensions, and most targets lie off it.</p></li>
+<li><p><strong>(b).</strong> <span class="math inline">\(A\)</span> is <span class="math inline">\(0.001\)</span> times <span class="math inline">\(\begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 1\end{pmatrix}\)</span>, whose determinant is 1. Scaling every entry of a <span class="math inline">\(2 \times 2\)</span> matrix by <span class="math inline">\(0.001\)</span> multiplies the determinant by <span class="math inline">\(0.001^2 = 10^{-6}\)</span>, but it does not change the condition number, which is about <span class="math inline">\(6.85\)</span> for both: comfortably well behaved. This is the trap from <em>Common wrong turns</em>: the determinant has units, the condition number does not.</p></li>
+<li><p>The first two equations give <span class="math inline">\(x = y\)</span> and <span class="math inline">\(2x = 2\)</span>, so <span class="math inline">\(x = y = 1\)</span>. The third then says <span class="math inline">\(1 + 2 = 4\)</span>, which is false, so there is <strong>no solution</strong>. In words: the three lines do not meet at a single point, so no <span class="math inline">\((x, y)\)</span> satisfies all three at once. In column language, <span class="math inline">\((2, 0, 4)\)</span> lies outside the plane spanned by <span class="math inline">\((1, 1, 1)\)</span> and <span class="math inline">\((1, -1, 2)\)</span>, and <code>matrix_rank</code> would give 2 for <span class="math inline">\(A\)</span> but 3 for <span class="math inline">\([A \mid \mathbf{b}]\)</span>. The sensible next question is which <span class="math inline">\((x, y)\)</span> comes closest, which is <a href="../maths/m11-least-squares.html">M11</a>.</p></li>
+<li><p>First system: subtract row 1 from row 2, so <span class="math inline">\(0.01y = 0.01\)</span>, giving <span class="math inline">\(y = 1\)</span> and <span class="math inline">\(x = 1\)</span>. Second: <span class="math inline">\(0.01y = 0.02\)</span>, giving <span class="math inline">\(y = 2\)</span> and <span class="math inline">\(x = 0\)</span>. A change of <span class="math inline">\(0.01\)</span> in one right-hand side moved the answer from <strong><span class="math inline">\((1, 1)\)</span> to <span class="math inline">\((0, 2)\)</span></strong>. The two lines are nearly parallel, so a tiny shift in either moves their crossing a long way. The condition number is about <span class="math inline">\(402\)</span>, so expect to lose two or three digits between data and answer. In words: if the right-hand sides are measurements good only to about <span class="math inline">\(\pm 0.01\)</span>, this system cannot tell you whether the answer is near <span class="math inline">\((1, 1)\)</span> or near <span class="math inline">\((0, 2)\)</span>. Use the condition number for this warning, not the determinant of <span class="math inline">\(0.01\)</span>: question 6 showed a small determinant on its own proves nothing.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -991,7 +1080,7 @@ More rows means more equations against the same unknowns, which makes an exact s
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1000,7 +1089,7 @@ More rows means more equations against the same unknowns, which makes an exact s
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(c) infinitely many.</strong> A zero determinant rules out a unique solution, so the only options are none or infinitely many — and we were told at least one exists. Option (d) is the tempting one, but the extra fact given closes it off.</p></li>
@@ -1221,7 +1310,20 @@ X^{\mathsf{T}}\mathbf{y}\)</span> rather than pulling it out of <a href="../math
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1265,7 +1367,7 @@ X^{\mathsf{T}}\mathbf{y}\)</span> rather than pulling it out of <a href="../math
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

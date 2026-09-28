@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -560,7 +560,10 @@ window.Quarto = {
   <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting">Overfitting</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -590,7 +593,7 @@ window.Quarto = {
 
 
 <div class="unit-meta">
-<p><span><strong>Unit 10</strong> · Lesson 3 of 3 · Statistics · <strong>S12</strong></span> <span>Reading: <strong>6 pages</strong></span> <span>With practice: <strong>≈ 1.5 hours</strong></span> <span>Assumes: <strong>S11</strong></span></p>
+<p><span><strong>Unit 10</strong> · Lesson 3 of 3 · Statistics · <strong>S12</strong></span> <span>Reading: <strong>7 pages</strong></span> <span>With practice: <strong>≈ 2.5 hours</strong></span> <span>Assumes: <strong>S11</strong></span></p>
 </div>
 <div class="why">
 <p><span class="block-label">Why this lesson is here</span></p>
@@ -691,6 +694,31 @@ Figure&nbsp;39.1: The mechanism, drawn cleanly. Two groups, each with a rising r
 <li><strong>Collider bias</strong> — conditioning on a <em>consequence</em> of two variables creates an association between them that does not exist in the population. Restrict attention to students who were admitted, and admission criteria will manufacture a negative relationship between the things that earn admission.</li>
 </ul>
 <p>Sample size does not help with any of them; it makes the wrong answer more precise.</p>
+<div class="pause">
+<p><span class="block-label">A place to stop</span></p>
+<p>That is confounding and selection. If you stop here, answer this first, or better, at the start of your next sitting.</p>
+<div class="quiz">
+<div class="q">
+<p>A survey of a gym’s current members finds that the longest-standing members are the most satisfied. Name the problem, and say why surveying ten times as many members would not fix it.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Survivorship: members who were dissatisfied tend to have left, so they are not there to ask. A bigger survey of current members asks more survivors, and gives the same biased answer more precisely.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="multiple-comparisons" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-comparisons">Multiple comparisons</h3>
@@ -735,6 +763,31 @@ Figure&nbsp;39.3: The chance that a significant finding is true, against the fra
 </div>
 </div>
 <p>Two things follow. <strong>The <span class="math inline">\(p\)</span>-value alone cannot tell you how likely a finding is to be true</strong>, because two of the three numbers in that formula are properties of the field rather than of your study. Read them off the figure: with 80% power and one hypothesis in ten holding up, 64% of significant findings are real; drop the prior to one in twenty and it is 46%; drop the power to 50% as well and it is 35%. And <strong>power is not just about your own study</strong>: low power raises the share of published findings that are false, because it shrinks the numerator while leaving the false-positive rate alone.</p>
+<div class="pause">
+<p><span class="block-label">A place to stop</span></p>
+<p>Two more failures to go. If you stop here, answer this first, or at the start of your next sitting.</p>
+<div class="quiz">
+<div class="q">
+<p>With 80% power and one hypothesis in ten true, what share of significant findings are true? Why is a <span class="math inline">\(p\)</span>-value below 0.05 not enough to make it 95%?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>About 64%: <span class="math inline">\(0.08 / (0.08 + 0.045)\)</span>. Testing at 5% controls only how often a true null hypothesis produces a significant result. How many hypotheses are true in the first place is a property of the field, not of your test.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="regression-to-the-mean" class="level3">
 <h3 class="anchored" data-anchor-id="regression-to-the-mean">Regression to the mean</h3>
@@ -817,7 +870,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 <li>Which figure should a patient use?</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -826,7 +879,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><strong>No.</strong> Both can be correct simultaneously; this is Simpson’s paradox with the roles of practice and background played by severity.</p></li>
@@ -846,7 +899,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 <li>What should they have written?</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -855,7 +908,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><span class="math inline">\(4 \times 3 = 12\)</span> at minimum — and more if any decisions about exclusions or transformations were made after seeing the data.</p></li>
@@ -876,7 +929,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 <li>Name a modern analysis with the same structure.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -885,7 +938,7 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li><p><strong>Survivorship bias.</strong> The sample consists only of aircraft that came back. Hits are presumably scattered fairly evenly, so the places where returning aircraft show <em>few</em> holes are the places where a hit meant not returning.</p></li>
@@ -896,20 +949,227 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 </div>
 </div>
 </div>
+<div class="exercise">
+<p><span class="num">Exercise 4 · A table you have not seen</span> Every example so far has used the cohort, and by now you know its columns and its traps. This one is new. Allow about an hour, and work in a notebook.</p>
+<p>A step-counting app offered its users an optional daily reminder. Download <a href="../data/walking.csv"><code>walking.csv</code></a> and upload it into your <code>data</code> folder, as you did in set-up. Each row is meant to be one user:</p>
+<ul>
+<li><code>steps_before</code>: average daily steps in the week before reminders were offered;</li>
+<li><code>reminders</code>: whether they switched reminders on;</li>
+<li><code>steps_after</code>: average daily steps in a week four weeks later.</li>
+</ul>
+<p>The product team’s summary reads: <em>“Users who switched reminders on walked 1,164 more steps a day four weeks later. Reminders work.”</em></p>
+<ol type="a">
+<li>Look before you compute. What needs cleaning? Clean it, and say how many users are left.</li>
+<li>Write the question down: the unit, the population, and the estimand.</li>
+<li>Check the team’s 1,164 and give it a 95% interval.</li>
+<li>Is that the effect of the reminders? Compare the users who did not switch them on, starting with their before-weeks, and say what is going on.</li>
+<li>Estimate the effect in a way that deals with (d), with an interval, and write two sentences for the product team.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>(a)</strong> Five things, and each one would quietly change a number later:</p>
+<div id="walk-look" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>walk <span class="op">=</span> pd.read_csv(<span class="st">"data/walking.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(walk.shape, <span class="st">"  duplicate rows:"</span>, walk.duplicated().<span class="bu">sum</span>())</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(walk.describe().loc[[<span class="st">"min"</span>, <span class="st">"max"</span>]])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(walk[<span class="st">"age_band"</span>].value_counts().to_dict())</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(walk[<span class="st">"reminders"</span>].value_counts().to_dict())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(806, 5)   duplicate rows: 6
+     steps_before  steps_after
+min        1587.0         -1.0
+max      212000.0      13726.0
+{'30-49': 183, '30 - 49': 141, '50+': 139, '50 +': 103, '18-29': 88, '18 - 29': 76, '18–29': 76}
+{'no': 369, 'yes': 257, 'N': 93, 'Y': 87}</code></pre>
+</div>
+</div>
+<p>Six rows are exact duplicates. Some after-weeks are <code>-1</code>, a code for “no data” rather than a step count. One before-week of 212,000 steps a day is impossible (about a hundred miles). The age band is spelt seven ways for three bands, and reminders are recorded four ways for two answers. So:</p>
+<div id="walk-clean" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>walk <span class="op">=</span> walk.drop_duplicates()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>walk <span class="op">=</span> walk[(walk[<span class="st">"steps_after"</span>] <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">&amp;</span> (walk[<span class="st">"steps_before"</span>] <span class="op">&lt;=</span> <span class="dv">60000</span>)].copy()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>walk[<span class="st">"age_band"</span>] <span class="op">=</span> walk[<span class="st">"age_band"</span>].<span class="bu">str</span>.replace(<span class="st">" "</span>, <span class="st">""</span>).<span class="bu">str</span>.replace(<span class="st">"–"</span>, <span class="st">"-"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>walk[<span class="st">"reminders"</span>] <span class="op">=</span> walk[<span class="st">"reminders"</span>].isin([<span class="st">"yes"</span>, <span class="st">"Y"</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(walk), <span class="st">"users;"</span>, walk[<span class="st">"reminders"</span>].<span class="bu">sum</span>(), <span class="st">"switched reminders on"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(walk[<span class="st">"age_band"</span>].value_counts().to_dict())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>794 users; 337 switched reminders on
+{'30-49': 319, '50+': 240, '18-29': 235}</code></pre>
+</div>
+</div>
+<p>That leaves 794 users, 337 of whom switched reminders on. Drop the impossible row rather than guess what was meant: one user out of 795 is not worth an invented number.</p>
+<p><strong>(b)</strong> The unit is a user. The population is users of this app who are offered reminders, including future ones, since that is who the decision affects. The estimand is causal: the average change in daily steps that switching reminders on <em>causes</em>, compared with the same users not switching them on. The team’s sentence “reminders work” is a claim about that, whatever their number measures.</p>
+<p><strong>(c)</strong></p>
+<div id="walk-naive" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>walk[<span class="st">"change"</span>] <span class="op">=</span> walk[<span class="st">"steps_after"</span>] <span class="op">-</span> walk[<span class="st">"steps_before"</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>opted, others <span class="op">=</span> walk[walk[<span class="st">"reminders"</span>]], walk[<span class="op">~</span>walk[<span class="st">"reminders"</span>]]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, group <span class="kw">in</span> [(<span class="st">"switched on"</span>, opted), (<span class="st">"did not"</span>, others)]:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    mean, se <span class="op">=</span> group[<span class="st">"change"</span>].mean(), group[<span class="st">"change"</span>].std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(group))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    half <span class="op">=</span> stats.t.ppf(<span class="fl">0.975</span>, <span class="bu">len</span>(group) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> se</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:&lt;12}</span><span class="ss"> n = </span><span class="sc">{</span><span class="bu">len</span>(group)<span class="sc">}</span><span class="ss">  change </span><span class="sc">{</span>mean<span class="sc">:+6.0f}</span><span class="ss">  "</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"95% CI </span><span class="sc">{</span>mean <span class="op">-</span> half<span class="sc">:+.0f}</span><span class="ss"> to </span><span class="sc">{</span>mean <span class="op">+</span> half<span class="sc">:+.0f}</span><span class="ss">   "</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"before-week </span><span class="sc">{</span>group[<span class="st">'steps_before'</span>]<span class="sc">.</span>mean()<span class="sc">:.0f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>switched on  n = 337  change  +1164  95% CI +972 to +1356   before-week 5617
+did not      n = 457  change   -469  95% CI -635 to -303   before-week 8318</code></pre>
+</div>
+</div>
+<p>The 1,164 is right, with an interval of roughly 970 to 1,360 steps a day. The arithmetic is not the problem.</p>
+<p><strong>(d)</strong> No, or not only. Two numbers give it away. The users who switched reminders on had a much <em>worse</em> before-week than the others, about 5,600 steps a day against 8,300. And the users who did <em>not</em> switch them on went <strong>down</strong> by about 470 steps, with nothing done to them at all.</p>
+<p>That is regression to the mean with self-selection. A week is partly luck. People who had an unusually bad week were more likely to switch reminders on, and a bad week tends to be followed by a more ordinary one, reminders or not. People who had a good week mostly did not bother, and drifted back down. So the 1,164 mixes whatever reminders do with a rebound that would have happened anyway, and comparing the two groups’ changes (about 1,630) makes it worse, not better, because the comparison group is drifting the other way.</p>
+<p><strong>(e)</strong> Compare users who were alike <em>before</em> the choice: regress the after-week on the before-week and the age band as well as on reminders, as the worked example did for the cohort. An interval comes from refitting on resamples of the users, the idea behind <a href="../stats/s11-regression.html">S11</a>’s fan of lines:</p>
+<div id="walk-adjusted" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> np.column_stack([np.ones(<span class="bu">len</span>(walk)), walk[<span class="st">"steps_before"</span>], walk[<span class="st">"reminders"</span>],</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                          walk[<span class="st">"age_band"</span>] <span class="op">==</span> <span class="st">"30-49"</span>, walk[<span class="st">"age_band"</span>] <span class="op">==</span> <span class="st">"50+"</span>]).astype(<span class="bu">float</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>after <span class="op">=</span> walk[<span class="st">"steps_after"</span>].to_numpy(dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>coef, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(design, after, rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>boot_rng <span class="op">=</span> np.random.default_rng(<span class="dv">12</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>resampled <span class="op">=</span> []</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>):</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> boot_rng.integers(<span class="dv">0</span>, <span class="bu">len</span>(walk), <span class="bu">len</span>(walk))</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    fit, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(design[rows], after[rows], rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    resampled.append(fit[<span class="dv">2</span>])</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>low, high <span class="op">=</span> np.percentile(resampled, [<span class="fl">2.5</span>, <span class="fl">97.5</span>])</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"reminders, adjusted for the before-week and age band: </span><span class="sc">{</span>coef[<span class="dv">2</span>]<span class="sc">:+.0f}</span><span class="ss"> steps a day"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"95% resampling interval: </span><span class="sc">{</span>low<span class="sc">:+.0f}</span><span class="ss"> to </span><span class="sc">{</span>high<span class="sc">:+.0f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>reminders, adjusted for the before-week and age band: +501 steps a day
+95% resampling interval: +185 to +845</code></pre>
+</div>
+</div>
+<p>About 500 steps a day, with an interval from about 190 to 850: still clearly above zero, and well under half the headline.</p>
+<p>For the product team: <em>“Users who switched reminders on walked about 500 more steps a day than users with a similar week before and of a similar age (95% interval 190 to 850). Most of the 1,164 looks like the ordinary recovery after a bad week: users with similarly low weeks who did not switch reminders on recovered too. This is an observational comparison, so to be sure, offer reminders to a random half of new users and compare.”</em></p>
+<p>The adjustment is only as good as its assumption: that nothing else which affects walking also drove the choice. Motivation, a new job or a new dog are not in the file. Offering reminders to a random half is the only design that removes that doubt: it is the first of the three responses to confounding above, <em>randomise</em>, put into practice.</p>
+</div>
+</div>
+</div>
+</div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> Eight independent tests are run at <span class="math inline">\(\alpha = 0.05\)</span> on data where nothing is going on. What is the chance of at least one significant result, and what threshold would Bonferroni use?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><p><em>Warm-up.</em> An online service studies the customers still subscribed after a year and finds that they rate it highly. What is the main problem with concluding that customers like the service?</p>
+<ol type="a">
+<li>Confounding</li>
+<li>Survivorship</li>
+<li>Multiple comparisons</li>
+<li>Regression to the mean</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>Is there a third variable driving both? Or is the trouble with <em>who</em> ended up in the sample?</p>
+</div>
+<div class="hint" data-option="c">
+<p>Only one question was asked of the data. Look at how the customers were chosen.</p>
+</div>
+<div class="hint" data-option="d">
+<p>Nobody was selected for an extreme score and measured again. Who is missing from the file?</p>
+</div>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>In a field where one hypothesis in five is true, studies run at 50% power and <span class="math inline">\(\alpha = 0.05\)</span>. What share of significant findings are true? What does it become at 80% power?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li><p>A town puts speed cameras at the ten junctions that had the most crashes last year. The next year, crashes at those junctions fall by 30%. Which conclusion does this support?</p>
+<ol type="a">
+<li>The cameras cut crashes by 30%.</li>
+<li>It cannot say: those junctions were picked for an extreme year and would be expected to improve anyway.</li>
+<li>The cameras had no effect.</li>
+<li>Without the cameras, crashes there would have risen.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>How were the junctions chosen? What would you expect of them next year if nothing changed?</p>
+</div>
+<div class="hint" data-option="c">
+<p>The data cannot show that either. What would you need in order to separate the cameras from the rebound?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Nothing in the data describes what would have happened without cameras. That is exactly the missing comparison.</p>
+</div>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>A study asks whether regular exercise lowers blood pressure. For each variable, say whether it is most plausibly a confounder, a mediator or a collider, and whether to adjust for it: (i) age; (ii) weight lost since starting to exercise; (iii) having been admitted to hospital, where both high blood pressure and sports injuries send people.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>Two treatments for kidney stones were compared (Charig and colleagues, 1986). Treatment A cured 81 of 87 small stones and 192 of 263 large ones; treatment B cured 234 of 270 small stones and 55 of 80 large ones. Work out each treatment’s cure rate for small stones, for large stones, and overall. Which treatment looks better, and why do the answers disagree?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> An analyst tries three outcome measures, two ways of handling outliers, and three samples (everyone, and two subgroups), and reports the one analysis with <span class="math inline">\(p = 0.02\)</span>. How many analyses were possible? If they were independent and nothing were going on, what is the chance at least one reaches <span class="math inline">\(p &lt; 0.05\)</span>? Would <span class="math inline">\(p = 0.02\)</span> pass a Bonferroni correction? Say in one sentence what the analyst should report.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(1 - 0.95^8 = 0.34\)</span>, about one in three. Bonferroni tests each at <span class="math inline">\(0.05 / 8 = 0.00625\)</span>.</p></li>
+<li><p><strong>(b) Survivorship.</strong> Customers who disliked the service mostly cancelled before the year was up, so the file holds the ones who liked it. Asking more of them would not help.</p></li>
+<li><p>At 50% power: <span class="math inline">\(\dfrac{0.5 \times 0.2}{0.5 \times 0.2 + 0.05 \times 0.8} =
+\dfrac{0.10}{0.14} = 0.71\)</span>, so about 71%. At 80% power: <span class="math inline">\(\dfrac{0.16}{0.16 + 0.04} = 0.80\)</span>. Raising power raises the share of significant findings that are true, because it adds true positives while the false ones stay at <span class="math inline">\(0.04\)</span>.</p></li>
+<li><p><strong>(b).</strong> The junctions were chosen for a bad year, and a bad year is partly bad luck, so they would be expected to move back towards the average with no cameras at all. Separating the two needs a comparison group: similarly bad junctions without cameras, or cameras placed at random among the bad ones.</p></li>
+<li><ol type="i">
+<li>Age is most plausibly a <strong>confounder</strong>: it affects both how much people exercise and their blood pressure. Adjust for it. (ii) Weight lost is a <strong>mediator</strong>: it lies on the path from exercise to blood pressure. Adjusting for it answers a narrower question, the effect of exercise <em>apart from</em> weight loss, so leave it out if you want the whole effect. (iii) Hospital admission is a <strong>collider</strong>: a consequence of both. Restricting to admitted patients can create an association that is not there in the population, so do not adjust for it.</li>
+</ol></li>
+<li><p>A: small <span class="math inline">\(81/87 = 93\%\)</span>, large <span class="math inline">\(192/263 = 73\%\)</span>, overall <span class="math inline">\(273/350 = 78\%\)</span>. B: small <span class="math inline">\(234/270 = 87\%\)</span>, large <span class="math inline">\(55/80 = 69\%\)</span>, overall <span class="math inline">\(289/350 = 83\%\)</span>. A is better for small stones <em>and</em> for large ones, yet B looks better overall. That is Simpson’s paradox: A was given far more of the large stones, which are harder to cure, so its overall rate is dragged down by its case</p>
+<ol start="1009" type="i">
+<li>Stone size is the confounder, and the within-size comparison is the one to use.</li>
+</ol></li>
+<li><p><span class="math inline">\(3 \times 2 \times 3 = 18\)</span> analyses. If independent, the chance of at least one <span class="math inline">\(p &lt; 0.05\)</span> is <span class="math inline">\(1 - 0.95^{18} = 0.60\)</span>. Bonferroni’s threshold is <span class="math inline">\(0.05 / 18 = 0.0028\)</span>, and <span class="math inline">\(0.02\)</span> does not pass it. The analyses share data, so they are not independent and the true figure is usually somewhat lower, but not reassuringly so. The analyst should report all eighteen analyses and treat this one as a hypothesis to test on new data, not as a finding.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
 <p>The multiple-comparisons arithmetic is worth watching rather than believing. Here nothing is going on anywhere — two groups drawn from the same population — and we count how often at least one test in a batch comes out significant.</p>
-<div id="multiplicity" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tests <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">20</span>]:</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4000</span>):</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> [stats.ttest_ind(rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">30</span>), rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">30</span>)).pvalue</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(tests)]</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        hits <span class="op">+=</span> <span class="bu">min</span>(batch) <span class="op">&lt;</span> <span class="fl">0.05</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>tests<span class="sc">:&gt;2}</span><span class="ss"> tests per study: at least one significant in "</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>hits<span class="op">/</span><span class="dv">4000</span><span class="sc">:5.1f}</span><span class="ss">% of studies   (formula </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.95</span><span class="op">**</span>tests)<span class="sc">:5.1f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="multiplicity" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tests <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">20</span>]:</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4000</span>):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> [stats.ttest_ind(rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">30</span>), rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">30</span>)).pvalue</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(tests)]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        hits <span class="op">+=</span> <span class="bu">min</span>(batch) <span class="op">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>tests<span class="sc">:&gt;2}</span><span class="ss"> tests per study: at least one significant in "</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>hits<span class="op">/</span><span class="dv">4000</span><span class="sc">:5.1f}</span><span class="ss">% of studies   (formula </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.95</span><span class="op">**</span>tests)<span class="sc">:5.1f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> 1 tests per study: at least one significant in   5.5% of studies   (formula   5.0%)
  5 tests per study: at least one significant in  23.5% of studies   (formula  22.6%)
@@ -917,20 +1177,20 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 </div>
 </div>
 <p>And now the check that fails — the one this whole lesson is about. It is tempting to believe that if an association is real and strong in the data, adjusting for another variable can only change it a little:</p>
-<div id="watch-it-fail" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>simple, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(np.column_stack([ones, hours]), score, rcond<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>adjusted, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(np.column_stack([ones, hours, diagnostic]),</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                               score, rcond<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.sign(simple[<span class="dv">1</span>]) <span class="op">==</span> np.sign(adjusted[<span class="dv">1</span>]), (</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"the practice coefficient is </span><span class="sc">{</span>simple[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss"> on its own and "</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>adjusted[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss"> once the arrival diagnostic is included — "</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"opposite signs, same data"</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="watch-it-fail" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>simple, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(np.column_stack([ones, hours]), score, rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>adjusted, <span class="op">*</span>_ <span class="op">=</span> np.linalg.lstsq(np.column_stack([ones, hours, diagnostic]),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                               score, rcond<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.sign(simple[<span class="dv">1</span>]) <span class="op">==</span> np.sign(adjusted[<span class="dv">1</span>]), (</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"the practice coefficient is </span><span class="sc">{</span>simple[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss"> on its own and "</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>adjusted[<span class="dv">1</span>]<span class="sc">:+.4f}</span><span class="ss"> once the arrival diagnostic is included — "</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"opposite signs, same data"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[13]</span><span class="ansi-green-fg">, line 4</span>
 <span class="ansi-green-fg">      1</span> simple, *_ = np.linalg.lstsq(np.column_stack([ones, hours]), score, rcond=<span style="font-weight:bold;color:rgb(0,135,0)">None</span>)
 <span class="ansi-green-fg">      2</span> adjusted, *_ = np.linalg.lstsq(np.column_stack([ones, hours, diagnostic]),
 <span class="ansi-green-fg">      3</span>                                score, rcond=<span style="font-weight:bold;color:rgb(0,135,0)">None</span>)
@@ -946,22 +1206,22 @@ bottom 10% on arrival    n =  24   diagnostic -1.491 sd   final -0.709 sd</code>
 </div>
 <p>Not a little: the opposite direction. There is no rule that says adding a variable makes a small change. If the added variable really is a confounder — not a mediator or a collider, which the section above warned about — the change measures how much confounding there was.</p>
 <p>Finally, regression to the mean, on data with <strong>no relationship between the two occasions except noise around a shared underlying ability</strong>:</p>
-<div id="rtm" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ability <span class="op">=</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> ability <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)      <span class="co"># nothing happens between the two</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> ability <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardise both occasions, so the two are on a common scale.</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>z_first <span class="op">=</span> (first <span class="op">-</span> first.mean()) <span class="op">/</span> first.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>z_second <span class="op">=</span> (second <span class="op">-</span> second.mean()) <span class="op">/</span> second.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>worst <span class="op">=</span> z_first <span class="op">&lt;=</span> np.quantile(z_first, <span class="fl">0.1</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"bottom 10% at time 1:  </span><span class="sc">{</span>z_first[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd"</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"  -&gt;  time 2  </span><span class="sc">{</span>z_second[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd"</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"apparent 'improvement': "</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>z_second[worst]<span class="sc">.</span>mean() <span class="op">-</span> z_first[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd, "</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"from an intervention that did not exist"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="rtm" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ability <span class="op">=</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> ability <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)      <span class="co"># nothing happens between the two</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> ability <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5000</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardise both occasions, so the two are on a common scale.</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>z_first <span class="op">=</span> (first <span class="op">-</span> first.mean()) <span class="op">/</span> first.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>z_second <span class="op">=</span> (second <span class="op">-</span> second.mean()) <span class="op">/</span> second.std(ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>worst <span class="op">=</span> z_first <span class="op">&lt;=</span> np.quantile(z_first, <span class="fl">0.1</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"bottom 10% at time 1:  </span><span class="sc">{</span>z_first[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd"</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"  -&gt;  time 2  </span><span class="sc">{</span>z_second[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd"</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"apparent 'improvement': "</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>z_second[worst]<span class="sc">.</span>mean() <span class="op">-</span> z_first[worst]<span class="sc">.</span>mean()<span class="sc">:+.3f}</span><span class="ss"> sd, "</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"from an intervention that did not exist"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>bottom 10% at time 1:  -1.747 sd  -&gt;  time 2  -0.932 sd
 apparent 'improvement': +0.815 sd, from an intervention that did not exist</code></pre>
@@ -1051,7 +1311,7 @@ How likely it is to be true depends on three numbers — the fraction of hypothe
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1060,7 +1320,7 @@ How likely it is to be true depends on three numbers — the fraction of hypothe
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(c).</strong> Smoking is associated with both coffee drinking and heart disease, so it is a candidate confounder, and the association could be entirely its doing. (a), (b) and (d) all make the estimate more precise or the fit tighter without touching the reason it might be wrong — which is the standard shape of this lesson’s argument.</p></li>
@@ -1281,7 +1541,20 @@ How likely it is to be true depends on three numbers — the fraction of hypothe
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1325,7 +1598,7 @@ How likely it is to be true depends on three numbers — the fraction of hypothe
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -560,7 +560,10 @@ window.Quarto = {
   <li><a href="#greek-letters" id="toc-greek-letters" class="nav-link" data-scroll-target="#greek-letters">Greek letters</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -614,7 +617,7 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(x = 5\)</span>. Add 4 to both sides to get <span class="math inline">\(3x = 15\)</span>, then divide both sides by 3.</p>
-<p>If you found 5 by trying numbers, check you can also do the two steps: trial gets slow once equations get harder. If that felt slow rather than wrong, you will be fine — it comes back quickly. If it felt genuinely unfamiliar, spend an hour on a GCSE algebra refresher before going on, because everything after this assumes it.</p>
+<p>If you found 5 by trying numbers, check you can also do the two steps: trial gets slow once equations get harder. If that felt slow rather than wrong, you will be fine — it comes back quickly. If it felt genuinely unfamiliar, spend an hour on a school algebra refresher before going on, because everything after this assumes it. The algebra topics of <a href="https://www.bbc.co.uk/bitesize/subjects/z38pycw">BBC Bitesize GCSE Maths</a> or Khan Academy’s <a href="https://www.khanacademy.org/math/algebra-basics">Algebra basics</a> are free and cover what this lesson assumes.</p>
 </div>
 </div>
 </div>
@@ -937,6 +940,92 @@ numpy      7.521</code></pre>
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><em>Warm-up.</em> Which of <span class="math inline">\(-3\)</span>, <span class="math inline">\(0\)</span>, <span class="math inline">\(4\)</span>, <span class="math inline">\(1.5\)</span> and <span class="math inline">\(7\)</span> are in <span class="math inline">\(\mathbb{N}\)</span>? Which are in <span class="math inline">\(\mathbb{Z}\)</span>?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><p><em>Warm-up.</em> Which interval contains <span class="math inline">\(2\)</span> but not <span class="math inline">\(5\)</span>?</p>
+<ol type="a">
+<li><span class="math inline">\([2, 5]\)</span></li>
+<li><span class="math inline">\([2, 5)\)</span></li>
+<li><span class="math inline">\((2, 5]\)</span></li>
+<li><span class="math inline">\((2, 5)\)</span></li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>A square bracket includes its endpoint. Look at the bracket next to the 5.</p>
+</div>
+<div class="hint" data-option="c">
+<p>The round bracket on the left shuts out the 2. Which side does each bracket belong to?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Round brackets exclude both ends. Is 2 in this interval at all?</p>
+</div>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>Write <span class="math inline">\(\sum_{k=2}^{5} (2k - 1)\)</span> out in full, then compute it. How many terms are there?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li>Take <span class="math inline">\(x_1 = 4\)</span>, <span class="math inline">\(x_2 = 7\)</span>, <span class="math inline">\(x_3 = 1\)</span> and <span class="math inline">\(x_4 = 8\)</span>. Find <span class="math inline">\(x_3\)</span>, <span class="math inline">\(\sum_{i=1}^{4} x_i\)</span>, <span class="math inline">\(\sum_{i=1}^{4} x_i^2\)</span> and <span class="math inline">\(\bigl(\sum_{i=1}^{4} x_i\bigr)^2\)</span>. Say in words what the last two ask you to do, and whether they are equal.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li>Write each as a single power of <span class="math inline">\(x\)</span>: (a) <span class="math inline">\(x^5 \cdot x^{-2}\)</span>
+<ol start="2" type="a">
+<li><span class="math inline">\(\dfrac{(x^2)^3}{x^4}\)</span> (c) <span class="math inline">\(\dfrac{1}{\sqrt{x}}\)</span>. Then use (c) to find <span class="math inline">\(9^{-1/2}\)</span>.</li>
+</ol></li>
+</ol>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>Scores in a large population of students have mean <span class="math inline">\(\mu = 60\)</span> marks and standard deviation <span class="math inline">\(\sigma = 8\)</span> marks. Read <span class="math inline">\(z = \dfrac{x - \mu}{\sigma}\)</span> aloud, work it out for a score of <span class="math inline">\(x = 72\)</span>, and say in words what the number tells you.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> A classmate turns <span class="math inline">\(\sum_{i=1}^{n} x_i\)</span> into a Python loop that runs <code>for i in range(1, n)</code> and adds <code>x[i]</code> to a running total. With <code>x = [3, 1, 4, 1, 5]</code> and <code>n = 5</code>, what does their loop give, what should it give, and which value did it miss? Check both in Python.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>In <span class="math inline">\(\mathbb{N}\)</span>: <span class="math inline">\(4\)</span> and <span class="math inline">\(7\)</span>. In <span class="math inline">\(\mathbb{Z}\)</span>: <span class="math inline">\(-3\)</span>, <span class="math inline">\(0\)</span>, <span class="math inline">\(4\)</span> and <span class="math inline">\(7\)</span>. In this course the naturals start at 1, so <span class="math inline">\(0\)</span> is an integer but not a natural (some books start at 0, so check the convention). <span class="math inline">\(1.5\)</span> is in neither; like all five, it is in <span class="math inline">\(\mathbb{R}\)</span>.</p></li>
+<li><p><strong>(b) <span class="math inline">\([2, 5)\)</span>.</strong> The square bracket at 2 includes it; the round bracket at 5 excludes it. Option (a) lets 5 in, and (c) and (d) both shut 2 out.</p></li>
+<li><p><span class="math inline">\((2 \cdot 2 - 1) + (2 \cdot 3 - 1) + (2 \cdot 4 - 1) + (2 \cdot 5 - 1)
+= 3 + 5 + 7 + 9 = 24\)</span>. There are 4 terms, one each for <span class="math inline">\(k = 2, 3, 4, 5\)</span>: that is <span class="math inline">\(5 - 2 + 1\)</span>, not 5. The letter <span class="math inline">\(k\)</span> does the same job as <span class="math inline">\(i\)</span>; what the counter is called does not matter. In Python, <code>sum(2*k - 1 for k in range(2, 6))</code>.</p></li>
+<li><p><span class="math inline">\(x_3 = 1\)</span>, the third value (in Python it would be <code>x[2]</code>). <span class="math inline">\(\sum x_i = 4 + 7 + 1 + 8 = 20\)</span>. <span class="math inline">\(\sum x_i^2 = 16 + 49 + 1 + 64 = 130\)</span>: square each value, then add. <span class="math inline">\(\bigl(\sum x_i\bigr)^2 = 20^2 = 400\)</span>: add first, then square. They are not equal. Where the bracket sits decides the order of the steps, and the order changes the answer.</p></li>
+<li><ol type="a">
+<li><span class="math inline">\(x^{5 + (-2)} = x^3\)</span>. (b) <span class="math inline">\((x^2)^3 = x^6\)</span>, then <span class="math inline">\(x^{6 - 4} = x^2\)</span>; adding the powers in the first step, to get <span class="math inline">\(x^5\)</span>, is the usual slip. (c) <span class="math inline">\(\sqrt{x} = x^{1/2}\)</span>, and one over a power flips its sign: <span class="math inline">\(x^{-1/2}\)</span>. So <span class="math inline">\(9^{-1/2} = 1/\sqrt{9} = 1/3\)</span>.</li>
+</ol></li>
+<li><p>“<span class="math inline">\(z\)</span> equals <span class="math inline">\(x\)</span> minus mu, all over sigma.” <span class="math inline">\(z = (72 - 60)/8 = 12/8 = 1.5\)</span>. In words: a score of 72 is one and a half standard deviations above the population mean. <span class="math inline">\(z\)</span> has no units, because it is marks divided by marks.</p></li>
+<li><p><code>range(1, 5)</code> is 1, 2, 3, 4, so the loop adds <code>x[1] + x[2] + x[3] + x[4]</code> <span class="math inline">\(= 1 + 4 + 1 + 5 = 11\)</span>. It should give <span class="math inline">\(3 + 1 + 4 + 1 + 5 = 14\)</span>. It missed <span class="math inline">\(x_1 = 3\)</span>, which Python stores as <code>x[0]</code>. The fix is <code>range(n)</code>, or simply <code>sum(x)</code>. This is the off-by-one error from mixing the two counting conventions.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -1039,7 +1128,7 @@ Three lines of code will tell you whether you read the notation correctly, and i
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1048,7 +1137,7 @@ Three lines of code will tell you whether you read the notation correctly, and i
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(b) 12.</strong> <span class="math inline">\(2(1) + 2(2) + 2(3) = 2 + 4 + 6\)</span>.</p></li>
@@ -1268,7 +1357,20 @@ Three lines of code will tell you whether you read the notation correctly, and i
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1312,7 +1414,7 @@ Three lines of code will tell you whether you read the notation correctly, and i
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 

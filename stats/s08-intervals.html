@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-73b0ff3878a4e6fc3716dc69a6aaefa3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2c305c7f5b485f2e5cb0e09c2c1dfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9f7f847b95d311311fe0ecce920462f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -556,7 +556,10 @@ window.Quarto = {
   <li><a href="#when-there-is-no-formula-the-bootstrap" id="toc-when-there-is-no-formula-the-bootstrap" class="nav-link" data-scroll-target="#when-there-is-no-formula-the-bootstrap">When there is no formula: the bootstrap</a></li>
   </ul></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a>
+  <ul class="collapse">
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul></li>
   <li><a href="#check-it-in-python" id="toc-check-it-in-python" class="nav-link" data-scroll-target="#check-it-in-python">Check it in Python</a></li>
   <li><a href="#common-wrong-turns" id="toc-common-wrong-turns" class="nav-link" data-scroll-target="#common-wrong-turns">Common wrong turns</a></li>
   <li><a href="#check-yourself" id="toc-check-yourself" class="nav-link" data-scroll-target="#check-yourself">Check yourself</a></li>
@@ -867,6 +870,112 @@ Figure&nbsp;33.2
 </div>
 </div>
 </div>
+<section id="more-practice" class="level3">
+<h3 class="anchored" data-anchor-id="more-practice">More practice</h3>
+<p>Optional, and nothing is marked. They get harder as they go: two warm-ups, four at the level of the lesson, and a stretch. Stop when they feel routine, and come back before the next unit to any you could not do.</p>
+<div class="quiz practice">
+<div class="q">
+<ol type="1">
+<li><p><em>Warm-up.</em> You have <span class="math inline">\(n = 10\)</span> measurements and want a 95% interval for their mean, using the sample standard deviation <span class="math inline">\(s\)</span>. Which multiplier goes in front of <span class="math inline">\(s/\sqrt{n}\)</span>?</p>
+<ol type="a">
+<li>1.96, from the normal distribution</li>
+<li>2.262, from the <span class="math inline">\(t\)</span> distribution with 9 degrees of freedom</li>
+<li>2.228, from the <span class="math inline">\(t\)</span> distribution with 10 degrees of freedom</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>1.96 would be right if you knew the population standard deviation. You estimated it with <span class="math inline">\(s\)</span>; what pays for that?</p>
+</div>
+<div class="hint" data-option="c">
+<p>How many degrees of freedom does a sample of <span class="math inline">\(n\)</span> give this interval?</p>
+</div>
+</div>
+<div class="q">
+<ol start="2" type="1">
+<li><em>Warm-up.</em> The resting heart rates of 25 adults have mean 72 beats per minute and standard deviation 10. With <span class="math inline">\(t_{0.975,\,24} = 2.064\)</span>, give the 95% interval for the mean, and say in words what it is an interval for.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="3" type="1">
+<li>You want a 95% interval for a mean score with a half-width of about 1 mark, and a pilot suggests <span class="math inline">\(s \approx 8\)</span> marks. Using a multiplier of 2, roughly how many students do you need?</li>
+</ol>
+</div>
+<div class="q">
+<ol start="4" type="1">
+<li><p>Two analysts sample the same population independently, and each builds a 95% interval for its mean. Analyst A gets <span class="math inline">\((32, 38)\)</span> minutes and analyst B gets <span class="math inline">\((35, 41)\)</span> minutes. Which statement is correct?</p>
+<ol type="a">
+<li>At most one of the two intervals can contain the population mean.</li>
+<li>The population mean must lie between 35 and 38, where they overlap.</li>
+<li>Both might contain the population mean, or either might miss it, and nothing in the numbers tells you which.</li>
+<li>Each has a 95% chance of containing the mean, so the overlap has at least a 90% chance.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>The intervals share the values from 35 to 38. Could a population mean of, say, 36 be inside both?</p>
+</div>
+<div class="hint" data-option="b">
+<p>Each interval comes from a procedure that misses 5% of the time. Is either one guaranteed to contain the mean?</p>
+</div>
+<div class="hint" data-option="d">
+<p>Once an interval is computed, the population mean is a fixed number that is either inside it or not. What does the 95% describe?</p>
+</div>
+</div>
+<div class="q">
+<ol start="5" type="1">
+<li><p>You have the prices of the 12 houses sold on a street last year, and one is a mansion worth ten times any of the others. You bootstrap the mean 10,000 times and take the middle 95%. Which comment is fairest?</p>
+<ol type="a">
+<li>The bootstrap makes no assumptions, so this interval can be trusted.</li>
+<li>With 12 houses and one extreme price, the interval deserves little trust: it depends heavily on how often the resamples happen to include the mansion. Report it with a warning, or consider the median.</li>
+<li>You should have resampled without replacement.</li>
+<li>Use 100,000 resamples instead and the problem goes away.</li>
+</ol></li>
+</ol>
+<div class="hint" data-option="a">
+<p>The lesson names three situations where the bootstrap works badly. How many of them does this one hit?</p>
+</div>
+<div class="hint" data-option="c">
+<p>If you draw 12 houses from 12 without replacement, what do you get every time?</p>
+</div>
+<div class="hint" data-option="d">
+<p>More resamples make the pile of resampled means smoother. Do they tell you anything about houses you did not observe?</p>
+</div>
+</div>
+<div class="q">
+<ol start="6" type="1">
+<li>With the heart-rate data of question 2 (<span class="math inline">\(n = 25\)</span>, mean 72, standard deviation 10), build a 99% interval using <span class="math inline">\(t_{0.995,\,24} = 2.797\)</span>. Which is wider, the 95% or the 99% interval? Say why in words.</li>
+</ol>
+</div>
+<div class="q">
+<ol start="7" type="1">
+<li><em>Stretch.</em> A paper reports a mean of 14.2 with 95% CI <span class="math inline">\((12.0, 16.4)\)</span>, from <span class="math inline">\(n = 49\)</span>. Using <span class="math inline">\(t_{0.975,\,48} = 2.011\)</span>, recover the standard error and the sample standard deviation. Then say in words what each of the two numbers describes.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>(b) 2.262, from <span class="math inline">\(t\)</span> with 9 degrees of freedom.</strong> You estimated <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(s\)</span>, so the multiplier comes from the <span class="math inline">\(t\)</span> distribution, with <span class="math inline">\(n - 1 = 9\)</span> degrees of freedom. Using 1.96 here would make the interval about 13% too narrow.</p></li>
+<li><p><span class="math inline">\(\text{SE} = 10/\sqrt{25} = 2\)</span>, so the half-width is <span class="math inline">\(2.064 \times 2 = 4.13\)</span> and the interval is <span class="math inline">\((67.87, 76.13)\)</span> beats per minute. In words: the mean resting heart rate of the population these adults were drawn from is estimated at 72 beats per minute, and values from about 67.9 to 76.1 are consistent with the data. It is an interval for the population <em>mean</em>, not a range for individuals: plenty of individual adults sit well outside it.</p></li>
+<li><p>Half-width <span class="math inline">\(\approx 2 \times 8/\sqrt{n} = 1\)</span> gives <span class="math inline">\(\sqrt{n} = 16\)</span>, so <span class="math inline">\(n = 256\)</span>. At that size the exact multiplier is 1.969, which still gives a half-width just under 1. “About 250” is the right answer to carry.</p></li>
+<li><p><strong>(c) Both might contain it, or either might miss.</strong> The 95% belongs to the procedure: across many repeats, 95% of intervals built this way cover the mean. Any particular interval either does or does not, and as the coverage simulation showed, the misses look no different from the inside. (d) is the commonest misreading, applied twice.</p></li>
+<li><p><strong>(b) The interval deserves little trust.</strong> A small sample and a strong skew are two of the three cases the lesson says the bootstrap handles badly, and the 12 houses are all the information there is about how common mansions are. More resamples only reduce the simulation noise, and resampling without replacement gives back the same 12 houses every time, with no variation at all.</p></li>
+<li><p><span class="math inline">\(72 \pm 2.797 \times 2 = 72 \pm 5.59\)</span>, giving <span class="math inline">\((66.41, 77.59)\)</span> beats per minute. The 99% interval is wider. To capture the population mean in 99% of repeated studies rather than 95%, the procedure has to cast a wider net. With the same data, more confidence costs width.</p></li>
+<li><p>The half-width is <span class="math inline">\((16.4 - 12.0)/2 = 2.2\)</span>, so <span class="math inline">\(\text{SE} = 2.2/2.011 \approx 1.094\)</span>, and <span class="math inline">\(s = \text{SE} \times \sqrt{49} = 1.094 \times 7 \approx 7.66\)</span>. The 7.66 describes how spread out the individual observations are; the 1.09 describes how much the mean of 49 would move between repeated samples. The tempting slips are to read the half-width, 2.2, as a standard deviation, or to forget that <span class="math inline">\(s\)</span> is <span class="math inline">\(\sqrt{n}\)</span> times the standard error.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="check-it-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="check-it-in-python">Check it in Python</h2>
@@ -993,7 +1102,7 @@ An interval without its centre is hard to read, and a centre without its interva
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1002,7 +1111,7 @@ An interval without its centre is hard to read, and a centre without its interva
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>(c).</strong> (a) confuses the spread of the data with the precision of the mean — that would be roughly <span class="math inline">\(\bar{x} \pm 2s\)</span>, not <span class="math inline">\(\bar{x} \pm 2s/\sqrt{n}\)</span>. (b) is the standard misreading: after observation there is no probability left. (d) describes something else again, and is not what the procedure guarantees.</p></li>
@@ -1222,7 +1331,20 @@ An interval without its centre is hard to read, and a centre without its interva
   var diagnostic = /\/start\/diagnostic\.html$/.test(location.pathname);
   var questionIds = [];
 
-  document.querySelectorAll(".quiz").forEach(function (quiz, quizIndex) {
+  /* Saved attempts are keyed by quiz. Check yourself and the diagnostic keep
+   * the plain numbering they have always had; a More practice ladder
+   * (`.quiz.practice`) and a stopping-point question (a `.quiz` inside
+   * `.pause`) are numbered separately, so adding one never shifts the saved
+   * state of the quizzes already on a page. */
+  var counters = { plain: 0, practice: 0, pause: 0 };
+  function quizKey(quiz) {
+    if (quiz.classList.contains("practice")) return "practice" + counters.practice++;
+    if (quiz.closest(".pause")) return "pause" + counters.pause++;
+    return String(counters.plain++);
+  }
+
+  document.querySelectorAll(".quiz").forEach(function (quiz) {
+    var quizIndex = quizKey(quiz);
     var callout = answersCallout(quiz);
     if (!callout) return;
     var questions = Array.prototype.slice.call(quiz.querySelectorAll(":scope > .q"));
@@ -1266,7 +1388,7 @@ An interval without its centre is hard to read, and a centre without its interva
       intro.innerHTML = intro.innerHTML.replace("Answers are at the foot of the page.",
         "Try each question before you open its answer.");
     }
-    if (!diagnostic) quiz.appendChild(summary);
+    if (!diagnostic && questions.length > 1) quiz.appendChild(summary);
     refresh();
   });
 
