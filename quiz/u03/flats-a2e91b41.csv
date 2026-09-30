@@ -1,0 +1,192 @@
+city,rooms,area_m2,rent
+Watford,3,71.2,1175
+Watford,2,62.4,925
+Watford,2,53.0,1025
+St Albans,1,38.2,635
+Luton,3,77.0,1095
+Hatfield,2,56.7,1005
+St Albans,3,74.3,1135
+Luton,1,27.1,675
+Watford,1,40.4,785
+Hatfield,2,72.0,895
+St Albans,2,63.5,830
+Stevenage,3,69.1,1165
+St Albans,2,53.4,825
+Watford,2,63.9,1030
+Hatfield,3,81.4,1205
+Luton,1,40.3,785
+Watford,1,30.9,840
+Hatfield,1,41.5,880
+St Albans,4,92.3,1185
+Stevenage,3,78.8,1095
+Luton,3,87.5,1170
+Hatfield,1,39.9,980
+Stevenage,3,70.1,1290
+St Albans,1,37.5,705
+Stevenage,3,69.1,1100
+Hatfield,3,75.3,1225
+Hatfield,3,60.5,1230
+Stevenage,1,44.8,805
+Watford,2,61.5,870
+Luton,2,48.2,735
+Luton,2,52.4,905
+St Albans,4,99.3,1190
+Luton,3,65.4,1050
+Luton,1,40.2,690
+Stevenage,4,94.3,1475
+Stevenage,2,64.8,855
+St Albans,1,31.1,650
+Watford,4,95.7,1460
+Stevenage,1,45.2,780
+Watford,2,60.3,1115
+Watford,3,68.8,1095
+St Albans,2,57.2,975
+Watford,3,82.4,1180
+Hatfield,1,44.6,945
+Hatfield,3,66.7,1275
+Luton,3,67.0,1100
+St Albans,3,72.4,1055
+Watford,2,54.2,840
+Hatfield,2,46.4,1260
+St Albans,3,65.8,1180
+St Albans,3,74.6,1080
+Luton,2,62.7,965
+Luton,2,60.6,940
+Luton,2,55.2,920
+Watford,1,47.6,900
+Watford,2,58.1,1075
+Watford,1,33.1,860
+Hatfield,1,46.2,835
+Luton,3,67.3,975
+Hatfield,3,86.9,1400
+Hatfield,2,56.3,1010
+St Albans,3,68.8,1010
+Stevenage,1,41.0,815
+Stevenage,3,70.6,1090
+Hatfield,3,84.8,1140
+Hatfield,1,53.8,1035
+Watford,3,78.4,1115
+St Albans,3,64.3,955
+Watford,3,66.3,1255
+Stevenage,3,73.4,1265
+Stevenage,3,81.7,1265
+Stevenage,3,76.1,1075
+Hatfield,3,79.2,1240
+Stevenage,2,51.5,1100
+St Albans,1,37.7,790
+Hatfield,1,39.6,890
+Luton,3,77.2,1030
+Luton,1,37.8,790
+Stevenage,3,69.1,1335
+Watford,2,67.3,1200
+St Albans,2,56.8,880
+Luton,3,83.3,975
+Watford,1,35.6,980
+St Albans,2,59.1,880
+Luton,3,63.8,1075
+Luton,1,47.1,700
+Hatfield,2,50.1,1170
+Luton,3,66.3,895
+Stevenage,2,54.6,975
+Hatfield,2,46.7,1145
+Hatfield,1,35.6,930
+Luton,1,44.3,530
+Hatfield,2,65.5,1215
+St Albans,3,73.1,1115
+Luton,1,31.9,795
+St Albans,1,40.8,765
+Hatfield,4,100.6,1495
+Watford,2,55.0,1050
+St Albans,4,92.2,1225
+Stevenage,1,44.5,720
+St Albans,4,90.6,1135
+Stevenage,2,45.7,945
+St Albans,1,32.7,635
+Stevenage,1,32.0,810
+St Albans,2,61.2,1100
+Luton,2,56.9,800
+Watford,3,77.8,1110
+Stevenage,3,70.8,1230
+Watford,2,65.9,1005
+St Albans,1,38.7,775
+Watford,3,74.5,1300
+Watford,2,47.1,1025
+Luton,1,37.3,790
+Hatfield,3,65.3,1215
+Stevenage,1,51.0,835
+Luton,1,40.2,745
+Watford,2,47.8,980
+Luton,2,50.6,605
+Luton,3,68.1,1105
+Watford,1,46.5,895
+St Albans,2,50.5,865
+Stevenage,1,35.6,805
+Watford,1,38.0,850
+St Albans,1,33.7,740
+St Albans,1,45.3,670
+Stevenage,2,64.4,1055
+St Albans,1,37.2,650
+Stevenage,3,75.8,1330
+Luton,2,61.0,740
+Hatfield,4,91.7,1475
+Watford,2,61.5,995
+Stevenage,1,24.1,950
+Luton,3,69.9,1035
+Hatfield,1,25.0,820
+St Albans,1,33.3,760
+Luton,2,60.8,925
+St Albans,2,60.9,655
+Stevenage,2,60.1,915
+Hatfield,1,44.7,1055
+Stevenage,4,82.4,1300
+Watford,1,42.9,850
+Watford,2,49.4,1110
+Stevenage,1,30.6,780
+Luton,2,55.2,970
+Watford,3,73.6,1315
+St Albans,3,84.7,875
+Hatfield,2,58.8,1140
+Hatfield,1,31.8,985
+Watford,2,58.4,890
+Stevenage,3,68.5,1020
+St Albans,2,48.9,910
+Stevenage,2,57.7,1020
+Luton,3,69.6,1065
+St Albans,1,40.5,700
+St Albans,2,53.6,780
+Watford,3,65.7,1360
+Watford,4,92.3,1415
+St Albans,4,96.5,1300
+Watford,2,53.1,1050
+Watford,1,38.2,750
+St Albans,2,67.8,990
+St Albans,2,59.9,725
+Stevenage,2,54.4,1130
+St Albans,1,41.2,750
+Stevenage,3,83.4,1215
+Luton,4,81.5,1245
+Hatfield,4,98.1,1465
+Luton,2,49.5,1000
+Watford,1,40.1,785
+Watford,2,46.0,1085
+St Albans,3,74.2,1170
+Stevenage,2,55.7,1075
+Stevenage,3,74.9,1285
+Watford,3,67.1,1335
+Watford,2,53.6,950
+Watford,3,79.5,1250
+Stevenage,2,43.1,1045
+St Albans,1,53.0,485
+Watford,4,85.4,1375
+Watford,2,50.1,1020
+Watford,2,54.5,960
+Stevenage,2,49.1,790
+Hatfield,2,60.7,1080
+Hatfield,2,63.4,1110
+Stevenage,2,47.0,1005
+Watford,2,60.9,1005
+St Albans,2,66.7,980
+Watford,1,48.3,760
+Stevenage,1,41.0,755
+Stevenage,1,25.4,810
+St Albans,2,48.7,940
